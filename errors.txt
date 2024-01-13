@@ -1,0 +1,7 @@
+UPDATE `titres` SET `definition` = 'مصاريف التطوير و الأبحاث و الدراسات' WHERE `titres`.`id_titre` = 123;
+UPDATE `portefeuille` SET `ministere` = 'الآشغال العمومية و المنشآت القاعدية' WHERE `portefeuille`.`code` = '024';
+UPDATE `programme` SET `designation` = 'المنشئات الآساسية للطرق والطرق السيارة' WHERE `programme`.`id` = 61;
+ALTER TABLE `company` CHANGE `ministere_fr` `ministere_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `company` CHANGE `direction_fr` `direction_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL; 
+
+fix code
