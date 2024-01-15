@@ -194,7 +194,7 @@
 				<th>الرصيـد الأولي</th>
 				<th>مجموع الإلتزامات السابقة</th>
 				<th>رخصة الإلتزام المفتوحة/المعدلة</th>
-				<th style="text-align : right; width : 30%"> الاسناد الميزانياتي  </th>
+				<th style="text-align : right; width : 30%"> الصنف / الصنف الفرعي </th>
 			</tr>
 			<tbody id="with_all" style="display : none">
 			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal") && $insc == "true" )
