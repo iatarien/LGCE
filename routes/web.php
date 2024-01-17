@@ -127,6 +127,9 @@ Route::get('/ajouter_ods/{id}','ODSController@ajouter_ods');
 Route::get('/modifier_ods/{id}','ODSController@modifier_ods');
 Route::get('/calcul_delai','ODSController@calcul_delai');
 Route::get('/delai/{id}','ODSController@delai');
+Route::get('/somme_arret/{id}/{id_eng}','ODSController@somme_arret');
+
+
 
 Route::post('/add_ods','ODSController@add_ods');
 Route::post('/update_ods','ODSController@update_ods');

@@ -24,6 +24,136 @@ class ODSController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function somme_arret($id,$id_ods){
+        $id_ods = intVal($id_ods);
+        $eng = DB::table('engagements')
+        ->join('deals',"engagements.deal","=","deals.id_deal")
+        ->where('engagements.id',$id)->first();
+        if($eng == null){
+            return "";
+        }
+        $q = "SELECT SUM(duree) as ze_durees FROM deals WHERE id_deal IN 
+        (SELECT deal FROM engagements WHERE num_visa IS NOT NULL) AND
+        parent = ".$eng->deal;
+        $ze_duress = DB::select(DB::raw($q))[0]->ze_durees;
+        $odss = DB::table("ods")->where('id_eng',$id)->where("id","<=",$id_ods)->orderBy('id','ASC')->get();
+
+        $duree = intval($eng->duree) + intval($ze_duress);
+        if(count($odss) == 0){
+            return "";
+        }
+        $d_odss = array();
+        $a_odss = array();
+        $r_odss = array();
+        foreach($odss as $ods){
+            if($ods->real_type =="d"){
+                array_push($d_odss,$ods);
+            }
+            if($ods->real_type =="a"){
+                array_push($a_odss,$ods);
+            }
+            if($ods->real_type =="r"){
+                array_push($r_odss,$ods);
+            }
+        }
+        if(count($d_odss) < 0){
+            return "";
+        }
+
+        if(count($a_odss) < count($r_odss)){
+            $n = count($a_odss);
+        }else{
+            $n = count($r_odss);
+        }
+        $start_date = $d_odss[0]->ods_date;
+
+
+		$days = intval($duree);
+        $arret_days = $this->calculer_ods($n,$a_odss,$r_odss);
+        $days1 = $days + $arret_days;
+
+        $years = 0;
+		$months = 0; 
+		$yy = intval(explode("-",$start_date)[0]);
+		$mm = intval(explode("-",$start_date)[1]);
+		$dd = intval(explode("-",$start_date)[2]);
+
+		if ($dd + $days > 30) {
+			$div = intval($days / 30);
+			$dd += $days % 30;
+			$months += $div; 
+		}else{
+			$dd += $days;
+		}
+		if($dd > 30){
+			$months +=1;
+			$dd -= 30;
+		}
+		if ($mm + $months > 12) {
+			$m_div = intval($months / 12);
+			$mm += $months % 12;
+			$years+= $m_div;
+		}else{
+			$mm+= $months;
+		}
+		if($mm > 12){
+			$years +=1;
+			$mm -= 12;
+		}
+		$yy+= $years;
+		$mm = $mm;
+		$dd = $dd;
+		if (strlen($mm) == 1){
+			$mm  = "0".$mm;
+		}
+		if(strlen($dd) == 1){
+			$dd = "0".$dd;
+		}
+		$first_date = $yy."-".$mm."-".$dd;
+        $days = $days1;
+        $years = 0;
+		$months = 0; 
+		$yy = intval(explode("-",$start_date)[0]);
+		$mm = intval(explode("-",$start_date)[1]);
+		$dd = intval(explode("-",$start_date)[2]);
+
+		if ($dd + $days > 30) {
+			$div = intval($days / 30);
+			$dd += $days % 30;
+			$months += $div; 
+		}else{
+			$dd += $days;
+		}
+		if($dd > 30){
+			$months +=1;
+			$dd -= 30;
+		}
+		if ($mm + $months > 12) {
+			$m_div = intval($months / 12);
+			$mm += $months % 12;
+			$years+= $m_div;
+		}else{
+			$mm+= $months;
+		}
+		if($mm > 12){
+			$years +=1;
+			$mm -= 12;
+		}
+		$yy+= $years;
+		$mm = $mm;
+		$dd = $dd;
+		if (strlen($mm) == 1){
+			$mm  = "0".$mm;
+		}
+		if(strlen($dd) == 1){
+			$dd = "0".$dd;
+		}
+		$end_date = $yy."-".$mm."-".$dd;
+        
+        return array($arret_days,$first_date,$end_date);
+    }
+
     public function ods($id)
     {   
         $user = Auth::user();
@@ -34,8 +164,15 @@ class ODSController extends Controller
         where('ods.id',$id)->first();
         $d = DB::table('ods')->where('id_eng',$ods->id_eng)->where('real_type',"d")->first();
         $year = explode('-',$ods->ods_date)[0];
+        //$delai = $this->delai($ods->id_eng);
+        
         if($this->ville_fr =="Ouled Djellal" || $this->ville_fr =="Ouled djellal" || $this->ville_fr =="ouled djellal" ){
-            return view('ods.djellal',["user"=>$user,"ods"=>$ods,'year'=>$year,"d"=>$d]);
+            $sommes = $this->somme_arret($ods->id_eng,$id);
+            $arret_days = $sommes[0];
+            $first_end = $sommes[1];
+            $delai = $sommes[2];
+            return view('ods.djellal',["delai"=>$delai,"ods"=>$ods,'year'=>$year,
+            "arret_days"=>$arret_days,"first_end"=>$first_end,"d"=>$d]);
         }
         return view('ods.ods',["user"=>$user,"ods"=>$ods,'year'=>$year]);
     }
@@ -67,16 +204,17 @@ class ODSController extends Controller
             $e = $filters[0];
 
             
-            $query = "WHERE 1 AND";
+            $query = $query." WHERE 1 AND";
             
             if ($numero != ""){
                 $query = $query." operations.numero ='".$numero."' AND"; 
             }
             if($e != ""){
-                $query = $query." entreprises.name ='".$e."' AND";
+                $query = $query." entreprises.id ='".$e."' AND";
             }
-           
+            
             $query= $query." 1 ORDER BY ods.id DESC LIMIT 100";
+            //return $query;
             return DB::select( DB::raw($query));
         }else{
             $query = $query." ORDER BY ods.id DESC LIMIT 100";
@@ -223,14 +361,15 @@ class ODSController extends Controller
         $eng = DB::table('engagements')
         ->join('deals',"engagements.deal","=","deals.id_deal")
         ->where('engagements.id',$id)->first();
+        if($eng == null){
+            return "لا يوجد أي أمر مصلحي ";
+        }
         $q = "SELECT SUM(duree) as ze_durees FROM deals WHERE id_deal IN 
         (SELECT deal FROM engagements WHERE num_visa IS NOT NULL) AND
         parent = ".$eng->deal;
         $ze_duress = DB::select(DB::raw($q))[0]->ze_durees;
         $odss = DB::table("ods")->where('id_eng',$id)->orderBy('id','ASC')->get();
-        if($eng == null){
-            return "لا يوجد أي أمر مصلحي ";
-        }
+        
         $duree = intval($eng->duree) + intval($ze_duress);
         if(count($odss) == 0){
             return "لا يوجد أي أمر مصلحي لل".$eng->deal_type."";

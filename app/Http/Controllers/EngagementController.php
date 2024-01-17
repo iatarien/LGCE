@@ -504,7 +504,7 @@ class EngagementController extends Controller
             INNER JOIN operations ON e.id_op = operations.id 
             INNER JOIN deals ON deals.id_deal = e.deal
             LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
-            WHERE num_visa IS NOT NULL AND deals.parent IS NULL AND ";
+            WHERE num_visa IS NOT NULL AND ( deals.parent IS NULL OR deals.parent = 0 ) AND ";
              
         if($type == "" or $type == "all"){
             $type = "'eng','decision','reevaluation'";

@@ -122,17 +122,33 @@
                         </table>
                        
                     </th>
+                    <?php if (DateTime::createFromFormat('Y-m-d', $delai) == false) {
+                        $delai = "";
+                        }
+                        if($arret_days ==0){
+                            $arret_days = "";
+                        }else{
+                            $arret_days = strval($arret_days);
+                            if(strlen($arret_days) == 1){
+                                $arret_days = "0".$arret_days;
+                            }
+                        }
+                        if($ods->real_type =="a"){
+                            $delai = "";
+                            $arret_days = "";
+                        }
+                        ?>
                     <th>التاريخ الإبتدائي للتسليم
                         <hr>
-                        &emsp;
+                        {{$first_end}}
                     </th>
                     <th>مدة التوقيف (أيام)
                         <hr>
-                        &emsp;
+                        {{$arret_days}}
                     </th>
                     <th>تاريخ إنتهاء الأشغال
                         <hr>
-                        &emsp;
+                        {{$delai}}
                     </th>
                 </tr>
 

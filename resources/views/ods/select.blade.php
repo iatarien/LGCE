@@ -171,7 +171,7 @@ function get_engs(){
 	var type = "eng";
 	
 	var url = "/engs_vise/"+type;
-	
+	console.log(url);
 	$.ajax({
 	    url: url,
 	    type:"GET", 

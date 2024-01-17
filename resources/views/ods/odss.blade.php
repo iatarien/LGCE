@@ -74,7 +74,7 @@ input {
 				<input  id="op_input1" autocomplete="off" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
                 <div id="myDropdown1"  class="dropdown-content" style="display: none;">
                       @foreach ($entreprises as $e)
-                      <span class="es_clss" style="cursor: pointer;" onclick="filter_e('{{ $e->name }}')">{{ $e->name  }}</span>
+                      <span class="es_clss" style="cursor: pointer;" onclick="filter_e('{{ $e->id }}')">{{ $e->name  }}</span>
                       @endforeach
                     </div>
 				
@@ -180,7 +180,7 @@ function filter(value){
 }
 function filter_e(value){
     document.getElementById("myDropdown1").style.display ="none";
-	document.getElementById('op_input1').value = value;
+	// document.getElementById('op_input1').value = value;
 	document.getElementById("filters-entreprise").innerHTML = value;
 	document.getElementById("filters-numero").innerHTML = document.getElementById('op_input2').value;
 
