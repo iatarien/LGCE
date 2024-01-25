@@ -510,7 +510,7 @@ class EngagementController extends Controller
             $type = "'eng','decision','reevaluation'";
         }else{
             $type = "'".$type."'";
-        }
+        } 
         if($filters != ""){
             $filters = explode("*1989*",$filters);
             $numero = str_replace("__","/",$filters[0]);
