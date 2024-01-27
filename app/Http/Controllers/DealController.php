@@ -67,7 +67,8 @@ class DealController extends Controller
 
             $query = "SELECT *, d.id_deal as deal_id FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
-            LEFT JOIN entreprises ON d.entreprise = entreprises.id WHERE ";
+            LEFT JOIN entreprises ON d.entreprise = entreprises.id 
+            LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
             
 
             if($numero != ""){
@@ -90,7 +91,8 @@ class DealController extends Controller
         }else{
             $query = "SELECT *, d.id_deal as deal_id FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
-            LEFT JOIN entreprises ON d.entreprise = entreprises.id WHERE ";
+            LEFT JOIN entreprises ON d.entreprise = entreprises.id 
+            LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
             $query= $query." 1 ORDER BY deal_id DESC LIMIT 100";
             return DB::select( DB::raw($query));
         }

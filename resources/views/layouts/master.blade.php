@@ -1,6 +1,12 @@
 @include('components.header')
 @yield('style')
-@include('components.sidebar')
+
+@if($lang =="fr")
+  @include('components.sidebar_fr')
+@else
+  @include('components.sidebar')
+@endif
+
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">

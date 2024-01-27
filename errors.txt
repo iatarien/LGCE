@@ -3,5 +3,10 @@ UPDATE `portefeuille` SET `ministere` = 'الآشغال العمومية و ال
 UPDATE `programme` SET `designation` = 'المنشئات الآساسية للطرق والطرق السيارة' WHERE `programme`.`id` = 61;
 ALTER TABLE `company` CHANGE `ministere_fr` `ministere_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 ALTER TABLE `company` CHANGE `direction_fr` `direction_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL; 
+ALTER TABLE `company` ADD `lang` VARCHAR(3) NOT NULL AFTER `license`;
+ALTER TABLE `portefeuille` ADD `ministere_fr` TEXT NULL AFTER `ministere`;
+ALTER TABLE `programme` ADD `designation_fr` TEXT NULL AFTER `designation`;
+ALTER TABLE `titres` ADD `definition_fr` TEXT NULL AFTER `definition`;
+ALTER TABLE `operations` CHANGE `intitule_ar` `intitule_ar` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
 
 fix code

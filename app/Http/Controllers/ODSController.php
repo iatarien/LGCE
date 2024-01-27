@@ -362,7 +362,12 @@ class ODSController extends Controller
         ->join('deals',"engagements.deal","=","deals.id_deal")
         ->where('engagements.id',$id)->first();
         if($eng == null){
-            return "لا يوجد أي أمر مصلحي ";
+            if($this->lang =='fr'){
+                return "Il n'existe aucun ODS";
+            }else{
+                return "لا يوجد أي أمر مصلحي ";
+            }
+            
         }
         $q = "SELECT SUM(duree) as ze_durees FROM deals WHERE id_deal IN 
         (SELECT deal FROM engagements WHERE num_visa IS NOT NULL) AND
@@ -372,7 +377,13 @@ class ODSController extends Controller
         
         $duree = intval($eng->duree) + intval($ze_duress);
         if(count($odss) == 0){
-            return "لا يوجد أي أمر مصلحي لل".$eng->deal_type."";
+            if($this->lang =='fr'){
+                return "Il n'existe aucun ODS ";
+            }else{
+                return "لا يوجد أي أمر مصلحي لل".$eng->deal_type."";
+            }
+            
+            
         }
         $d_odss = array();
         $a_odss = array();
@@ -389,10 +400,21 @@ class ODSController extends Controller
             }
         }
         if(count($d_odss) < 0){
-            return "لا يوجد أمر مصلحي بالإنطلاق لل".$eng->deal_type."";
+            if($this->lang =='fr'){
+                return "Il n'existe pas un ODS de démarrage ";
+            }else{
+                return "لا يوجد أمر مصلحي بالإنطلاق لل".$eng->deal_type."";
+            }
+            
         }
         if($odss[count($odss)-1]->real_type =="a"){
-            return "لا يوجد أمر مصلحي بالاستئناف بعد أخر توقف لل".$eng->deal_type."";
+            if($this->lang =='fr'){
+                return "Il n'existe pas un ODS de reprise après le dernier arret ";
+            }else{
+                return "لا يوجد أمر مصلحي بالاستئناف بعد أخر توقف لل".$eng->deal_type."";
+            }
+            
+           
         }
         if(count($a_odss) < count($r_odss)){
             $n = count($a_odss);

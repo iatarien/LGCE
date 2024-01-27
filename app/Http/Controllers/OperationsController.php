@@ -105,15 +105,23 @@ class OperationsController extends Controller
         $user = Auth::user();
         if($portefeuille =="all"){
             $ops = DB::table('operations')->whereNull("date_cloture")->get();
-            $programmes = DB::table("programme")->whereNull("parent")->get();
+            $programmes = DB::table("programme")->whereNull("parent")->orWhere("parent","")->get();
         }else{
             $ops = DB::table('operations')->where("portefeuille",$portefeuille)->
             whereNull("date_cloture")->get();
-            $programmes = DB::table("programme")->where("portefeuille",$portefeuille)->
-            whereNull("parent")->get();
+            $programmes = DB::table("programme")->where("portefeuille",$portefeuille)
+            ->where(function($query) {
+                $query->whereNull('parent')
+                    ->orWhere("parent","");
+            })->get();
+            //whereNull("parent")->orWhere("parent","")->get();
         }
         $portefeuilles= DB::table('portefeuille')->orderBy("code","ASC")->get();
-        return view('operations.operations',['user' => $user,"ops"=>$ops,
+        $view = "operations.operations";
+        if($this->lang== "fr"){
+            $view = "operations.operations_fr";
+        }
+        return view($view,['user' => $user,"ops"=>$ops,
         "porte"=>$portefeuille,"portefeuilles"=>$portefeuilles,
         "programmes"=>$programmes
         ]);
@@ -124,15 +132,23 @@ class OperationsController extends Controller
         $user = Auth::user();
         if($portefeuille =="all"){
             $ops = DB::table('operations')->whereNotNull("date_cloture")->get();
-            $programmes = DB::table("programme")->whereNotNull("parent")->get();
+            $programmes = DB::table("programme")->whereNull("parent")->orWhere("parent","")->get();
         }else{
             $ops = DB::table('operations')->where("portefeuille",$portefeuille)->
             whereNotNull("date_cloture")->get();
-            $programmes = DB::table("programme")->where("portefeuille",$portefeuille)->
-            whereNotNull("parent")->get();
+            $programmes = DB::table("programme")->where("portefeuille",$portefeuille)
+            ->where(function($query) {
+                $query->whereNull('parent')
+                    ->orWhere("parent","");
+            })->get();
         }
         $portefeuilles= DB::table('portefeuille')->orderBy("code","ASC")->get();
-        return view('operations.operations_clotures',['user' => $user,"ops"=>$ops,
+
+        $view = "operations.operations_clotures";
+        if($this->lang== "fr"){
+            $view = "operations.operations_clotures_fr";
+        }
+        return view($view,['user' => $user,"ops"=>$ops,
         "porte"=>$portefeuille,"portefeuilles"=>$portefeuilles,
         "programmes"=>$programmes
         ]);
@@ -182,7 +198,11 @@ class OperationsController extends Controller
         $user = Auth::user();
         $portefeuilles= DB::table('portefeuille')->orderBy("code","ASC")->get();
         $titres= DB::table('titres')->where("type","parent")->orderBy("code","ASC")->get();
-        return view('operations.ajouter_operation_ar',
+        $view = 'operations.ajouter_operation_ar';
+        if($this->lang=="fr"){
+            $view = 'operations.ajouter_operation_fr';
+        }
+        return view($view,
         ['user'=>$user,"portefeuilles"=>$portefeuilles,"titres"=>$titres]);
     }
     
@@ -199,7 +219,12 @@ class OperationsController extends Controller
         $titres= DB::table('titres')->where("type","parent")->orderBy("code","ASC")->get();
 
         $op->reevaluation = floatval($op->AP_act) - floatval($op->AP_init);
-        return view('operations.modifier_operation_ar',['user'=>$user,'op'=>$op,
+        $view = 'operations.modifier_operation_ar';
+        if($this->lang=="fr"){
+            $view = 'operations.modifier_operation_fr';
+        }
+        return view($view,
+        ['user'=>$user,'op'=>$op,
         "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,
         "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps]);
     }

@@ -31,7 +31,7 @@ class EngagementController extends Controller
         $user = Auth::user();
         #$chapitre = explode(",",$user->chapitre);
         $operations = DB::table('operations')->
-        select('id','numero','intitule_ar')->where("user_id",$user->id)->
+        select('id','numero','intitule_ar',"intitule")->where("user_id",$user->id)->
         whereNull("date_cloture")->orderBy('id',"DESC")->get();
 
         $retrait = "";
@@ -44,13 +44,16 @@ class EngagementController extends Controller
             join("operations","deals.id_op","=","operations.id")->
             leftjoin("entreprises","entreprises.id","=","deals.entreprise")->
             where('id_deal',$id)->first();
-            if($deal->deal_type == "ملحق"){
+            if($deal->deal_type == "ملحق" || $deal->deal_type == "avenant"){
                 $parent = DB::table("deals")->where('id_deal',$deal->parent)->first();
             }
 
         }
 
         $view ='engs.ajouter_eng';
+        if($this->lang =="fr"){
+            $view ='engs.ajouter_eng_fr';
+        }
         $titres = DB::table("titres")->where("type","=","parent")->orderBy("id_titre","ASC")->get();
         for($i =0; $i< count($titres); $i++){
             $titres[$i]->sous_titres = DB::table("titres")->where("father","=",$titres[$i]->id_titre)->orderBy("id_titre")->get();
@@ -72,7 +75,7 @@ class EngagementController extends Controller
             join("operations","deals.id_op","=","operations.id")->
             leftjoin("entreprises","entreprises.id","=","deals.entreprise")->
             where('id_deal',$eng->deal)->first();
-            if($deal->deal_type == "ملحق"){
+            if($deal->deal_type == "ملحق" || $deal->deal_type == "avenant"){
                 $parent = DB::table("deals")->where('id_deal',$deal->parent)->first();
             }
 
@@ -107,6 +110,9 @@ class EngagementController extends Controller
         
         
         $view ='engs.modifier_eng';
+        if($this->lang =="fr"){
+            $view ='engs.modifier_eng_fr';
+        }
         $titres = DB::table("titres")->where("type","=","parent")->orderBy("id_titre","ASC")->get();
         for($i =0; $i< count($titres); $i++){
             $titres[$i]->sous_titres = DB::table("titres")->where("father","=",$titres[$i]->id_titre)->get();
@@ -224,7 +230,11 @@ class EngagementController extends Controller
         
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('engs.engagements',["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
+        $view = 'engs.engagements';
+        if($this->lang =="fr"){
+            $view = 'engs.engagements_fr';
+        }
+        return view($view,["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
     }
     public function delais($type="")
     {   
@@ -241,7 +251,11 @@ class EngagementController extends Controller
         
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('engs.delais',["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
+        $view = 'engs.delais';
+        if($this->lang =="fr"){
+            $view = 'engs.delais_fr';
+        }
+        return view($view,["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
     }
     public function get_engs_delai($type="",$filters=""){
         $user = Auth::user();
@@ -281,9 +295,9 @@ class EngagementController extends Controller
             operations ON e.id_op = operations.id INNER JOIN 
             deals ON e.deal = deals.id_deal
             INNER JOIN entreprises ON deals.entreprise = entreprises.id 
-            WHERE type IN (".$type.") AND deals.parent IS NULL AND ";
+            WHERE type IN (".$type.") AND ( deals.parent IS NULL OR deals.parent =0) AND ";
             if($first_type =="ajouter_pay"){
-                $query = $query." deals.parent IS NULL AND";
+                $query = $query." ( deals.parent IS NULL OR deals.parent =0) AND";
             }
             
 
@@ -321,7 +335,7 @@ class EngagementController extends Controller
                 INNER JOIN operations ON e.id_op = operations.id 
                 INNER JOIN deals ON e.deal = deals.id_deal
                 INNER JOIN entreprises ON deals.entreprise = entreprises.id 
-                WHERE type IN (".$type.") AND deals.parent IS NULL AND 
+                WHERE type IN (".$type.") AND ( deals.parent IS NULL OR deals.parent =0) AND 
                 e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 50";
             }else{
                 if($first_type =="borderau"){
@@ -329,18 +343,19 @@ class EngagementController extends Controller
                     INNER JOIN operations ON e.id_op = operations.id 
                     INNER JOIN deals ON e.deal = deals.id_deal
                     INNER JOIN entreprises ON deals.entreprise = entreprises.id 
-                    WHERE type IN (".$type.") AND deals.parent IS NULL AND 
+                    WHERE type IN (".$type.") AND ( deals.parent IS NULL OR deals.parent =0) AND 
                     e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 50";
                 }else{
                     $query = "SELECT *, e.id as eng_id FROM engagements e 
                     INNER JOIN operations ON e.id_op = operations.id 
                     INNER JOIN deals ON e.deal = deals.id_deal
                     INNER JOIN entreprises ON deals.entreprise = entreprises.id 
-                    WHERE type IN (".$type.") AND deals.parent IS NULL AND 
+                    WHERE type IN (".$type.") AND ( deals.parent IS NULL OR deals.parent =0) AND 1
                     ORDER BY eng_id DESC LIMIT 50";
                 }
                 
             }
+            
             $engs =  DB::select( DB::raw($query));
             foreach($engs as $eng){
                 $eng->delai = app('App\Http\Controllers\ODSController')->delai($eng->eng_id);
@@ -388,7 +403,7 @@ class EngagementController extends Controller
             LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
             WHERE type IN (".$type.") AND";
             if($first_type =="ajouter_pay" || $first_type =="add_att"){
-                $query = $query." deals.parent IS NULL AND";
+                $query = $query." ( deals.parent IS NULL OR deals.parent =0) AND";
             }
             
 
@@ -504,7 +519,7 @@ class EngagementController extends Controller
             INNER JOIN operations ON e.id_op = operations.id 
             INNER JOIN deals ON deals.id_deal = e.deal
             LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
-            WHERE num_visa IS NOT NULL AND ( deals.parent IS NULL OR deals.parent = 0 ) AND ";
+            WHERE num_visa IS NOT NULL AND ( ( deals.parent IS NULL OR deals.parent =0) OR deals.parent = 0 ) AND ";
              
         if($type == "" or $type == "all"){
             $type = "'eng','decision','reevaluation'";
@@ -804,7 +819,11 @@ class EngagementController extends Controller
         //echo count($engs);
         //echo $n;
         //return $query;
-        return view('engs.print_engs',["engs"=>$engs,"n"=>$n]);
+        $view = 'engs.print_engs';
+        if($this->lang =="fr"){
+            $view ='engs.print_engs_fr';
+        }
+        return view($view,["engs"=>$engs,"n"=>$n]);
 
     }  
     

@@ -57,13 +57,6 @@ input {
 <div id="main" class="main row">
 	<div class="col-sm-12">
 		<div class="row">
-			<div class="col-sm-offset-1 col-sm-1 form-group">
-				@if($user->service == "Comptabilité")
-				<button style="cursor : pointer" onclick="print_engs()" class="btn btn-basic">
-				<img style="max-width : 50%;" src="{{ url('img/print.png') }}">
-				</button>
-				@endif
-			</div>
 			<!-- <div class=" col-sm-2 form-group">
 				<select class="form-control" onchange="filter(this.value,document.getElementById('op_input').value)">
 					<option style="visibility: hidden;" value="">نوع الالتزام</option>
@@ -71,16 +64,8 @@ input {
 					<option value="eng"> إلتزام</option>
 				</select>
 			</div> -->
-			<div class=" col-sm-2 form-group">
-				<select class="form-control" onchange="filter_y(this.value)">
-					<option style="visibility: hidden;" value="">السنة</option>
-					@for($i=2019; $i< 2040; $i++)
-					<option value="{{$i}}">{{$i}}</option>
-					@endfor
-				</select>
-			</div>
-			<div class="  col-sm-3 form-group">
-				<input id="op_input" autocomplete="off" dir="rtl" placeholder="اختيار العملية" list="ops" class="form-control"  onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
+			<div class=" col-sm-offset-3 col-sm-3 form-group">
+				<input id="op_input" autocomplete="off" dir="ltr" placeholder=" Opération" list="ops" class="form-control"  onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
                     <div id="myDropdown" class="dropdown-content" style="display: none;">
                       @foreach ($operations as $operation)
                       <span class="ops_clss" style="cursor: pointer;" onclick="filter('','{{ $operation->numero }}')">{{ $operation->numero  }}</span>
@@ -88,12 +73,19 @@ input {
                     </div>
 			</div>
 			<div class="  col-sm-3 form-group">
-				<input id="e_input" autocomplete="off" dir="rtl" placeholder="اختيار المقاول" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
+				<input id="e_input" autocomplete="off" dir="ltr" placeholder="Entreprise" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
                     <div id="myDropdown1" class="dropdown-content" style="display: none;">
                       @foreach ($es as $e)
-                      <span class="es_clss" style="cursor: pointer; text-align : right;" onclick="filter_e('','{{ $e->id }}1989raouf1989{{ $e->name }}')">{{ $e->name  }}</span>
+                      <span class="es_clss" style="cursor: pointer; text-align : left;" onclick="filter_e('','{{ $e->id }}1989raouf1989{{ $e->name }}')">{{ $e->name  }}</span>
                       @endforeach
                     </div>
+			</div>
+            <div class=" col-sm-1 form-group">
+				@if($user->service == "Comptabilité")
+				<button style="cursor : pointer" onclick="print_engs()" class="btn btn-basic">
+				<img style="max-width : 50%;" src="{{ url('img/print.png') }}">
+				</button>
+				@endif
 			</div>
 			
 
@@ -102,8 +94,8 @@ input {
 	</div>
 	<div >
 		<!--Project Activity start-->
-		<section class="panel panel-info" style="display: table;" lang="ar" dir="rtl">
-			<div class="panel-heading">الالتزامات</div>
+		<section class="panel panel-info" style="display: table;" lang="ar" dir="ltr">
+			<div class="panel-heading">Engagements</div>
 				  <table id="demo-table" class="table table-bordered personal-task resizable">
 				    <tbody id="ops_place">
 				      
@@ -331,7 +323,7 @@ function print_engs(){
 	window.open(url, '_blank').focus();
 }
 function supprimer(link){
-	var result = confirm("هل أنت متأكد من أنك تريد حذف هذا الالتزام ؟");
+	var result = confirm("Etes-vous sur de vouloir supprimer ?");
 	if (result) {
 		document.location.href = link;
 	}
@@ -355,15 +347,15 @@ function display(engagements,value){
     var type= "{{ $type }}";
 	var tds = '<tr style="  font-weight : bolder;">'+
 		        '<td style="width : 2.5%;" ><div>#</div></td>'+
-		        '<td style="width : 6%;"><div>رقم البطاقة</div></td>'+
-		        '<td style=" width : 20.5%;"><div>رقم و تعيين العملية</div></td>'+
-		        '<td style=" width : 14%;" id="intitule"><div> موضوع الالتزام </div></td>'+
-                '<td style=" width : 13%;" id="intitule"><div>المقـــاول</div></td>'+
-				'<td style=" width : 11%;" id="total"><div>القيـــمة</div></td>'+
-				'<td style=" width : 9%;" id="total"><div>تاريخ التأشيرة</div></td>'+
-				'<td style="width : 7%;"><div>معاينة</div></td>'+
-		        '<td style="width : 7%;"><div>تعديل</div></td>'+
-				'<td style="width : 7%; text-align : center;"><div>حذف</div></td>'+
+		        '<td style="width : 6%;"><div>N° Fiche</div></td>'+
+		        '<td style=" width : 20.5%;"><div>N° et intitulé de l\'opération </div></td>'+
+		        '<td style=" width : 14%;" id="intitule"><div>Objet d\'engagement </div></td>'+
+                '<td style=" width : 13%;" id="intitule"><div>Entreprise</div></td>'+
+				'<td style=" width : 11%;" id="total"><div>Montant</div></td>'+
+				'<td style=" width : 9%;" id="total"><div>Date Visa </div></td>'+
+				'<td style="width : 7%;"><div>Consulter</div></td>'+
+		        '<td style="width : 7%;"><div>Modifier</div></td>'+
+				'<td style="width : 7%; text-align : center;"><div>Supprimer</div></td>'+
 		      '</tr>';
 	const op = engagements;
 	for (var i = 0; i < engagements.length; i++) {
@@ -378,8 +370,8 @@ function display(engagements,value){
 		        '<span><h5><strong>'+op[i].numero_fiche+'</strong></h5></span>'+
 		    '</td>'+
 		    '<td>'+
-		        '<span style="text-align : right" dir="rtl"><h5 style="text-decoration : underline"><strong>'+op[i].numero+'</strong></h5>'+
-				'<h5><strong>'+op[i].intitule_ar+'</strong></h5></span>'+
+		        '<span style="text-align : left" dir="ltr"><h5 style="text-decoration : underline"><strong>'+op[i].numero+'</strong></h5>'+
+				'<h5><strong>'+op[i].intitule+'</strong></h5></span>'+
 		    '</td>'+
 		    '<td>'+
 		        '<span><h5><strong>'+op[i].real_sujet+'</strong></h5></span>'+
@@ -393,7 +385,7 @@ function display(engagements,value){
 		        '<span><h5><strong>/</strong></h5></span>'+
 		    '</td>';
 			}
-			tds +='<td dir="ltr" style="text-align : right">'+
+			tds +='<td dir="ltr" style="text-align : left">'+
 		        '<span><h5><strong>'+numberWithCommas(op[i].montant)+'</strong></h5></span>'+
 		    '</td>';
 			if(op[i].date_visa != null){
@@ -407,26 +399,26 @@ function display(engagements,value){
 			}
 
 			tds +='<td>'+
-			'<span><a class="btn btn-default"  href="/fiche_eng/'+op[i].eng_id+'">معاينة</a></span>'+
+			'<span><a class="btn btn-default"  href="/fiche_eng/'+op[i].eng_id+'">Consulter</a></span>'+
 		    '</td>';
 	
 			
 		    if(user_id == op[i].user_id && op[i].num_visa == null){
 				tds +='<td>'+
-		    	'<span><button class="btn btn-primary"  onclick="document.location.href=\'/modifier_engagement/'+op[i].eng_id+'\'">تعديل</button></span>'+
+		    	'<span><button class="btn btn-primary"  onclick="document.location.href=\'/modifier_engagement/'+op[i].eng_id+'\'">Modifier</button></span>'+
 		        '</td>';
 			}else{
 				tds +='<td>'+
-		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">تعديل</button></span>'+
+		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">Modifier</button></span>'+
 		        '</td>';
 			}
 			if(op[i].user_id == user_id && op[i].num_visa == null){
 				tds +='<td style="text-align : center;">'+
-			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_eng/'+op[i].eng_id+'\')">خذف</button></span>'+
+			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_eng/'+op[i].eng_id+'\')">Supprimer</button></span>'+
 			'</td>';
 			}else{
 				tds +='<td style="text-align : center;">'+
-			'<span><button class="btn btn-danger" disabled >خذف</button></span>'+
+			'<span><button class="btn btn-danger" disabled >Supprimer</button></span>'+
 			'</td>';
 			}
 		    

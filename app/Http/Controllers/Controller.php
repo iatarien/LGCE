@@ -34,6 +34,10 @@ class Controller extends BaseController
         $this->year = $settings->year;
         $this->pref_eng = $settings->pref_eng;
         $this->license = $settings->license;
+        $this->lang = "";
+        if(isset($settings->lang)){
+            $this->lang = $settings->lang;
+        }
         
 
         View::share('ville', $this->ville);
@@ -48,5 +52,7 @@ class Controller extends BaseController
         View::share('the_year', $this->year);
         View::share('pref_eng', $this->pref_eng);
         View::share('license', $this->license);
+        View::share('pref_eng', $this->pref_eng);
+        View::share('lang', $this->lang);
     }
 }

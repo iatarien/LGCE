@@ -61,11 +61,11 @@
 @endsection
 @section('content')
 <div id="main" class="row main">
-	<div class="col-lg-10 col-xs-10 col-sm-10 portlets pull-right" lang="ar" dir="rtl" style="margin-right: 15%; margin-left: 15%;"  >
+	<div class="col-lg-10 col-xs-10 col-sm-10 poltrets pull-left" lang="fr" dir="ltr" style="margin-right: 15%;"  >
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-	        <div class="pull-right">
-                 الإعدادات
+	        <div class="pull-left">
+                 Réglages
             </div>
 	        <div class="clearfix"></div>
 	      </div>
@@ -79,37 +79,44 @@
 
                 
                 <div class="form-group">
+                  <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">   Wilaya : </label>
 	                <div class="col-xs-10">
-	                  <input dir="rtl" style="text-align : right" readonly type="text" class="form-control" id="ods_num" value="{{$settings->ville}}" name="ville">
+	                  <input dir="ltr" style="text-align : left;" readonly type="text" class="form-control" id="ods_num" value="{{$settings->ville_fr}}" name="ville">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   الولاية : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">   Ministère : </label>
 	                <div class="col-xs-10">
-	                  <input dir="rtl" style="text-align : right" readonly type="text" class="form-control" id="ods_num" value="{{$settings->ministere}}" name="ministere">
+	                  <input dir="ltr" style="text-align : left;" readonly type="text" class="form-control" id="ods_num" value="{{$settings->ministere_fr}}" name="ministere">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   الوزارة : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">   Direction : </label>
 	                <div class="col-xs-10">
-	                  <input dir="rtl" style="text-align : right" readonly type="text" class="form-control" id="ods_num" value="{{$settings->direction}}" name="direction">
+	                  <input dir="ltr" style="text-align : left;" readonly type="text" class="form-control" id="ods_num" value="{{$settings->direction_fr}}" name="direction">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   المديرية : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title"> Code Ordonnateur : </label>
 	                <div class="col-xs-10">
-	                  <input dir="ltr" style="text-align : right" required type="text" class="form-control" id="ods_num" value="{{$settings->order_ville}}" name="order_ville">
+	                  <input dir="ltr" style="text-align : left;" required type="text" class="form-control" id="ods_num" value="{{$settings->order_ville}}" name="order_ville">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">    الأمر بالصرف : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">    Compte Trésor : </label>
 	                <div class="col-xs-10">
-	                  <input dir="ltr" style="text-align : right" required value="{{$settings->compte_tresor}}" type="text" class="form-control" id="compte_tresor" name="compte_tresor">
+	                  <input dir="ltr" style="text-align : left;" required value="{{$settings->compte_tresor}}" type="text" class="form-control" id="compte_tresor" name="compte_tresor">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   حساب الخزينة : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">    Année Financière : </label>
 	                <div class="col-xs-10">
+                    
 	                  <select name="year" class="form-control">
                         <option style="visibility : hidden" value="{{$settings->year}}">{{$settings->year}} </option>
                         <?php for($i = 2023; $i< 2100; $i++){ ?>
@@ -117,7 +124,7 @@
                         <?php } ?>
                       </select>
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   السنة المالية : </label>
+                    
 	            </div>
               
             <br>
@@ -128,7 +135,7 @@
 	              <div class="form-group" align="center">
 	                <!-- Buttons -->
 	                <div class="col-lg-offset-2 col-lg-9">
-	                  <button type="submit" class="btn btn-primary">حفــــظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>

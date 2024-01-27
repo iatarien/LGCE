@@ -2,7 +2,7 @@
 
 @section('content')
 <br><br><br><br>
-<div class="row">
+<div class="row main" id="main">
 	<div class="col-lg-8 portlets">
 	    <div class="panel panel-default">
 	      <div class="panel-heading">

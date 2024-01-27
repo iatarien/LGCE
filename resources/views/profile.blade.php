@@ -61,11 +61,11 @@
 @endsection
 @section('content')
 <div id="main" class="row main">
-	<div class="col-lg-10 col-xs-10 col-sm-10 portlets pull-right" lang="ar" dir="rtl" style="margin-right: 15%; margin-left: 15%;"  >
+	<div class="col-lg-10 col-xs-10 col-sm-10 portlets pull-left" lang="ar" dir="ltr" style="margin-right: 15%;"  >
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-	        <div class="pull-right">
-                 الإعدادات
+	        <div class="pull-left">
+                 Réglages
             </div>
 	        <div class="clearfix"></div>
 	      </div>
@@ -78,16 +78,18 @@
 	            	@csrf
 
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left;; font-weight: bold;" for="title">   Utilisateur  : </label>
 	                <div class="col-xs-10">
-	                  <input dir="rtl" style="text-align : right" readonly type="text" class="form-control" id="ods_num" value="{{$user->username}}" name="direction">
+	                  <input dir="ltr" style="text-align : left;" readonly type="text" class="form-control" id="ods_num" value="{{$user->username}}" name="direction">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   اسم المستخدم : </label>
+                    
 	            </div>
                 <div class="form-group">
+                <label class="control-label col-xs-2" style="text-align : left;; font-weight: bold;" for="title">     Mot de passe  : </label>
 	                <div class="col-xs-10">
-	                  <input dir="ltr" style="text-align : right" required type="text" class="form-control" id="ods_num" value="{{$pwd}}" name="password">
+	                  <input dir="ltr" style="text-align : left;" required type="text" class="form-control" id="ods_num" value="{{$pwd}}" name="password">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">    كلمة السر  : </label>
+                    
 	            </div>
 
               
@@ -99,7 +101,7 @@
 	              <div class="form-group" align="center">
 	                <!-- Buttons -->
 	                <div class="col-lg-offset-2 col-lg-9">
-	                  <button type="submit" class="btn btn-primary">حفــــظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>
