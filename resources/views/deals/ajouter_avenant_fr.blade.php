@@ -61,11 +61,11 @@
 @endsection
 @section('content')
 <div id="main" class="row main" style="margin-right : 0;">
-	<div class="col-sm-10 portlets pull-right" lang="ar" dir="rtl" style="margin-right: 10%;"  >
+	<div class="col-sm-10 poltrets" lang="ar" dir="ltr" style="margin-right: 10%;"  >
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-	        <div class="pull-right" style="font-size : 25px; font-weight : bold">
-            إضافة ملحق  
+	        <div class="pull-left" style="font-size : 25px; font-weight : bold">
+            Ajouter Avenant 
             </div>
             <br>
 	        <div class="clearfix"></div>
@@ -81,22 +81,22 @@
                 <input type="hidden" name="type" value="avenant">
                 <input type="hidden" name="id_op" value="{{$deal->id_op}}" id="id_op">
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N° العملية</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">N° d'opération </label>
 	                <div class="col-sm-7">
-                        <input readonly value="{{$deal->numero}}" id="op_input" dir="ltr" style="text-align : right;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
+                        <input readonly value="{{$deal->numero}}" id="op_input" dir="ltr" style="text-align : left;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
 	                </div>
                 </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> تعيين العملية</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Intitulé</label>
 	                <div class="col-sm-7">
-	                  <input readOnly ="" value="{{$deal->intitule_ar}}" type="text" class="form-control" id="intitule_ar" name="intitule_ar">
+	                  <input readOnly ="" value="{{$deal->intitule}}" type="text" class="form-control" id="intitule_ar" name="intitule_ar">
 	                </div>
                 </div><br>
-                <input type="hidden" value="ملحق" name="type_ar"/>
+                <input type="hidden" value="avenant" name="type_ar"/>
                   <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N°  و تاريخ الملحق</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">N° et date de l'avenant</label>
 	                <div class="col-sm-3">
-                      <input  type="text" placeholder="N°"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
+                      <input  type="text" placeholder="رقم"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
                     </div>
                     <div class="col-sm-4">
                       <input  type="date" class="form-control" id="deal_date" name="deal_date" style="color: black;" >
@@ -104,7 +104,7 @@
                   </div><br>
                   
                   <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  قيمة الملحق</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Montant de l'avenant</label>
 	                <div class="col-sm-7">
 	                  <input  required="" type="number"  class="form-control" step="0.01" id="montant" name="montant" placeholder="0.00">
 	                </div>
@@ -112,7 +112,7 @@
                   
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> المقاول</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> Entreprise</label>
 	              
 	                <div class="col-sm-7">
                         <input id="comp_input" readonly value="{{$e->name}}" class="form-control" > 
@@ -127,7 +127,7 @@
                 </div><br>
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> موضوع ال{{$deal->deal_type}} </label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">  Objet du {{$deal->deal_type}} </label>
 	            
                     <div class="col-sm-7">
                         <input readonly value="{{$deal->lot}}" style="resize: none; color: black;"
@@ -135,26 +135,26 @@
                     </div>
                 </div><br>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> موضوع الملحق </label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">  Objet de l'avenant </label>
 	            
                     <div class="col-sm-7">
                         <textarea  style="resize: none; color: black;" rows="5" required="" class="form-control" name="lot" id="sujet"></textarea>
                     </div>
                 </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> الحساب البنكي </label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> N° du Compte Bancaire </label>
 	                <div class="col-sm-7">
 	                  <input required="" value="{{$bank->bank_acc}}" type="text" style="color: black;" class="form-control" name="bank_acc">
 	                </div>
                      </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">المفتوح بإسم</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> Propriétaire du compte</label>
 	                <div class="col-sm-7">
 	                  <input  required="" value="{{$bank->bank_user}}" type="text" style="color: black;" class="form-control" name="bank_user">
 	                </div>
                     </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">البنك</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Banque</label>
                     <input type="hidden" name="bank_id" value="{{$bank->id}}" />
                   <div class="col-sm-7">
 	                  <select required=""  style="color: black;" class="form-control" name="bank">
@@ -166,13 +166,13 @@
 	                </div>
                      </div><br>
                     <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">الوكالة</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Agence</label>
 	                <div class="col-sm-7">
 	                  <input required="" value="{{$bank->bank_agc}}" type="text" style="color: black;" class="form-control" name="bank_agc">
 	                </div>
                 </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">مدة الملحق  ( أيام )</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Durée de l'avenant</label>
 	                <div class="col-sm-7">
 	                  <input required="" type="number" value=""  placeholder="0 jours"   style="color: black;" class="form-control" name="duree">
 	                </div>
@@ -182,7 +182,7 @@
 	              <div class="form-group row" align="center">
 	                <!-- Buttons -->
 	                <div class="col-sm-offset-2 col-sm-9">
-	                  <button type="submit" class="btn btn-primary">حفــــظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>
@@ -236,7 +236,7 @@ function popupwindow(url, title, w, h) {
 } 
 
 function add_e(){
-  var myWindow = popupwindow("/entreprise", "Ajouter Entreprise", "800","500");
+  var myWindow = popupwindow("/entreprise", "إضافة مقـــاول", "800","500");
   var loop = setInterval(function() {   
     if(myWindow.closed) {  
         clearInterval(loop);  

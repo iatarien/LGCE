@@ -61,11 +61,11 @@
 @endsection
 @section('content')
 <div id="main" class="row main" style="margin-right : 0;">
-	<div class="col-sm-10 portlets pull-right" lang="ar" dir="rtl" style="margin-right: 10%;"  >
+	<div class="col-sm-10 poltrets " lang="" dir="ltr" style="margin-right: 10%;"  >
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-	        <div class="pull-right" style="font-size : 25px; font-weight : bold">
-            إضافة ملحق  
+	        <div class="pull-left" style="font-size : 25px; font-weight : bold">
+                Modifier {{$deal->deal_type}}
             </div>
             <br>
 	        <div class="clearfix"></div>
@@ -75,90 +75,91 @@
 
 	          <div class="form quick-post">
 	            <!-- Edit profile form (not working)-->
-	            <form class="form-horizontal" autocomplete="off" action="/add_deal" method="POST">
+	            <form class="form-horizontal" autocomplete="off" action="/update_deal" method="POST">
 	            @csrf
-                <input type="hidden" name="parent" value="{{$id}}">
-                <input type="hidden" name="type" value="avenant">
-                <input type="hidden" name="id_op" value="{{$deal->id_op}}" id="id_op">
+                <input type="hidden" name="id_deal" value="{{$id}}" id="">
+                @if(isset($deal->parent) && $deal->parent != NULL)
+                <input type="hidden" name="parent" value="{{$deal->parent}}">
+                @endif
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N° العملية</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> N° d'opération</label>
 	                <div class="col-sm-7">
-                        <input readonly value="{{$deal->numero}}" id="op_input" dir="ltr" style="text-align : right;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
+                        <input readonly value="{{$deal->numero}}" id="op_input" dir="ltr" style="text-align : left;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
 	                </div>
                 </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> تعيين العملية</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">  intitule</label>
 	                <div class="col-sm-7">
-	                  <input readOnly ="" value="{{$deal->intitule_ar}}" type="text" class="form-control" id="intitule_ar" name="intitule_ar">
+	                  <input readOnly ="" value="{{$deal->intitule}}" type="text" class="form-control" id="intitule_ar" name="intitule_ar">
 	                </div>
                 </div><br>
-                <input type="hidden" value="ملحق" name="type_ar"/>
+                <input type="hidden" value="{{$deal->deal_type}}" name="type_ar"/>
                   <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N°  و تاريخ الملحق</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> Numéro et date de {{$deal->deal_type}}</label>
 	                <div class="col-sm-3">
-                      <input  type="text" placeholder="N°"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
+                      <input  type="text" placeholder="N°" value="{{$deal->deal_num}}" class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
                     </div>
                     <div class="col-sm-4">
-                      <input  type="date" class="form-control" id="deal_date" name="deal_date" style="color: black;" >
+                      <input  type="date" class="form-control" value="{{$deal->deal_date}}" id="deal_date" name="deal_date" style="color: black;" >
                     </div> 
                   </div><br>
                   
                   <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  قيمة الملحق</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> Montant</label>
 	                <div class="col-sm-7">
-	                  <input  required="" type="number"  class="form-control" step="0.01" id="montant" name="montant" placeholder="0.00">
+	                  <input  required="" type="number" value="{{$deal->montant}}" class="form-control" step="0.01" id="montant" name="montant" placeholder="0.00">
 	                </div>
                 </div><br>
                   
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> المقاول</label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title"> Entreprise</label>
 	              
 	                <div class="col-sm-7">
-                        <input id="comp_input" readonly value="{{$e->name}}" class="form-control" > 
+                        <input id="comp_input" value="{{$e->name}}" class="form-control" onclick="comp_like(event,this.value)" onkeyup="comp_like(event,this.value)" > 
                         <div id="myDropdown_comp" class="dropdown-content" style="display: none;">
-                            <input type="hidden" readonly value="{{$deal->entreprise}}" required id="entreprise" name="entreprise_id" >
+                            <input type="hidden" value="{{$deal->entreprise}}" required id="entreprise" name="entreprise_id" >
                             <div id="es">
-       
+                            @foreach ($entreprises as $e)
+                                <span  style="color: black; cursor: pointer;" class="comps_clss" 
+                                onclick="comps_changed('{{ $e->id }}1989raouf1989{!! $e->name !!}1989raouf1989{!! $e->bank_acc !!}1989raouf1989{!! $e->bank !!}1989raouf1989{!! $e->bank_user !!}1989raouf1989{!! $e->bank_agc !!}')">
+                                {!! $e->name !!}</span>
+                            @endforeach
                             </div>
                         </div>
 	                </div>
-
+                    <div class="col-sm-1">
+                        <button onclick="add_e()" type="button" class="btn btn-sm btn-primary">+</button>
+	                </div>
                 </div><br>
-
+ 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> موضوع ال{{$deal->deal_type}} </label>
+                    <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">  lot </label>
 	            
                     <div class="col-sm-7">
-                        <input readonly value="{{$deal->lot}}" style="resize: none; color: black;"
-                        required="" class="form-control"  id="sujet" />
+                        <textarea  style="resize: none; color: black;" rows="5" required="" class="form-control" name="lot" id="sujet" >{{$deal->lot}}</textarea>
                     </div>
                 </div><br>
+
+
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> موضوع الملحق </label>
-	            
-                    <div class="col-sm-7">
-                        <textarea  style="resize: none; color: black;" rows="5" required="" class="form-control" name="lot" id="sujet"></textarea>
-                    </div>
-                </div><br>
-                <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> الحساب البنكي </label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">  N° Compte Bancaire </label>
 	                <div class="col-sm-7">
-	                  <input required="" value="{{$bank->bank_acc}}" type="text" style="color: black;" class="form-control" name="bank_acc">
+	                  <input required="" value="{{$bank->bank_acc}}" type="text" style="color: black;" class="form-control" name="bank_acc" id="bank_acc">
 	                </div>
                      </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">المفتوح بإسم</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Propriétaire du compte</label>
 	                <div class="col-sm-7">
-	                  <input  required="" value="{{$bank->bank_user}}" type="text" style="color: black;" class="form-control" name="bank_user">
+	                  <input  required="" value="{{$bank->bank_user}}" type="text" style="color: black;" class="form-control" name="bank_user" id="bank_user">
 	                </div>
                     </div><br>
                 <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">البنك</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Banque</label>
                     <input type="hidden" name="bank_id" value="{{$bank->id}}" />
                   <div class="col-sm-7">
 	                  <select required=""  style="color: black;" class="form-control" name="bank">
-                    <option selected value="{{$bank->bank}}" style="visibility : hidden">{{$bank->bank}}</option>
+                    <option selected id="bank" value="{{$bank->bank}}" style="visibility : hidden">{{$bank->bank}}</option>
                     @foreach($banques as $banque)
                       <option value="{{ $banque->nom }}" >{{ $banque->nom }} - {{ $banque->abr }}</option>
                     @endforeach
@@ -166,23 +167,26 @@
 	                </div>
                      </div><br>
                     <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">الوكالة</label>
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Agence</label>
 	                <div class="col-sm-7">
-	                  <input required="" value="{{$bank->bank_agc}}" type="text" style="color: black;" class="form-control" name="bank_agc">
+	                  <input required="" value="{{$bank->bank_agc}}" type="text" style="color: black;" class="form-control" name="bank_agc" id="bank_agc">
 	                </div>
                 </div><br>
-                <div class="form-group row">
-                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">مدة الملحق  ( أيام )</label>
+                    @if($deal->deal_type !="فاتورة" and $deal->deal_type !="facture" and $deal->deal_type !="devis" and $deal->deal_type !="كشف كمي و تقديري")
+                    <div class="form-group row">
+                    <label  class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">Durée du {{$deal->deal_type}}</label>
 	                <div class="col-sm-7">
-	                  <input required="" type="number" value=""  placeholder="0 jours"   style="color: black;" class="form-control" name="duree">
+	                  <input required="" type="number" value="{{$deal->duree}}"  placeholder="0 jours"   style="color: black;" class="form-control" name="duree">
 	                </div>
-                </div>
-                <br><br>
+                    </div>
+                    @endif
+                    <br>
+
 	              <!-- Buttons -->
 	              <div class="form-group row" align="center">
 	                <!-- Buttons -->
 	                <div class="col-sm-offset-2 col-sm-9">
-	                  <button type="submit" class="btn btn-primary">حفــــظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>
@@ -236,7 +240,7 @@ function popupwindow(url, title, w, h) {
 } 
 
 function add_e(){
-  var myWindow = popupwindow("/entreprise", "Ajouter Entreprise", "800","500");
+  var myWindow = popupwindow("/entreprise", "إضافة مقـــاول", "800","500");
   var loop = setInterval(function() {   
     if(myWindow.closed) {  
         clearInterval(loop);  
@@ -301,9 +305,28 @@ function comps_changed(value){
 
   var id = value.split("1989raouf1989")[0];
   var name =  value.split('1989raouf1989')[1];
+  var bank_acc =  value.split('1989raouf1989')[2];
+  var bank =  value.split('1989raouf1989')[3];
+  var bank_user =  value.split('1989raouf1989')[4];
+  var bank_agc =  value.split('1989raouf1989')[5];
   document.getElementById("comp_input").value = name;
-  document.getElementsByName("bank_user")[0].value = name;
   document.getElementById('entreprise').value = id;
+  document.getElementsByName("bank_user")[0].value = name;
+  if(bank_acc != null){
+    document.getElementById('bank_acc').value = bank_acc;
+  }
+  if(bank_user != null && bank_user != ""){
+    document.getElementById('bank_user').value = bank_user;
+  }
+  if(bank != null){
+    document.getElementById('bank').value = bank;
+    document.getElementById('bank').innerHTML = bank;
+  }
+  if(bank_agc != null){
+    document.getElementById('bank_agc').value = bank_agc;
+  }
+
+
   //subject();
 
 }
@@ -323,7 +346,7 @@ function ops_changed(value){
 }
 
 function numberWithCommas(x) {
-    x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     if(!x.includes('.')){
       x += ".00";
     }
@@ -337,4 +360,5 @@ function numberWithCommas(x) {
 
 </script>
 @endsection
+
 

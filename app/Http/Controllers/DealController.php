@@ -43,7 +43,12 @@ class DealController extends Controller
         
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('deals.deals',["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
+        $view = "deals.deals";
+        if($this->lang == "fr"){
+            $view = "deals.deals_fr";
+        }
+
+        return view($view,["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
     }
 
     public function get_deals($filters=""){
@@ -124,7 +129,11 @@ class DealController extends Controller
         ->where('id_deal',$id)->first();
         $bank = DB::table('banks')->where('id',$deal->bank)->first();
         $e = DB::table('entreprises')->where('id',$deal->entreprise)->first();
-        return view('deals.modifier_deal',['user'=>$user,"deal"=>$deal,"bank"=>$bank,
+        $view = 'deals.modifier_deal';
+        if($this->lang =="fr"){
+            $view = 'deals.modifier_deal_fr';
+        }
+        return view($view,['user'=>$user,"deal"=>$deal,"bank"=>$bank,
         "entreprises"=>$entreprises,"banques"=>$banques,"id"=>$id,"e"=>$e]);
     }
     public function ajouter_avenant($id){
@@ -136,7 +145,13 @@ class DealController extends Controller
         $banques = DB::table('banques')->get();
         $bank = DB::table('banks')->where('id',$deal->bank)->first();
         $e = DB::table('entreprises')->where('id',$deal->entreprise)->first();
-        return view('deals.ajouter_avenant',['user'=>$user,"deal"=>$deal,
+        
+        $view = 'deals.ajouter_avenant';
+        if($this->lang =="fr"){
+            $view = 'deals.ajouter_avenant_fr';
+        }
+
+        return view($view,['user'=>$user,"deal"=>$deal,
         "id"=>$id,"e"=>$e,"bank"=>$bank,"banques"=>$banques]);
     }
     public function ajouter($type,$number=1){
@@ -146,12 +161,12 @@ class DealController extends Controller
         
         if($this->ville_fr !=="never"){
             $operations = DB::table('operations')->
-            select('id','numero','intitule_ar')->
+            select('id','numero','intitule_ar','intitule')->
             where('user_id',$user->id)->
             whereNull("date_cloture")->orderBy('id','DESC')->get();
         }else {
             $operations = DB::table('operations')->
-            select('id','numero','intitule_ar')->
+            select('id','numero','intitule_ar','intitule')->
             whereNull("date_cloture")->orderBy('id','DESC')->get();
         }
         $entreprises = DB::table('entreprises')->select('id','name')->get();
@@ -187,7 +202,13 @@ class DealController extends Controller
         elseif($type =="facture"){
             $type_ar = "فاتورة";
         }
-        return view('deals.ajouter_deal',
+
+        $view = 'deals.ajouter_deal';
+        if($this->lang =="fr"){
+            $view = 'deals.ajouter_deal_fr';
+        }
+
+        return view($view,
         ['user'=>$user,"type"=>$type,'operations'=>$operations,"type_ar"=>$type_ar,
         "entreprises"=>$entreprises,"banques"=>$banques,"number"=>$number]);
     }
