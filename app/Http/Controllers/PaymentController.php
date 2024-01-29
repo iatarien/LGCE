@@ -36,14 +36,22 @@ class PaymentController extends Controller
         (SELECT DISTINCT entreprise FROM deals 
         WHERE deals.user_id =".$user->id." )";
         $es = DB::select( DB::raw($q));
-        return view('comptabilite.select',["user"=>$user,
+        $view = 'comptabilite.select';
+        
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,
         "operations"=>$operations,"type"=>$type,'es'=>$es,"n"=>$n]);
     }
     public function ajouter($id_eng,$n=1)
-    {   
+    {    
         $user = Auth::user();
-
-        return view('pays.ajouter_pay',["user"=>$user,'id_eng'=>$id_eng,"n"=>$n]);
+        $view = 'pays.ajouter_pay';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,'id_eng'=>$id_eng,"n"=>$n]);
     }
     public function index($type=""){
         $user = Auth::user();
@@ -66,7 +74,11 @@ class PaymentController extends Controller
 
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('pays.payments',["user"=>$user,"type"=>$type,
+        $view = 'pays.payments';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"type"=>$type,
         "operations"=>$operations,'es'=>$es]);
     }
     public function pays($filters=""){
@@ -130,6 +142,7 @@ class PaymentController extends Controller
     
     public function edit_bank($id)
     {   
+        
         $user = Auth::user();
         $id_eng = DB::table("payments")->where('id',$id)->select('id_eng')->first();
         $eng = DB::table('engagements')->where("id",$id_eng->id_eng)->select('deal')->first();
@@ -137,7 +150,12 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$deal->entreprise)->first();
         $bank = DB::table('banks')->where('id',$deal->bank)->first();
         $banques = DB::table('banques')->get();
-        return view('comptabilite.edit_bank',['id'=>$id,
+
+        $view = 'comptabilite.edit_bank';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['id'=>$id,
         'user'=>$user,"e"=>$e,"bank"=>$bank,'banques'=>$banques,"id_deal"=>$eng->deal]);
 
     }
@@ -160,7 +178,11 @@ class PaymentController extends Controller
         $q = "SELECT op from reb_pay where id = (SELECT rebrique from payments WHERE id =".$id.")";
         $op_id = DB::select(DB::raw($q))[0]->op;
         $op = DB::table('operations')->select('numero')->where('id',$op_id)->first()->numero;
-        return view('pays.fiche_pay',['id'=>$id,'user'=>$user,"editor"=>$editor,"visa"=>$visa,"op"=>$op]);
+        $view = 'pays.fiche_pay';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['id'=>$id,'user'=>$user,"editor"=>$editor,"visa"=>$visa,"op"=>$op]);
 
     }
     
@@ -203,12 +225,15 @@ class PaymentController extends Controller
         $user = Auth::user();
         $pay = DB::table('payments')->join('engagements','payments.id_eng',"=","engagements.id")->where('payments.id',$id)->first();
         $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank_id)->first();
-        $op = DB::table('operations')->where('id',$pay->id_op)->select('numero','intitule_ar','chapitre','source',"secteur")->first();
+        $op = DB::table('operations')->where('id',$pay->id_op)->select('numero','intitule','intitule_ar','chapitre','source',"secteur")->first();
         $e = DB::table('entreprises')->where('id',$pay->entreprise_id)->first();
         $nums = Null;
         
-        
-        return view('comptabilite.mondat',["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"nums"=>$nums]);
+        $view ="comptabilite.mondat";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"nums"=>$nums]);
 
     }
     public function mondat1($id)
@@ -235,10 +260,13 @@ class PaymentController extends Controller
         AND sous_montant != 0 LIMIT 1)";
         $sous_titre = DB::select(DB::raw($qq))[0];
         $titre = DB::table("titres")->where("id_titre",$sous_titre->father)->first();
+        
+        $view ='pays.mondat1';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
      
-     
-        return view('pays.mondat1',
-        ["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
 
@@ -271,8 +299,13 @@ class PaymentController extends Controller
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
-        return view('pays.attestation_payement',
-        ["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,
+
+        $view ='pays.attestation_payement';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+     
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,
         'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
 
     }
@@ -282,7 +315,7 @@ class PaymentController extends Controller
         $pay = DB::table('payments')->join('engagements','payments.id_eng',"=","engagements.id")->where('payments.id',$id)->first();
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
         $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank_id)->first();
-        $op = DB::table('operations')->where('id',$pay->id_op)->select('numero','intitule_ar','chapitre','source')->first();
+        $op = DB::table('operations')->where('id',$pay->id_op)->select('numero','intitule','intitule_ar','chapitre','source')->first();
         $e = DB::table('entreprises')->where('id',$pay->entreprise_id)->first();
         $total = $pay->total_done - $pay->total_cut;
 
@@ -352,7 +385,13 @@ class PaymentController extends Controller
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
-        return view('pays.declaration',["user"=>$user,'pay'=>$pay,
+
+        $view ='pays.declaration';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+
+        return view($view,["user"=>$user,'pay'=>$pay,
         'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
         "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
 
@@ -390,7 +429,12 @@ class PaymentController extends Controller
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
-        return view('pays.transfert',["user"=>$user,'pay'=>$pay,
+        $view ='pays.transfert';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+
+        return view($view,["user"=>$user,'pay'=>$pay,
         'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
         "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
 
@@ -431,7 +475,12 @@ class PaymentController extends Controller
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
-        return view('pays.avancement',["user"=>$user,"sous_prog"=>$sous_prog,
+        $view ='pays.avancement';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+
+        return view($view,["user"=>$user,"sous_prog"=>$sous_prog,
         'pay'=>$pay,"pay2"=>$pay2,'op'=>$op,'e'=>$e,"id"=>$id,"matiere"=>$matiere]);
     }
 
@@ -439,7 +488,11 @@ class PaymentController extends Controller
     {   
         $user = Auth::user();
         $pay = DB::table('payments')->where('id',$id)->first();
-        return view('pays.modifier_pay',["user"=>$user,'pay'=>$pay]);
+        $view ='pays.modifier_pay';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,'pay'=>$pay]);
     }
     public function edit_fiche_pay($id)
     {   
@@ -710,7 +763,11 @@ class PaymentController extends Controller
         $n = ceil(count($pays)/7);
         //echo count($engs);
         //echo $n;
-        return view('pays.print_pays',["pays"=>$pays,"n"=>$n]);
+        $view ='pays.print_pays';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["pays"=>$pays,"n"=>$n]);
     }  
     public function print_pays2($filters=""){
         $user = Auth::user();

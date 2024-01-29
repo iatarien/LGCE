@@ -29,7 +29,12 @@ class DealController extends Controller
         
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('deals.select_deals',["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
+        $view = 'deals.select_deals';
+        if($this->lang == "fr"){
+            $view = "deals.select_deals_fr";
+        }
+
+        return view($view,["user"=>$user,"type"=>$type,"operations"=>$operations,"es"=>$es]);
     }
     public function deals($type="")
     {   
