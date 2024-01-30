@@ -472,7 +472,7 @@
       </a>
       <a class="nav-link " href="/payments/all/">
         <i class="bi bi-currency-dollar"></i>
-        <span>Paiementd </span>
+        <span>Paiements </span>
       </a>
       
       <li class="nav-item">

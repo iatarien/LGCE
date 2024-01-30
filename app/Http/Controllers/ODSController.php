@@ -174,7 +174,11 @@ class ODSController extends Controller
             return view('ods.djellal',["delai"=>$delai,"ods"=>$ods,'year'=>$year,
             "arret_days"=>$arret_days,"first_end"=>$first_end,"d"=>$d]);
         }
-        return view('ods.ods',["user"=>$user,"ods"=>$ods,'year'=>$year]);
+        $view = 'ods.ods';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"ods"=>$ods,'year'=>$year]);
     }
     public function odss()
     {   
@@ -189,8 +193,11 @@ class ODSController extends Controller
         (SELECT deal from engagements WHERE engagements.id IN
         (SELECT id_eng FROM ods)))";
         $entreprises = DB::select( DB::raw($query));
-        
-        return view('ods.odss',["user"=>$user,"operations"=>$operations,"entreprises"=>$entreprises]);
+        $view = 'ods.odss';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"operations"=>$operations,"entreprises"=>$entreprises]);
     }
     public function get_odss($filters=""){
         $query = "SELECT *,ods.id as o_id FROM ods INNER JOIN engagements 
@@ -233,7 +240,11 @@ class ODSController extends Controller
         if($last != NULL){
             $last = $last->real_type;
         }
-        return view('ods.ajouter_ods',
+        $view = 'ods.ajouter_ods';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,
         ["last"=>$last,"user"=>$user,"ods"=>$ods,"id_eng"=>$id]);
     }
     public function modifier_ods($id)
@@ -250,7 +261,11 @@ class ODSController extends Controller
         $year = explode('-',$ods->ods_date)[0];
         $ods->the_type = str_replace($ods->extra_type, "",$ods->type_ods);
 
-        return view('ods.modifier_ods',["user"=>$user,"deal"=>$deal,
+        $view = 'ods.modifier_ods';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"deal"=>$deal,
         "ods"=>$ods,"id"=>$id]);
     }
     public function delete_ods($id)
@@ -268,13 +283,23 @@ class ODSController extends Controller
         $duree = "";
         $real_type = $request['real_type'];
         $extra_type = $request['extra_type'];
+
         if($real_type =="d"){
             $type_ods = "إنطلاق ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Démarrage ".$request['extra_type'];
+            }
         }elseif($real_type =="a"){
             $type_ods = "توقف ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Arret ".$request['extra_type'];
+            }
         }
         elseif($real_type =="r"){
             $type_ods = "استئناف ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Reprise ".$request['extra_type'];
+            }
         }
         elseif($real_type =="other"){
             $type_ods = $request['extra_type'];
@@ -298,11 +323,20 @@ class ODSController extends Controller
         $extra_type = $request['extra_type'];
         if($real_type =="d"){
             $type_ods = "إنطلاق ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Démarrage ".$request['extra_type'];
+            }
         }elseif($real_type =="a"){
             $type_ods = "توقف ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Arret ".$request['extra_type'];
+            }
         }
         elseif($real_type =="r"){
             $type_ods = "استئناف ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Reprise ".$request['extra_type'];
+            }
         }
         elseif($real_type =="other"){
             $type_ods = $request['extra_type'];
@@ -323,7 +357,11 @@ class ODSController extends Controller
         (SELECT DISTINCT id_op from engagements ) ORDER BY id DESC";
         $operations = DB::select( DB::raw($query));
         $es = DB::table('entreprises')->orderby('id',"DESC")->get();
-        return view('ods.select',["user"=>$user,"operations"=>$operations,
+        $view = 'ods.select';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"operations"=>$operations,
         "type"=>$type,"es"=>$es]);
     }
     private function soustraire($date1,$date2){
@@ -506,14 +544,23 @@ class ODSController extends Controller
         $date2 = array_reverse(explode("-",$delai));
         for($k=0;$k< count($date2); $k++){ $date2[$k] = intval($date2[$k]);}
         $diff = $this->soustraire($date2,$date1);
-        return view('attestations.penalite',['user'=>$user,"id_pay"=>$id_pay,
+        
+        $view = 'attestations.penalite';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['user'=>$user,"id_pay"=>$id_pay,
         "pay"=>$pay,"d_odss"=>$d_odss,"a_odss"=>$a_odss,"r_odss"=>$r_odss,
         "delai"=>$delai,"diff"=>$diff]);
     }
     public function calcul_delai()
     {   
         $user = Auth::user();
-        return view('ods.calcul_delai',["user"=>$user]);
+        $view = 'ods.calcul_delai';
+        if($this->lang =="fr"){
+            //$view = $view."_fr";
+        }
+        return view($view,["user"=>$user]);
     }
 }
 

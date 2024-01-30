@@ -87,6 +87,22 @@
 	<br><br><br><br><br><br>
 	
 </div>
+@if($lang =="fr")
+<div align="center">
+		<button id="bouton_2" style="
+		background-color: skyblue; /* Green */
+		border: none;
+		color: black;
+		cursor: pointer;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;" 
+		onclick=history.back()> Retour </button>
+	</div>	
+</div>
+@else
 <div align="center">
 		<button id="bouton_2" style="
 		background-color: skyblue; /* Green */
@@ -101,6 +117,8 @@
 		onclick=history.back()> رجوع </button>
 	</div>	
 </div>
+@endif
+
 @endsection
 @section('js_scripts')
 <script type="text/javascript">

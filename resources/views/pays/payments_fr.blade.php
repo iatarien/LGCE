@@ -431,7 +431,7 @@ function display(engagements,value){
 		    '</td>';
 			if(op[i].travaux_num != null){
 				tds +='<td>'+
-		        '<span><h5><strong>'+op[i].travaux_type+" N° "+op[i].travaux_num;
+		        '<span><h5><strong>'+op[i].travaux_type+" "+op[i].travaux_num;
 			}else {
 				tds +='<td>'+
 		        '<span><h5><strong>'+op[i].travaux_type;

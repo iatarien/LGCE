@@ -745,7 +745,7 @@ class PaymentController extends Controller
                 $query = $query."AND operations.numero= '".$numero."'";
             }
             if($e !=""){
-                $query = $query." AND engagements.entreprise_id= ".$e;
+                $query = $query." AND deals.entreprise= ".$e;
             }
             if($year !=""){
                 $query = $query." AND payments.visa <= '".$year."-12-31' 
