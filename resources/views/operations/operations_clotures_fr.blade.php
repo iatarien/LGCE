@@ -269,7 +269,7 @@ function display(operations,value,order){
 	tds += '<tr style="font-weight : bold; background-color : #acdef6;">'+
 		    '<td><span><h5><strong> </strong></h5></span></td>'+
 		    '<td colspan="2" style="text-align : center">'+
-		        '<span><h5><strong>المجموع : </strong></h5></span>'+
+		        '<span><h5><strong>total : </strong></h5></span>'+
 		    '</td>'+
 			// '<td>'+
 		    //     '<span><h5 style="text-align : left" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -7 ])+'</strong></h5></span>'+

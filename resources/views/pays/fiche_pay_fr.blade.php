@@ -30,64 +30,60 @@
 <div id="main" class="row main">
 
     <div class="col-lg-offset-5 col-lg-2" align="center" style="margin-top : 4%">
-        <a class="btn btn-primary" href="../payments/all">رجوع </a>
+        <a class="btn btn-primary" href="../payments/all">Retour </a>
     </div>
 	<div class=" col-lg-offset-1 col-lg-10" style="margin-top : 5%;">
     
     <table id="fiche_pay">
         <tr>
-            <th style="display : none"> كشف الحساب </th>
-            <th> حوالة الدفع </th>
+            <th style="display : none"> Décompte</th>
+            <th>  Mondat </th>
             <th style="display : none"> شهادة الدفع </th> 
             <th style="display : none"> بطاقة الدفع </th>
-            <th> إشعار بالتحويل </th>
-            <th> بيان بالتحويل </th>
-            <th> تعديل رقم الحساب </th>
+            <th>  Avis de virement </th>
+            <th>  Déclaration de virement </th>
+            <th>   Modifier Compte bancaire </th>
         </tr>
         <tr>
             <td style="display : none">
-                <a class="btn btn-default" target="_blank" href="/avancement_fr/{{$id}}" > معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/avancement/{{$id}}" > Conculter</a>
                 <br><br>
-                @if($editor == $user->id )
-                    <a class="btn btn-primary"  href="/modifier_pay_fr/{{$id}}">تعديل </a>
-                @else
-                    <a class="btn btn-primary" disabled href="/modifier_pay_fr/{{$id}}">تعديل </a>
-                @endif
+
             </td>
             <td style="display : none">
-                <a class="btn btn-default" target="_blank" href="/mondat1_fr/{{$id}}"> معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/mondat1/{{$id}}"> consulter</a>
                 <br><br>
                 @if($editor == $user->id )
-                    <a class="btn btn-primary"  href="/modifier_pay_fr/{{$id}}">تعديل </a>
+                    <a class="btn btn-primary"  href="/modifier_pay/{{$id}}">Modifier </a>
                 @else
-                    <a class="btn btn-primary" disabled href="/modifier_pay_fr/{{$id}}">تعديل </a>
+                    <a class="btn btn-primary" disabled href="/modifier_pay/{{$id}}">Modifier </a>
                 @endif
              </td>
             <td>
-                <a class="btn btn-default" target="_blank" href="/attestation_payment_fr/{{$id}}">معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/attestation_payment/{{$id}}">consulter</a>
             </td>
             
             <td style="display : none;">
-                <a class="btn btn-default" disabled target="_blank" href="/fiche_payment_fr/{{$id}}"> معاينة</a>
+                <a class="btn btn-default" disabled target="_blank" href="/fiche_payment/{{$id}}"> consulter</a>
                 <br><br>
                 @if($editor == $user->id)
-                <a class="btn btn-primary" disabled href="/edit_fiche_payment_fr/{{$id}}">تعديل </a>
+                <a class="btn btn-primary" disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @else
-                <a class="btn btn-primary"  disabled href="/edit_fiche_payment_fr/{{$id}}">تعديل </a>
+                <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @endif
             </td>
             <td>
-                <a class="btn btn-default" target="_blank" href="/order_pay_fr/{{$id}}"> معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> consulter</a>
             </td>
             <td>
-                <a class="btn btn-default" target="_blank" href="/declaration_pay_fr/{{$id}}"> معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/declaration_pay/{{$id}}"> consulter</a>
             </td>
             <td>
                 <br>
                 @if($editor == $user->id)
-                    <a class="btn btn-primary"  href="/edit_bank_fr/{{$id}}">تعديل </a>
+                    <a class="btn btn-primary"  href="/edit_bank/{{$id}}">modifier </a>
                 @else
-                    <a class="btn btn-primary" disabled >تعديل </a>
+                    <a class="btn btn-primary" disabled >modifier </a>
                 @endif
             </td>
         </tr>

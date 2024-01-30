@@ -28,19 +28,32 @@ class EntrepriseController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('comptabilite.entreprise',['user'=>$user]);
+        $view = "comptabilite.entreprise";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['user'=>$user]);
     }
     public function get()
     {
         $user = Auth::user();
         $es = DB::table('entreprises')->get();
-        return view('comptabilite.entreprises',['user'=>$user,"es"=>$es]);
+
+        $view = "comptabilite.entreprises";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['user'=>$user,"es"=>$es]);
     }
     public function modifier($id)
     {
         $user = Auth::user();
         $e = DB::table('entreprises')->where('id',$id)->first();
-        return view('comptabilite.modifier_e',['user'=>$user,"e"=>$e]);
+        $view = "comptabilite.modifier_e";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,['user'=>$user,"e"=>$e]);
     }
     
     public function close(){

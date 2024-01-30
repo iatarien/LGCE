@@ -15,6 +15,7 @@ class ComptabiliteController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -26,8 +27,11 @@ class ComptabiliteController extends Controller
     public function banques()
     {   
         $user = Auth::user();
-
-        return view('comptabilite.banques',["user"=>$user]);
+        $view = "comptabilite.banques";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user]);
     }
     public function banques_get()
     {   
@@ -37,13 +41,21 @@ class ComptabiliteController extends Controller
     public function ajouter_banque()
     {   
         $user = Auth::user();
-        return view('comptabilite.ajouter_banque',["user"=>$user]);
+        $view = "comptabilite.ajouter_banque";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user]);
     }
     public function modifier_banque($id)
     {   
         $user = Auth::user();
         $banque = DB::table("banques")->where('id',$id)->first();  
-        return view('comptabilite.modifier_banque',["user"=>$user,"banque"=>$banque]);
+        $view = "comptabilite.modifier_banque";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"banque"=>$banque]);
     }
     public function insert_banque(Request $request)
     {   

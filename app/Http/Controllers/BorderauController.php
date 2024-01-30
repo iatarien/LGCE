@@ -27,7 +27,12 @@ class BorderauController extends Controller
         GROUP BY b_id ORDER BY b_id DESC LIMIT 50";
         $bords = DB::select(DB::raw($query));
         //return $bords;
-        return view('borderau.all',["user"=>$user,"bords"=>$bords]);
+
+        $view = "borderau.all";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"bords"=>$bords]);
     }
 
     public function borderau($id)

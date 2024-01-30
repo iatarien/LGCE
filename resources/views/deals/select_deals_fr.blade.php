@@ -343,11 +343,11 @@ function display(engagements,value){
 			}else if(type == "engagement"){
 				if(op[i].user_id == user_id){
 					tds +='<td>'+
-					'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_engagement/eng/'+op[i].deal_id+'\'">إختيار</button></span>'+
+					'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_engagement/eng/'+op[i].deal_id+'\'">Selectionner</button></span>'+
 					'</td>';
 				}else{
 					tds +='<td>'+
-					'<span><button class="btn btn-success" disabled  onclick="document.location.href=\'/ajouter_engagement/eng/'+op[i].deal_id+'\'">إختيار</button></span>'+
+					'<span><button class="btn btn-success" disabled  onclick="document.location.href=\'/ajouter_engagement/eng/'+op[i].deal_id+'\'">Selectionner</button></span>'+
 					'</td>';
 				}
 			}
