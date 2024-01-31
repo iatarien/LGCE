@@ -7,26 +7,34 @@
 	<title></title>
 <style type="text/css">
 	@page {
-	    size: auto;   /* auto is the initial value */
-		  size: portrait;
-	    margin: 0;  /* this affects the margin in the printer settings */
-	}
-	@media print {
+        size: auto;   /* auto is the initial value */
+        size: A4 landscape;
+        margin: 0;  /* this affects the margin in the printer settings */
+    }
+    @media print {
 		html,body{
-			height:297mm;
-	    	width:210mm;
+			height:210mm;
+	    	width:297mm;
 			overflow-y : hidden !important;
 		}
 		
 	}
 	html,body{
-	    height:287mm;
-	    width:210mm;
+	    height:210mm;
+	    width:287mm;
 	    margin: auto;
-	    line-height: 1.5;
-      font-size : 8px;
+	    line-height: 1.6;
 	    -webkit-print-color-adjust: exact !important;
-	}
+    }
+
+    #fiche {
+        padding-top: 30px;
+        font-weight: bold; 
+        display: inline-block; 
+        width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+		}
     table{
     	width:100%;
 		margin-right: 0%;
@@ -47,8 +55,18 @@
 		background-color : lightgray;
 
     }
-
-
+    #le_table td {
+        border-bottom : none;
+        border-top : none;
+        text-align : right;
+    }
+    #le_table {
+        width : 120mm !important;
+    }
+    #stamp {
+        width : 30mm;
+        float : left;
+    }
 </style>
 <script type="text/javascript">
 function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
@@ -64,7 +82,6 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
     if(travaux_type != "فاتورة" && travaux_num != null){
       txt +=travaux_type+" رقم"+" "+travaux_num+" ";
     }
-
     if(travaux_type !="فاتورة" && deal != null){
       txt += "ل"+deal+" ";
     }else{
@@ -88,85 +105,120 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
 </head>
 <body contenteditable="true">
 
-<section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
-	<div id="fiche_top">
-		<div style="  display: inline-block; text-decoration : underline; ">
-			<h3 style="text-decoration: underline; padding: 0px 5px 0px 5px;">    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
+<section  style="background-color: white; text-align: center; font-size: 11px; margin: 20px; width : 80%; margin-left : 10%;" id="fiche">
+	<div id="fiche_top" style="margin-right : 5%; margin-left : 5%;">
+		<div style="  display: inline-block; ">
+			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
+            <h3>    République Algérienne Démocratique et Populaire    </h3>
 		</div>
 		<br>
-		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-      <h3>ورقلة في : &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h3>
-
-
-      @if($engs[0]->source == "PSC") 
-				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px; ">
+        <div style="width : 100%; background-color : lightgray" >
+            <h3> جدول حوالات الدفع </h3>
+        </div>
+		<div style="  display: inline-block; max-width : 85%; " dir="rtl">
+        <table id="le_table">
+                <tr>
+                    <th style="width : 34%;">التصنيف حسب النشاط </th>
+                    <th style="width : 33%;">الرمز</th>
+                    <th style="width : 33%;">التسمية</th>
+                </tr>
+                <tr>
+                    <td>محفظة البرنامج </td>
+                    <td>{{$op->portefeuille->code}}</td>
+                    <td>{{$op->portefeuille->ministere}}</td>
+                </tr>
+                <tr>
+                    <td>البرنامج </td>
+                    <td>{{$op->programme->code}}</td>
+                    <td>{{$op->programme->designation}}</td>
+                </tr>
+                <tr>
+                    <td>النشاط </td>
+                    <td>{{$engs[0]->activite}}</td>
+                    @if($engs[0]->source =="PSC")
+                    <td>َتفويض التسيير القطاعي الممركز</td>
+                    @else
+                    <td>َتفويض التسيير الغير ممركز</td>
+                    @endif
+                </tr>
+                <tr>
+                    <td>النشاط الفرعي </td>
+                    <td>/</td>
+                    <td>/</td>
+                </tr>
+        </table>
+      <br>  
+        <div style="display : none">
+                @if($engs[0]->source == "PSC") 
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 5mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px; ">
 				302.145.001
 				</div>
 				@elseif($engs[0]->source == "PSD")
-				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 5mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
 				302.145.002
 				</div>
 				@elseif($engs[0]->source == "FSDRS")
 				<?php $sf = substr($engs[0]->numero, 0, 2); ?>
 					@if($sf == "SF")
-					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 5mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
 					302.145.012
 					</div>
 					@else
-					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 5mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px;">
 					302.145.010
 					</div>
 					@endif
 				@endif
-        <br>
-        <h3>الى السيد :  أمين خزينة ورقلة</h3>
+            </div>
         </div>
 
 		<div style="  display: inline-block; float: right; ">
-            <h3 style="text-align : right;"> وزارة الســـــكن و العمــــران و المديـــــنة <br>
-			مديرية التجهيزات العمومية<br> لولاية ورقلة <br>
-      مكتب المحاسبة  
+            <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : 125.0.30.05<br>
+			سنة التسيير : {{ Date('Y')}} <br>
+             رقم جدول الحوالة :  <br>
+             تاريخ جدول الحوالة :  <br>
+             المحاسب المختص : السيد أمين الخزينة لولاية ورقلة <br>
 			</h3>
-            <h3 style="text-align : right;" >       رقم :   &emsp;&emsp;/{{$year}}  </h3>
             
 		</div>
-		<div style="  display: inline-block; width : 100%; ">
-			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">   جــــــــــدول إرســـــــــال  </h3>
-		</div>
+        <br><br>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
             <table>
                 <tr>
-                    <th style="width : 8%;">الرقم </th>
-                    <th style="width : 23%;">العملية</th>
-                    <th style="width : 37%;">موضوع التسديد</th>
-                    <th style="width : 14%;">المقاولة</th>
-                    <th style="width : 18%;">المبلغ</th>
-
+                    <th rowspan="2" style="width : 8%;"> الرقم التسلسلي للحوالة </th>
+                    <th rowspan="2" style="width : 12%;">البرنامج الفرعي</th>
+                    <th colspan="2" style="width : 24%;"> التقييد الميزانياتي</th>
+                    <th rowspan="2" style="width : 16%;">رقم بطاقة الالتزام</th>
+                    <th colspan="2" style="width : 30%;">المبلغ</th>
+                    <th rowspan="2" style="width : 10%;">تاريخ اصدار الحوالة</th>
+                </tr>
+                <tr>
+                    <th style="width : 12%;"> الصنف</th>
+                    <th style="width : 12%;">الصنف الفرعي</th>
+                    <th style="width : 12%;"> الحوالة </th>
+                    <th style="width : 12%;"> الصنف</th>
                 </tr>
                 <?php $i = 0; ?>
                 @foreach($engs as $eng)
                 <?php $i++; ?>
                 <tr>
-                    <td style=" width : 8%;"></td>
-                    <td style=" width : 23%;">{{$eng->numero}}</td>
-                    <td id="real_sujet{{$i}}" style=" width : 37%;">
-                        <script>
-                            subject2("{{$eng->deal_type}}","{{$eng->deal_num}}","{{$eng->deal_date}}",
-                            ,"{{$eng->lot}}","{{$eng->name}}","{{$eng->travaux_type}}",
-                            "{{$eng->travaux_num}}","{{$i}}");
-                        </script>
-                    </td>
-                    <td style=" width : 14%;">{{$eng->name}}</td>
-                    <td style=" width : 18%;">{{ number_format((float)$eng->to_pay, 2, '.', ',')}} دج</td>
+                    <td></td>
+                    <td>َ{{$eng->sous_programme0->code}} - {{$eng->sous_programme0->designation}}</td>
+                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
+                    <td>َ{{$eng->sous_titre->code}} - {{$eng->sous_titre->definition}}</td></td>
+                    <td>{{$eng->numero_fiche}}</td>
+                    <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
+                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
                 </tr>
                 @endforeach
-                
             </table>
 	    </div>
-        <br><br><br><br>
-        <div style="text-align : left; font-weight : bold;">
-        إمضـــــاء
-        </div>
+        <br><br>
+        <h3 style="text-align : right; font-weight : bold;">
+        &emsp; الأمر بالصرف &emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;
+        &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;
+        &emsp;  المحاسب العمومي المختص &emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;
+        </h3>
 </section>
 <br>
 
@@ -226,6 +278,9 @@ function PrintElem(elem)
 function printdiv(printdivname) {
 	document.getElementById('bouton').style.display = "none";
 	document.getElementById('bouton_2').style.display = "none";
+   // document.getElementsByTagName('body')[0].style.marginLeft = "25%";
+
+
    /* var footstr = "</body>";
     var newstr = document.getElementById(printdivname).innerHTML;
     var oldstr = document.body.innerHTML;
@@ -235,7 +290,8 @@ function printdiv(printdivname) {
     print();
     document.getElementById('bouton').style.display = "inline-block";
 	document.getElementById('bouton_2').style.display = "inline-block";
-	
+    //document.getElementsByTagName('body')[0].style.marginLeft = "auto";
+
     return false;
 }
 jQuery(document).bind(" keydown", function(e){

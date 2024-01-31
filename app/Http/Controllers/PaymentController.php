@@ -197,11 +197,14 @@ class PaymentController extends Controller
 
         if($filters != ""){
             $filters = explode("*1989*",$filters);
-            $secteur = $filters[0];
-            $chapitre = $filters[1];
-            $numero = str_replace("__","/",$filters[2]);
-            $e = $filters[3];
-            $user_id = $filters[4];
+
+            $numero = str_replace("__","/",$filters[0]);
+            $e = $filters[1];
+            $user_id ="";
+            if(isset($filters[4])){
+                $user_id = $filters[4];
+            }
+            
             
 
             if($numero !=""){

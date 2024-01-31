@@ -114,7 +114,7 @@
                     
 	            </div>
                 <div class="form-group">
-                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">    Année Financière : </label>
+                <label class="control-label col-xs-2" style="text-align : left; font-weight: bold;" for="title">    Année Budgétaire : </label>
 	                <div class="col-xs-10">
                     
 	                  <select name="year" class="form-control">

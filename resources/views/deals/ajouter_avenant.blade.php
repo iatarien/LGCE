@@ -81,7 +81,7 @@
                 <input type="hidden" name="type" value="avenant">
                 <input type="hidden" name="id_op" value="{{$deal->id_op}}" id="id_op">
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N° العملية</label>
+                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">رقم العملية</label>
 	                <div class="col-sm-7">
                         <input readonly value="{{$deal->numero}}" id="op_input" dir="ltr" style="text-align : right;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
 	                </div>
@@ -94,7 +94,7 @@
                 </div><br>
                 <input type="hidden" value="ملحق" name="type_ar"/>
                   <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">N°  و تاريخ الملحق</label>
+                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">رقم  و تاريخ الملحق</label>
 	                <div class="col-sm-3">
                       <input  type="text" placeholder="N°"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
                     </div>

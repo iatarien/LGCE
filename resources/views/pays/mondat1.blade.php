@@ -26,7 +26,7 @@
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
-			padding-top: 30px;
+			padding-top: 5px;
 			font-weight: bold; 
 			display: inline-block; 
 			width: 100%;
@@ -253,7 +253,7 @@
             </tr>
 
         </table>
-        <br><br><br>
+        <br>
     </div>
     <br>
     <div style="width: 90%; margin-right: 5%; float: right;">
@@ -430,7 +430,7 @@ function convert(num){
 function printdiv(printdivname) {
 	document.getElementById('bouton').style.display = "none";
 	//document.getElementsByTagName('body')[0].style.marginRight = "30%";
-	document.getElementsByTagName('body')[0].style.marginLeft = "25%";
+	//document.getElementsByTagName('body')[0].style.marginLeft = "25%";
    /* var footstr = "</body>";
     var newstr = document.getElementById(printdivname).innerHTML;
     var oldstr = document.body.innerHTML;
@@ -439,7 +439,7 @@ function printdiv(printdivname) {
     document.body.innerHTML = oldstr;*/
     print();
     document.getElementById('bouton').style.display = "block";
-	document.getElementsByTagName('body')[0].style.marginLeft = "auto";
+	//document.getElementsByTagName('body')[0].style.marginLeft = "auto";
     return false;
 }
 jQuery(document).bind(" keydown", function(e){

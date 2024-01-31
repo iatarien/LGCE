@@ -58,21 +58,21 @@ table td {
                         @foreach($bords as $bord)
                           <?php $i++; ?>
                           <tr>
-                            <th>{{$i}}</th>
+                            <td>{{$i}}</td>
                             @if($bord->type =="eng")
-                            <th>CF</th>
+                            <td>CB</td>
                             @else
-                            <th>Trésor</th>
+                            <td>Trésor</td>
                             @endif
                             
                             @if($bord->type =="eng")
-                              <th><a href="/borderau/{{$bord->b_id}}" class="btn btn-default">Consulter</a></th>
+                              <td><a href="/borderau/{{$bord->b_id}}" class="btn btn-default">Consulter</a></td>
                             
                             @else
-                              <th> <a href="/borderau1/{{$bord->b_id}}" class="btn btn-warning" style="background-color : orange;">Consulter</a></th>
+                              <td> <a href="/borderau1/{{$bord->b_id}}" class="btn btn-warning" style="background-color : orange;">Consulter</a></td>
                             @endif
-                            <th><a href="/edit_borderau/{{$bord->b_id}}/{{$bord->type}}" class="btn btn-primary">Modifier</a></th>
-                            <th><a onclick="confirm('Etes-vous sur de vouloir supprimer ?')" href="/delete_borderau/{{$bord->b_id}}" class="btn btn-danger">supprimer</a></th>
+                            <td><a href="/edit_borderau/{{$bord->b_id}}/{{$bord->type}}" class="btn btn-primary">Modifier</a></td>
+                            <td><a onclick="confirm('Etes-vous sur de vouloir supprimer ?')" href="/delete_borderau/{{$bord->b_id}}" class="btn btn-danger">supprimer</a></td>
                         </tr>
                         @endforeach
 				    </tbody>

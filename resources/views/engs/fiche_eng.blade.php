@@ -149,13 +149,18 @@
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<h3>  رمز البرنامج : {{$eng->programme}}</h3>
             <h3>  رمز الــنشاط : {{$eng->activite}}</h3>
-            <h3>  رمز النشاط الفرعي : /</h3>
+			@if($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal" )
+			
+            <h3>  رمز النشاط الفرعي : 000</h3>
+			@else
+			<h3>  رمز النشاط الفرعي : /</h3>
+			@endif
 			@if($eng->sous_programme == "")
 			<h3>رمز البرنامج الفرعي : </h3>
 			@elseif(strlen($eng->sous_programme) == 1)
-			<h3>  رمز البرنامج الفرعي : {{$eng->programme}}.0{{$sous->code}}</h3>
+			<h3>  رمز البرنامج الفرعي : 0{{$sous->code}}</h3>
 			@else
-			<h3>  رمز البرنامج الفرعي : {{$eng->programme}}.{{$sous->code}}</h3>
+			<h3>  رمز البرنامج الفرعي : {{$sous->code}}</h3>
 			@endif
             
 		</div>

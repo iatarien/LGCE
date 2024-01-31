@@ -51,7 +51,11 @@ class BorderauController extends Controller
             $engs = DB::select( DB::raw($query));
             $n = count($engs);
             //echo $query;
-            return view('borderau.borderau',["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
+            $view = "borderau.borderau";
+            if($this->lang =="fr"){
+                $view = $view."_fr";
+            }
+            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
         }else{
             $user = Auth::user();
             $year = $this->year;
@@ -65,7 +69,11 @@ class BorderauController extends Controller
             $engs = DB::select( DB::raw($query));
             $n = count($engs);
             //echo $query;
-            return view('borderau.borderau_pay',["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
+            $view = "borderau.borderau_pay";
+            if($this->lang =="fr"){
+                $view = $view."_fr";
+            }
+            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
         }
         
     }
@@ -85,7 +93,11 @@ class BorderauController extends Controller
             $engs = DB::select( DB::raw($query));
             $n = count($engs);
             //echo $query;
-            return view('borderau.borderau',["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
+            $view = "borderau.borderau";
+            if($this->lang =="fr"){
+                $view = $view."_fr";
+            }
+            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
         }else{
             $user = Auth::user();
             $year = $this->year;
@@ -120,7 +132,11 @@ class BorderauController extends Controller
             //return $engs;
             $n = count($engs);
             //echo $query;
-            return view('borderau.borderau_pay1',["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n,"op"=>$op]);
+            $view = "borderau.borderau_pay1";
+            if($this->lang =="fr"){
+                $view = $view."_fr";
+            }
+            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n,"op"=>$op]);
         }
         
     }
@@ -146,7 +162,11 @@ class BorderauController extends Controller
         
         $engs = DB::select( DB::raw($query));
         //echo $query;
-        return view('borderau.edit_borderau',["user"=>$user,"year"=>$year,"engs"=>$engs,"id"=>$id,"type"=>$type]);
+        $view = "borderau.edit_borderau";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"id"=>$id,"type"=>$type]);
     }
     public function bord_red($id){
         session(['id_bord' => $id]);
@@ -162,7 +182,11 @@ class BorderauController extends Controller
     public function add_borderau($type)
     {   
         $user = Auth::user();
-        return view('borderau.add_borderau',["user"=>$user,"type"=>$type]);
+        $view = "borderau.add_borderau";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"type"=>$type]);
 
     }
     public function insert(Request $request)
@@ -203,7 +227,11 @@ class BorderauController extends Controller
         $q = "SELECT * from entreprises WHERE id IN 
         (SELECT DISTINCT entreprise FROM deals)";
         $es = DB::select( DB::raw($q));
-        return view('borderau.select',["user"=>$user,"operations"=>$operations,"type"=>$type,'es'=>$es]);
+        $view = "borderau.select";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"operations"=>$operations,"type"=>$type,'es'=>$es]);
     }
 
 }
