@@ -338,7 +338,7 @@
               <i class="bi bi-circle"></i><span>  Consulter les délais </span>
             </a>
           </li>
-          <li>
+          <li style="display : none">
             <a href="/attestations/penalite">
               <i class="bi bi-circle"></i><span >   Pénalité de retard </span>
             </a>

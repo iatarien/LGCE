@@ -56,7 +56,7 @@ table {
 					@endforeach
 				</select>
 			</div>
-			<div class=" col-lg-3 form-group">
+			<div class="col-lg-3 form-group">
 				<select class="form-control" onchange="filter('source',this.value);">
 					<option style="visibility : hidden"> النشاط</option>
 					<option value="PSD">تفويض التسيير الغير ممركز (PSD)</option>

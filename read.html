@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>Excel to JSON Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <p id="q"></p>
+    <input type="file" id="data" accept=".xlsx" />
+    <script>
+        
+        document.querySelector('input').addEventListener('change', function() {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var arrayBuffer = this.result,
+                    array = new Uint8Array(arrayBuffer),
+                    binaryString = String.fromCharCode.apply(null, array);
+
+                var workbook = XLSX.read(binaryString, {
+                    type: "binary"
+                });
+
+                /* DO SOMETHING WITH workbook HERE */
+                var first_sheet_name = workbook.SheetNames[0];
+                /* Get worksheet */
+                var worksheet = workbook.Sheets[first_sheet_name];
+                data = XLSX.utils.sheet_to_json(worksheet, {
+                    raw: true
+                });
+                var str  ="";
+                data.forEach(element => {
+
+                    code0 ="";
+                    if(element.code){
+                        console.log(element.code)
+                        code0 = element.code.toString();
+                    }
+                    if(element.definition){
+                        console.log(element.definition)
+                    }
+                    
+                    
+                    // if(code0.length == 2){
+                    //     code0 = "0"+code0;
+                    // }
+                    // if(code0.length == 1){
+                    //     code0 = "00"+code0;
+                    // }
+                    // type = element.type;
+                    
+                    // if(type){
+                    //     type = type.replaceAll(/(\r\n|\n|\r)/gm, "");
+                    //     //type = type.replaceAll(" ","");
+                    // }
+                    // //
+                    // //console.log('ze_type = "'+type+'"');
+                    // if(type =="programme" || type =="Programme"){
+                    //     console.log('after if = "'+type+'"');
+                    //     code = '<span >"'+code0+'"</span>';
+                    //     definition = '<span >"'+element.designation+'"</span>';
+                    //     str +='UPDATE programme SET designation_fr = '+ 
+                    //     definition+' WHERE code = '+code+';'+'<br>';
+                    // }
+                    code = '<span >"'+code0+'"</span>';
+                    definition = '<span >"'+element.definition+'"</span>';
+                    str +='UPDATE titres SET definition_fr = '+ 
+                    definition+' WHERE code = '+code+';'+'<br>';
+                    // portefeuille0 = element.portefeuille.toString();
+                    // if(portefeuille0.length == 1){
+                    //     portefeuille0 = "00"+portefeuille0;
+                    // }else if(portefeuille0.length == 2){
+                    //     portefeuille0 = "0"+portefeuille0;
+                    // }
+                    // portefeuille = "<span dir='rtl'>'"+portefeuille0+"'</span>";
+
+                    // parent0 = element.parent.toString();
+                    // if(parent0.length == 1){
+                    //     parent0 = "00"+parent0;
+                    // }else if(parent0.length == 2){
+                    //     parent0 = "0"+parent0;
+                    // }
+                    // parent = "<span dir='rtl'>'"+parent0+"'</span>";
+                    
+                    //bouteille = "<span dir='rtl'>'"+element.bouteille+"'</span>";
+                    // str +="INSERT INTO products (id_prod,code_bar,name,capacity,bouteille,price,category,stock)"+ 
+                    // " VALUES (NULL,NULL,'"+element.name+"',NULL,NULL,"+element.price+",2,0);<br>";
+                    // str +="INSERT INTO programme "+ 
+                    // " VALUES"+
+                    // "(NULL,"+code+","+definition+","+parent+","+portefeuille+");<br>";
+                    
+                });
+                document.getElementById('q').innerHTML = str;
+            }
+            reader.readAsArrayBuffer(this.files[0]);
+            
+        });
+    </script>
+</body>
+
+</html>
