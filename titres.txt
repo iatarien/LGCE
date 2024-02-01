@@ -17,7 +17,7 @@ UPDATE titres SET definition_fr = "lnfrastructures sportives" WHERE code = "3141
 UPDATE titres SET definition_fr = "lnfastructures énergétiques , de télécommunications et des technologies de l'information et des cmmunications " WHERE code = "31417";
 UPDATE titres SET definition_fr = "lnfrastructures de traitement des déchets et eaux usées " WHERE code = "31418 ";
 UPDATE titres SET definition_fr = "Ouvrages d'art " WHERE code = "31419 ";
-UPDATE titres SET definition_fr = "Batiments" WHERE code = "31420 ";
+UPDATE titres SET definition_fr = "Batiments" WHERE code = "31420 "; 
 UPDATE titres SET definition_fr = "Logements " WHERE code = "31430 ";
 UPDATE titres SET definition_fr = "Entretien et réhabilitation du patrimoine immobilier historique, cultuel et culturel " WHERE code = "31440 ";
 UPDATE titres SET definition_fr = "lnstallations , agencements et aménagements des constructions " WHERE code = "31500";
