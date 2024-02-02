@@ -288,7 +288,7 @@ function display(progs){
 	var tds = "";
 	for (var i = 0; i < progs.length; i++) {
 		tds +=
-		'<option value="'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation+'</option>';
+		'<option value="'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation_fr+'</option>';
 	}
 	document.getElementById('programme').innerHTML = tds;
 }
@@ -298,7 +298,7 @@ function display1(progs){
 	var tds = "";
 	for (var i = 0; i < progs.length; i++) {
 		tds +=
-		'<option value="'+progs[i].id+'*1989raouf1989*'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation+'</option>';
+		'<option value="'+progs[i].id+'*1989raouf1989*'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation_fr+'</option>';
 	}
 	document.getElementById('sous_programme').innerHTML = tds;
 }

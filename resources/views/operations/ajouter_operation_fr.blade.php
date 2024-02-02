@@ -13,7 +13,7 @@
 
 	          <div class="form quick-post">
 	            <!-- Edit profile form (not working)-->
-	            <form class="form-horizontal" autocomplete="off" dir="rtl" action="/add_op_ar" method="POST">
+	            <form class="form-horizontal" autocomplete="off" dir="ltr" action="/add_op_ar" method="POST">
 	            	@csrf
 					<!-- Title -->
 				  <div class="form-group ">
