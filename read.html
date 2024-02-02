@@ -32,40 +32,53 @@
                 data.forEach(element => {
 
                     code0 ="";
+                    parent0 ="wrong";
+                    //console.log(element)
                     if(element.code){
-                        console.log(element.code)
+                        //console.log(element.code)
                         code0 = element.code.toString();
                     }
-                    if(element.definition){
-                        console.log(element.definition)
+                    if(element.parent){
+                        parent0 = element.parent.toString();
                     }
+                    // if(element.definition){
+                    //     console.log(element.definition)
+                    // }
                     
                     
                     // if(code0.length == 2){
                     //     code0 = "0"+code0;
                     // }
-                    // if(code0.length == 1){
-                    //     code0 = "00"+code0;
-                    // }
-                    // type = element.type;
+                    if(code0.length == 1){
+                        code0 = "0"+code0;
+                    }
+                    if(parent0.length == 2){
+                        parent0 = "0"+parent0;
+                    }
+                    if(parent0.length == 1){
+                        parent0 = "00"+parent0;
+                    }
                     
-                    // if(type){
-                    //     type = type.replaceAll(/(\r\n|\n|\r)/gm, "");
-                    //     //type = type.replaceAll(" ","");
-                    // }
-                    // //
+                    type = element.type;
+                    
+                    if(type){
+                        type = type.replaceAll(/(\r\n|\n|\r)/gm, "");
+                        //type = type.replaceAll(" ","");
+                    }
+                    //
                     // //console.log('ze_type = "'+type+'"');
-                    // if(type =="programme" || type =="Programme"){
-                    //     console.log('after if = "'+type+'"');
-                    //     code = '<span >"'+code0+'"</span>';
-                    //     definition = '<span >"'+element.designation+'"</span>';
-                    //     str +='UPDATE programme SET designation_fr = '+ 
-                    //     definition+' WHERE code = '+code+';'+'<br>';
-                    // }
-                    code = '<span >"'+code0+'"</span>';
-                    definition = '<span >"'+element.definition+'"</span>';
-                    str +='UPDATE titres SET definition_fr = '+ 
-                    definition+' WHERE code = '+code+';'+'<br>';
+                    if(type =="sous programme" || type =="Sous programme"){
+                        // console.log('after if = "'+type+'"');
+                        code = '<span >"'+code0+'"</span>';
+                        definition = '<span >"'+element.designation+'"</span>';
+                        parent = '<span >"'+parent0+'"</span>';
+                        str +='UPDATE programme SET designation_fr = '+ 
+                        definition+' WHERE code = '+code+' AND parent ='+parent+';'+'<br>';
+                    }
+                    // code = '<span >"'+code0+'"</span>';
+                    // definition = '<span >"'+element.definition+'"</span>';
+                    // str +='UPDATE titres SET definition_fr = '+ 
+                    // definition+' WHERE code = '+code+';'+'<br>';
                     // portefeuille0 = element.portefeuille.toString();
                     // if(portefeuille0.length == 1){
                     //     portefeuille0 = "00"+portefeuille0;
