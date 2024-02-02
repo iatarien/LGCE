@@ -211,6 +211,9 @@ class EngagementController extends Controller
         }
         
         $the_view = 'engs.fiche_eng';
+        if($this->lang =="fr"){
+            $the_view = 'engs.fiche_eng_fr';
+        }
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         

@@ -560,7 +560,7 @@ function somme(){
       }
       if(l<0 ){
         Swal.fire({
-          title: 'حذار ! الإلتزام المقترح اكبر من الرصيد الأولي',
+          title: 'Attention ! engagement proposé plus grand que solde initial',
           icon: 'error',
         });
       }    
@@ -608,9 +608,9 @@ function subject(){
     txt += "N° "+deal_num +" ";
   }
   if(deal_date !="" && deal_date != null){
-    txt += "Date : "+deal_date +" ";
+    txt += "du : "+deal_date +" ";
   }
-    @if($deal->deal_type == "ملحق")
+    @if($deal->deal_type == "avenant")
       const parent_num = "{{$parent->deal_num}}";
       const parent_type = "{{$parent->deal_type}}";
       const parent_date = "{{$parent->deal_date}}";
@@ -623,9 +623,10 @@ function subject(){
       if(parent_date !="" && parent_date != null){
         txt += "Date :  "+parent_date +" ";
       }
+    @else
+    txt += "lot : "+lot+"\n";
     @endif
-    txt += " conclu avec "+e+" ";
-    txt += "pour "+projet+" lot : "+lot;
+    txt += "Entreprise : "+e+" ";
   @endif
   
 
