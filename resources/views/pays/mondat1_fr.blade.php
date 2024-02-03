@@ -1,4 +1,13 @@
-<?php $brut = (float)$pay->to_pay + (float)$pay->total_cut ?>
+@include('pays.nuts')
+<?php 
+
+$brut = (float)$pay->to_pay + (float)$pay->total_cut;
+$obj = new nuts($pay->to_pay, "EUR");
+$text = $obj->convert("fr-FR");
+$text = str_replace("euro","Dinar",$text);
+$text = str_replace(","," et",$text);
+$text = ucfirst($text);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +30,12 @@
 			width: 420mm;
 			height: 280mm;
 			margin: auto;
-			margin-top: 5%;
-			font-size: 13px;
+			margin-top: 2%;
+			font-size: 12px;
 			line-height: 1.5em;
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
-			padding-top: 5px;
 			font-weight: bold; 
 			display: inline-block; 
 			width: 100%;
@@ -84,15 +92,15 @@
 <body contenteditable ="true">
 <section id="fiche">
     <h3 align="center">
-        الجمهورية الجزائرية الديمقراطية الشعبية<br>
         République Algerienne Democratique et Populaire
     </h3>
-	<div style="float: right; width: 60%;" id="top-right">
-		<div style="width: 40%; display: inline-block; text-align: center; float: right; margin-right: 10%;">
+	<div style="float: left; width: 90%;" id="top-right">
+		<div style="width: 40%; display: inline-block; text-align: center; float: left; margin-left: 10%;">
 
 			<br><br>
 			<table id="sarf">
 				<tr>
+                    <th style="background-color : lightgray"> Code Ordonnateur </th>
 					<th> 
                         @if($pay->type =="FSDRS")
                         {{$ordre}}
@@ -102,54 +110,54 @@
                         {{$ordre}}
                         @endif 
                     </th>
-                    <th style="background-color : lightgray">الأمر بالصرف </th>
+                    
 				</tr>
 				
 			</table>
 		</div>
-		<div style="width: 30%; margin-top: 5%; margin-right: 10%; text-align: center; float: right;">
+		<div style="width: 30%; margin-top: 5%; margin-left: 10%; text-align: center; float: left; display : inline-block">
 			<table id="things">
 				<tr>
-                    <td colspan="2" style="background-color : lightgray">حوالة الدفع</td>
+                    <td colspan="2" style="background-color : lightgray"> Mandat de Paiement</td>
                 </tr>
                 <tr>
-                    <td style="width: 50%;">{{$pay->year}}</td>
-                    <td style="width: 50%;">السنة المالية</td>
+                    <td style="width: 50%;"> Gestion</td>
+                    <td style="width: 50%;">{{$pay->year}}</td>     
                 </tr>
                 <tr>
+                    <td style="width: 50%;">Numéro</td>
                     <td style="width: 50%;"></td>
-                    <td style="width: 50%;">رقم</td>
                 </tr>
                 <tr>
+                    <td style="width: 50%;">Date</td>
                     <td style="width: 50%;"></td>
-                    <td style="width: 50%;">التاريخ</td>
                 </tr>
                 <tr>
-                    <td style="width: 50%;">حوالة</td>
-                    <td style="width: 50%;">طريقة الدفع</td>
+                    <td style="width: 50%;">Mandat</td>
+                    <td style="width: 50%;">Méthode de paiement</td>
                 </tr>
 
 			</table>
 		</div>
 	</div>
-	<div style="width: 40%; float: right; text-align: center; visibility : hidden;" id="top-left">
+	<div style="width: 40%; float: left; text-align: center; display : none;" id="top-left">
 		<br><br><br><br><br><br>
 		@if($op->source == "PSC") 
-				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 8mm;">
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 7mm;">
 				302.145.001
 				</div>
 				@elseif($op->source == "PSD")
-				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 8mm;">
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 7mm;">
 				302.145.002
 				</div>
 				@elseif($op->source == "FSDRS")
 				<?php $sf = substr($op->numero, 0, 2); ?>
 					@if($sf == "SF")
-					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 6mm;">
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 5mm;">
 					302.145.012
 					</div>
 					@else
-					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 6mm;">
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 5mm;">
 					302.145.010
 					</div>
 					@endif
@@ -158,96 +166,116 @@
 		<br><br><br>
 
 	</div>
-    <div style="width: 35%; margin-right: 5%; float: right;">
+    <div style="width: 30%; margin-left: 5%; float: left;">
         <br><br>
-        <table id="things" dir="rtl">
+        <table id="things" dir="ltr">
             <tr>
                 <td colspan="2" style="background-color : lightgray;
                     text-align : center">
-                أعباء مقيدة في ميزانية الدولة
+                Dépenses imputables au budget de l'Etat
                 </td>
             </tr>
             <tr>
-                <td style="width: 30%;">المحاسب المختص</td>
+                <td style="width: 30%;"> Comptable Assignataire</td>
                 <td style="width: 70%;">
-					<span>  السيد أمين الخزينة لولاية {{$ville}} 
-						<br>  ح ج ب رقم {{$compte_tresor}} الجزائر   
+					<span>     Monsieur le Trésorier de la wilaya de {{$ville_fr}} 
+						<br>  RIB {{$compte_tresor}}    
 					</span>
 				</td>
             </tr>
             <tr>
-                <td style="width: 30%;">تاريخ الإصدار</td>
+                <td style="width: 30%;"> Date</td>
                 <td style="width: 70%;"></td>
             </tr>
             <tr >
                 <td style="border : none;"><br></td>
                 <td style="border : none;"></td>
             </tr>
+            <?php 
+            $txt = " ";
+            if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+                $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
+            }
+            if($pay->travaux_type  !="facture" && $pay->deal != null){
+                $txt = $txt.$pay->deal_type." ";
+            }
+            
+            if($pay->deal_num != null){
+                $txt=$txt." N° ".$pay->deal_num;
+            }
+            if($pay->deal_date != null){
+                $txt=$txt." DU ".$pay->deal_date." ";
+            }
+            
+            
+            $txt =$txt."lot ".$pay->lot;
+        
+            ?>
             <tr>
-                <td style="width: 30%;">موضوع النفقة</td>
-                <td style="width: 70%;">{{$pay->lot }}</td>
+                <td style="width: 30%;"> Objet de paiement</td>
+                <td style="width: 70%;">{{$txt }}</td>
             </tr>
             <tr>
-                <td style="width: 30%;">مرجع التأشيرة</td>
-                <td style="width: 70%;">رقم  {{ $pay->num_visa }}  بتاريخ <b dir="ltr">{{ $pay->date_visa }}</b>  </td>
+                <td style="width: 30%;"> N° de visa CB</td>
+                <td style="width: 70%;">N°  {{ $pay->num_visa }}  DU <b dir="ltr">{{ $pay->date_visa }}</b>  </td>
             </tr>
 
         </table>
         <br>
     </div>
-    <div style="width: 35%; margin-right: 20%; float: right;">
-        <p style="text-align : center">القيد الميزانياتي و المحاسبي</p>
-        <table id="things" dir="rtl">
+    <div style="width: 50%; margin-left: 10%; float: left;">
+        <br>
+        <table id="things" dir="ltr">
             <tr>
                 <td colspan="3" style="text-align : center">
-                التصنيف حسب النشاط
+                Classification par Activité
                 </td>
                 <td colspan="3" style="text-align : center">
-                التصنيف حسب العنوان
+                Classification par titre
                 </td>
             </tr>
             <tr>
-                <td style="width : 18%">محفظة البرنامج</td>
+                <td style="width : 18%"> Portefeuille</td>
                 <td style="width : 10%">{{$op->portefeuille}}</td>
-                <td style="width : 22%">{{$op->ministere}}</td>
-                <td style="width : 18%">العنوان</td>
+                <td style="width : 22%">{{$op->ministere_fr}}</td>
+                <td style="width : 18%">Titre</td>
                 <td style="width : 10%">03</td>
-                <td style="width : 22%">نفقات الاستثمار</td>
+                <td style="width : 22%">Dépenses d'investissement</td>
                 
             </tr>
             <tr>
-                <td>البرنامج</td>
+                <td>Programme</td>
                 <td>{{$prog->code}}</td>
-                <td>{{$prog->designation}}</td>
-                <td rowspan="2">الصنف</td>
+                <td>{{$prog->designation_fr}}</td>
+                <td rowspan="2">Catégorie</td>
                 <td rowspan="2">{{$titre->code}}</td>
-                <td rowspan="2">{{$titre->definition}}</td>
+                <td rowspan="2">{{$titre->definition_fr}}</td>
             </tr>
             <tr >
-                <td>البرنامج الفرعي</td>
+                <td> Sous Programme</td>
 				
                 <td style="width : 22%">{{$sous_prog->code}}</td>
-                <td>{{$sous_prog->designation}}</td>
+                <td>{{$sous_prog->designation_fr}}</td>
                 
     
             </tr>
             <tr>
-                <td> النشاط</td>
+                <td> Action</td>
 				<td>{{$op->activite}}</td>
 				@if($op->source =="PSC")
-				<td>َتفويض التسيير القطاعي الممركز</td>
+				<td>Programme Sectoriel Centralisé</td>
 				@else
-				<td>َتفويض التسيير الغير ممركز</td>
+				<td> Programme Sectoriel Déconcentrés</td>
 				@endif
 				
                 
-				<td rowspan="2">الصنف الفرعي</td>
+				<td rowspan="2"> Sous-catégorie </td>
 				<td rowspan="2">{{$sous_titre->code}}</td>
-                <td rowspan="2">{{$sous_titre->definition}}</td>
+                <td rowspan="2">{{$sous_titre->definition_fr}}</td>
 
             </tr>
             <tr>
-                <td> النشاط الفرعي</td>
+                <td>  Sous Action</td>
                 <td></td>
                 <td>َ</td>
                 
@@ -257,45 +285,45 @@
         <br>
     </div>
     <br>
-    <div style="width: 90%; margin-right: 5%; float: right;">
-    <table id="things" dir="rtl" style="text-align: center">
+    <div style="width: 90%; margin-left: 5%; float: left;">
+    <table id="things" dir="ltr" style="text-align: center">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
-                  الرمز الميزانياتي للنفقة
+                  N° d'opération
                 </td>
                 <td rowspan="2" style="text-align : center; width : 9%;">
-                المبلغ الخام
+                 Montant total à payer
                 </td>
-				<td colspan="3" style="text-align : cente; width : 15%;">
-                 اقتطاعات
+				<td colspan="3" style="text-align : center; width : 30%;">
+                 Retenus
                 </td>
 				<td rowspan="2"  style="text-align : center; width : 9%;">
-                 المبلغ الصافي للدفع للمستفيد
+                    Montant brut
                 </td>
-				<td colspan="5" style="text-align : center; width : 52%;">
-                 تحديد المستفيد
+				<td colspan="5" style="text-align : center; width : 37%;">
+                  Designation du benficiaire
                 </td>
             </tr>
             <tr>
-                <td> التحديد</td>
-                <td>َالحساب الدائن</td>
-                <td>َالمبلغ</td>
-                <td style="width : 30%;">َالتسمية</td>
-                <td style="width : 10%;">َرقم حساب المستفيد</td>
-                <td colspan="2">َمرجع وثيقة الدفع</td>
-				<td>ملاحظات</td>
+                <td> Désignation</td>
+                <td> Compte à Débiter</td>
+                <td>Montant</td>
+                <td style="width : 30%;">Désignation</td>
+                <td style="width : 10%;">  N° du compte du bénificiaire</td>
+                <td colspan="2">  Référence de dépenses</td>
+				<td>Observation</td>
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
-                <td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
                 <td>َ</td>
                 <td dir="ltr">َ@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
                 <td>َ</td>
                 <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-				<td>{{$pay->travaux_type }} رقم {{ $pay->travaux_num}}  لل{{ $pay->deal_type }} رقم {{ $pay->deal_num }} المبرمة مع {{ $e->name }}  و ذلك من أجل {{ $pay->lot }}</td>
+				<td>{{$txt}}</td>
                 <td>
 					{{$bank->bank_acc}}َ<br>
-					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
+					{{$bank->bank}}ََ <br>Agence : {{$bank->bank_agc}}
 				</td>
                 <td>َ</td>
 				<td>َ</td>
@@ -303,64 +331,73 @@
 				
             </tr>
 			<tr>
-                <td>  المبلغ الإجمالي الخام</td>
+                <td>    Montant total brute</td>
                 <td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-                <td colspan="2">َالمبلغ الإجمالي للإقتطاعات</td>
+                <td colspan="2">  Montant total des retnues</td>
                 <td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
                 <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
-		<div align= "center">
-		حــــدد المبـــلغ <br><b id="montant">   </b>
+		<div align= "center"><br>
+		Arreté à la somme de  <br><b id="montant"> {{$text}}  </b>
 		<div>
 		<br>
 		
     </div>
-	
-	<div style="width: 30%; margin-right: 35%; display: inline-block; float: right; visibility : hidden;">
-		@if($op->source == "PSC") 
-		<div id="stamp1"  style = "text-align : center; padding : 5px; margin-right : 20%; float : right; border : 5px solid red; margin-left : 10mm; width : 150px; font-weight : bold; color : red; font-size : 7mm;">
-		عــن الــوزير
-		</div>
-		@else
-		<div id="stamp1"  style = "text-align : center; padding : 5px; margin-right : 20%; float : right; border : 5px solid red; margin-left : 10mm; width : 150px; font-weight : bold; color : red; font-size : 7mm;">
-		عــن الــــوالي
-		</div>
-		@endif
-		<div style='text-align : right'>
-			<span> ................. قابل للتسديد </span><br>
-		</div>
-		<br><br>
-		<div align="center">
-			<span> الأمـــر بالصـــــــرف </span>
-			<br>
-		</div>
 
-	</div>
-	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 12px;">
+	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
 		<table id="bottom-left">
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-				<td>المبلغ الخام</td>
+				<td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td> Montant total à payer</td>
 			</tr>
 			<tr>
 				<td>0.00</td>
-				<td>المبلغ المرفوض من طرف المحاسب</td>
+				<td>  Rejets  </td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-				<td> المبلغ المقبول للدفع</td>
+				<td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td>   Dépenses admises</td>
 			</tr>
 			<tr>
 				<td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
-				<td> إقتطاعات</td>
+				<td> Retenues</td>
 			</tr>
 			<tr>
-				
-				<td dir="ltr">ََ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
-				<td>المبلغ الخام</td>
+				<td dir="ltr">ََ{{ number_format($brut, 2, '.', ' ')}}</td>
+				<td> Montant total net à payer</td>
 			</tr>
 		</table>
+	</div>
+		
+	<div style="width: 20%; margin-left: 35%; display: inline-block; float: left; visibility : hidden">
+		<div style='text-align : left'>
+			<span> Date de Réglement </span><br>
+		</div>
+		<br><br>
+		<div align="left">
+			<span> Ordonnateur </span>
+			<br>
+		</div>
+		<div align="right">
+			<span> Comptable public assignataire </span>
+			<br>
+		</div>
+	</div><br>
+	<div style="width: 90%; display: inline-block; float: left;">
+		<div style='text-align : left'>
+			<span> Date de Réglement </span><br>
+		</div>
+		<br><br>
+		<div align="left">
+			<span> Ordonnateur </span>
+			<br>
+		</div>
+		<div align="right">
+			<span> Comptable public assignataire </span>
+			<br>
+		</div>
+	</div>
 </section>
 
 <div align="center" id="bouton" >
@@ -375,7 +412,7 @@
 	  text-decoration: none;
 	  display: inline-block;
 	  font-size: 16px;" 
-  onclick="printdiv('fiche')"> طباعة </button>
+  onclick="printdiv('fiche')"> Imprimer </button>
   <button style="
 	  background-color: lightblue; /* Green */
 	  border: none;
@@ -386,7 +423,7 @@
 	  text-decoration: none;
 	  display: inline-block;
 	  font-size: 16px;" 
-  onclick="retour()"> رجوع </button>
+  onclick="retour()"> Retour </button>
  <br><br><br><br>
 </div>
 <script src="{{ url('js/tagfeet.js') }}" ></script>
@@ -407,7 +444,7 @@ function hide_stamp(){
 	document.getElementById('stamp1').style.visibility ="hidden";
 	document.getElementById('stamp2').style.visibility ="hidden";
 }
-convert({{ $pay->to_pay }});
+//convert({{ $pay->to_pay }});
 
 function convert(num){
 	num = ""+ num;
@@ -452,4 +489,4 @@ jQuery(document).bind(" keydown", function(e){
 });
 </script>
 </body>
-</html>
+</html> 

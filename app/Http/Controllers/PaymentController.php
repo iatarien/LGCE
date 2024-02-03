@@ -268,7 +268,8 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-     
+        // var_dump($pay);
+        // return "";
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
