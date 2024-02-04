@@ -82,7 +82,7 @@
                 <input type="hidden" name="id" value="{{$pay->id}}" id="id">
                 <input type="hidden" name="id_reb" value="{{$pay->rebrique}}" id="id">
                 <div class="form-group">
-                  <select class="form-control col-lg-4" name="travaux_type" style="width: 30%; margin-left : 1%;">
+                  <select class="form-control col-lg-2" name="travaux_type" style="width: 15.7%; margin-left : 1%;">
                       <option selected style="visibility: hidden;" value="{{$pay->travaux_type}}">  {{$pay->travaux_type}} </opton>
                       <option value="situation" > Situation</option>
                       <option value="facture" > Facture </option>
@@ -92,20 +92,22 @@
 	                </div>
                   
 	              </div>
-	              <div class="form-group" style="display : none">
-	                <div class="col-lg-8">
-                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> N° de décompte </label>
-	             
-	                  <input required="" value="{{$pay->num}}"  type="text" class="form-control" id="num" name="num">
-	                </div>
-                     </div>
-                  <div class="form-group">
-                  <label  class="control-label col-lg-1" style="text-align: left; font-weight: bold;" for="title">Date :    </label>
+	              
+                <div class="form-group">
+                  <label  class="control-label col-lg-2" style="text-align: left; font-weight: bold;" for="title">Date :    </label>
 	              
 	                <div class="col-lg-8">
 	                  <input required="" value="{{$pay->date_pay}}" type="date" class="form-control" id="date_pay" name="date_pay">
 	                </div>
-                    </div>
+                </div>
+
+                <div class="form-group" >
+                  <label class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title"> Fiche paiement N°</label>
+	             
+	                <div class="col-lg-8">
+	                  <input required="" value="{{$pay->num}}"  type="text" class="form-control" id="num" name="num">
+                  </div>
+                </div>
 
                
                 

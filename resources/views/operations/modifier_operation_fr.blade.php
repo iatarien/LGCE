@@ -68,6 +68,12 @@
 	                </div>
 	              </div><br>
 				  <div class="form-group">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">Sous-action</label>
+	                <div class="col-lg-9">
+	                  <input  placeholder="000" value='{{$op->sous_action}}' onkeyup="change_num()" dir="ltr" style="text-align : left" value="" type="text" class="form-control" id="sous_action" name="sous_action">
+	                </div>
+	              </div><br>
+				  <div class="form-group">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">  Année et N° ordre</label>
 	                <div class="col-lg-9">
 	                  <input required="" placeholder="23.01" onkeyup="change_num()" value="{{$op->annee}}" dir="ltr" style="text-align : left" value="" type="text" class="form-control" id="annee" name="annee">
@@ -101,7 +107,7 @@
 		            </div>
                   </div><br>
 				  <div class="form-group">
-				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title"> Action </label>
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title"> Programme </label>
 	                <div class="col-lg-9">
 	                	<select  name="source" id="source" class="form-control">
                             <option selected style="visibility :  hidden" value="{{$op->source}}">{{$op->source}}</option>
@@ -186,13 +192,14 @@ function get_progs(porte){
 	const div_prog = document.getElementById('div-prog').innerHTML; 
 	const div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
-	
+	const sous_action = document.getElementById('sous_action').value; 
 	const activite = document.getElementById('activite').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+		numero.value ="N1."+ porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 	var url = "/get_progs/"+porte;
 	$.ajax({
 		url: url,
@@ -218,6 +225,7 @@ function get_sous(code){
 	var div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	var url = "/get_sous/"+code;
 	$.ajax({
 		url: url,
@@ -235,9 +243,9 @@ function get_sous(code){
 			}
 
 			if(div_sous != ""){
-				numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+				numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 			}else{
-				numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+				numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 			}
 		},
 		error:function(response) {
@@ -247,10 +255,11 @@ function get_sous(code){
 	});
 	console.log(div_sous);
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ code +"."+ div_sous +"."+activite+"."+annee;;
+		numero.value ="N1."+ div_porte +"."+ code +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ code +"."+activite+"."+annee;;
+		numero.value ="N1."+ div_porte +"."+ code +"."+activite+"."+sous_action+"."+annee;;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 }
 function sous(code){	
 	codes = code.split("*1989raouf1989*");
@@ -263,11 +272,13 @@ function sous(code){
 	const div_sous = document.getElementById('div-sous').innerHTML = code; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ code +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ code +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 }
 function change_num(){	
 	var numero = document.getElementById('numero');
@@ -276,11 +287,13 @@ function change_num(){
 	const div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 }
 function display(progs){
 

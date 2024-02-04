@@ -245,10 +245,11 @@ class OperationsController extends Controller
         $reevaluation = 0;
         $AP_act = $AP_init;
         $activite = $request['activite'];    
+        $sous_action = $request['sous_action']; 
         $num_cloture = NULL;
         $date_cloture = NULL;
         $id = DB::table('operations')->
-        insertGetId(["portefeuille"=>$portefeuille,"programme"=>$programme,
+        insertGetId(["portefeuille"=>$portefeuille,"programme"=>$programme,"sous_action"=>$sous_action,
         "sous_programme"=>$sous_programme,'numero'=>$numero,'intitule'=>$intitule,
         'intitule_ar'=>$intitule_ar,'date'=>$date,'source'=>$source,'annee'=>$annee,
         'AP_init'=>$AP_init,'reevaluation'=>$reevaluation,'AP_act'=>$AP_act,
@@ -274,10 +275,11 @@ class OperationsController extends Controller
             $reevaluation = floatval($request['reevaluation']);
             $AP_act = floatval($AP_init) + $reevaluation;
             $activite = $request['activite']; 
+            $sous_action = $request['sous_action']; 
             $num_cloture = $request['num_cloture'];
             $date_cloture = $request['date_cloture'];
             DB::table('operations')->where('id',$id)->
-            update(["portefeuille"=>$portefeuille,"programme"=>$programme,
+            update(["portefeuille"=>$portefeuille,"programme"=>$programme,"sous_action"=>$sous_action,
             "sous_programme"=>$sous_programme,'numero'=>$numero,'intitule'=>$intitule,
             'intitule_ar'=>$intitule_ar,'date'=>$date,'source'=>$source,'annee'=>$annee,
             'AP_init'=>$AP_init,'reevaluation'=>$reevaluation,'AP_act'=>$AP_act,

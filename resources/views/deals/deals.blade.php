@@ -262,6 +262,9 @@ function supprimer(link){
 }
 
 function numberWithCommas(x) {
+	if(x== null){
+		return "/";
+	}
     x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     if(!x.includes('.')){
       x += ".00";
@@ -270,7 +273,7 @@ function numberWithCommas(x) {
 }
 
 function display(engagements,value){
-    var user_id = {{ $user->id }};
+    var user_id = "{{ $user->id }}";
 	var user_service = "{{ $user->service }}";
     var type= "{{ $type }}";
 	var tds = '<tr style="  font-weight : bolder;">'+
@@ -344,7 +347,7 @@ function display(engagements,value){
 		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">تعديل</button></span>'+
 		        '</td>';
 			}
-			if(op[i].user_id == user_id && !op[i].num_visa || op[i].num_visa == null || op[i].num_visa == ""){
+			if(op[i].user_id == user_id && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){
 				tds +='<td style="text-align : center;">'+
 			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_deal/'+op[i].deal_id+'\')">خذف</button></span>'+
 			'</td>';

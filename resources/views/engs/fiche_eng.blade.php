@@ -149,9 +149,9 @@
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<h3>  رمز البرنامج : {{$eng->programme}}</h3>
             <h3>  رمز الــنشاط : {{$eng->activite}}</h3>
-			@if($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal" )
+			@if($eng->sous_action !==NULL )
 			
-            <h3>  رمز النشاط الفرعي : 000</h3>
+            <h3>  رمز النشاط الفرعي : {{$eng->sous_action}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif

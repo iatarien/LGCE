@@ -316,45 +316,47 @@ class PaymentController extends Controller
     public function fiche($id)
     {   
         $user = Auth::user();
-        $pay = DB::table('payments')->join('engagements','payments.id_eng',"=","engagements.id")->where('payments.id',$id)->first();
-        $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
-        $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank_id)->first();
-        $op = DB::table('operations')->where('id',$pay->id_op)->select('numero','intitule','intitule_ar','chapitre','source')->first();
-        $e = DB::table('entreprises')->where('id',$pay->entreprise_id)->first();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','deals.id_deal',"=","engagements.deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->
+        join("portefeuille","portefeuille.code","=","operations.portefeuille")->
+        where('id',$pay->id_op)->first();
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
-
-
-        $deal = $pay->deal_type;
-        $deal_num = $pay->deal_num;
-        $deal_date = $pay->deal_date;
-        $annexe = $pay->annexe;
-        $sujet = $pay->sujet; 
-        $txt = $sujet;
+        $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
     
-        $txt = "تسوية";
-        if($pay->travaux_type !="فـــاتورة"){
-            $txt = $txt." ".$pay->travaux_type." رقم"." ".$pay->travaux_num." ";
+        $txt = " ";
+        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
         }
-        
-        if($annexe != null){
-            $txt =$txt."في إطار الملحق "." ".$annexe." ";
+        if($pay->travaux_type  !="facture" && $pay->deal != null){
+            $txt = $txt.$pay->deal_type." ";
         }
-        if($pay->deal_type =="فــاتورة"){
-            $txt =$txt." ".$pay->deal_type;
-        }else{
-            $txt =$txt."ل".$pay->deal_type;
-        }
-        
-        $txt =$txt." رقم ".$deal_num;
-        if($e != ""){
-            $txt =$txt." المبرمة مع "." ".$e->name." ";
-        }
-        $txt =$txt."وذلك ل".$sujet;
 
-        
-        return view('comptabilite.fiche_payement',["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);
+        if($pay->deal_num != null){
+            $txt=$txt." N° ".$pay->deal_num;
+        }
+        if($pay->deal_date != null){
+            $txt=$txt." DU ".$pay->deal_date." ";
+        }
 
-        
+        $view ="pays.fiche_payement";
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        // var_dump($op);
+        // return "";
+        return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
     }
     public function declaration($id)
     {   

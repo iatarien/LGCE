@@ -47,7 +47,13 @@
 				  <div class="form-group row">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">  النشاط</label>
 	                <div class="col-lg-9">
-	                  <input required="" placeholder="0000.000.000" onkeyup="change_num()" dir="ltr" style="text-align : right" value="" type="text" class="form-control" id="activite" name="activite">
+	                  <input required="" placeholder="0000" onkeyup="change_num()" dir="ltr" style="text-align : right" value="" type="text" class="form-control" id="activite" name="activite">
+	                </div>
+	              </div><br>
+				  <div class="form-group row">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">النشاط الفرعي</label>
+	                <div class="col-lg-9">
+	                  <input  placeholder="000" onkeyup="change_num()" dir="ltr" style="text-align : right" value="" type="text" class="form-control" id="sous_action" name="sous_action">
 	                </div>
 	              </div><br>
 				  <div class="form-group row">
@@ -139,11 +145,13 @@ function get_progs(porte){
 	const div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+		numero.value ="N1."+ porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 	var url = "/get_progs/"+porte;
 	$.ajax({
 		url: url,
@@ -169,11 +177,13 @@ function get_sous(code){
 	var div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ code +"."+ div_sous +"."+activite+"."+annee;;
+		numero.value ="N1."+ div_porte +"."+ code +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ code +"."+activite+"."+annee;;
+		numero.value ="N1."+ div_porte +"."+ code +"."+activite+"."+sous_action+"."+annee;;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 	var url = "/get_sous/"+code;
 	$.ajax({
 		url: url,
@@ -191,9 +201,9 @@ function get_sous(code){
 			}
 
 			if(div_sous != ""){
-				numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+				numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 			}else{
-				numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+				numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 			}
 		},
 		error:function(response) {
@@ -209,11 +219,13 @@ function sous(code){
 	const div_sous = document.getElementById('div-sous').innerHTML = code; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ code +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ code +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 }
 function change_num(){	
 	var numero = document.getElementById('numero');
@@ -222,11 +234,13 @@ function change_num(){
 	const div_sous = document.getElementById('div-sous').innerHTML; 
 	const annee = document.getElementById('annee').value; 
 	const activite = document.getElementById('activite').value; 
+	const sous_action = document.getElementById('sous_action').value; 
 	if(div_sous != ""){
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+ div_sous +"."+activite+"."+sous_action+"."+annee;
 	}else{
-		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+annee;
+		numero.value ="N1."+ div_porte +"."+ div_prog +"."+activite+"."+sous_action+"."+annee;
 	}
+	numero.value = numero.value.replaceAll('..','.');
 }
 function display(progs){
 

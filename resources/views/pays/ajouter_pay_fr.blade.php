@@ -84,7 +84,7 @@
                 
                 @if($n== 1)
                 <div class="form-group">
-                    <select class="form-control col-lg-4" name="travaux_type" style="width: 30%; margin-left : 1%;">
+                  <select class="form-control col-lg-2" name="travaux_type" style="width: 15.7%; margin-left : 1%;">
                       <option value="situation" > Situation</option>
                       <option value="facture" > Facture </option>
                     </select>
@@ -95,7 +95,7 @@
 	              </div>
 	              
                 <div class="form-group">
-                <label  class="control-label col-lg-1" style="text-align : left; font-weight: bold;" for="title"> 
+                <label  class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title"> 
                        Date : </label>
 	                <div class="col-lg-8">
 	                  <input required="" type="date" class="form-control" id="date_pay" name="date_pay">
@@ -104,7 +104,7 @@
 	              </div>
                 @else
                   <div class="form-group">
-                    <select class="form-control col-lg-4" name="travaux_type" style="width: 33%;">
+                    <select class="form-control col-lg-2" name="travaux_type" style="width: 33%;">
                         <option value="situation" > Situation</option>
                         <option value="facture" > Facture </option>
                     </select>
@@ -138,16 +138,13 @@
                     </div>
                   </div>
                 @endif
-                <div class="form-group" style="display : none">
-	                <div class="col-lg-8">
-	                  <input required="" value="0"  type="text" class="form-control" id="num" name="num">
-	                </div>
-                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">  Décompte N°  </label>
-                </div>
+                <div class="form-group" style="">
+                <label class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title">  Fiche paiement N°  </label>
                
-                
-                
-          
+	                <div class="col-lg-8">
+	                  <input   type="text" class="form-control" id="num" name="num">
+	                </div>
+                </div>
              
             <table id="engagement" class="col-lg-12" dir="rtl">
                 <tr dir="ltr">

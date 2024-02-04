@@ -259,6 +259,9 @@ function supprimer(link){
 }
 
 function numberWithCommas(x) {
+	if(x== null){
+		return "/";
+	}
     x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     if(!x.includes('.')){
       x += ".00";

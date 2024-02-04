@@ -149,9 +149,8 @@
         <div dir="ltr" style="float: left; margin-right: 30px; text-align : left; width : 100%;">
 			<h3>   Code Programme : {{$eng->programme}}</h3>
             <h3>   Code Action : {{$eng->activite}}</h3>
-			@if($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal" )
-			
-            <h3>  Code Sous-action : 000</h3>
+			@if($eng->sous_action !==NULL )
+            <h3>  Code Sous-action : {{$eng->sous_action}}</h3>
 			@else
 			<h3> Code Sous-action : /</h3>
 			@endif

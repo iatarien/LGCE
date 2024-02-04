@@ -75,7 +75,7 @@ class DealController extends Controller
             }
             
 
-            $query = "SELECT *, d.id_deal as deal_id FROM deals d 
+            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
@@ -91,7 +91,8 @@ class DealController extends Controller
                 $query = $query." d.user_id ='".$user_id."' AND";
             }
             if($type == "avenant"){
-                $query = $query." ( d.deal_type ='صفقة' OR d.deal_type ='عقد' ) AND";
+                $query = $query." ( d.deal_type ='صفقة' OR d.deal_type ='عقد' ) AND 
+                (d.deal_type != 'facture')  AND ";
             }
             
             $query= $query." 1 ORDER BY deal_id DESC LIMIT 100";
@@ -99,7 +100,7 @@ class DealController extends Controller
 
             return DB::select( DB::raw($query));
         }else{
-            $query = "SELECT *, d.id_deal as deal_id FROM deals d 
+            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";

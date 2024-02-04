@@ -38,7 +38,7 @@
         <tr>
             <th style="display : none"> Décompte</th>
             <th>  Mandat </th>
-            <th style="display : none"> شهادة الدفع </th> 
+            <th style="display : none">Attestation de paiement</th> 
             <th > Fiche de paiement </th>
             <th>  Avis de virement </th>
             <th style="display : none">  Déclaration de virement </th>
@@ -51,7 +51,7 @@
 
             </td>
             <td >
-                <a class="btn btn-default" target="_blank" href="/mondat1/{{$id}}"> consulter</a>
+                <a class="btn btn-default" target="_blank" href="/mondat1/{{$id}}"> Consulter</a>
                 <br><br>
                 @if($editor == $user->id )
                     <a class="btn btn-primary"  href="/modifier_pay/{{$id}}">Modifier </a>
@@ -59,22 +59,22 @@
                     <a class="btn btn-primary" disabled href="/modifier_pay/{{$id}}">Modifier </a>
                 @endif
              </td>
-            <td>
-                <a class="btn btn-default" target="_blank" href="/attestation_payment/{{$id}}">consulter</a>
-            </td>
-            
-            <td >
-                <a class="btn btn-default" disabled target="_blank" href="/fiche_payment/{{$id}}"> consulter</a>
-                <br><br>
-                
-            </td>
-            <td>
-                <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> consulter</a>
+            <td style="display : none"> 
+                <a class="btn btn-default" target="_blank" href="/attestation_payment/{{$id}}">Consulter</a>
                 @if($editor == $user->id)
                 <a class="btn btn-primary" disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @else
                 <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @endif
+            </td>
+            
+            <td >
+                <a class="btn btn-default"  target="_blank" href="/fiche_payment/{{$id}}"> Consulter</a>
+                
+            </td>
+            <td>
+                <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> Consulter</a>
+                
             </td>
             <td style="display : none;">
                 <a class="btn btn-default" target="_blank" href="/declaration_pay/{{$id}}"> consulter</a>
