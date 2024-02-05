@@ -261,8 +261,15 @@ class PaymentController extends Controller
         $nums = Null;
         $qq = "SELECT * FROM titres WHERE id_titre = (SELECT sous_titre FROM rebriques WHERE id_eng = ".$pay->id_eng." 
         AND sous_montant != 0 LIMIT 1)";
-        $sous_titre = DB::select(DB::raw($qq))[0];
-        $titre = DB::table("titres")->where("id_titre",$sous_titre->father)->first();
+        $sous_titre = NULL;
+        if(isset(DB::select(DB::raw($qq))[0])){
+            $sous_titre = DB::select(DB::raw($qq))[0];
+        }
+        $titre = NULL;
+        if(isset($sous_titre->father)){
+            $titre = DB::table("titres")->where("id_titre",$sous_titre->father)->first();
+        }
+        
         
         $view ='pays.mondat1';
         if($this->lang =="fr"){

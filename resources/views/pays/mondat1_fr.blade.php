@@ -276,8 +276,8 @@ $text = ucfirst($text);
             </tr>
             <tr>
                 <td>  Sous Action</td>
+                <td>{{$op->sous_action}}</td>
                 <td></td>
-                <td>َ</td>
                 
             </tr>
 
@@ -308,34 +308,34 @@ $text = ucfirst($text);
                 <td> Désignation</td>
                 <td> Compte à Débiter</td>
                 <td>Montant</td>
-                <td style="width : 30%;">Désignation</td>
-                <td style="width : 10%;">  N° du compte du bénificiaire</td>
-                <td colspan="2">  Référence de dépenses</td>
+                <td style="width : 15%;">Désignation</td>
+                <td style="width : 15%;">  N° du compte du bénificiaire</td>
+                <td colspan="2" style="width :15%">  Référence de dépenses</td>
 				<td>Observation</td>
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
-                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-                <td>َ</td>
-                <td dir="ltr">َ@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
-                <td>َ</td>
-                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-				<td>{{$txt}}</td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                <td></td>
+                <td dir="ltr">@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
+                <td></td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td>{{$e->name}}</td>
                 <td>
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>Agence : {{$bank->bank_agc}}
 				</td>
-                <td>َ</td>
-				<td>َ</td>
-                <td>َ/</td>
+                <td ></td>
+				<td style="width : 11.5%"></td>
+                <td>/</td>
 				
             </tr>
 			<tr>
                 <td>    Montant total brute</td>
-                <td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td colspan="2">  Montant total des retnues</td>
-                <td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
-                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                <td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
 		<div align= "center"><br>
@@ -348,7 +348,7 @@ $text = ucfirst($text);
 	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
 		<table id="bottom-left">
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td> Montant total à payer</td>
 			</tr>
 			<tr>
@@ -356,15 +356,15 @@ $text = ucfirst($text);
 				<td>  Rejets  </td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td>   Dépenses admises</td>
 			</tr>
 			<tr>
-				<td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+				<td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
 				<td> Retenues</td>
 			</tr>
 			<tr>
-				<td dir="ltr">ََ{{ number_format($brut, 2, '.', ' ')}}</td>
+				<td dir="ltr">َ{{ number_format($brut, 2, '.', ' ')}}</td>
 				<td> Montant total net à payer</td>
 			</tr>
 		</table>

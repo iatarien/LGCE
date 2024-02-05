@@ -171,7 +171,11 @@ class ODSController extends Controller
             $arret_days = $sommes[0];
             $first_end = $sommes[1];
             $delai = $sommes[2];
-            return view('ods.djellal',["delai"=>$delai,"ods"=>$ods,'year'=>$year,
+            $view = 'ods.djellal';
+            if($this->lang =="fr"){
+                $view = "ods.ods_fr";
+            }
+            return view($view,["delai"=>$delai,"ods"=>$ods,'year'=>$year,"user"=>$user,
             "arret_days"=>$arret_days,"first_end"=>$first_end,"d"=>$d]);
         }
         $view = 'ods.ods';

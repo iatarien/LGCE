@@ -124,7 +124,7 @@ $txt =$txt."lot ".$pay->lot;
                 </tr>
                 <tr>
                     <td> Sous Action </td>
-					<td></td>
+					<td>{{$op->sous_action}}</td>
 					<td></td>
                 </tr>
         </table>

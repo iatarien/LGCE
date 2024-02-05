@@ -41,7 +41,11 @@ class AttController extends Controller
             join('operations','engagements.id_op',"=","operations.id")->
             join('deals','engagements.deal',"=","deals.id_deal")->
             join('entreprises','deals.entreprise',"=","entreprises.id")->orderBy('id_pen','DESC')->get();
-            return view('attestations.penalites',["attestations"=>$attestations,"user"=>$user]);
+            $view = 'attestations.penalites';
+            if($this->lang =="fr"){
+                $view = $view."_fr";
+            }
+            return view($view,["attestations"=>$attestations,"user"=>$user]);
         }else if($type=='leve_main' || $type=='leves'){
             $attestations = DB::table('leve_main')->join('engagements',"leve_main.id_eng","=","engagements.id")->
             join('operations','engagements.id_op',"=","operations.id")->
@@ -73,7 +77,11 @@ class AttController extends Controller
         $operations = DB::select( DB::raw($query));
         $q = "SELECT * from entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals WHERE deals.user_id =".$user->id." )";
         $es = DB::select( DB::raw($q));
-        return view('attestations.select',["user"=>$user,"operations"=>$operations,"type"=>$type,'es'=>$es]);
+        $view = 'attestations.select';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"operations"=>$operations,"type"=>$type,'es'=>$es]);
     }
     public function att($id)
     {   
@@ -228,7 +236,11 @@ class AttController extends Controller
         
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
-        return view('attestations.ajouter_penalite',["user"=>$user,"type"=>$type,
+        $view = 'attestations.ajouter_penalite';
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+        return view($view,["user"=>$user,"type"=>$type,
         "operations"=>$operations,'es'=>$es]);
     }
     public function penalite1($id)
@@ -236,7 +248,8 @@ class AttController extends Controller
         $pen = DB::table('penalite')->where('id_pen',$id)->first();
         $pen->html = str_replace('const url = "/insert_pen/";',
         'const url = "/insert_peno/";',$pen->html);
-        return view('attestations.penalite1',["pen"=>$pen]);
+        $view = 'attestations.penalite1';
+        return view($view,["pen"=>$pen]);
     }
     public function insert_pen(Request $request)
     {   

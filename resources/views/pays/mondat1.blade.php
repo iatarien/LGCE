@@ -185,7 +185,7 @@
             </tr>
             <tr>
                 <td style="width: 30%;">موضوع النفقة</td>
-                <td style="width: 70%;">{{$pay->lot }}</td>
+                <td style="width: 70%;">{{$pay->travaux_type }} رقم {{ $pay->travaux_num}}  لل{{ $pay->deal_type }} رقم {{ $pay->deal_num }}  و ذلك من أجل {{ $pay->lot }}</td>
             </tr>
             <tr>
                 <td style="width: 30%;">مرجع التأشيرة</td>
@@ -235,9 +235,9 @@
                 <td> النشاط</td>
 				<td>{{$op->activite}}</td>
 				@if($op->source =="PSC")
-				<td>َتفويض التسيير القطاعي الممركز</td>
+				<td>تفويض التسيير القطاعي الممركز</td>
 				@else
-				<td>َتفويض التسيير الغير ممركز</td>
+				<td>تفويض التسيير الغير ممركز</td>
 				@endif
 				
                 
@@ -248,8 +248,8 @@
             </tr>
             <tr>
                 <td> النشاط الفرعي</td>
+                <td>{{$op->sous_action}}</td>
                 <td></td>
-                <td>َ</td>
                 
             </tr>
 
@@ -278,36 +278,36 @@
             </tr>
             <tr>
                 <td> التحديد</td>
-                <td>َالحساب الدائن</td>
-                <td>َالمبلغ</td>
-                <td style="width : 30%;">َالتسمية</td>
-                <td style="width : 10%;">َرقم حساب المستفيد</td>
-                <td colspan="2">َمرجع وثيقة الدفع</td>
+                <td>الحساب الدائن</td>
+                <td>المبلغ</td>
+                <td style="width : 15%;">التسمية</td>
+                <td style="width : 15%;">رقم حساب المستفيد</td>
+                <td colspan="2" style="width : 15%">مرجع وثيقة الدفع</td>
 				<td>ملاحظات</td>
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
-                <td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-                <td>َ</td>
-                <td dir="ltr">َ@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
-                <td>َ</td>
-                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-				<td>{{$pay->travaux_type }} رقم {{ $pay->travaux_num}}  لل{{ $pay->deal_type }} رقم {{ $pay->deal_num }} المبرمة مع {{ $e->name }}  و ذلك من أجل {{ $pay->lot }}</td>
+                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td></td>
+                <td dir="ltr">@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
+                <td></td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td>{{$e->name}}</td>
                 <td>
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
 				</td>
-                <td>َ</td>
-				<td>َ</td>
-                <td>َ/</td>
+                <td></td>
+				<td ></td>
+                <td>/</td>
 				
             </tr>
 			<tr>
                 <td>  المبلغ الإجمالي الخام</td>
-                <td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-                <td colspan="2">َالمبلغ الإجمالي للإقتطاعات</td>
-                <td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
-                <td dir="ltr">َ{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td colspan="2">المبلغ الإجمالي للإقتطاعات</td>
+                <td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
 		<div align= "center">
@@ -340,7 +340,7 @@
 	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 12px;">
 		<table id="bottom-left">
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
 				<td>المبلغ الخام</td>
 			</tr>
 			<tr>
@@ -348,16 +348,16 @@
 				<td>المبلغ المرفوض من طرف المحاسب</td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
 				<td> المبلغ المقبول للدفع</td>
 			</tr>
 			<tr>
-				<td dir="ltr">ََ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+				<td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
 				<td> إقتطاعات</td>
 			</tr>
 			<tr>
 				
-				<td dir="ltr">ََ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr">َ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
 				<td>المبلغ الخام</td>
 			</tr>
 		</table>

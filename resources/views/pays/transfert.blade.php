@@ -104,7 +104,7 @@
                 </tr>
                 <tr>
                     <td>النشاط الفرعي </td>
-					<td></td>
+					<td>{{$op->sous_action}}</td>
 					<td></td>
                 </tr>
         </table>
