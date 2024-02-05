@@ -1,0 +1,22 @@
+- install VM
+- add rule on port 80 in firewall
+- copy virtual machine
+- copy (app/ressources/routes)
+- launch it and change ip adress
+- update DB (errors)
+- update DB company
+- add task that copies file from location to location
+- install Google Drive
+- hide D drive
+
+Mono
+- install vc_redit
+- install wampserver
+- copy (app/ressources/routes)
+- add php to path (stop at php-7.3.2)
+- update DB (errors)
+- update DB company
+- add start.bat and vbscript
+- add task that make auto updates
+- install Google Drive
+- hide D drive

@@ -11,11 +11,11 @@ table {
 }
 table th {
 	width: 100px;
-  text-align : right;
+  text-align : left;
 }
 table td {
 	width: 100px;
-  text-align : right;
+  text-align : left;
 }
 .dropdown-content {
   display: block;

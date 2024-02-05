@@ -129,7 +129,9 @@
 
 				@endif
                 <?php 
-
+				if($ze_tot <0){
+					$ze_tot = $ze_tot * -1;
+				}
                 $obj = new nuts($ze_tot, "EUR");
                 $text = $obj->convert("fr-FR");
                 $text = str_replace("euro","Dinar",$text);
