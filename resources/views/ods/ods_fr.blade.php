@@ -72,15 +72,33 @@
             Ordre De Service N° {{$num}} <br>  
               {{$ods_type}}   </h2>
 		</div>
-		<div dir="ltr" style="  display: inline-block; width : 100%; font-weight :  bold; text-align : justify; ">
-			 <h4 style="margin-top : 3px; margin-bottom : 3px;"><span style="text-decoration : underline">N° d'Opération :</span> {{$op}}<br>
-             <span style="text-decoration : underline">{{$deal}} N°</span> {{$deal_num}} DU {{DateTime::createFromFormat('Y-m-d',$ods->deal_date)->format('d-m-Y') }}<br>
-             <span style="text-decoration : underline">VISA CB N°</span> {{$ods->num_visa}} DU {{DateTime::createFromFormat('Y-m-d',$ods->date_visa)->format('d-m-Y') }}<br>
-             <span style="text-decoration : underline">Intitulé de l'Opération :</span> {{$intitule}}<br>
-             <span style="text-decoration : underline">Projet :</span> {{$sujet}}<br>
+		<div dir="ltr" style="  display: inline-block; width : 100%;  text-align : justify; ">
+			 <h4 style="font-weight : normal; margin-top : 3px; margin-bottom : 3px;"><span style="font-weight : bold">N° d'Opération :</span> {{$op}}<br>
+             <span style="font-weight : bold">{{$deal}} N°</span> {{$deal_num}} DU {{DateTime::createFromFormat('Y-m-d',$ods->deal_date)->format('d-m-Y') }}<br>
+             <span style="font-weight : bold">VISA CB N°</span> {{$ods->num_visa}} DU {{DateTime::createFromFormat('Y-m-d',$ods->date_visa)->format('d-m-Y') }}<br>
+             <span style="font-weight : bold">Intitulé de l'Opération :</span> {{$intitule}}<br>
+             <span style="font-weight : bold">Projet :</span> {{$sujet}}<br>
              </h4>
              <hr>
-             <div style="text-align : center">Cet ODS de {{$ods_type}} est délivrée à {{$e}} le {{DateTime::createFromFormat('Y-m-d',$ods->ods_date)->format('d-m-Y') }}
+			 <?php 
+			 $txt = "";
+			 $le_type = $ods->extra_type;
+			 $le_type = str_replace("des ","les ",$le_type);
+			 $le_type = str_replace("d'","l'",$le_type);
+			 if($ods->real_type == "d"){
+				$txt = "démarrer ";
+			 }elseif($ods->real_type == "a"){
+				$txt = "arreter ";
+			 }elseif ($ods->real_type =="r") {
+				$txt = "reprendre ";
+			 }else{
+				$txt = "effectuer un ".$ods->ods_type;
+				$le_type = "";
+			 }
+			 
+			 $txt = $txt.$le_type;
+			 ?>
+             <div style="text-align : left">L'entreprise <strong>{{$e}}</strong> est invitée à {{$txt}} du {{$deal}} cité en dessous à compter du {{DateTime::createFromFormat('Y-m-d',$ods->ods_date)->format('d-m-Y') }}
              </div>
              <hr>
              <h3 style="text-align : center">Le responsable de l'action <br><br><br><br><br><h3>
