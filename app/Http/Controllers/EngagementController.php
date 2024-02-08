@@ -616,6 +616,7 @@ class EngagementController extends Controller
         $num_visa = $request['num_visa'];
         $date_visa = $request['date_visa'];
         $montant = 0;
+        $eng0 = DB::table('engagements')->where("id",$id)->first();
         DB::table('engagements')->where("id",$id)->
         update(["numero_fiche"=>$numero_fiche,"real_sujet"=>$real_sujet,
         "type"=>$type,"montant"=>$montant,
@@ -649,6 +650,9 @@ class EngagementController extends Controller
         }
         DB::table('engagements')->where('id',$id)->update(['montant'=>$montant]);
         if($type =='reevaluation'){
+            $mont = $eng0->montant * -1;
+            DB::table('operations')->where('id',$id_op)->
+            increment("AP_act",$mont);
             DB::table('operations')->where('id',$id_op)->
             increment("AP_act",$montant);
         }
