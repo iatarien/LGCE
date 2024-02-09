@@ -1,13 +1,18 @@
-- install VM
+- install VM 
 - add rule on port 80 in firewall
 - copy virtual machine
 - copy (app/ressources/routes)
-- launch it and change ip adress
+- launch it and change ip adress 
 - update DB (errors)
 - update DB company
 - add task that copies file from location to location
 - install Google Drive
 - hide D drive
+
+
+FR 
+- update Banks
+
 
 Mono
 - install vc_redit

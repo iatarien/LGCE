@@ -65,7 +65,7 @@
             <h3 style="text-align : left; margin-top : 3px; margin-bottom : 3px;"> {{$ministere_fr}}<br>
 			{{$direction_fr}}  
 			<br>  
-			{{$ville_fr}}
+			da la Wilaya de {{$ville_fr}}
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
 			<h2 style="margin-top : 3px; margin-bottom : 3px; background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">
@@ -92,13 +92,17 @@
 			 }elseif ($ods->real_type =="r") {
 				$txt = "reprendre ";
 			 }else{
-				$txt = "effectuer un ".$ods->ods_type;
+				$txt = "effectuer un ".$ods->type_ods;
 				$le_type = "";
 			 }
 			 
 			 $txt = $txt.$le_type;
 			 ?>
-             <div style="text-align : left">L'entreprise <strong>{{$e}}</strong> est invitée à {{$txt}} du {{$deal}} cité en dessous à compter du {{DateTime::createFromFormat('Y-m-d',$ods->ods_date)->format('d-m-Y') }}
+             <div style="text-align : left">L'entreprise <strong>{{$e}}</strong> est invitée à <strong>{{$txt}}</strong> du {{$deal}} cité en dessous à compter du 
+			 <strong>{{DateTime::createFromFormat('Y-m-d',$ods->ods_date)->format('d-m-Y') }}</strong><br>
+			 @if($ods->cause != NULL)
+			 <strong> Cause : </strong> {{$ods->cause}}
+			 @endif
              </div>
              <hr>
              <h3 style="text-align : center">Le responsable de l'action <br><br><br><br><br><h3>

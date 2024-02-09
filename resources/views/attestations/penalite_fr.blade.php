@@ -27,7 +27,7 @@
 	    width:210mm;
 	    margin: auto;
 	    line-height: 1.6;
-		font-size : 18px;
+		font-size : 16px;
 	    -webkit-print-color-adjust: exact !important;
 	}
 
@@ -37,62 +37,51 @@
 </head>
 <body contenteditable="true">
 
-<section  style="background-color: white; text-align: center;  margin: 20px;" id="fiche">
+<section  style="background-color: white; text-align: center;  margin: 25px;" id="fiche">
 	<div id="fiche_top">
 		<div style="  display: inline-block; text-decoration : underline; ">
 			<h3 style="text-decoration: underline; padding: 0px 5px 0px 5px;">République Algérienne Démocratique Et Populaire</h3>
 		</div>
-		<br>
-
-		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style="">Budget d'Equipement
-                <br>
-                 N° Opération :    <strong>{{$pay->numero}}</strong> 
-                <br>
-                 Intitule : <strong> {{$pay->intitule}} </strong>
-                <br>   
-            </h4>
 		</div>
-		<div style="  display: inline-block; float: right; ">
-            <h3 style="text-align : right;"> {{$ministere_fr}}<br>
+		<div style="  display: inline-block; float: left ;  ">
+            <h3 style="text-align : left;"> {{$ministere_fr}}<br>
 			{{$ville_fr}}  
 			<br>  
 			{{$direction_fr}}
 			
-			</h3>
-            
+			</h3> 
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
-			<h3 style="font-size : 30px;"> Pénalité de retard  </h3>
+			<h3 style="font-size : 25px; text-decoration : underline; margin : 5px; "> Pénalité de retard  </h3>
 		</div>
-		<div dir="rtl" style="font-size : 18px;  display: inline-block; width : 100%; font-weight :  bold; text-align : center; ">
+		<div dir="ltr" style="font-size : 15px;  display: inline-block; width : 100%; font-weight :  bold; text-align : justify; ">
 			 {{$pay->deal_type}} N° {{$pay->deal_num}}.<br> 
              Entreprise : {{$pay->name}}<br>
-             Opération : {{$pay->intitule}}<br>
+			 N° Opération : {{$pay->intitule}}<br>
+             Libellé : {{$pay->intitule}}<br>
              Lot : {{$pay->lot}}.<br>
              <p align="center">
              Pénalité de retard sur la {{$pay->travaux_type}} N° {{$pay->travaux_num}}
               Arreté le {{$pay->date_pay}}
             </p>
-             Durée de réalisation  ................................................................................................................. 
-            {{$pay->duree}} jours
+             Durée de réalisation  &emsp;...........................................................................................................................................
+			 <span style='float : right;'>{{$pay->duree}} jours</span>
             <br>
-            <span style="text-decoration : underline;">Date {{$d_odss[0]->type_ods}}  </span> ............................................................................................ 
-            {{$d_odss[0]->ods_date}} 
-			<br>
+            <span style="text-decoration : underline;">{{$d_odss[0]->type_ods}}  </span> &emsp;................................................................................................................................... 
+            <span style='float : right;'>{{$d_odss[0]->ods_date}} </span>
 			<?php for($i =0; $i<count($a_odss); $i++ ){ ?>
 			<br>
-            <span style="text-decoration : underline;">Date {{$a_odss[0]->type_ods}}  </span> .............................................................................................. 
-            {{$a_odss[0]->ods_date}} 
+            <span style="text-decoration : underline;"> {{$a_odss[$i]->type_ods}}  </span> &emsp;..................................................................................................................................... 
+            <span style='float : right;'>{{$a_odss[$i]->ods_date}} </span>
 			<br>
-            <span style="text-decoration : underline;">Date {{$r_odss[0]->type_ods}}  </span> ........................................................................................... 
-            {{$r_odss[0]->ods_date}} 
+            <span style="text-decoration : underline;"> {{$r_odss[0]->type_ods}}  </span> &emsp;................................................................................................................................ 
+            <span style='float : right;'>{{$r_odss[$i]->ods_date}} </span>
 			<br>
 			<?php } ?>
-			<span style="text-decoration : underline;"> Date de fin {{$d_odss[0]->type_ods}}   </span> .............................................................................................. 
-            {{$delai}} 
+			<span style="text-decoration : underline; "> Fin {{$d_odss[0]->extra_type}}   </span> &emsp;................................................................................................................................................. 
+            <span style='float : right;'>{{$delai}} </span>
         </div>
-		<div dir="rtl" style="font-size : 18px;  display: inline-block; width : 100%; font-weight :  bold; text-align : center; ">
+		<div dir="ltr" style="font-size : 16px;  display: inline-block; width : 100%; font-weight :  bold; text-align : center; ">
 			La pénalité de retard est appliquée sur {{$pay->travaux_type}} N° {{$pay->travaux_num}}
 			 Arrete le {{$pay->date_pay}}
 			<p align="center">
@@ -102,10 +91,12 @@
 			<?php $ds = $pay->duree *7;
 				$tot = $pay->montant / $ds; $tot = floatval(number_format((float)$tot, 2, '.', ''));
 				$ze_tot = $tot * $diff;  ?>
-			<div dir="rtl" style="font-size : 18px; display: inline-block; width : 70%; font-weight :  bold; text-align : justify; ">
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Montant de {{$pay->deal_type}} &emsp;&emsp;&emsp;&emsp; {{ number_format((float)$pay->montant, 2, '.', ',')}} <br>
-			  Montant de pénalité par jour =_______________=_______________= {{ number_format((float)$tot, 2, '.', ',')}} دج <br>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{$pay->duree}}*7 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; {{$ds}}
+			<div dir="ltr" style="font-size : 16px; display: inline-block; width : 100%; font-weight :  bold; text-align : justify; ">
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			 Montant de {{$pay->deal_type}} &emsp;&emsp;&emsp;&emsp;{{ number_format((float)$pay->montant, 2, '.', ',')}} <br>
+			  Montant de pénalité par jour =_________________________=____________________= {{ number_format((float)$tot, 2, '.', ',')}} DA <br>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{$pay->duree}}*7 
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; {{$ds}}
 			<br>
 			</div>
 			<br>
@@ -117,7 +108,7 @@
 				<br>
 				@if($nissab < $ze_tot)
 				<?php $ze_tot = $nissab; ?>
-				<p dir="rtl" style="text-align : center; font-weight : bold;">
+				<p dir="ltr" style="text-align : center; font-weight : bold;">
 					Vu le montant de la pénalite est supérieur à 10% du montnat de 
                     {{$pay->deal_type}} le montant de pénalité est : 
 				<br>
@@ -138,13 +129,13 @@
                 $text = str_replace(","," et",$text);
                 $text = ucfirst($text);
                 ?>
-			    Le montant total de la pénalité est arreté à  :
+			    <span style="font-weight :  bold;">Le montant total de la pénalité est arreté à  : </span>
 				<span style="font-weight : bold" id="montant">{{$text}}</span>
 			</p>
 
-			<div style="  display: inline-block; float: left; max-width : 20%; " dir="rtl">
-			<br><br><br>
-			<h3 style="font-size : 6mm;">
+			<div style="  display: inline-block; float: right; max-width : 20%; margin-right : 5%;" dir="ltr">
+			<br>
+			<h3 style="font-size : 18px;">
 			 Le Directeur				
 			</h3>
 		</div>

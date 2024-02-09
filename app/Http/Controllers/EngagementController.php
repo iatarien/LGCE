@@ -518,7 +518,7 @@ class EngagementController extends Controller
    
 
     public function get_engs_vise($type="",$filters=""){
-        $query = "SELECT *, e.id as eng_id FROM engagements e 
+        $query = "SELECT *, e.id as eng_id, e.montant as montant FROM engagements e 
             INNER JOIN operations ON e.id_op = operations.id 
             INNER JOIN deals ON deals.id_deal = e.deal
             LEFT JOIN entreprises ON deals.entreprise = entreprises.id 

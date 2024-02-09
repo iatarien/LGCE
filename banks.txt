@@ -1,0 +1,24 @@
+UPDATE `banques` SET `nom` = 'البنك العربي الجزائري' WHERE `banques`.`id` = 1;
+UPDATE `banques` SET `nom` = 'مصرف السلام الجزائري' WHERE `banques`.`id` = 2;
+UPDATE `banques` SET `nom` = 'بنك بــاريس الجزائري' WHERE `banques`.`id` = 3;
+UPDATE `banques` SET `nom` = 'بنك التنمية المحلية' WHERE `banques`.`id` = 4;
+UPDATE `banques` SET `nom` = 'سوسيتي جنرال' WHERE `banques`.`id` = 5;
+UPDATE `banques` SET `nom` = 'بنك الخليج الجزائري' WHERE `banques`.`id` = 6;
+UPDATE `banques` SET `nom` = 'بنك الفلاحة و التنمية الريفية' WHERE `banques`.`id` = 7;
+UPDATE `banques` SET `nom` = 'بنك الجزائر الخارجي' WHERE `banques`.`id` = 8;
+UPDATE `banques` SET `nom` = 'البنك الوطني الجزائري' WHERE `banques`.`id` = 9;
+UPDATE `banques` SET `nom` = 'القرض الشعبي الجزائري' WHERE `banques`.`id` = 10;
+UPDATE `banques` SET `nom` = 'الصندوق الوطني للتوفير و الاحتياط' WHERE `banques`.`id` = 11;
+
+
+UPDATE `banques` SET `nom` = 'Arab Banking Corporation' WHERE `banques`.`id` = 1;
+UPDATE `banques` SET `nom` = 'Al Salam Bank' WHERE `banques`.`id` = 2;
+UPDATE `banques` SET `nom` = 'Bank National de Paris' WHERE `banques`.`id` = 3;
+UPDATE `banques` SET `nom` = 'Banque de Developpement Local' WHERE `banques`.`id` = 4;
+UPDATE `banques` SET `nom` = 'Société Générale' WHERE `banques`.`id` = 5;
+UPDATE `banques` SET `nom` = 'Gulf Bank Algeria' WHERE `banques`.`id` = 6;
+UPDATE `banques` SET `nom` = 'Banque de l\'Agriculture et du Développement Rural' WHERE `banques`.`id` = 7;
+UPDATE `banques` SET `nom` = 'Banque Extérieure d\'Algérie' WHERE `banques`.`id` = 8;
+UPDATE `banques` SET `nom` = 'Banque National d\'Algérie' WHERE `banques`.`id` = 9;
+UPDATE `banques` SET `nom` = 'Crédit Populaire d\'Algérie' WHERE `banques`.`id` = 10;
+UPDATE `banques` SET `nom` = 'Caisse Nationale d\'Epargne et de Prévoyance-Banque' WHERE `banques`.`id` = 11;

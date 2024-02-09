@@ -12,3 +12,4 @@ ALTER TABLE `portefeuille` ADD `ministere_fr` TEXT NULL AFTER `ministere`;
 ALTER TABLE `programme` ADD `designation_fr` TEXT NULL AFTER `designation`;
 ALTER TABLE `titres` ADD `definition_fr` TEXT NULL AFTER `definition`;
 ALTER TABLE `operations` CHANGE `intitule_ar` `intitule_ar` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+

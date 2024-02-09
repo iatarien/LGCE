@@ -37,6 +37,7 @@ class Controller extends BaseController
         $this->lang = "";
         if(isset($settings->lang)){
             $this->lang = $settings->lang;
+           // $this->lang = "";
         }
         
 

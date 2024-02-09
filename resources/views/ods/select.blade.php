@@ -127,7 +127,16 @@ function filter(value){
 
 	  });
 }
-
+function numberWithCommas(x) {
+	if(x == null){
+		return "0.00";
+	}
+    x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    if(!x.includes('.')){
+      x += ".00";
+    }
+    return x;
+}
 function filter_e(type="",value){
 	const values = value.split("1989raouf1989");
 	const name = values[1];
@@ -196,8 +205,9 @@ function display(engagements,value){
 		        '<td style="width : 2%;" ><div>#</div></td>'+
 				'<td style=" width : 30%;"><div>رقم العملية</div></td>'+
 		        '<td style="width : 8%;"><div> صفقة / عقد </div></td>'+
-		        '<td style=" width : 25%;" id="intitule"><div> الموضوع  </div></td>'+
-                '<td style=" width : 25%;" id="intitule"><div>المقـــاول</div></td>'+
+		        '<td style=" width : 15%;" id="intitule"><div> الموضوع  </div></td>'+
+                '<td style=" width : 15%;" id="intitule"><div>المقـــاول</div></td>'+
+				'<td style=" width : 15%;" id="intitule"><div>القيمة</div></td>'+
 		        '<td style="width : 10%;"><div>اختيار</div></td>'+
 		      '</tr>';
 	const op = engagements;
@@ -228,7 +238,9 @@ function display(engagements,value){
 		    	'</td>';
 			}
 		    
-
+			tds +='<td>'+
+		        '<span><h5><strong>'+numberWithCommas(op[i].montant)+'</strong></h5></span>'+
+		    '</td>';
 			tds +='<td>'+
 		    	'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_ods/'+op[i].eng_id+'\'">اختيار</button></span>'+
 		        '</td>';

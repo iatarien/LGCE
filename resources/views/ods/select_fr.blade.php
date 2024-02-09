@@ -188,7 +188,16 @@ function get_engs(){
 	  });
 }
 
-
+function numberWithCommas(x) {
+	if(x == null){
+		return "0.00";
+	}
+    x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    if(!x.includes('.')){
+      x += ".00";
+    }
+    return x;
+}
 function display(engagements,value){
     var user_id = {{ $user->id }};
     var type= "{{ $type }}";
@@ -196,8 +205,9 @@ function display(engagements,value){
 		        '<td style="width : 2%;" ><div>#</div></td>'+
 				'<td style=" width : 30%;"><div> N° Opération</div></td>'+
 		        '<td style="width : 8%;"><div> Marché </div></td>'+
-		        '<td style=" width : 25%;" id="intitule"><div> Lot  </div></td>'+
-                '<td style=" width : 25%;" id="intitule"><div>Entreprise</div></td>'+
+		        '<td style=" width : 15%;" id="intitule"><div> Lot  </div></td>'+
+                '<td style=" width : 15%;" id="intitule"><div>Entreprise</div></td>'+
+				'<td style=" width : 15%;" id="intitule"><div>Montant</div></td>'+
 		        '<td style="width : 10%;"><div>Selectionner</div></td>'+
 		      '</tr>';
 	const op = engagements;
@@ -228,7 +238,9 @@ function display(engagements,value){
 		    	'</td>';
 			}
 		    
-
+			tds +='<td>'+
+		        '<span><h5><strong>'+numberWithCommas(op[i].montant)+'</strong></h5></span>'+
+		    '</td>';
 			tds +='<td>'+
 		    	'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_ods/'+op[i].eng_id+'\'">Selectionner</button></span>'+
 		        '</td>';

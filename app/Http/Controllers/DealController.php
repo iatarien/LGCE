@@ -95,7 +95,7 @@ class DealController extends Controller
                 (d.deal_type != 'facture')  AND ";
             }
             
-            $query= $query." 1 ORDER BY deal_id DESC LIMIT 100";
+            $query= $query." 1 GROUP BY deal_id ORDER BY deal_id DESC LIMIT 100";
           
 
             return DB::select( DB::raw($query));
@@ -104,7 +104,7 @@ class DealController extends Controller
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
-            $query= $query." 1 ORDER BY deal_id DESC LIMIT 100";
+            $query= $query." 1 GROUP BY deal_id ORDER BY deal_id DESC LIMIT 100";
             return DB::select( DB::raw($query));
         }
     }
