@@ -12,7 +12,7 @@
 				<label class="control-label col-sm-2" style="text-align : left; font-weight: bold;" for="title"> Nom de l'entreprise </label>
 			
 				<div class="col-sm-10">
-				<textarea required=""  type="text" rows="5" style="resize: none; color: black;" dir="rtl" class="form-control" id="name" name="name"></textarea>
+				<textarea required=""  type="text" rows="5" style="resize: none; color: black;" dir="ltr" class="form-control" id="name" name="name"></textarea>
 				</div>
 				</div>
 			<div class="form-group">

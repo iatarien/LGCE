@@ -75,7 +75,7 @@ class DealController extends Controller
             }
             
 
-            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant FROM deals d 
+            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant ,d.user_id as user_id FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
@@ -100,7 +100,7 @@ class DealController extends Controller
 
             return DB::select( DB::raw($query));
         }else{
-            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant FROM deals d 
+            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant, d.user_id as user_id FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";
@@ -258,7 +258,7 @@ class DealController extends Controller
         'bank'=>$bank,'duree'=>$duree,'taux'=>$taux,
         'inserted_at'=>$inserted_at,"observations"=>$observations,
         'updated_at'=>$updated_at,"user_id"=>$user_id]);
-        return Redirect::to('/deals/');
+        return Redirect::to('/deals/all');
     }
     public function add_avenant(Request $request){
         $user_id = $user = Auth::user()->id;
@@ -295,7 +295,7 @@ class DealController extends Controller
         'bank'=>$bank,'duree'=>$duree,'taux'=>$taux,
         'inserted_at'=>$inserted_at,"observations"=>$observations,
         'updated_at'=>$updated_at,"user_id"=>$user_id]);
-        return Redirect::to('/deals/');
+        return Redirect::to('/deals/all');
     }
     public function update_deal(Request $request){
         $id = $request['id_deal'];
@@ -342,11 +342,11 @@ class DealController extends Controller
         'parent'=>$parent,'montant'=>$montant,'entreprise'=>$entreprise,
         'duree'=>$duree,'taux'=>$taux,'updated_at'=>$updated_at,
         "observations"=>$observations]);
-        return Redirect::to('/deals/');
+        return Redirect::to('/deals/all');
     }
     public function delete($id)
     {   
         DB::table('deals')->where('id_deal',$id)->delete();
-        return Redirect::to('/deals/');    
+        return Redirect::to('/deals/all');    
     }
 }

@@ -115,7 +115,10 @@ input[readonly] {
                     <input id="op_input" dir="ltr" style="text-align : left;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
                     <div id="myDropdown" class="dropdown-content" style="display: none;">
                       @foreach ($operations as $operation)
-                      <span dir="ltr" class="ops_clss" style="cursor: pointer; text-align : left;" onclick="ops_changed('{{ $operation->id }}1989raouf1989{{$operation->intitule}}1989raouf1989{{$operation->numero}}')">{{ $operation->numero  }}</span>
+                      <?php $phrase = $operation->id."1989raouf1989".$operation->intitule."1989raouf1989".$operation->numero;
+                            $phrase = str_replace("'"," ",$phrase); ?>
+                      <span dir="ltr" class="ops_clss" style="cursor: pointer; text-align : left;" 
+                      onclick="ops_changed('{{$phrase}}')">{{ $operation->numero  }}</span>
                       @endforeach
                     </div>
 	                </div>
@@ -428,7 +431,9 @@ function fiche_num(id){
           var value = response;
           if(value[0] != null){
             var old = value[0].numero_fiche;
-            old = old.split("/")[1];
+            if(old.includes("/")){
+              old = old.split("/")[1];
+            }
           }else{
             var old = "0";
           }

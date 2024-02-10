@@ -121,8 +121,12 @@
                             <input type="hidden" value="{{$deal->entreprise}}" required id="entreprise" name="entreprise_id" >
                             <div id="es">
                             @foreach ($entreprises as $e)
+                            <?php $phrase = $e->id."1989raouf1989".$e->name."1989raouf1989".$e->bank_acc."1989raouf1989".$e->bank.
+                            "1989raouf1989".$e->bank_user."1989raouf1989".$e->bank_agc;
+                            
+                            $phrase = str_replace("'"," ",$phrase); ?>
                                 <span  style="color: black; cursor: pointer;" class="comps_clss" 
-                                onclick="comps_changed('{{ $e->id }}1989raouf1989{!! $e->name !!}1989raouf1989{!! $e->bank_acc !!}1989raouf1989{!! $e->bank !!}1989raouf1989{!! $e->bank_user !!}1989raouf1989{!! $e->bank_agc !!}')">
+                                onclick="comps_changed('{{$phrase}}')">
                                 {!! $e->name !!}</span>
                             @endforeach
                             </div>
