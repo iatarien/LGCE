@@ -13,6 +13,7 @@
 /storage/*.key
 /tests
 /vendor
+/LGCE.zip
 .editconfig
 .env
 .env.backup

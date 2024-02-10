@@ -1,6 +1,7 @@
 - install VM 
 - add rule on port 80 in firewall
 - copy virtual machine
+- connect via network file explorer (dep / dep2022)
 - copy (app/ressources/routes)
 - launch it and change ip adress 
 - update DB (errors)
@@ -11,6 +12,7 @@
 
 
 FR 
+- set company lang  = fr
 - update Banks
 
 

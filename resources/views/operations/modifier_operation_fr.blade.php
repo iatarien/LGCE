@@ -91,7 +91,7 @@
                   <div class="form-group " style="display : none;">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content">تعيين العملية</label>
 	              	<div class="col-lg-9">
-	                  <input dir="ltr" style="text-align : left" required="" type="text" value="{{$op->intitule_ar}}" class="form-control" id="intitule_ar" name="intitule_ar">
+	                  <input dir="ltr" style="text-align : left" type="text" value="{{$op->intitule_ar}}" class="form-control" id="intitule_ar" name="intitule_ar">
 		            </div>
                   </div><br>
 				  <div class="form-group ">
@@ -159,7 +159,7 @@
 	              <div class="form-group" align="center">
 	                <!-- Buttons -->
 	                <div class="col-lg-offset-2 col-lg-10">
-	                  <button type="submit" class="btn btn-primary">حفظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>
