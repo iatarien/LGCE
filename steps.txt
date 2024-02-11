@@ -9,7 +9,7 @@
 - add task that copies file from location to location
 - install Google Drive
 - hide D drive
-
+- download videos and put em on desktop
 
 FR 
 - set company lang  = fr
@@ -21,9 +21,11 @@ Mono
 - install wampserver
 - copy (app/ressources/routes)
 - add php to path (stop at php-7.3.2)
+- make wampserver services autostart
 - update DB (errors)
 - update DB company
 - add start.bat and vbscript
 - add task that make auto updates
 - install Google Drive
 - hide D drive
+- download videos and put em on desktop
