@@ -91,8 +91,8 @@ class DealController extends Controller
                 $query = $query." d.user_id ='".$user_id."' AND";
             }
             if($type == "avenant"){
-                $query = $query." ( d.deal_type ='صفقة' OR d.deal_type ='عقد' ) AND 
-                (d.deal_type != 'facture')  AND ";
+                $query = $query." ( ( d.deal_type ='صفقة' OR d.deal_type ='عقد' ) OR 
+                (d.deal_type ='marche' OR d.deal_type ='convention' ) ) AND ";
             }
             
             $query= $query." 1 GROUP BY deal_id ORDER BY deal_id DESC LIMIT 100";
