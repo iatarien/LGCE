@@ -60,7 +60,7 @@
             </a>
           </li> -->
           <li>
-            <a href="/engagements/all/">
+            <a href="/engagements/">
               <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة الإلتزامات</span>
             </a>
           </li>
