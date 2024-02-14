@@ -139,7 +139,7 @@
             </a>
           </li>
           <li>
-            <a href="/payments/all">
+            <a href="/payments">
               <i class="bi bi-circle"></i><span>معاينة الدفعات</span>
             </a>
           </li>

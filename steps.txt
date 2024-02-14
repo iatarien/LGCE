@@ -1,5 +1,5 @@
 - install VM 
-- add rule on port 80 in firewall
+- add rule on port 8080 in firewall
 - copy virtual machine
 - connect via network file explorer (dep / dep2022)
 - copy (app/ressources/routes)
