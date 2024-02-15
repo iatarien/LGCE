@@ -56,19 +56,27 @@ table {
 					@endforeach
 				</select>
 			</div>
-			<div class="col-lg-3 form-group">
+			<div class="col-lg-2 form-group">
 				<select class="form-control" onchange="filter('source',this.value);">
 					<option style="visibility : hidden"> النشاط</option>
-					<option value="PSD">تفويض التسيير الغير ممركز (PSD)</option>
-					<option value="PSC">تفويض التسيير القطاعي الممركز (PSC)</option>
+					<option value="PSD">(PSD)</option>
+					<option value="PSC">(PSC)</option>
 					
+				</select>
+			</div>
+			<div class="col-lg-1 form-group">
+				<select class="form-control" onchange="filter('year',this.value)">
+					<option style="visibility: hidden;" value="">السنة</option>
+					@for($i=2019; $i< 2040; $i++)
+					<option value="{{$i}}">{{$i}}</option>
+					@endfor
 				</select>
 			</div>
 			<div class="col-lg-3 form-group">
 				<input autocomplete='off' id="op_input" dir="ltr" placeholder="N° Operation" list="ops" class="form-control"  onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
                     <div id="myDropdown" class="dropdown-content" style="display: none;">
                       @foreach ($ops as $operation)
-                      <span class="ops_clss" style="cursor: pointer;" onclick="filter_op('{{ $operation->id }}1989raouf1989{{ $operation->numero }}')">{{ $operation->numero  }}</span>
+                      <span dir="ltr" class="ops_clss" style="cursor: pointer;" onclick="filter_op('{{ $operation->id }}1989raouf1989{{ $operation->numero }}')">{{ $operation->numero  }}</span>
                       @endforeach
                     </div>
 			</div>
@@ -93,7 +101,7 @@ table {
 </div>
 <div style="display: none;" id="filters-programme"></div>
 <div style="display: none;" id="filters-source"></div>
-
+<div style="display: none;" id="filters-year"></div>
 @endsection
 
 @section('js_scripts')
@@ -151,7 +159,7 @@ function filter(id,value,order=""){
 	if(order ==""){
 		order = "0";
 	}
-	const filters = ['programme','source'];
+	const filters = ['programme','source','year'];
 	var query = "";
 	for(var i =0; i<filters.length; i++){
 		query += document.getElementById("filters-"+filters[i]).innerHTML+"*1989*";

@@ -31,6 +31,7 @@ class OperationsController extends Controller
             $filters = explode("*1989*",$filters);
             $chapitre = $filters[0];
             $source = $filters[1];
+            //$year = $filters[2];
 
             if($portefeuille !="all"){
                 $query = "SELECT * FROM operations WHERE portefeuille = '".$portefeuille."' AND";
@@ -44,6 +45,9 @@ class OperationsController extends Controller
             if($source != ""){
                 $query = $query." source ='".$source."' AND";
             }
+            // if($year != ""){
+            //     $query = $query." ( date <='".$year."'-12-31 AND date >='".$year."'-01-01) AND";
+            // }
             // if($numero !=""){
             //     $query = $query." numero = '".$numero."' AND";
             // }

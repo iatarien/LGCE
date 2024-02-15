@@ -63,6 +63,7 @@ class SamController extends Controller
                 $filters = explode("*1989*",$filters);
                 $programme = $filters[0];
                 $source = $filters[1];
+                $year = $filters[2];
 
                 if ($programme != ""){
                     $query = $query." operations.programme ='".$programme."' AND"; 
@@ -70,8 +71,11 @@ class SamController extends Controller
                 if($source != ""){
                     $query = $query." operations.source ='".$source."' AND";
                 }
+                if($year != ""){
+                    $query = $query." ( date <='".$year."-12-31' AND date >='".$year."-01-01') AND";
+                }
             }
-            
+            //return $query;
             $query= $query." 1 ORDER BY id DESC ";
             //echo $query."\n\n";
 
