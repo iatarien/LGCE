@@ -442,7 +442,8 @@ function fiche_num(id){
           if(nv.length == 1){
             nv = "0"+nv;
           }
-          var new_num = nv;
+          var new_num = nv+"/"+"{{$the_year}}";
+          //var new_num = nv;
           //console.log(new_num);
           document.getElementsByName('numero_fiche')[0].value = new_num;
         },

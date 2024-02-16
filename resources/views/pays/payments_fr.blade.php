@@ -60,21 +60,21 @@ input {
 			<div class="col-sm-3 form-group" style="visibility : hidden;">
 				@if($user->service == "Comptabilité")
 				<button style="cursor : pointer" onclick="print_pays2()" class="btn btn-basic">
-				<img style="max-width : 50%;" src="{{ url('img/print2.png') }}">
+				<img style="max-width : 25%;" src="{{ url('img/print2.png') }}">
 				</button>
 				@endif
 			</div>
 			<div class="col-sm-1 form-group">
 				@if($user->service == "Comptabilité")
 				<button style="cursor : pointer" onclick="print_pays()" class="btn btn-basic">
-				<img style="max-width :50%;" src="{{ url('img/print.png') }}">
+				<img style="max-width :35%;" src="{{ url('img/print.png') }}">
 				</button>
 				@endif
 			</div>
 			
 			<div class="col-sm-2 form-group" style="display : none">
 				<select class="form-control" onchange="filter_y(this.value)">
-					<option style="visibility: hidden;" value="">السنة</option>
+					<option style="visibility: hidden;" value="">année</option>
 					@for($i=2019; $i< 2040; $i++)
 					<option value="{{$i}}">{{$i}}</option>
 					@endfor

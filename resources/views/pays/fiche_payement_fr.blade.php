@@ -189,9 +189,9 @@
 				<th>Observations</th>
             </tr>
 			<tbody style="text-align :  center; font-weight : bold">
-                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
-				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
 				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
+				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
+                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
                 <td>/</td>
 			</tbody>
 		</table>
@@ -234,7 +234,7 @@
 	  text-decoration: none;
 	  display: inline-block;
 	  font-size: 16px;" 
-  onclick="document.location.href='/payments/all';"> Retour </button>
+  onclick="retour()"> Retour </button>
 
 
  <br><br><br><br>
@@ -249,6 +249,14 @@
 window.onbeforeunload = function () {
     window.close();
 };
+
+function retour(){
+	if(window.history.length == 1){
+		window.close();
+	}else{
+		document.location.href = "/fiche_pay/{{$id}}";
+	}
+}
 
 $('input[type=radio]').on('change',function() {
 

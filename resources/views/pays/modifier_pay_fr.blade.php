@@ -216,7 +216,7 @@
                      </div>
             <br>
             <div class="form-group">
-                  <label  class="control-label col-lg-4" style="text-align: left; font-weight: bold;" for="title"> Date de Piement </label>
+                  <label  class="control-label col-lg-4" style="text-align: left; font-weight: bold;" for="title"> Date de Paiement </label>
 	              
 	                <div class="col-lg-8">
 	                  <input   value="{{ $pay->visa }}" type="date" class="form-control" id="visa" name="visa">
@@ -227,7 +227,7 @@
 	              <div class="form-group" align="center">
 	                <!-- Buttons -->
 	                <div class="col-lg-offset-2 col-lg-9">
-	                  <button type="submit" class="btn btn-primary">حفــــظ</button>
+	                  <button type="submit" class="btn btn-primary">Sauvegarder</button>
 	                </div>
 	              </div>
 	            </form>

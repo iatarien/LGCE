@@ -67,7 +67,7 @@ table td {
                             <td>{{$att->name}}</td>
                             <td>{{$att->lot}}</td>
                             <td><a href="/penalite1/{{$att->id_pen}}" class="btn btn-default">Consulter</a></td>
-                            <td><a onclick="return confirm('Etes-vous de vouloir supprimer ?')" href="/delete_pen/{{$att->id_pen}}" class="btn btn-danger">حذف</a></td>
+                            <td><a onclick="return confirm('Etes-vous de vouloir supprimer ?')" href="/delete_pen/{{$att->id_pen}}" class="btn btn-danger">Supprimer</a></td>
                         </tr>
                         @endforeach
 				    </tbody>

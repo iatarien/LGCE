@@ -402,7 +402,7 @@ function display2(engagements,value){
                 '<td style=" width : 12%;" id="intitule"><div>Entreprise</div></td>'+
 				'<td style="width : 10%;"><div> Montant </div></td>'+
 				'<td style="width : 10%;"><div>  Situation </div></td>'+
-				'<td style="width : 8%;"><div> Date Situation </div></td>'+
+				'<td style="width : 8%;"><div> Date de situation </div></td>'+
 				'<td style=" width : 8%;" id=""><div> Selectionner</div></td>';
 		      tds+='</tr>';
 	const op = engagements;
@@ -439,9 +439,9 @@ function display2(engagements,value){
 			}
 			
 			
-			if(op[i].visa != null){
+			if(op[i].date_pay != null){
 				tds +='<td>'+
-		        '<span><h5><strong>'+op[i].visa+'</strong></h5></span>'+
+		        '<span><h5><strong>'+op[i].date_pay+'</strong></h5></span>'+
 				'</td>';
 			}else{
 				tds +='<td>'+

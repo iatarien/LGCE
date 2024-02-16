@@ -191,7 +191,7 @@ window.onbeforeunload = function () {
 };
 const html = document.getElementsByTagName('html')[0].innerHTML;
 	const id_pay = "{{$id_pay}}";
-	const url = "/insert_pen/";
+	const url = "/insert_pen";
 	$.ajax({
 	    url: url,
 	    type:"POST", 
@@ -222,25 +222,7 @@ function printdiv(printdivname) {
 	
     return false;
 }
-function convert(num){
-	num = ""+ num;
-	var num1 = num;
-	var num2 = null
-	if(num.includes('.')){
-		num1 = parseInt(num.split(".")[0]);
-		num2 = parseInt(num.split(".")[1]);
-	}
-	if(num2 != null && num.split(".")[1].length == 1 ){
-		num2 = num2 *10;
-	}
-	var txt = nArabicWords(num1);
-	txt = txt.replace('ومليون', "و واحد مليون")
-	txt+= " "+"دينار جزائري";
-	if(num2 != null){
-		txt +=" "+"و"+" "+nArabicWords(num2)+" "+"سنتيم";
-	}
-	document.getElementById('montant').innerHTML = txt;
-}
+
 jQuery(document).bind(" keydown", function(e){
     if(e.ctrlKey && e.keyCode == 80){
 		printdiv('fiche');

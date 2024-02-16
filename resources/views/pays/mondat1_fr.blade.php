@@ -197,7 +197,7 @@ $text = ucfirst($text);
                 $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
             }
             if($pay->travaux_type  !="facture" && $pay->deal != null){
-                $txt = $txt.$pay->deal_type." ";
+                $txt = " ".$txt.$pay->deal_type." ";
             }
             
             if($pay->deal_num != null){
@@ -315,15 +315,15 @@ $text = ucfirst($text);
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
-                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
-                <td dir="ltr">@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
                 <td></td>
+				<td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td>{{$e->name}}</td>
                 <td>
-					{{$bank->bank_acc}}َ<br>
-					{{$bank->bank}}ََ <br>Agence : {{$bank->bank_agc}}
+					{{$bank->bank_acc}}<br>
+					{{$bank->bank}} <br>Agence : {{$bank->bank_agc}}
 				</td>
                 <td ></td>
 				<td style="width : 11.5%"></td>
@@ -348,7 +348,7 @@ $text = ucfirst($text);
 	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
 		<table id="bottom-left">
 			<tr>
-				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
 				<td> Montant total à payer</td>
 			</tr>
 			<tr>
@@ -356,7 +356,7 @@ $text = ucfirst($text);
 				<td>  Rejets  </td>
 			</tr>
 			<tr>
-				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
 				<td>   Dépenses admises</td>
 			</tr>
 			<tr>
@@ -364,7 +364,7 @@ $text = ucfirst($text);
 				<td> Retenues</td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format($brut, 2, '.', ' ')}}</td>
+				<td dir="ltr">َ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
 				<td> Montant total net à payer</td>
 			</tr>
 		</table>

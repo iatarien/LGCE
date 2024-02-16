@@ -83,7 +83,7 @@ input {
             <div class=" col-sm-1 form-group">
 				@if($user->service == "Comptabilité")
 				<button style="cursor : pointer" onclick="print_engs()" class="btn btn-basic">
-				<img style="max-width : 50%;" src="{{ url('img/print.png') }}">
+				<img style="max-width : 35%;" src="{{ url('img/print.png') }}">
 				</button>
 				@endif
 			</div>
