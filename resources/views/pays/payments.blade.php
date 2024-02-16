@@ -81,7 +81,7 @@ input {
 				</select>
 			</div>
 			<div class="   col-lg-3 form-group">
-				<input id="op_input" dir="rtl" placeholder="اختيار العملية" list="ops" class="form-control"  onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
+				<input id="op_input" dir="rtl" placeholder="اختيار العملية" list="ops" autocomplete="off" class="form-control"  onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
                     <div id="myDropdown" class="dropdown-content" style="display: none;">
                       @foreach ($operations as $operation)
                       <span class="ops_clss" style="cursor: pointer;" onclick="filter('','{{ $operation->numero }}')">{{ $operation->numero  }}</span>
@@ -89,7 +89,7 @@ input {
                     </div>
 			</div>
 			<div class="  col-sm-3 form-group">
-				<input id="e_input" autocomplete="off" dir="rtl" placeholder="اختيار المقاول" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
+				<input id="e_input" autocomplete="off" dir="rtl" placeholder="اختيار الـــــشـــركة" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
                     <div id="myDropdown1" class="dropdown-content" style="display: none;">
                       @foreach ($es as $e)
                       <span class="es_clss" style="cursor: pointer; text-align : right;" onclick="filter_e('','{{ $e->id }}1989raouf1989{{ $e->name }}')">{{ $e->name  }}</span>

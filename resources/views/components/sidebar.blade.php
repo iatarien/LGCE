@@ -181,12 +181,12 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#es-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-people"></i><span> المقاولين</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-people"></i><span> الشركات</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="es-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/entreprise">
-              <i class="bi bi-circle"></i><span> إضافة مقاول</span>
+              <i class="bi bi-circle"></i><span> إضافة شركة</span>
             </a>
           </li>
           <li>

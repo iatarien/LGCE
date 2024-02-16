@@ -103,6 +103,7 @@ Route::get('/mondat/{id}','PaymentController@mondat');
 Route::get('/mondat1/{id}','PaymentController@mondat1');
 Route::get('/avancement/{id}','PaymentController@avancement');
 Route::get('/attestation_payment/{id}','PaymentController@attestation');
+Route::get('/attestation_payment_2/{id}','PaymentController@attestation_2');
 Route::get('/fiche_payment/{id}','PaymentController@fiche');
 Route::get('/order_pay/{id}','PaymentController@order');
 Route::get('/declaration_pay/{id}','PaymentController@declaration');

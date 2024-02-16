@@ -156,7 +156,7 @@
                   @endif
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> المقاول</label>
+                    <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> الشركة</label>
 	              
 	                <div class="col-sm-7">
                         <input id="comp_input"  class="form-control" onclick="comp_like(event,this.value)" onkeyup="comp_like(event,this.value)" > 

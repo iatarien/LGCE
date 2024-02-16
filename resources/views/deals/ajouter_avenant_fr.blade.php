@@ -96,7 +96,7 @@
                   <div class="form-group row">
                     <label class="control-label col-sm-3" style="text-align : left; font-weight: bold;" for="title">N° et date de l'avenant</label>
 	                <div class="col-sm-3">
-                      <input  type="text" placeholder="رقم"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
+                      <input  type="text" placeholder="N°"  class="form-control" id="deal_num" name="deal_num" style="color: black;" required>
                     </div>
                     <div class="col-sm-4">
                       <input  type="date" class="form-control" id="deal_date" name="deal_date" style="color: black;" >

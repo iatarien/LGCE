@@ -16,7 +16,7 @@
 				
 			</div>
 		<div class="col-sm-3 form-group">
-				<input id="e_input" autocomplete="off" dir="rtl" placeholder="اختيار المقاول" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
+				<input id="e_input" autocomplete="off" dir="rtl" placeholder="اختيار الشركة" list="ops" class="form-control"  onclick="e_like(this.value)" onkeyup="e_like(this.value)" > 
                     <div id="myDropdown1" class="dropdown-content" style="display: none;">
                       @foreach ($es as $e)
                       <span class="es_clss" style="cursor: pointer; text-align : right;" onclick="filter_e('','{{ $e->id }}1989raouf1989{{ $e->name }}')">{{ $e->name  }}</span>

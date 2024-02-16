@@ -59,6 +59,10 @@
              </td>
             <td>
                 <a class="btn btn-default" target="_blank" href="/attestation_payment/{{$id}}">معاينة</a>
+                @if($ville_fr =="Ouled Djellal" || $ville_fr =="Ouled djellal" || $ville_fr =="ouled djellal")
+                <br><br><br>
+                <a class="btn btn-info" target="_blank" href="/attestation_payment_2/{{$id}}">معاينة</a>
+                @endif
             </td>
             
             <td style="display : none;">

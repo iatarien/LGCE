@@ -143,7 +143,7 @@
 	                <div class="col-xs-10">
 	                  <input dir="rtl" style="text-align : right" readonly value="{{$deal->name }}"  type="text" class="form-control" id="intitule_ar" name="intitule_ar">
 	                </div>
-                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">  المــــقاول</label>
+                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">  الـــــشـــركة</label>
 	            </div>
                
             

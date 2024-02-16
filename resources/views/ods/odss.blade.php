@@ -79,7 +79,7 @@ input {
                     </div>
 				
 			</div>
-			<label  class="control-label col-lg-1" style="text-align : right; font-weight: bold; margin-top : 0.7%;" for="title">   المـــــقاول </label>    
+			<label  class="control-label col-lg-1" style="text-align : right; font-weight: bold; margin-top : 0.7%;" for="title">   الــشــركة </label>    
 			
 				
 

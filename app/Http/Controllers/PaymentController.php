@@ -320,6 +320,21 @@ class PaymentController extends Controller
         'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
 
     }
+    public function attestation_2($id)
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','engagements.deal',"=","deals.id_deal")->
+        where('payments.id',$id)->first();
+
+        $op = DB::table('operations')->where('id',$pay->id_op)->first();
+     
+        $view ="pays.att_pay_2";
+
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,"id"=>$id]);
+
+    }
     public function fiche($id)
     {   
         $user = Auth::user();

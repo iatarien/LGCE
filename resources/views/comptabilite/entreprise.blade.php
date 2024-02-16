@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<div class="col-sm-10">
 				<select style="text-align : right" name="nature" class="form-control">
-					<option value="company">مقاولة</option>
+					<option value="company">شركة</option>
 					<option value="bet"> مكتب دراسات</option>
 				</select>
 				</div>
