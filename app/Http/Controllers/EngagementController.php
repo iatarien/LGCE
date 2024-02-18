@@ -214,6 +214,10 @@ class EngagementController extends Controller
         if($this->lang =="fr"){
             $the_view = 'engs.fiche_eng_fr';
         }
+        if($this->ville_fr =="Djanet" || $this->ville_fr =="djanet" ||
+        $this->ville_fr =="Illizi" || $this->ville_fr =="illizi"){
+            $the_view = 'engs.djanet';
+        }
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         
