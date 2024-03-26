@@ -621,7 +621,7 @@ function subject(){
       const parent_type = "{{$parent->deal_type}}";
       const parent_date = "{{$parent->deal_date}}";
       txt += lot+" ";
-      lot = "{{$parent->lot}}";
+      lot = '{{str_replace(array("\r", "\n"), "\\n", $parent->lot)}}';
       txt += " Sous le "+parent_type+" ";
       if(parent_num !="" && parent_num != null){
         txt += "N° "+parent_num +" ";
