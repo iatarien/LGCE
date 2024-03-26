@@ -139,7 +139,12 @@
             <div style="display : inline-block" dir="rtl">
                 <div class="boold">
                     <span style="text-decoration : underline"> رقم بطاقة الإلتزام :</span>&emsp;&emsp;
-                    <?php $num_fiche = explode("/",$eng->numero_fiche)[1]; ?>
+                    <?php if(str_contains($eng->numero_fiche,"/")){
+						$num_fiche = explode("/",$eng->numero_fiche)[1];
+					}else{
+						$num_fiche = $eng->numero_fiche;
+					}
+					 ?>
                     <span style="border : 2px solid; padding : 5px 15px 5px 15px;"> {{ $num_fiche }}</span> 
                 </div>
                 <div class="boold">
