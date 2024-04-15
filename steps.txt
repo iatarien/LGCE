@@ -29,3 +29,4 @@ Mono
 - install Google Drive
 - hide D drive
 - download videos and put em on desktop
+- create shortcut on desktop
