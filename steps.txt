@@ -24,7 +24,7 @@ Mono
 - make wampserver services autostart
 - update DB (errors)
 - update DB company
-- add start.bat and vbscript
+- add start.bat (and fix cd codes) and vbscript
 - add task that make auto updates
 - install Google Drive
 - hide D drive
