@@ -182,6 +182,9 @@ class ODSController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
+        if($this->ville_fr =="Biskra"){
+            $view = "ods.ods07";
+        }
         return view($view,["user"=>$user,"ods"=>$ods,'year'=>$year]);
     }
     public function odss()
