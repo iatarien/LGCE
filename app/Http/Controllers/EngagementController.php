@@ -160,6 +160,13 @@ class EngagementController extends Controller
         $titres1 = DB::select(DB::raw($q_titres1));
 
         //$rebriques = DB::table('rebriques')->where('id_eng',$id)->get();
+        $tots = new stdClass();
+        $tots->AP = 0;
+        $tots->cumul = 0;
+        $tots->montant = 0;
+        $tots->montant_1 = 0;
+        $tots->montant_2 = 0;
+        
         for($i =0; $i<count($titres); $i = $i +1){
             $qq = "SELECT *
             from rebriques INNER JOIN titres ON
@@ -170,14 +177,23 @@ class EngagementController extends Controller
             // $rebriques = $this->unique_multidimensional_array( $rebriques, 
             // "sous_titre");
             $titres[$i]->rebriques = $rebriques;
-
+            $sum_AP = array_sum(array_column($rebriques, 'sous_AP'));
+            $sum_cumul = array_sum(array_column($rebriques, 'sous_cumul'));
+            $sum_montant = array_sum(array_column($rebriques, 'sous_montant'));
+            $sum_montant_1 = array_sum(array_column($rebriques, 'sous_montant_1'));
+            $sum_montant_2 = array_sum(array_column($rebriques, 'sous_montant_2'));
             $titres[$i]->sums = array(
-               "AP" => array_sum(array_column($rebriques, 'sous_AP')),
-               "cumul" => array_sum(array_column($rebriques, 'sous_cumul')),
-               "montant" => array_sum(array_column($rebriques, 'sous_montant')),
-               "montant_1" => array_sum(array_column($rebriques, 'sous_montant_1')),
-               "montant_2" => array_sum(array_column($rebriques, 'sous_montant_2')),
+               "AP" => $sum_AP,
+               "cumul" => $sum_cumul,
+               "montant" => $sum_montant,
+               "montant_1" => $sum_montant_1,
+               "montant_2" => $sum_montant_2,
             ); 
+            $tots->AP += $sum_AP;
+            $tots->cumul += $sum_cumul;
+            $tots->montant += $sum_montant;
+            $tots->montant_1 += $sum_montant_1;
+            $tots->montant_2 += $sum_montant_2;
         }
 
         for($i =0; $i<count($titres1); $i = $i +1){
@@ -218,7 +234,9 @@ class EngagementController extends Controller
         $this->ville_fr =="Illizi" || $this->ville_fr =="illizi"){
             $the_view = 'engs.djanet';
         }
-        return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,
+        // var_dump($tots);
+        // return "";
+        return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         
     }

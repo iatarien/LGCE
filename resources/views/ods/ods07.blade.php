@@ -90,14 +90,14 @@
 			<br> مكتب التربية و التعليم العالي
 			@endif
 			</h3>
-            <h3 style="text-align : right;" >       رقم التسجيل :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+            <h3 style="text-align : right;" >       رقم التسجيل :  {{$num}}  /{{$year}}  </h3>
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
 			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">     أمر مصلحي ب{{$ods_type}}   </h3>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-			 أعطي الأمر لـ : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
+			 أعطي الأمر لمنسق المشاريع السيد : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
 			
 			
 			 هذا الأمر المصلحي المصادق عليه بأنه مطابق للنسخة الأصلية المسجلة تحت رقم : &emsp;&emsp;/{{$year}}<br>
@@ -111,7 +111,7 @@
 			@elseif($user->service =="Etude")
 			عن طريق السيد : رئيس مصلحة الدراسة و التقويم
 			@else
-			عن طريق السيد : رئيس مصلحة الإدارة و الوسائل
+			عن طريق السيد : رئيس مصلحة الهندسة المعمارية و البناء 
 			@endif
 		</div>
 
@@ -163,13 +163,16 @@
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
 			<p>
-				الموقع أعلاه : مدير  {{$direction}} المصرح بأن الأمر المصلحي المؤرخ في <strong dir="ltr">{{$ods_date}}</strong> مسجل تحت رقم : <span style="margin-left : 1mm;">&emsp;&emsp;/{{$year}}</span>  بأنه مبلغ للسيد : <strong> {{$e}} </strong> يوم <strong dir="ltr">{{$ods_date}}</strong>
-		
+			<strong>في يوم : {{$ods_date}} </strong><br>
+			انا الممضي أسفله السيد : <strong>{{$e}}</strong> <br>
+			أصرح بأنني إنتقلت إلى مديرية {{$direction}} و استلمت نسخة من الأمر ب<strong>{{$ods_type}}</strong><br>
+			المسجل بالدفتر تحت رقم : <strong>{{$num}}  /{{$year}}</strong>
 			</p>
+
 		</div>
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 50px;" >
-			<span>         <span style="color : transparent;">...................</span> الإمضــــــاء         </span>
+			<span>         <span style="color : transparent;">...................</span> <strong style="text-decoration : underline">المتعامل المتعاقد</strong>         </span>
 		</div>
 
 	</div>
