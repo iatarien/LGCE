@@ -380,6 +380,49 @@ class PaymentController extends Controller
         // return "";
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
     }
+    public function maitre_ouvrage($id)
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','deals.id_deal',"=","engagements.deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->
+        join("portefeuille","portefeuille.code","=","operations.portefeuille")->
+        where('id',$pay->id_op)->first();
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
+        $total = $pay->total_done - $pay->total_cut;
+        $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
+    
+        $txt = " ";
+        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
+        }
+        if($pay->travaux_type  !="facture" && $pay->deal != null){
+            $txt = $txt.$pay->deal_type." ";
+        }
+
+        if($pay->deal_num != null){
+            $txt=$txt." N° ".$pay->deal_num;
+        }
+        if($pay->deal_date != null){
+            $txt=$txt." DU ".$pay->deal_date." ";
+        }
+
+        $view ="pays.maitre_ouvrage";
+
+        // var_dump($op);
+        // return "";
+        return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
+    }
     public function declaration($id)
     {   
         $user = Auth::user();

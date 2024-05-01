@@ -94,6 +94,7 @@ Route::get('/modifier_pay/{id}','PaymentController@modifier');
 Route::get('/fiche_pay/{id}','PaymentController@fiche_pay');
 Route::get('/edit_fiche_payment/{id}','PaymentController@edit_fiche_pay');
 Route::get('/get_last_fiche_pay/{id_op}','PaymentController@get_last_fiche');
+Route::get('/maitre_ouvrage/{id}','PaymentController@maitre_ouvrage');
 
 Route::get('/edit_bank/{id}','PaymentController@edit_bank');
 Route::post('/update_bank','PaymentController@update_bank');

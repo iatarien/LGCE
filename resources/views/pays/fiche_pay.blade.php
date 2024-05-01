@@ -36,6 +36,9 @@
     
     <table id="fiche_pay">
         <tr>
+            @if($ville_fr =="Biskra")
+            <th> Maitre Ouvrage </th>
+            @endif
             <th> كشف الحساب </th>
             <th> حوالة الدفع </th>
             <th> شهادة الدفع </th> 
@@ -45,6 +48,12 @@
             <th> تعديل رقم الحساب </th>
         </tr>
         <tr>
+            @if($ville_fr =="Biskra")
+            <td>
+                <a class="btn btn-default" target="_blank" href="/maitre_ouvrage/{{$id}}"> معاينة</a>
+            </td>
+            @endif
+            
             <td>
                 <a class="btn btn-default" target="_blank" href="/avancement/{{$id}}" > معاينة</a>
                 <br><br>
