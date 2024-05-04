@@ -234,6 +234,9 @@ class EngagementController extends Controller
         $this->ville_fr =="Illizi" || $this->ville_fr =="illizi"){
             $the_view = 'engs.djanet';
         }
+        if($this->direction_fr =="Direction des Travaux Publics" || $this->ville_fr =="Ouled Djellal"){
+            $the_view = 'engs.dtp51';
+        }
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
