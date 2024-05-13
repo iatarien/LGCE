@@ -33,7 +33,7 @@
 </head>
 <body contenteditable="true">
 
-<section  style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
+<section  style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px; margin-top : 10px;" id="fiche">
 	<div id="fiche_top">
 		<div style="  display: inline-block; text-decoration : underline; ">
 			<h3 style="text-decoration: underline; padding: 0px 5px 0px 5px;">    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
@@ -61,8 +61,7 @@
 		
 		?>
 		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style=""> ميزانية التجهيـــز
-                <br>
+			<h4 style=""> 
                 عملية رقم :    <strong>{{$op}}</strong> 
                 <br>
                 عنوان العملية : <strong> {{$intitule}} </strong>
@@ -76,7 +75,7 @@
             </h4>
 		</div>
 		<div style="  display: inline-block; float: right; ">
-            <h3 style="text-align : right;"> {{$ministere}}<br>
+            <h3 style="text-align : right;"> وزارة {{$ministere}}<br>
 			ولاية {{$ville}}  
 			<br>  
 			مديرية {{$direction}}
@@ -97,7 +96,7 @@
 			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">     أمر مصلحي ب{{$ods_type}}   </h3>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-			 أعطي الأمر لمنسق المشاريع السيد : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
+			 أعطي الأمر للسيد : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
 			
 			
 			 هذا الأمر المصلحي المصادق عليه بأنه مطابق للنسخة الأصلية المسجلة تحت رقم : &emsp;&emsp;/{{$year}}<br>
@@ -117,19 +116,22 @@
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
 			<span>         <span style="color : black;">{{$ods_date}}</span> {{$ville}} في        </span>
+			<br><br>
+			<span style="font-size : 20px;">   الـمديـــر     </span>
+			
 		</div>
+
 
 	</div>
 
 </section>
-<br>
+<br><br><br><br><br>
 <hr>
-<section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
+<section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px; margin-top : 10px;" id="fiche">
 	<div id="fiche_top">
 
 		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style=""> ميزانية التجهيـــز
-                <br>
+			<h4 style="">
                 عملية رقم :    <strong>{{$op}}</strong> 
                 <br>
                 عنوان العملية : <strong> {{$intitule}} </strong>
