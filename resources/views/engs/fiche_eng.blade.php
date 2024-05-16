@@ -220,7 +220,7 @@
 					</tr>
 					@endif
 					@foreach($titre->rebriques as $reb)
-					@if($ville_fr =="Ouled Djellal" && $direction_fr =="Direction des Ressources en Eau" && $reb->id_titre == 127)
+					@if($reb->id_titre == 127)
 
 					@else
 						@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
@@ -264,7 +264,7 @@
 					</tr>
 					@endif
 					@foreach($titre->rebriques as $reb)
-					@if($ville_fr =="Ouled Djellal" && $direction_fr =="Direction des Ressources en Eau" && $reb->id_titre == 127)
+					@if($reb->id_titre == 127)
 
 					@else
 						@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
