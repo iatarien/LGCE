@@ -203,6 +203,7 @@ function numberWithCommas(x) {
 	if(x == null){
 		return "0.00";
 	}
+	x = parseFloat(x).toFixed(2);
     x =  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     if(!x.includes('.')){
       x += ".00";
