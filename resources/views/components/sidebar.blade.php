@@ -66,6 +66,12 @@
           </li>
         </ul>
       </li>
+      @if($ville_fr == "Medea" )
+      <a class="nav-link " href="/deals/all/">
+        <i class="bi bi-files"></i>
+        <span>الصفقات </span>
+      </a>
+      @else
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#deals-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-files"></i><span>الصفقات</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -108,6 +114,7 @@
           </li>
         </ul>
       </li>
+      @endif
       
       <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#eng-nav" data-bs-toggle="collapse" href="#">
@@ -295,10 +302,56 @@
           </li>
         </ul>
       </li>
+      @if($ville_fr == "Medea" && $user->service =="Marché")
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#deals-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-files"></i><span>الصفقات</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="deals-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/ajouter_deal/marche">
+              <i class="bi bi-circle"></i><span> إضافة صفقة</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ajouter_deal/convention">
+              <i class="bi bi-circle"></i><span> إضافة عقد</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ajouter_deal/devis">
+              <i class="bi bi-circle"></i><span style='font-size : 12px'>  كشف كمي و تقديري</span>
+            </a>
+          </li>
+          <li>
+            <a href="/ajouter_deal/facture/1">
+              <i class="bi bi-circle"></i><span> إضافة فاتورة</span>
+            </a>
+          </li>
+          <li>
+            <a href="/select_deals/avenant">
+              <i class="bi bi-circle"></i><span> إضافة ملحق</span>
+            </a>
+          </li>
+          <!-- <li>
+            <a href="/deals">
+              <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة الصفقات </span>
+            </a>
+          </li> -->
+          <li>
+            <a href="/deals">
+              <i class="bi bi-circle"></i><span style='font-size : 11px'>معاينة الصفقات </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      @else
       <a class="nav-link " href="/deals/all/">
         <i class="bi bi-files"></i>
         <span>الصفقات </span>
       </a>
+      @endif
+      
       <a class="nav-link " href="/engagements/all/">
         <i class="bi bi-menu-button-wide"></i>
         <span>الإلتزامات </span>

@@ -237,6 +237,9 @@ class EngagementController extends Controller
         if($this->direction_fr =="Direction des Travaux Publics" && $this->ville_fr =="Ouled Djellal"){
             $the_view = 'engs.dtp51';
         }
+        if($this->ville_fr =="Medea"){
+            $the_view = 'engs.medea';
+        }
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,

@@ -108,7 +108,9 @@ input {
 						  <option value="ODS">ODS</option>
                           <option value="Comptabilité">Comptabilité</option>
 						  <option value="Coordination">Coordination</option>
-
+						  @if($ville_fr == "Medea")
+						  <option value="Marché">Marché</option>
+						  @endif
                         </select>
 	                </div>
 	              </div>
