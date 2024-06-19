@@ -266,21 +266,81 @@
 					@endforeach
 				@endforeach
 			@endif
+			</tbody>
+			<tbody id="with_none" style="display : none">
+			@if($ville_fr =="Medea")
+				@foreach($titres as $titre)
+					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+						@if($eng->type =="decision" || $eng->type =="reevaluation")
+							<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+							@if($insc == "true")
+							<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+							@else
+							<td>{{ number_format((float)$titre->sums["montant"] + (float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+							@endif
+
+						@else
+						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+						@endif
+						
+						<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+						
+						@if($ville_fr !="Ouled Djellal")
+						<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
+						@else
+						<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
+						@endif
+					</tr>
+					@endif
+					@foreach($titre->rebriques as $reb)
+					@if($reb->id_titre == 127)
+
+					@else
+						@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
+						<tr>	
+							<td>/</td>
+							@if($eng->type =="decision" || $eng->type =="reevaluation")
+								<td>/</td>
+								@if($insc == "true")
+								<td>/</td>
+								@else
+								<td>/</td>
+								@endif
+
+							@else
+							<td>/</td>
+							<td>/</td>
+							@endif
+
+							<td>/</td>
+							<td>/</td>
+							@if($ville_fr !="Ouled Djellal")
+							<td dir="rtl">{{$reb->code." ".$reb->definition}}</td>
+							@else
+
+								<td dir="rtl">الصنف الفرعي : {{$reb->code." "}}</td>
+		
+							@endif
+						</tr>
+						@endif
+					@endif
+					
+					@endforeach
+				@endforeach
+			@endif
 			</tbody>	
 		</table>
 		<br>
-		<div id="show_sous" dir="rtl" style="display : none;">
+		<div id="show_sous" dir="rtl">
 			@if($pref_eng == "with_all")
-				<input type="radio" name="genderS" value="all" checked> كل الأصناف
-				<input type="radio" name="genderS" value="sous" > الصنف الفرعي
-				<input type="radio" name="genderS" value="none" > الصنف 
-			@elseif($pref_eng == "with_sous")
-				<input type="radio" name="genderS" value="all" > كل الأصناف
-				<input type="radio" name="genderS" value="sous" checked> الصنف الفرعي
+				<input type="radio" name="genderS" value="all" checked> الصنف الفرعي
 				<input type="radio" name="genderS" value="none" > الصنف 
 			@elseif($pref_eng == "with_none")
-				<input type="radio" name="genderS" value="all"> كل الأصناف
-				<input type="radio" name="genderS" value="sous" > الصنف الفرعي
+				<input type="radio" name="genderS" value="all"> الصنف الفرعي
 				<input type="radio" name="genderS" value="none" checked > الصنف 
 			@endif
 			
