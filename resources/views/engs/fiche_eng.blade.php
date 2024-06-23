@@ -202,7 +202,8 @@
 				<th style="text-align : right; width : 30%"> الصنف / الصنف الفرعي </th>
 			</tr>
 			<tbody id="with_all" style="display : none">
-			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal") && $insc == "true" )
+			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Biskra"
+			|| $ville_fr =="Ouled djellal") && $insc == "true" )
 				@foreach($titres as $titre)
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 					<tr style='font-weight : 900;'>	
@@ -288,6 +289,16 @@
 				@endforeach
 			@endif
 			@if($ville_fr =="Biskra")
+			@if($insc =="true")
+			<tr style='font-weight : 900;'>	
+				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
+				<td dir="rtl">المجموع</td>
+			</tr>
+			@else
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
@@ -296,6 +307,7 @@
 				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
 				<td dir="rtl">المجموع</td>
 			</tr>
+			@endif
 			@endif
 			</tbody>
 			<tbody id="with_sous" style="display : none;">
@@ -335,6 +347,7 @@
 				@endforeach
 			@endforeach
 			@if($ville_fr =="Biskra")
+			@if($insc !="true")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
@@ -343,6 +356,16 @@
 				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
 				<td dir="rtl">المجموع</td>
 			</tr>
+			@else
+			<tr style='font-weight : 900;'>	
+				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
+				<td dir="rtl">المجموع</td>
+			</tr>
+			@endif
 			@endif
 			</tbody>
 			<tbody id="with_none" style="display : none">
@@ -382,6 +405,7 @@
 				@endforeach
 			@endforeach
 			@if($ville_fr =="Biskra")
+			@if($insc !="true")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
@@ -390,6 +414,16 @@
 				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
 				<td dir="rtl">المجموع</td>
 			</tr>
+			@else
+			<tr style='font-weight : 900;'>	
+				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
+				<td dir="rtl">المجموع</td>
+			</tr>
+			@endif
 			@endif
 			</tbody>
 		</table>
