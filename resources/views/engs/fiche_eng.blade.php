@@ -619,6 +619,7 @@ function PrintElem(elem)
     return true;
 }
 function printdiv(printdivname) {
+	window.scrollTo(0, 0);
 	document.getElementById('bouton').style.display = "none";
 	document.getElementById('bouton_2').style.display = "none";
 	if(document.getElementById('bouton_3')){
