@@ -339,7 +339,7 @@
             </a>
           </li> -->
           <li>
-            <a href="/deals">
+            <a href="/deals/all">
               <i class="bi bi-circle"></i><span style='font-size : 11px'>معاينة الصفقات </span>
             </a>
           </li>

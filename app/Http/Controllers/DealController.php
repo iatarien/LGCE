@@ -165,7 +165,7 @@ class DealController extends Controller
         #$chapitre = explode(",",$user->chapitre);
         $chapitre = explode(",",$user->chapitre);
         
-        if($this->ville_fr !=="never"){
+        if($this->ville_fr !=="never" && $this->ville_fr !=="Medea" ){
             $operations = DB::table('operations')->
             select('id','numero','intitule_ar','intitule')->
             where('user_id',$user->id)->

@@ -145,23 +145,24 @@
                 </div>
             </div>
 		</div>
+		@if(strlen($eng->sous_programme) == 1)
+		<h3>  <?php $le_sous = $eng->portefeuille.".".$eng->programme."0.".$sous->code; ?> </h3>
+		@else
+		<h3>  <?php $le_sous = $eng->portefeuille.".".$eng->programme.".".$sous->code; ?></h3>
+		@endif
 		<br><br><br><br><br><br><br><br><br><br>
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
-			<h3>  رمز البرنامج : {{$eng->programme}}</h3>
-            <h3>  رمز الــنشاط : {{$eng->activite}}</h3>
+			<h3>  رمز البرنامج : {{$eng->portefeuille}}.{{$eng->programme}}</h3>
+            <h3>  رمز الــنشاط : {{$le_sous}}.{{$eng->activite}}</h3>
 			@if($eng->sous_action !==NULL )
 			
             <h3>  رمز النشاط الفرعي : {{$eng->sous_action}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
-			@if($eng->sous_programme == "")
-			<h3>رمز البرنامج الفرعي : </h3>
-			@elseif(strlen($eng->sous_programme) == 1)
-			<h3>  رمز البرنامج الفرعي : 0{{$sous->code}}</h3>
-			@else
-			<h3>  رمز البرنامج الفرعي : {{$sous->code}}</h3>
-			@endif
+
+			<h3>  رمز البرنامج الفرعي : {{$le_sous}}</h3>
+
             
 		</div>
 		<div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
