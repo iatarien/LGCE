@@ -500,8 +500,10 @@
 				وثــــائق    <span style="color: transparent;">1110002</span>  رقم  <span style="color: transparent;">112</span> <br>
 				 المرفقة بالحوالة رقم  <span style="color: transparent;">113</span> المؤرخة في  <span style="color: transparent;">2021/03</span>
 				<br>
-				  بمبـــلغ  &emsp;<span> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </span>
-				  <br>
+				بمبـــلغ 
+				 <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </span> &emsp;   دج
+				
+				 <br>
 				    السنة  <span>{{ $pay->year }}</span>
 
 			</div>

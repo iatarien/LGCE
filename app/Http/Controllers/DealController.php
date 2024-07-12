@@ -22,11 +22,14 @@ class DealController extends Controller
     public function select_deals($type="")
     {   
         $user = Auth::user();
-       if($type == "avenant" || $type=="engagement"){
+        if($type == "avenant" || $type=="engagement"){
             $query = "SELECT * FROM operations WHERE date_cloture IS NULL AND id IN (SELECT DISTINCT id_op from deals WHERE deals.user_id =".$user->id." )";
             $q = "SELECT * from entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals WHERE deals.user_id =".$user->id." )";
         }
-        
+        if($this->ville_fr =="Medea"){
+            $query = "SELECT * FROM operations WHERE date_cloture IS NULL AND id IN (SELECT DISTINCT id_op from deals )";
+            $q = "SELECT * from entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals )";
+        }
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
         $view = 'deals.select_deals';
@@ -41,7 +44,7 @@ class DealController extends Controller
         $user = Auth::user();
         $query = "SELECT * FROM operations WHERE date_cloture IS NULL AND id IN (SELECT DISTINCT id_op from deals)";
         $q = "SELECT * FROM entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals)";
-        if($type == ""){
+        if($type == "" && $this->ville_fr != "Medea"){
             $query = "SELECT * FROM operations WHERE date_cloture IS NULL AND id IN (SELECT DISTINCT id_op from deals WHERE deals.user_id =".$user->id." )";
             $q = "SELECT * from entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals WHERE deals.user_id =".$user->id." )";
         }
@@ -63,7 +66,7 @@ class DealController extends Controller
             $filters = explode("*1989*",$filters);
             $numero = $filters[0];
             $e = $filters[1];
-            if(isset($filters[2])){
+            if(isset($filters[2]) && $this->ville_fr != "Medea"){
                 $user_id = $filters[2];
             }else{
                 $user_id = "";

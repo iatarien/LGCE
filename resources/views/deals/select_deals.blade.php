@@ -112,9 +112,10 @@ window.onload = function(){
 	//document.getElementById('myModal').style.display = "none";
 };
 function get_deals(value){
-	if(value=="avenant"){
+	ville = "{{$ville_fr}}";
+	if(value=="avenant" && ville != "Medea"){
 		var url = "/get_deals/*1989**1989*{{$user->id}}*1989*avenant";
-	}else if(value=="engagement"){
+	}else if(value=="engagement" && ville != "Medea"){
 		var url = "/get_deals/*1989**1989*{{$user->id}}*1989*engagement";
 	}else {
 		var url = "/get_deals/";
@@ -270,6 +271,7 @@ function numberWithCommas(x) {
 }
 
 function display(engagements,value){
+	ville = "{{$ville_fr}}";
     var user_id = {{ $user->id }};
 	var user_service = "{{ $user->service }}";
     var type= "{{ $type }}";
@@ -333,7 +335,7 @@ function display(engagements,value){
 			}
 			
 		    if(type == "avenant"){
-				if(op[i].user_id == user_id){
+				if(op[i].user_id == user_id || ville =="Medea"){
 					tds +='<td>'+
 					'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_avenant/'+op[i].deal_id+'\'">إختيار</button></span>'+
 					'</td>';
@@ -344,7 +346,7 @@ function display(engagements,value){
 				}
 				
 			}else if(type == "engagement"){
-				if(op[i].user_id == user_id){
+				if(op[i].user_id == user_id || ville =="Medea"){
 					tds +='<td>'+
 					'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_engagement/eng/'+op[i].deal_id+'\'">إختيار</button></span>'+
 					'</td>';
