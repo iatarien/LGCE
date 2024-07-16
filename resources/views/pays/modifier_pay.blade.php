@@ -96,7 +96,7 @@
 	                <div class="col-lg-8">
 	                  <input required="" value="{{$pay->num}}"  type="text" class="form-control" id="num" name="num">
 	                </div>
-                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> كشف حساب رقم </label>
+                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> رقم بطاقة الدفع</label>
 	              </div>
                   <div class="form-group">
 	                <div class="col-lg-8">

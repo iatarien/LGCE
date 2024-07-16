@@ -43,6 +43,9 @@
             <th> حوالة الدفع </th>
             <th> شهادة الدفع </th> 
             <th style="display : none"> بطاقة الدفع </th>
+            @if($ville_fr == "Medea")
+            <th> بطاقة الدفع </th>
+            @endif
             <th> إشعار بالتحويل </th>
             <th> بيان بالتحويل </th>
             <th> تعديل رقم الحساب </th>
@@ -83,6 +86,11 @@
                 <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @endif
             </td>
+            @if($ville_fr == "Medea")
+            <td>
+                <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
+            </td>
+            @endif
             <td>
                 <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> معاينة</a>
             </td>

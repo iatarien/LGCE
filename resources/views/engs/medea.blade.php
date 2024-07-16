@@ -152,8 +152,16 @@
 		@endif
 		<br><br><br><br><br><br><br><br><br><br>
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
-			<h3>  رمز البرنامج : {{$eng->portefeuille}}.{{$eng->programme}}</h3>
-            <h3>  رمز الــنشاط : {{$le_sous}}.{{$eng->activite}}</h3>
+			<h3>  رمز البرنامج : {{$eng->portefeuille}}.{{$eng->programme}} &emsp;&emsp; {{$prog->designation}}</h3>
+			<?php $act_txt = "";
+			if($eng->source =="PSC"){
+				$act_txt = $act_txt. "نشاط ممركز ";
+			}else{
+				$act_txt = $act_txt. "نشاط غير ممركز ";
+			}
+			$act_txt = $act_txt." للتعمير و تهيئة العقار ";
+			?>	
+            <h3>  رمز الــنشاط : {{$le_sous}}.{{$eng->activite}} &emsp;&emsp; {{$act_txt}}</h3>
 			@if($eng->sous_action !==NULL )
 			
             <h3>  رمز النشاط الفرعي : {{$eng->sous_action}}</h3>
@@ -161,7 +169,7 @@
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
 
-			<h3>  رمز البرنامج الفرعي : {{$le_sous}}</h3>
+			<h3>  رمز البرنامج الفرعي : {{$le_sous}} &emsp;&emsp; {{$sous->designation}}</h3>
 
             
 		</div>

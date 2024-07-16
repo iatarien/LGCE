@@ -257,10 +257,16 @@ class PaymentController extends Controller
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
+        if($prog == NULL){
+            $prog = (object) [];
+            $prog->code = "";
+            $prog->designation = "";   
+        }
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $nums = Null;
         $qq = "SELECT * FROM titres WHERE id_titre = (SELECT sous_titre FROM rebriques WHERE id_eng = ".$pay->id_eng." 
-        AND sous_montant != 0 LIMIT 1)";
+        AND ( sous_montant != 0 OR sous_montant_1 != 0) LIMIT 1)";
+ 
         $sous_titre = NULL;
         if(isset(DB::select(DB::raw($qq))[0])){
             $sous_titre = DB::select(DB::raw($qq))[0];
@@ -275,8 +281,7 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-        // var_dump($pay);
-        // return "";
+
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
@@ -356,29 +361,62 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
-    
+        
+        // if($this->lang =="fr"){
+        //     $txt = " ";
+        //     if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+        //         $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
+        //     }
+        //     if($pay->travaux_type  !="facture" && $pay->deal != null){
+        //         $txt = $txt.$pay->deal_type." ";
+        //     }
+
+        //     if($pay->deal_num != null){
+        //         $txt=$txt." N° ".$pay->deal_num;
+        //     }
+        //     if($pay->deal_date != null){
+        //         $txt=$txt." DU ".$pay->deal_date." ";
+        //     }
+        // }
+
         $txt = " ";
         if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
-            $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        if($pay->travaux_type  !="facture" && $pay->deal != null){
-            $txt = $txt.$pay->deal_type." ";
-        }
+        // if($pay->travaux_type  !="facture" && $pay->deal != null){
+        //     $txt = $txt.$pay->deal_type." ";
+        // }
 
-        if($pay->deal_num != null){
-            $txt=$txt." N° ".$pay->deal_num;
+        // if($pay->deal_num != null){
+        //     $txt=$txt." N° ".$pay->deal_num;
+        // }
+        // if($pay->deal_date != null){
+        //     $txt=$txt." DU ".$pay->deal_date." ";
+        // }
+
+        $qq = "SELECT * FROM titres WHERE id_titre = (SELECT sous_titre FROM rebriques WHERE id_eng = ".$pay->id_eng." 
+        AND ( sous_montant != 0 OR sous_montant_1 != 0) LIMIT 1)";
+ 
+        $sous_titre = NULL;
+        if(isset(DB::select(DB::raw($qq))[0])){
+            $sous_titre = DB::select(DB::raw($qq))[0];
         }
-        if($pay->deal_date != null){
-            $txt=$txt." DU ".$pay->deal_date." ";
+        $titre = NULL;
+        if(isset($sous_titre->father)){
+            $titre = DB::table("titres")->where("id_titre",$sous_titre->father)->first();
         }
 
         $view ="pays.fiche_payement";
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
+        if($this->ville_fr =="Medea"){
+            $view = $view."_medea";
+        }
         // var_dump($op);
         // return "";
-        return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
+        return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,
+        'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
     }
     public function maitre_ouvrage($id)
     {   

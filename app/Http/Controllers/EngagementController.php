@@ -126,7 +126,10 @@ class EngagementController extends Controller
         $eng = DB::table('engagements')->select("*","engagements.id as id_eng")
         ->join("operations",'engagements.id_op','=','operations.id')->
         where('engagements.id',$id)->first();
-        
+
+        $prog = DB::table('programme')->where('code',$eng->programme)->first();
+        $porte = DB::table('portefeuille')->where('code',$eng->portefeuille)->first();
+
         $e = "";
         $type = $eng->type;
         if($type =='eng' ){
@@ -243,6 +246,7 @@ class EngagementController extends Controller
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
+        "prog"=>$prog,"porte"=>$porte,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         
     }

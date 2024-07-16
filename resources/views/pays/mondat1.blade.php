@@ -234,11 +234,20 @@
             <tr>
                 <td> النشاط</td>
 				<td>{{$op->activite}}</td>
+				@if($ville_fr =="Medea")
+				@if($op->source =="PSC")
+				<td>  نشاط ممركز للتعمير و تهيئة العقار </td>
+				@else
+				<td> نشاط غير ممركز للتعمير و تهيئة العقار </td>
+				@endif
+				@else
 				@if($op->source =="PSC")
 				<td>تفويض التسيير القطاعي الممركز</td>
 				@else
 				<td>تفويض التسيير الغير ممركز</td>
 				@endif
+				@endif
+				
 				
                 
 				<td rowspan="2">الصنف الفرعي</td>
