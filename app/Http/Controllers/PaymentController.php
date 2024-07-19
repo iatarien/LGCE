@@ -317,6 +317,9 @@ class PaymentController extends Controller
         }
 
         $view ='pays.attestation_payement';
+        if($this->ville_fr =="Medea"){
+            $view = $view."_medea";
+        }
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
