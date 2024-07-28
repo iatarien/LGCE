@@ -23,7 +23,7 @@
 				  @endif
 				  <input id="sous_id" value="{{$sous_id}}" name="sous_id" type="hidden" >
                   <input id="id_op" value="{{$op->id}}" name="id_op" type="hidden" >
-				  @if($user->service =="Comptabilité")
+				  @if($user->service =="Comptabilité" || $user->service =="Engagement")
 				  <div class="form-group row">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title"> محفظة البرنامج</label>
 	                <div class="col-lg-9">

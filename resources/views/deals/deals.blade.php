@@ -338,7 +338,7 @@ function display(engagements,value){
 			
 			
 			
-		    if(user_id == op[i].user_id ){
+		    if(user_id == op[i].user_id || user_service =="Engagement" ){
 				tds +='<td>'+
 		    	'<span><button class="btn btn-primary"  onclick="document.location.href=\'/modifier_deal/'+op[i].deal_id+'\'">تعديل</button></span>'+
 		        '</td>';
@@ -347,7 +347,7 @@ function display(engagements,value){
 		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">تعديل</button></span>'+
 		        '</td>';
 			}
-			if(op[i].user_id == user_id && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){
+			if((user_id == op[i].user_id || user_service =="Engagement" ) && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){
 				tds +='<td style="text-align : center;">'+
 			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_deal/'+op[i].deal_id+'\')">خذف</button></span>'+
 			'</td>';

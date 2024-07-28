@@ -63,6 +63,10 @@
 						  @if($ville_fr == "Medea")
 						  <option value="Marché">Marché</option>
 						  @endif
+						  @if($ville_fr == "Touggourt")
+						  <option value="Engagement">Engagement</option>
+						  <option value="Paiement">Paiement</option>
+						  @endif
                         </select>
 	                </div>
 	              </div>

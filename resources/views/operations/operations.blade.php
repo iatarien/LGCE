@@ -221,6 +221,7 @@ function load_ops(value){
 }
 function display(operations,value,order){
 	const user_id = "{{$user->id}}";
+	var user_service = "{{ $user->service }}";
 	var tds = '<tr style=" cursor : pointer; font-weight : bolder;">'+
 		        '<td style="cursor : pointer; width : 2%; id="0" onclick="load_ops(\'0\')" ><div>#</div></td>'+
 		        '<td style="cursor : pointer; width : 14%;" id="source" onclick="load_ops(\'source\')" ><div>  رقم العملية و تعيين العملية </div></td>'+
@@ -260,7 +261,7 @@ function display(operations,value,order){
 			'<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].AP_act-op[i].somme_total_eng)+'</strong></h5></span>'+
 		    '</td>';
-			if(user_id == op[i].user_id){
+			if(user_id == op[i].user_id || user_service =="Engagement" ){
 				tds+='<td>'+
 		    	'<span><button  class="btn btn-primary"  onclick="document.location.href=\'/modifier_operation_ar/'+op[i].oper_id+'\'"><i class="bi bi-pencil"></i></button></span>'+
 		    	'</td>';

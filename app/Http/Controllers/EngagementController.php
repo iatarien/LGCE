@@ -451,13 +451,13 @@ class EngagementController extends Controller
             if($year != ""){
                 $query = $query." e.numero_fiche LIKE '%".$year."%' AND";
             }
-            if($user_id != ""){
+            if($user_id != "" && $user->service !="Paiement"){
                 $query = $query." e.user_id ='".$user_id."' AND";
             }
             if($first_type == "borderau"){
                 $query= $query." e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 100";
             }else{
-                if($user->service !="Comptabilité"){
+                if($user->service !="Comptabilité" && $user->service !="Engagement" && $user->service !="Paiement"){
                     $query= $query." e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 200";
                 }else{
                     $query= $query." 1 ORDER BY eng_id DESC LIMIT 100";
@@ -467,7 +467,7 @@ class EngagementController extends Controller
             //return $query;
             return DB::select( DB::raw($query));
         }else{
-            if($user->service !="Comptabilité"){
+            if($user->service !="Comptabilité" && $user->service != "Engagement"){
                 $query = "SELECT *, e.id as eng_id,e.user_id as user_id, e.montant as montant FROM engagements e 
                 INNER JOIN operations ON e.id_op = operations.id 
                 LEFT JOIN deals ON e.deal = deals.id_deal

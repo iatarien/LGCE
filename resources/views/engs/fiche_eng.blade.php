@@ -545,7 +545,7 @@
 	  font-size: 16px;" 
   onclick="document.location.href='../engagements/all';"> رجوع </button>
 @endif
-@if($user->id == $eng->user_id )
+@if($user->id == $eng->user_id || $user->service =="Engagement")
 <button id="bouton_3" style="
 	  background-color: lightgreen; /* Green */
 	  border: none;

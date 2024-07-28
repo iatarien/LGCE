@@ -392,7 +392,7 @@ function display(engagements,value){
 				'<td style="width : 10%;"><div> رقم و تاريخ الوضعية </div></td>'+
 				'<td style="width : 8%;"><div>  تأشيرة الحوالة </div></td>'+
 				'<td style=" width : 10%;" id="intitule"><div>تـــــاريخ الدفع</div></td>';
-				if(user_service =="Comptabilité"){
+				if(user_service =="Comptabilité" || user_service =="Paiement" ){
 					tds+='<td style="width : 8%; text-align : center;"><div>معاينة</div></td>'+
 					'<td style="width : 8%; text-align : center;"><div>تعديل</div></td>'+
 					'<td style="width : 8%; text-align : center;"><div>حذف</div></td>';
@@ -458,11 +458,11 @@ function display(engagements,value){
 		    '</td>';
 			}
 			
-			if(user_service =="Comptabilité"){
+			if(user_service =="Comptabilité" || user_service =="Paiement" ){
 					tds +='<td style="text-align : center;">'+
 					'<span><button class="btn btn-default"   onclick="document.location.href=\'/fiche_pay/'+op[i].p_id+'\'">معاينة</button></span>'+
 					'</td>';
-					if(op[i].pay_user == user_id && op[i].visa == null ){
+					if((op[i].pay_user == user_id || user_service =="Paiement" ) && op[i].visa == null ){
 						tds +='<td style="text-align : center;">'+
 					'<span><a class="btn btn-primary"   href="../modifier_pay/'+op[i].p_id+'">تعديل</a></span>'+
 					'</td>';

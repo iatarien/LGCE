@@ -60,7 +60,7 @@
             <td>
                 <a class="btn btn-default" target="_blank" href="/avancement/{{$id}}" > معاينة</a>
                 <br><br>
-                @if($editor == $user->id )
+                @if($editor == $user->id || $user->service =="Paiement")
                     <a class="btn btn-primary"  href="/modifier_pay/{{$id}}">تعديل </a>
                 @else
                     <a class="btn btn-primary" disabled href="/modifier_pay/{{$id}}">تعديل </a>
@@ -80,7 +80,7 @@
             <td style="display : none;">
                 <a class="btn btn-default" disabled target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
                 <br><br>
-                @if($editor == $user->id)
+                @if($editor == $user->id || $user->service =="Paiement")
                 <a class="btn btn-primary" disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @else
                 <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
@@ -99,7 +99,7 @@
             </td>
             <td>
                 <br>
-                @if($editor == $user->id)
+                @if($editor == $user->id || $user->service =="Paiement" )
                     <a class="btn btn-primary"  href="/edit_bank/{{$id}}">تعديل </a>
                 @else
                     <a class="btn btn-primary" disabled >تعديل </a>

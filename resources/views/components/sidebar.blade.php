@@ -10,7 +10,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
       @endif
-      @if($user->service =="Comptabilité")
+      @if($user->service =="Comptabilité" || $user->service =="Engagement" )
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#ops-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-archive-fill"></i><span>العمليات</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -59,11 +59,20 @@
               <i class="bi bi-circle"></i><span>معاينة الإلتزامات</span>
             </a>
           </li> -->
+          @if($user->service =="Engagement")
+          <li>
+            <a href="/engagements/all">
+              <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة الإلتزامات</span>
+            </a>
+          </li>
+          @else
           <li>
             <a href="/engagements/">
               <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة الإلتزامات</span>
             </a>
           </li>
+          @endif
+          
         </ul>
       </li>
       @if($ville_fr == "Medea" )
@@ -107,11 +116,20 @@
               <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة الصفقات </span>
             </a>
           </li> -->
+          @if($user->service =="Engagement")
+          <li>
+            <a href="/deals/all">
+              <i class="bi bi-circle"></i><span style='font-size : 11px'>معاينة الصفقات </span>
+            </a>
+          </li>
+          @else
           <li>
             <a href="/deals">
               <i class="bi bi-circle"></i><span style='font-size : 11px'>معاينة الصفقات </span>
             </a>
           </li>
+          @endif
+          
         </ul>
       </li>
       @endif
@@ -135,6 +153,12 @@
           </li>
         </ul>
       </li> -->
+      @if($user->service =="Engagement")
+      <a class="nav-link " href="/payments/all/">
+        <i class="bi bi-currency-dollar"></i>
+        <span>الدفعات </span>
+      </a>
+      @else
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#pays-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-currency-dollar"></i><span>الدفعات</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -157,6 +181,8 @@
           </li> -->
         </ul>
       </li>
+      @endif
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#ods-nav" data-bs-toggle="collapse" href="#">
@@ -302,7 +328,7 @@
           </li>
         </ul>
       </li>
-      @if($ville_fr == "Medea" && $user->service =="Marché")
+      @if($ville_fr == "Medea" && $user->service =="Marché") 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#deals-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-files"></i><span>الصفقات</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -356,10 +382,58 @@
         <i class="bi bi-menu-button-wide"></i>
         <span>الإلتزامات </span>
       </a>
+      @if($user->service =="Paiement")
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#pays-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-currency-dollar"></i><span>الدفعات</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="pays-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/select/ajouter_pay/1" >
+              <i class="bi bi-circle"></i><span> إضافة دفع</span>
+            </a>
+          </li>
+          <li>
+            <a href="/payments/all">
+              <i class="bi bi-circle"></i><span>معاينة الدفعات</span>
+            </a>
+          </li>
+          <!-- <li>
+            <a href="/payments/all/">
+              <i class="bi bi-circle"></i><span style='font-size : 12px'>معاينة كل الدفعات</span>
+            </a>
+          </li> -->
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#es-bord" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-envelope"></i><span style='font-size : 12px' > جدول إرسال</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="es-bord" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/add_borderau/eng">
+              <i class="bi bi-circle"></i><span> إضافة (CB)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/add_borderau/pay">
+              <i class="bi bi-circle"></i><span> إضافة (Trésor)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/borderaux">
+              <i class="bi bi-circle"></i><span >معاينة </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      @else
       <a class="nav-link " href="/payments/all/">
         <i class="bi bi-currency-dollar"></i>
         <span>الدفعات </span>
       </a>
+      @endif
+      
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#ods-nav" data-bs-toggle="collapse" href="#">

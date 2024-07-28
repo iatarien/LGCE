@@ -29,12 +29,21 @@ class PaymentController extends Controller
     {   
         $user = Auth::user();
         $query = "SELECT * FROM operations WHERE date_cloture IS NULL AND id IN 
-        (SELECT DISTINCT id_op from engagements WHERE 
-        engagements.user_id =".$user->id." ) ORDER BY id DESC";
+        (SELECT DISTINCT id_op from engagements ";
+        if($user->service !="Paiement"){
+            $query = $query." WHERE engagements.user_id =".$user->id." )";
+        }else{
+            $query = $query." )";
+        }
+        $query = $query." ORDER BY id DESC";
         $operations = DB::select( DB::raw($query));
-        $q = "SELECT * from entreprises WHERE id IN 
-        (SELECT DISTINCT entreprise FROM deals 
-        WHERE deals.user_id =".$user->id." )";
+        $q = "SELECT * from entreprises WHERE id IN (SELECT DISTINCT entreprise FROM deals ";
+        if($user->service !="Paiement"){
+            $q = $q." WHERE deals.user_id =".$user->id." )";
+        }else{
+            $q = $q.")";
+        }
+
         $es = DB::select( DB::raw($q));
         $view = 'comptabilite.select';
         
@@ -89,7 +98,7 @@ class PaymentController extends Controller
         engagements.deal = deals.id_deal INNER JOIN `entreprises` on 
         `deals`.`entreprise` = `entreprises`.`id` inner join `operations`
          on `engagements`.`id_op` = `operations`.`id` ";
-        if($user->service !="Comptabilité"){
+        if($user->service !="Comptabilité" && $user->service !="Paiement"){
             $query = $query." WHERE payments.visa IS NOT NULL ";
         }else{
             $query = $query." WHERE 1 ";
@@ -115,7 +124,7 @@ class PaymentController extends Controller
                 $query = $query." AND payments.visa <= '".$year."-12-31' 
                 AND payments.visa >= '".$year."-01-01' ";
             }
-            if($user_id !=""){
+            if($user_id !="" && $user->service !="Paiement"){
                 $query = $query." AND payments.user_id= ".$user_id;
             }
             

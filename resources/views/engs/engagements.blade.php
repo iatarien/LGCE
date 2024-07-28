@@ -369,7 +369,7 @@ function display(engagements,value){
 	const op = engagements;
 	for (var i = 0; i < engagements.length; i++) {
 		var style = '';
-		if(user_service == "Comptabilité" && op[i].date_visa != null){
+		if((user_service == "Comptabilité" || user_service =="Engagement" )&& op[i].date_visa != null){
 			style = ';background-color : pink';
 		}
 		tds +=
@@ -412,7 +412,7 @@ function display(engagements,value){
 		    '</td>';
 	
 			
-		    if(user_id == op[i].user_id && op[i].num_visa == null){
+		    if((user_id == op[i].user_id || user_service =="Engagement" ) && op[i].num_visa == null){
 				tds +='<td>'+
 		    	'<span><button class="btn btn-primary"  onclick="document.location.href=\'/modifier_engagement/'+op[i].eng_id+'\'">تعديل</button></span>'+
 		        '</td>';
@@ -421,13 +421,13 @@ function display(engagements,value){
 		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">تعديل</button></span>'+
 		        '</td>';
 			}
-			if(op[i].user_id == user_id && op[i].num_visa == null){
+			if((user_id == op[i].user_id || user_service =="Engagement" )  && op[i].num_visa == null){
 				tds +='<td style="text-align : center;">'+
-			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_eng/'+op[i].eng_id+'\')">خذف</button></span>'+
+			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_eng/'+op[i].eng_id+'\')">حذف</button></span>'+
 			'</td>';
 			}else{
 				tds +='<td style="text-align : center;">'+
-			'<span><button class="btn btn-danger" disabled >خذف</button></span>'+
+			'<span><button class="btn btn-danger" disabled >حذف</button></span>'+
 			'</td>';
 			}
 		    
