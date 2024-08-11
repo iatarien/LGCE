@@ -40,7 +40,7 @@
 
 		font-weight: bold;
 		border: 1px solid;
-		font-size: 15px;
+		font-size: 14px;
 		padding: 7px;
 		width : 40%;
 	}
@@ -107,7 +107,7 @@
 	}
 	#CF td {
 		border : 1px solid;
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: bold;
 		padding: 0 3px 0 3px;
 	}
@@ -123,8 +123,11 @@
 
 </head>
 <body id="boody" class="container">
-
-<section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
+<?php 	$font = "14.5px"; ?>
+@if($ville_fr =="Touggourt")
+<?php 	$font = "12px"; ?>
+@endif
+<section style="background-color: white; text-align: center; font-size: {{$font}}; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
 			<h3 >   الجمهورية الجزائرية الديمقراطية الشعبية   </h3>
@@ -164,7 +167,7 @@
 			@endif
             
 		</div>
-		<div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
+		<div dir="rtl" style="float: right; margin-right: 30px; margin-left: 30px; text-align : right; width : 100%;">
 			<h3>  رقم العملية :&emsp;
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
@@ -185,8 +188,14 @@
 				 @endforeach
 			</span>
 			</h3>
+		</div>
+		<div dir="rtl" style="float: right; text-align : right; width : 100%;">
+			
 			<br>
+			<div dir="ltr" style="width : 100%; text-align : center">
 			<h3>  عنوان العملية : <span>{{$eng->intitule_ar}}<span>   </h3>
+			<h3 dir="ltr" style="width : 100%;"> Intitulé de l'operation : <span>{{$eng->intitule}}<span>   </h3>
+			</div>
             <h3> العنوان 3 : نفقات الإستثمار   </h3>
 		</div>
 		<br>
@@ -201,8 +210,9 @@
 				<th>رخصة الإلتزام المفتوحة/المعدلة</th>
 				<th style="text-align : right; width : 30%"> الصنف / الصنف الفرعي </th>
 			</tr>
+			@include('engs.eng_comp.with_all_e')
 			<tbody id="with_all" style="display : none">
-			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Biskra"
+			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Biskra" || $ville_fr =="Touggourt"
 			|| $ville_fr =="Ouled djellal") && $insc == "true" )
 				@foreach($titres as $titre)
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
@@ -288,7 +298,7 @@
 					@endforeach
 				@endforeach
 			@endif
-			@if($ville_fr =="Biskra")
+			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
 			@if($insc =="true")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
@@ -346,7 +356,7 @@
 				@endif
 				@endforeach
 			@endforeach
-			@if($ville_fr =="Biskra")
+			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
 			@if($insc !="true")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
@@ -404,7 +414,7 @@
 				@endif
 				@endforeach
 			@endforeach
-			@if($ville_fr =="Biskra")
+			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
 			@if($insc !="true")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
@@ -429,15 +439,23 @@
 		</table>
 		<br>
 		<div id="show_sous" dir="rtl">
-			@if($pref_eng == "with_all")
+			@if($pref_eng == "with_all_e")
+				<input type="radio" name="genderS" value="all_e" checked> (بالتفصيل) كل الأصناف
+				<input type="radio" name="genderS" value="all"> كل الأصناف
+				<input type="radio" name="genderS" value="sous" > الصنف الفرعي
+				<input type="radio" name="genderS" value="none" > الصنف 
+			@elseif($pref_eng == "with_all")
+				<input type="radio" name="genderS" value="all_e"> (بالتفصيل) كل الأصناف
 				<input type="radio" name="genderS" value="all" checked> كل الأصناف
 				<input type="radio" name="genderS" value="sous" > الصنف الفرعي
 				<input type="radio" name="genderS" value="none" > الصنف 
 			@elseif($pref_eng == "with_sous")
+				<input type="radio" name="genderS" value="all_e"> (بالتفصيل) كل الأصناف
 				<input type="radio" name="genderS" value="all" > كل الأصناف
 				<input type="radio" name="genderS" value="sous" checked> الصنف الفرعي
 				<input type="radio" name="genderS" value="none" > الصنف 
 			@elseif($pref_eng == "with_none")
+				<input type="radio" name="genderS" value="all_e"> (بالتفصيل) كل الأصناف
 				<input type="radio" name="genderS" value="all"> كل الأصناف
 				<input type="radio" name="genderS" value="sous" > الصنف الفرعي
 				<input type="radio" name="genderS" value="none" checked > الصنف 
@@ -586,17 +604,24 @@ $('input[type=radio]').on('change',function() {
 		},
 
 	});
-	if (this.value == 'sous') {
+	if (this.value == 'all_e') {
+		document.getElementById('with_all_e').style.display = "contents";
+		document.getElementById('with_all').style.display = "none";
+		document.getElementById('with_none').style.display = "none";
+		document.getElementById('with_sous').style.display = "none";
+	}else if (this.value == 'sous') {
+		document.getElementById('with_all_e').style.display = "none";
 		document.getElementById('with_all').style.display = "none";
 		document.getElementById('with_none').style.display = "none";
 		document.getElementById('with_sous').style.display = "contents";
-		
 	}
 	else if (this.value == 'none') {
+		document.getElementById('with_all_e').style.display = "none";
 		document.getElementById('with_all').style.display = "none";
 		document.getElementById('with_none').style.display = "contents";
 		document.getElementById('with_sous').style.display = "none";
 	}else{
+		document.getElementById('with_all_e').style.display = "none";
 		document.getElementById('with_all').style.display = "contents";
 		document.getElementById('with_none').style.display = "none";
 		document.getElementById('with_sous').style.display = "none";

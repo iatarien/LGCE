@@ -155,6 +155,8 @@ class EngagementController extends Controller
          ) ) ORDER BY id_titre ASC";
         $titres = DB::select(DB::raw($q_titres));
 
+        $titres2 = DB::select(DB::raw($q_titres));
+
         $q_titres1 = "SELECT * FROM titres WHERE type ='parent' AND id_titre IN 
         (SELECT father FROM titres WHERE id_titre IN 
         (SELECT sous_titre FROM rebriques WHERE id_eng =".$id." AND sous_montant != 0
@@ -163,6 +165,14 @@ class EngagementController extends Controller
         $titres1 = DB::select(DB::raw($q_titres1));
 
         //$rebriques = DB::table('rebriques')->where('id_eng',$id)->get();
+        $big_ones = DB::select(DB::raw('SELECT code FROM `titres` WHERE code like "%00%" AND code > 31000 and code < 32000'));
+        foreach($big_ones as $big_one){
+            $start = substr($big_one->code, 0, 3);
+            $q = 'SELECT code FROM `titres` WHERE code LIKE "'.$start.'%" AND code NOT LIKE "%00"';
+
+            $big_one->sons = DB::select(DB::raw($q));
+        }
+        
         $tots = new stdClass();
         $tots->AP = 0;
         $tots->cumul = 0;
@@ -198,7 +208,46 @@ class EngagementController extends Controller
             $tots->montant_1 += $sum_montant_1;
             $tots->montant_2 += $sum_montant_2;
         }
+        for($i =0; $i<count($titres2); $i = $i +1){
+            $qq = "SELECT *
+            from rebriques INNER JOIN titres ON
+            titres.id_titre = rebriques.sous_titre WHERE  
+            father = ".$titres2[$i]->id_titre."  
+            AND id_eng = ".$id." ORDER BY sous_titre ASC ";
+            $rebriques = DB::select(DB::raw($qq));
 
+
+            $sum_AP = array_sum(array_column($rebriques, 'sous_AP'));
+            $sum_cumul = array_sum(array_column($rebriques, 'sous_cumul'));
+            $sum_montant = array_sum(array_column($rebriques, 'sous_montant'));
+            $sum_montant_1 = array_sum(array_column($rebriques, 'sous_montant_1'));
+            $sum_montant_2 = array_sum(array_column($rebriques, 'sous_montant_2'));
+            $titres2[$i]->sums = array(
+               "AP" => $sum_AP,
+               "cumul" => $sum_cumul,
+               "montant" => $sum_montant,
+               "montant_1" => $sum_montant_1,
+               "montant_2" => $sum_montant_2,
+            ); 
+            foreach($rebriques as $reb){
+                $start = substr($reb->code, 0, 3);
+                $q_Dad = 'SELECT * FROM `titres` WHERE code LIKE "%'.$start.'00%"';
+                $dad = DB::select(DB::raw($q_Dad));
+
+                if(count($dad) != 0){
+                    $dad = $dad[0];
+                    $dad->sous_AP = $reb->sous_AP;
+                    $dad->sous_cumul = $reb->sous_cumul;
+                    $dad->sous_montant = $reb->sous_montant;
+                    $dad->sous_montant_1 = $reb->sous_montant_1;
+                    $dad->sous_montant_2 = $reb->sous_montant_2;
+                    array_unshift($rebriques , $dad);
+                }
+                
+                
+            }
+            $titres2[$i]->rebriques = $rebriques;
+        }
         for($i =0; $i<count($titres1); $i = $i +1){
             $qq = "SELECT *
             from rebriques INNER JOIN titres ON
@@ -208,8 +257,10 @@ class EngagementController extends Controller
             $rebriques = DB::select(DB::raw($qq));
             // $rebriques = $this->unique_multidimensional_array( $rebriques, 
             // "sous_titre");
-            $titres1[$i]->rebriques = $rebriques;
+           
 
+            $titres1[$i]->rebriques = $rebriques;
+            
             $titres1[$i]->sums = array(
                "AP" => array_sum(array_column($rebriques, 'sous_AP')),
                "cumul" => array_sum(array_column($rebriques, 'sous_cumul')),
@@ -218,6 +269,12 @@ class EngagementController extends Controller
                "montant_2" => array_sum(array_column($rebriques, 'sous_montant_2')),
             ); 
         }
+        /* foreach($titres as $tittre){
+            var_dump($tittre);
+            echo"<hr>";
+        }
+        /*var_dump($rebriques); 
+        return ""; */
         $les_nums = explode("/",$eng->numero_fiche); if(count($les_nums) > 1){ $le_num = $les_nums[1]; }else{ $le_num = $les_nums[0]; } 
 		$is_first = "false";
 		if((int) $le_num == 1 && $eng->type =="decision"){
@@ -246,7 +303,7 @@ class EngagementController extends Controller
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
-        "prog"=>$prog,"porte"=>$porte,
+        "prog"=>$prog,"porte"=>$porte,"titres2"=>$titres2,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         
     }
