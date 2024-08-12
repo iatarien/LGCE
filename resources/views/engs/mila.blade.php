@@ -40,7 +40,7 @@
 
 		font-weight: bold;
 		border: 1px solid;
-		font-size: 14px;
+		font-size: 15px;
 		padding: 7px;
 		width : 40%;
 	}
@@ -107,7 +107,7 @@
 	}
 	#CF td {
 		border : 1px solid;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: bold;
 		padding: 0 3px 0 3px;
 	}
@@ -123,11 +123,10 @@
 
 </head>
 <body id="boody" class="container">
-<?php 	$font = "14.5px"; ?>
-@if($ville_fr =="Touggourt")
-<?php 	$font = "12px"; ?>
-@endif
-<section style="background-color: white; text-align: center; font-size: {{$font}}; margin: 20px;" id="fiche">
+<?php if(isset($eng->order_ville) && $eng->order_ville !="" && $eng->order_ville !=NULL){
+$ordre = $eng->order_ville;
+} ?>
+<section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
 			<h3 >   الجمهورية الجزائرية الديمقراطية الشعبية   </h3>
@@ -148,26 +147,35 @@
                 </div>
             </div>
 		</div>
+		@if(strlen($eng->sous_programme) == 1)
+		<h3>  <?php $le_sous = $eng->portefeuille.".".$eng->programme."0.".$sous->code; ?> </h3>
+		@else
+		<h3>  <?php $le_sous = $eng->portefeuille.".".$eng->programme.".".$sous->code; ?></h3>
+		@endif
 		<br><br><br><br><br><br><br><br><br><br>
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
-			<h3>  رمز البرنامج : {{$eng->programme}}</h3>
-            <h3>  رمز الــنشاط : {{$eng->activite}}</h3>
+			<h3>  رمز البرنامج : {{$eng->programme}} &emsp;&emsp; {{$prog->designation}}</h3>
+			<?php $act_txt = "";
+			if($eng->source =="PSC"){
+				$act_txt = $act_txt. "نشاط ممركز ";
+			}else{
+				$act_txt = $act_txt. "نشاط غير ممركز ";
+			}
+			$act_txt = $act_txt." البرنامج الجاري لولاية ميلة";
+			?>	
+            <h3>  رمز الــنشاط : {{$eng->activite}} &emsp;&emsp; {{$act_txt}}</h3>
 			@if($eng->sous_action !==NULL )
 			
             <h3>  رمز النشاط الفرعي : {{$eng->sous_action}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
-			@if($eng->sous_programme == "")
-			<h3>رمز البرنامج الفرعي : </h3>
-			@elseif(strlen($eng->sous_programme) == 1)
-			<h3>  رمز البرنامج الفرعي : 0{{$sous->code}}</h3>
-			@else
-			<h3>  رمز البرنامج الفرعي : {{$sous->code}}</h3>
-			@endif
+
+			<h3>  رمز البرنامج الفرعي : {{$sous->code}} &emsp;&emsp; {{$sous->designation}}</h3>
+
             
 		</div>
-		<div dir="rtl" style="float: right; margin-right: 30px; margin-left: 30px; text-align : right; width : 100%;">
+		<div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<h3>  رقم العملية :&emsp;
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
@@ -188,7 +196,7 @@
 				 @endforeach
 			</span>
 			</h3>
-		</div>
+			</div>
 		<div dir="rtl" style="float: right; text-align : right; width : 100%;">
 			
 			<br>
@@ -196,21 +204,20 @@
 			<h3>  عنوان العملية : <span>{{$eng->intitule_ar}}<span>   </h3>
 			</div>
 			<div dir="ltr" style="width : 100%; text-align : center">
-			@if($ville_fr =="Touggourt")
+			@if($ville_fr =="Mila")
 			<h3 dir="ltr" style="width : 100%;"> Intitulé de l'operation : <span>{{$eng->intitule}}<span>   </h3>
 			@endif
 			</div>
             <h3> العنوان 3 : نفقات الإستثمار   </h3>
 		</div>
 		<br>
-
-		<br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
 		<table id="engagement" contenteditable="true" >
 			<tr>	
 				<th>الرصيـــد  المتبقي</th>
 				<th> الإلتزام المـــقترح </th>
 				<th>الرصيـد الأولي</th>
-				<th>مجموع الإلتزامات السابقة</th>
+				<th>مجموع الإلتزامات المكتتبة</th>
 				<th>رخصة الإلتزام المفتوحة/المعدلة</th>
 				<th style="text-align : right; width : 30%"> الصنف / الصنف الفرعي </th>
 			</tr>
@@ -567,7 +574,7 @@
 	  font-size: 16px;" 
   onclick="document.location.href='../engagements/all';"> رجوع </button>
 @endif
-@if($user->id == $eng->user_id || $user->service =="Engagement")
+@if($user->id == $eng->user_id )
 <button id="bouton_3" style="
 	  background-color: lightgreen; /* Green */
 	  border: none;
@@ -608,24 +615,17 @@ $('input[type=radio]').on('change',function() {
 		},
 
 	});
-	if (this.value == 'all_e') {
-		document.getElementById('with_all_e').style.display = "contents";
-		document.getElementById('with_all').style.display = "none";
-		document.getElementById('with_none').style.display = "none";
-		document.getElementById('with_sous').style.display = "none";
-	}else if (this.value == 'sous') {
-		document.getElementById('with_all_e').style.display = "none";
+	if (this.value == 'sous') {
 		document.getElementById('with_all').style.display = "none";
 		document.getElementById('with_none').style.display = "none";
 		document.getElementById('with_sous').style.display = "contents";
+		
 	}
 	else if (this.value == 'none') {
-		document.getElementById('with_all_e').style.display = "none";
 		document.getElementById('with_all').style.display = "none";
 		document.getElementById('with_none').style.display = "contents";
 		document.getElementById('with_sous').style.display = "none";
 	}else{
-		document.getElementById('with_all_e').style.display = "none";
 		document.getElementById('with_all').style.display = "contents";
 		document.getElementById('with_none').style.display = "none";
 		document.getElementById('with_sous').style.display = "none";
@@ -648,7 +648,6 @@ function PrintElem(elem)
     return true;
 }
 function printdiv(printdivname) {
-	window.scrollTo(0, 0);
 	document.getElementById('bouton').style.display = "none";
 	document.getElementById('bouton_2').style.display = "none";
 	if(document.getElementById('bouton_3')){

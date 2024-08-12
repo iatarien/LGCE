@@ -36,3 +36,8 @@ UPDATE programme SET designation_fr ="Enseignement Secondaire normal et spécifi
 
 UPDATE `portefeuille` SET `ministere_fr` = 'Hydraulique' WHERE `portefeuille`.`code` = '051';
 UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
+
+
+
+****** MIIIIIIILAAAAAAAA *****
+ALTER TABLE `operations` ADD `order_ville` TEXT NULL AFTER `user_id`;

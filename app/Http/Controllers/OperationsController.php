@@ -259,13 +259,17 @@ class OperationsController extends Controller
         'AP_init'=>$AP_init,'reevaluation'=>$reevaluation,'AP_act'=>$AP_act,
         "activite"=>$activite,'num_cloture'=>$num_cloture,
         'date_cloture'=>$date_cloture,"user_id"=>$user]);
+        if(isset($request['order_ville'])){
+            DB::table('operations')->where('id',$id)->
+            update(['order_ville'=>$request['order_ville']]);
+        }
         return Redirect::to('/operations_ar/all');
     }
 
     public function update_op_ar(Request $request){
         $user = Auth::user();
         $id = $request['id_op'];
-        if($user->service =="Comptabilité"){
+        if($user->service =="Comptabilité" || $user->service =="Engagement"){
             $portefeuille = $request['portefeuille'];
             $programme = $request['programme'];
             $sous_programme = $request['sous_id'];
@@ -289,6 +293,10 @@ class OperationsController extends Controller
             'AP_init'=>$AP_init,'reevaluation'=>$reevaluation,'AP_act'=>$AP_act,
             "activite"=>$activite,'num_cloture'=>$num_cloture,
             'date_cloture'=>$date_cloture]);
+            if(isset($request['order_ville'])){
+                DB::table('operations')->where('id',$id)->
+                update(['order_ville'=>$request['order_ville']]);
+            }
         }elseif($user->service =="Suivi"){
             
             $taux = $request['taux'];

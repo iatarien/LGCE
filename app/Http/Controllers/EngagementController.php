@@ -300,6 +300,10 @@ class EngagementController extends Controller
         if($this->ville_fr =="Medea" ){
             $the_view = 'engs.medea';
         }
+
+        if($this->ville_fr =="Mila" ){
+            $the_view = 'engs.mila';
+        }
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,

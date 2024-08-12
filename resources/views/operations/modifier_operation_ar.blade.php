@@ -116,7 +116,14 @@
 						</select>  
 					</div>
 	              </div><br>
-
+				  @if($ville_fr =="Mila")
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> رمز الأمر بالصرف </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" type="text" value="{{$op->order_ville}}" placeholder="262.143" class="form-control" id="order_ville" name="order_ville">
+		            </div>
+                  </div><br>
+				  @endif
 				  <div class="form-group row ">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content">رخصة الإلتزام الأولي </label>
 	              	<div class="col-lg-9">
