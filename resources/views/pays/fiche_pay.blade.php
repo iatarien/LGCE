@@ -43,7 +43,7 @@
             <th> حوالة الدفع </th>
             <th> شهادة الدفع </th> 
             <th style="display : none"> بطاقة الدفع </th>
-            @if($ville_fr == "Medea" || $ville_fr == "Ouargla")
+            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
             <th> بطاقة الدفع </th>
             @endif
             <th> إشعار بالتحويل </th>
@@ -86,7 +86,7 @@
                 <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @endif
             </td>
-            @if($ville_fr == "Medea" || $ville_fr == "Ouargla")
+            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
             </td>

@@ -60,7 +60,10 @@
 </style>
 </head>
 <body contenteditable="true">
-
+<?php if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+$ordre = $op->order_ville;
+} 
+?>
 <section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;" >
 		<div style="  display: inline-block; ">
@@ -75,7 +78,7 @@
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
         </div>
 		
-		<div style="  display: inline-block; max-width : 50%; " dir="rtl">
+		<div style="  display: inline-block; max-width : 45%; " dir="rtl">
         <table id="le_table">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
@@ -131,7 +134,7 @@
 				@endif
 
         </div>
-		<div style="  display: inline-block; width : 20%; float: right;">
+		<div style="  display: inline-block; width : 22%; float: right;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
 			سنة التسيير : {{ $pay->year}} <br>
              رقم  الحوالة :  <br>
@@ -141,16 +144,22 @@
             
 		</div>
 		<div style="  display: inline-block; float: right; margin-top : 2%;
-		width : 25%; margin-right : 2%; margin-left : 2%;">
+		width : 28%; margin-right : 2%; margin-left : 2%;">
 			<table style="text-align : right">
 				<tr>
-					<td>المحاسب العمومية المخنص : <span>  السيد أمين الخزينة لولاية {{$ville}} 
+					<td>المحاسب العمومي المخنص : <span>  السيد أمين الخزينة لولاية {{$ville}} 
 						<br>    
 					</span></td>
                 </tr>
+				@if($ville_fr =="Mila")
+				<tr>
+					<td dir="rtl"> <span dir="ltr"> {{$compte_tresor}} </span> </td>
+                </tr>
+				@else
 				<tr>
 					<td dir="rtl">  الخزينة RIB  : <span dir="rtl">ح ج ب رقم {{$compte_tresor}} الجزائر </span> </td>
                 </tr>
+				@endif
         	</table>
             <br>
 		</div>

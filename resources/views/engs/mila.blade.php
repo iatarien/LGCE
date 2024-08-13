@@ -40,7 +40,7 @@
 
 		font-weight: bold;
 		border: 1px solid;
-		font-size: 15px;
+		font-size: 13.5px;
 		padding: 7px;
 		width : 40%;
 	}
@@ -50,7 +50,7 @@
 	}
 	#titles {
 		float: right;
-		font-size: 16px;
+		font-size: 13.5px;
 		margin-right: 50px;
 		border-spacing: 1em;
 	}
@@ -107,7 +107,7 @@
 	}
 	#CF td {
 		border : 1px solid;
-		font-size: 16px;
+		font-size: 13.5px;
 		font-weight: bold;
 		padding: 0 3px 0 3px;
 	}
@@ -126,7 +126,7 @@
 <?php if(isset($eng->order_ville) && $eng->order_ville !="" && $eng->order_ville !=NULL){
 $ordre = $eng->order_ville;
 } ?>
-<section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
+<section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
 			<h3 >   الجمهورية الجزائرية الديمقراطية الشعبية   </h3>

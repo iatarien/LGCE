@@ -290,9 +290,17 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
+        if($this->ville_fr =="Mila"){
+            $view = $view."_mila";
+        }
 
+        $txt = " ";
+        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+        }
+        $txt = $txt."\n".$e->name;
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
-        "titre"=>$titre,
+        "titre"=>$titre,'txt'=>$txt,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
 
     }
@@ -425,13 +433,16 @@ class PaymentController extends Controller
         if($this->ville_fr =="Medea"){
             $view = $view."_medea";
         }
-	if($this->ville_fr =="Ouargla"){
+        if($this->ville_fr =="Mila"){
+            $view = $view."_mila";
+        }
+	    if($this->ville_fr =="Ouargla"){
             $view = $view."_medea";
         }
-        // var_dump($op);
+        // var_dump($prog);
         // return "";
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,
-        'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id]);   
+        'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id,"sous_prog"=>$sous_prog,"prog"=>$prog]);   
     }
     public function maitre_ouvrage($id)
     {   
