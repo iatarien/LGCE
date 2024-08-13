@@ -425,6 +425,9 @@ class PaymentController extends Controller
         if($this->ville_fr =="Medea"){
             $view = $view."_medea";
         }
+	if($this->ville_fr =="Ouargla"){
+            $view = $view."_medea";
+        }
         // var_dump($op);
         // return "";
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,

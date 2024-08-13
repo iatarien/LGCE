@@ -237,6 +237,9 @@ function supprimer(link){
 function display(engagements){
     var user_id = {{ $user->id }};
 	var user_service = "{{ $user->service }}";
+	var ville_fr = "{{ $ville_fr }}";
+	var direction_fr = "{{ $direction_fr }}";
+	direction_fr = direction_fr.replace('&#039;',"'");
     var type= "";
 	var tds = '<tr style="  font-weight : bolder;">'+
 		        '<td style="width : 2.5%;" ><div>#</div></td>'+
@@ -248,7 +251,7 @@ function display(engagements){
 		        '<td style=" width : 15%;" id="intitule"><div> الموضوع  </div></td>'+
                 '<td style=" width : 15%;" id="intitule"><div>المقـــاول</div></td>'+
 		        '<td style="width : 8%;"><div>معاينة</div></td>';
-				if(user_service=="ODS"){
+				if(user_service=="ODS" || (ville_fr =="Ouargla" && direction_fr =="Direction de l'Education Nationale")){
 					tds+='<td style="width : 8%;"><div>تعديل</div></td>'+
                 	'<td style="width : 8%;"><div>حذف</div></td>';
 				}
@@ -297,7 +300,7 @@ function display(engagements){
 		    tds +='<td style="text-align : center;">'+
 			'<span><button class="btn btn-default"   onclick="document.location.href=\'/ods/'+op[i].o_id+'\'">معاينة</button></span>'+
 			'</td>';
-			if(user_id == op[i].user && ( user_service =="ODS") ){
+			if(user_id == op[i].user && ( user_service =="ODS" || (ville_fr =="Ouargla" && direction_fr =="Direction de l'Education Nationale")) ){
 				tds +='<td style="text-align : center;">'+
 				'<span><button class="btn btn-primary"   onclick="document.location.href=\'/modifier_ods/'+op[i].o_id+'\'">تعديل</button></span>'+
 				'</td>';

@@ -182,13 +182,20 @@
         </ul>
       </li>
       @endif
-
-
+	
+	
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#ods-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-clock"></i><span>ODS</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="ods-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+	@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Education Nationale")
+	<li>
+            <a href="/select_ods">
+              <i class="bi bi-circle"></i><span> إضافة ODS</span>
+            </a>
+          </li>
+	@endif
           <li>
             <a href="/odss">
               <i class="bi bi-circle"></i><span >معاينة  ODS</span>
