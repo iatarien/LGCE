@@ -156,7 +156,11 @@
                     <td><input name="etude" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="etude_cut" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$"></td>
                     <td><input name="etude_done"  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$"></td>
+                    @if($ville_fr =="Mila")
+                    <td>  أشغال منجزة  </td>
+                    @else
                     <td>  أشغال تامة  </td>
+                    @endif
                     <td>01</td>
                 </tr>
                 <tr>	
@@ -170,7 +174,11 @@
                     <td><input name="extra" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="extra_cut" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="extra_done" style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>  التسبيق على التموين </td>
+                    @else
                     <td>    أعمال إضافية   </td>
+                    @endif
                     <td>03</td>
                 </tr>
                 <tr>	
@@ -184,7 +192,7 @@
                     <td><input name="revision" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="revision_cut" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="revision_done" style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
-                    <td>     مراجعة الاسعار    </td>
+                    <td>     مراجعة و تحيين الاسعار    </td>
                     <td>05</td>
                 </tr>
                 
@@ -192,21 +200,35 @@
                   <td><input name="assurance" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="assurance_cut" style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="assurance_done" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>  خصم الضمان </td>
+                    @else
                     <td>  استقطاع الضمان %5  </td>
+                    @endif
                     <td>06</td>
                 </tr>
                 <tr>	
                   <td><input name="avancement" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="avancement_cut" style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="avancement_done" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>    تعويض التسبيقات الجــــزافية   </td>
+                    @else
                     <td>    استرجاع التسبيقات الجــــزافية   </td>
+                    @endif
+                    
                     <td>07</td>
                 </tr>
                 <tr>	
                   <td><input name="sanction" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="sanction_cut" style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="sanction_done" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>    تعويض  على التموين   </td>
+                    @else
                     <td>    العقوبــــــات    </td>
+                    @endif
+ 
                     <td>08</td>
                 </tr>
                 <tr>	

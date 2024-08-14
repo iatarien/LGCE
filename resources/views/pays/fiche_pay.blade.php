@@ -42,6 +42,12 @@
             <th> كشف الحساب </th>
             <th> حوالة الدفع </th>
             <th> شهادة الدفع </th> 
+            @if($ville_fr == "Mila")
+            <th>  التلخيص </th>
+            @endif
+            @if($ville_fr == "Mila")
+            <th>  حساب مؤقت </th>
+            @endif
             <th style="display : none"> بطاقة الدفع </th>
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
             <th> بطاقة الدفع </th>
@@ -86,6 +92,17 @@
                 <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">تعديل </a>
                 @endif
             </td>
+            
+            @if($ville_fr == "Mila")
+            <td>
+                <a class="btn btn-default" target="_blank" href="/resume_pay/{{$id}}"> معاينة</a>
+            </td>
+            @endif
+            @if($ville_fr == "Mila")
+            <td>
+                <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
+            </td>
+            @endif
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>

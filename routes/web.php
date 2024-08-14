@@ -108,6 +108,7 @@ Route::get('/attestation_payment_2/{id}','PaymentController@attestation_2');
 Route::get('/fiche_payment/{id}','PaymentController@fiche');
 Route::get('/order_pay/{id}','PaymentController@order');
 Route::get('/declaration_pay/{id}','PaymentController@declaration');
+Route::get('/resume_pay/{id}','PaymentController@resume_pay');
 
 Route::post('/add_pay','PaymentController@add_pay');
 Route::get('/delete_pay/{id}','PaymentController@delete');

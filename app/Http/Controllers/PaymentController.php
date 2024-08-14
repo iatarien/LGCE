@@ -326,22 +326,31 @@ class PaymentController extends Controller
         }else{
             $matiere = "";
         }
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
         $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
         if($sous_prog == NULL){
             $sous_prog = (object) [];
             $sous_prog->code = "";
             $sous_prog->designation = "";   
         }
+        if($prog == NULL){
+            $prog = (object) [];
+            $prog->code = "";
+            $prog->designation = "";   
+        }
 
         $view ='pays.attestation_payement';
         if($this->ville_fr =="Medea"){
             $view = $view."_medea";
         }
+        if($this->ville_fr =="Mila"){
+            $view = $view."_mila";
+        }
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
      
-        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
         'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
 
     }
@@ -358,6 +367,56 @@ class PaymentController extends Controller
         $view ="pays.att_pay_2";
 
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,"id"=>$id]);
+
+    }
+    public function resume_pay($id)
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','engagements.deal',"=","deals.id_deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->where('id',$pay->id_op)->first();
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
+        $total = $pay->total_done - $pay->total_cut;
+
+        if($pay->type != "FSDRS"){
+            $matieres = explode('.',$op->numero);
+            if (strlen($matieres[0]) > 2){
+                $matiere = $matieres[2];
+            }else{
+                $matiere = $matieres[3];
+            }
+        }else{
+            $matiere = "";
+        }
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        if($prog == NULL){
+            $prog = (object) [];
+            $prog->code = "";
+            $prog->designation = "";   
+        }
+
+        $view ='pays.resume_pay';
+        if($this->ville_fr =="Medea"){
+            $view = $view."_medea";
+        }
+        if($this->ville_fr =="Mila"){
+            $view = $view."_mila";
+        }
+        if($this->lang =="fr"){
+            $view = $view."_fr";
+        }
+     
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
+        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
 
     }
     public function fiche($id)

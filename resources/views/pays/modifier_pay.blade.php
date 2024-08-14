@@ -121,7 +121,11 @@
                     <td><input name="etude" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="etude_cut" readonly @if($pay->etude_cut !=0) value="{{ $pay->etude_cut}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$"></td>
                     <td><input name="etude_done" @if($pay->etude_done != 0) value="{{ $pay->etude_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$"></td>
+                    @if($ville_fr =="Mila")
+                    <td>  أشغال منجزة  </td>
+                    @else
                     <td>  أشغال تامة  </td>
+                    @endif
                     <td>01</td>
                 </tr>
                 <tr>	
@@ -135,7 +139,11 @@
                     <td><input name="extra" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="extra_cut" readonly @if($pay->extra_cut !=0) value="{{ $pay->extra_cut}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="extra_done" @if($pay->extra_done != 0) value="{{ $pay->extra_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>  التسبيق على التموين </td>
+                    @else
                     <td>    أعمال إضافية   </td>
+                    @endif
                     <td>03</td>
                 </tr>
                 <tr>	
@@ -149,28 +157,40 @@
                     <td><input name="revision" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="revision_cut" readonly @if($pay->revision_cut !=0) value="{{ $pay->revision_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="revision_done" @if($pay->revision_done != 0) value="{{ $pay->revision_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
-                    <td>     مراجعة الاسعار    </td>
+                    <td>     مراجعة و تحيين الاسعار    </td>
                     <td>05</td>
                 </tr>
                 <tr>	
                   <td><input name="assurance" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="assurance_cut" @if($pay->assurance_cut !=0) value="{{ $pay->assurance_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="assurance_done" readonly @if($pay->assurance_done != 0) value="{{ $pay->assurance_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>  خصم الضمان </td>
+                    @else
                     <td>  استقطاع الضمان %5  </td>
+                    @endif
                     <td>06</td>
                 </tr>
                 <tr>	
                   <td><input name="avancement" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="avancement_cut" @if($pay->avancement_cut !=0) value="{{ $pay->avancement_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="avancement_done" readonly @if($pay->avancement_done != 0) value="{{ $pay->avancement_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>    تعويض التسبيقات الجــــزافية   </td>
+                    @else
                     <td>    استرجاع التسبيقات الجــــزافية   </td>
+                    @endif
                     <td>07</td>
                 </tr>
                 <tr>	
                   <td><input name="sanction" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="sanction_cut" @if($pay->sanction_cut !=0) value="{{ $pay->sanction_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="sanction_done" readonly @if($pay->sanction_done != 0) value="{{ $pay->sanction_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    @if($ville_fr =="Mila")
+                    <td>    تعويض  على التموين   </td>
+                    @else
                     <td>    العقوبــــــات    </td>
+                    @endif
                     <td>08</td>
                 </tr>
                 <tr>	
