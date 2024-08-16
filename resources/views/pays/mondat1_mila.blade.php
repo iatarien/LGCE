@@ -13,6 +13,7 @@
 				height:280mm;
 				width:420mm;
 				overflow-y : hidden !important;
+				overflow-x : hidden !important;
 				zoom : 110%;
 			}
 			
@@ -21,7 +22,7 @@
 			width: 420mm;
 			height: 280mm;
 			margin: auto;
-			margin-top: 5%;
+			margin-top: 2%;
 			font-size: 13px;
 			line-height: 1.5em;
 			-webkit-print-color-adjust: exact !important;
@@ -114,18 +115,16 @@ $ordre = $op->order_ville;
 <section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;" >
 		<div style="  display: inline-block; ">
-			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
-            <h3>    République Algérienne Démocratique et Populaire    </h3>
+			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية <br>  République Algérienne Démocratique et Populaire    </h3>
 		</div>
-		<br>
         <div style="width : 100%; background-color : lightgray" >
-            <h3>    حوالة الدفع </h3>
+            <h3>  T3  حوالة الدفع </h3>
         </div>
 		<div style="width : 100%;" >
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
         </div>
 		
-		<div style="  display: inline-block; max-width : 45%; " dir="rtl">
+		<div style="  display: inline-block; max-width : 35%; " dir="rtl">
         <table id="le_table">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
@@ -142,6 +141,11 @@ $ordre = $op->order_ville;
                     <td>{{$prog->code}}</td>
                     <td>{{$prog->designation}}</td>
                 </tr>
+				<tr>
+                    <td>البرنامج الفرعي </td>
+                    <td>{{$sous_prog->code}}</td>
+                    <td>{{$sous_prog->designation}}</td>
+                </tr>
                 <tr>
 				<td> النشاط</td>
 					<td>{{$op->activite}}</td>
@@ -154,8 +158,14 @@ $ordre = $op->order_ville;
                 </tr>
                 <tr>
                     <td>النشاط الفرعي </td>
+					@if($op->sous_action =="")
+					<td>/</td>
+					<td>/</td>
+					@else
 					<td>{{$op->sous_action}}</td>
 					<td></td>
+					@endif
+					
                 </tr>
         </table>
       <br>  
@@ -181,13 +191,16 @@ $ordre = $op->order_ville;
 				@endif
 
         </div>
-		<div style="  display: inline-block; width : 30%; float: right;">
+		<div style="  display: inline-block; width : 35%; float: right; margin-right : 5%;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
 			السنة المالية : {{ $pay->year}} <br>
-             رقم  الحوالة :  <br>
-             تاريخ  الحوالة :  <br>
-			 طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
-             رقم العملية : <span>{{$op->numero}}</span> <br>
+            رقم  الحوالة :  <br>
+            تاريخ  الحوالة :  <br>
+			@if($ville_fr =="Touggourt")
+			 موضوع النفقة : {{$txt1}} <br>
+			@endif
+			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
+            رقم العملية : <span>{{$op->numero}}</span> <br>
             عنوان العملية : <span>{{$op->intitule_ar}}</span> <br>
             <span dir="ltr"> {{$op->intitule}}</span> 
 			</h3>
@@ -207,7 +220,7 @@ $ordre = $op->order_ville;
                 </tr>
 				@else
 				<tr>
-					<td dir="rtl">  الخزينة RIB  : <span dir="rtl">ح ج ب رقم {{$compte_tresor}} الجزائر </span> </td>
+					<td dir="rtl">  الخزينة RIP/RIB  : <span dir="rtl">{{$compte_tresor}} الجزائر </span> </td>
                 </tr>
 				@endif
         	</table>
@@ -262,7 +275,12 @@ $ordre = $op->order_ville;
 				</td>
                 <td></td>
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-                <td>{!! nl2br($txt) !!}</td>
+				@if($ville_fr =="Mila")
+				<td>{!! nl2br($txt) !!}</td>
+				@else
+				<td>/</td>
+				@endif
+               
 				
             </tr>
 			<tr style="border : none;">
@@ -271,10 +289,16 @@ $ordre = $op->order_ville;
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
-		<div align= "center">
-		توقف الحوالة على المبـــلغ <br><b id="montant">   </b>
-		<div>
+		@if($ville_fr =="Touggourt")
 		<br>
+		<div align= "center">
+		توقف الحوالة على المبـــلغ بالأحرف : <b id="montant" style="border : 2px solid; padding : 5px 10px 5px 10px;">   </b>
+		<div>
+		@else
+		<div align= "center">
+		توقف الحوالة على المبـــلغ : <b id="montant">   </b>
+		<div>
+		@endif
 		
     </div>
 	

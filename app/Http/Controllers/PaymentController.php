@@ -290,7 +290,7 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-        if($this->ville_fr =="Mila"){
+        if($this->ville_fr =="Mila" || $this->ville_fr =="Touggourt"){
             $view = $view."_mila";
         }
 
@@ -299,8 +299,15 @@ class PaymentController extends Controller
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
         $txt = $txt."\n".$e->name;
+        $txt1 = " تسوية ";
+        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+            $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." للصفقة رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
+            
+        }
+        $txt1 = $txt1." المقدمة من طرف ".$e->name;
+        $txt1 = $txt1."   لمشروع ".$pay->lot;
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
-        "titre"=>$titre,'txt'=>$txt,
+        "titre"=>$titre,'txt'=>$txt,'txt1'=>$txt1,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
 
     }
