@@ -15,16 +15,10 @@
 		html,body{
 			height:297mm;
 	    	width:210mm;
+			overflow-y : hidden !important;
 		}
-        .pagebreak { 
-            clear: both;
-            break-after:page;
-            page-break-before: always; 
-            page-break-after: always; 
-        } /* page-break-after works, as well */
 		
 	}
-
 	html,body{
 	    height:287mm;
 	    width:210mm;
@@ -55,14 +49,7 @@
 
 
 </style>
-<?php 
-$j = 0;
-$debut = 0;
-$indice = 5;
-$tot = count($engs);
-$n = ceil($tot/$indice);
-$i = 1;
-//var_dump($conges); ?>
+
 </head>
 <body contenteditable="true">
 
@@ -90,7 +77,7 @@ $i = 1;
 			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">    جــــــــــدول إرســـــــــال  </h3>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-        <table>
+            <table>
                 <tr>
                     <th style="width : 5%;">الرقم </th>
                     <th style="width : 30%;"> رقم و تعيين العملية</th>
@@ -99,75 +86,42 @@ $i = 1;
                     <th style="width : 15%;">المبلغ</th>
                     <th style="width : 10%;">الملاحظة</th>
                 </tr>
-        </table>
-        <?php while($j < $n && $debut < $tot){
-                    // echo ("j = ".$j."<br>");
-                    // echo ("debut = ".$debut."<br>");
-                    // echo ("fin = ".$fin."<br>");
-                    // echo"<tr>";
-                    if( $j < 2 && $j > 0 ){
-                        $indice = 6;
-                        
-                    }
-                    
-
-                    $engss = array_slice($engs, $debut, $indice);  
-                    $j++;
-                    $debut += $indice;
-                     
-                //}
-                ?>
-            <table dir="rtl" style="border-left : none; border-right : none;">
-                <tr style="visibility : collapse; border : white !important;">
-                    <th style="width : 5%; border : white !important">الرقم </th>
-                    <th style="width : 30%; border : white !important"> رقم و تعيين العملية</th>
-                    <th style="width : 25%; border : white !important">موضوع الإلتزام</th>
-                    <th style="width : 15%; border : none; border : white !important ">المتعامل المتعاقد</th>
-                    <th style="width : 15%; border : none; border : white !important">المبلغ</th>
-                    <th style="width : 10%; border : none; border : white !important">الملاحظة</th>
-                </tr>
-                <?php 
-                $m = count($engss);
-                $eng = $engss[0]; ?>
+                <?php $i = 1;
+                $eng = $engs[0]; ?>
                 <tr>
-                    <td style="">{{$i}}</td>
-                    <td style=""><span style="text-decoration : underline" >
+                    <td style="width : 5%;">{{$i}}</td>
+                    <td style="width : 30%;"><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule_ar}}</td>
-                    <td style=";">{{$eng->real_sujet}}</td>
+                    <td style="width : 25%;">{{$eng->real_sujet}}</td>
                     @if($eng->name =="")
-                    <td >/</td>
+                    <td style="width : 15%;">/</td>
                     @else
-                    <td style="">{{$eng->name}}</td>
+                    <td style="width : 15%;">{{$eng->name}}</td>
                     @endif
-                    <td  style=""><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> دج</td>
-                    <td style="" rowspan="{{$m}}">للتأشيرة</td>
+                    <td  style="width : 15%;"><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> دج</td>
+                    <td style="width : 10%;" rowspan="{{$n}}">للتأشيرة</td>
                 </tr>
-                <?php array_shift($engss);?>
-                @foreach($engss as $eng)
+                <?php array_shift($engs);?>
+                @foreach($engs as $eng)
                 <?php $i++; ?>
                 <tr>
-                    <td style="">{{$i}}</td>
-                    <td style=""><span style="text-decoration : underline" >
+                    <td style="width : 5%;">{{$i}}</td>
+                    <td style="width : 30%;"><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule_ar}}</td>
-                    <td style="">{{$eng->real_sujet}}</td>
+                    <td style="width : 25%;">{{$eng->real_sujet}}</td>
                     @if($eng->name =="")
-                    <td style="">/</td>
+                    <td style="width : 20%;">/</td>
                     @else
-                    <td style="">{{$eng->name}}</td>
+                    <td style="width : 20%;">{{$eng->name}}</td>
                     @endif
-                    <td style=""><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> دج</td>
+                    <td style="width : 15%;"><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> دج</td>
                 </tr>
                 @endforeach
                 
             </table>
 	    </div>
-        @if($j <$n && $debut < $tot)
-        <div class="pagebreak"></div>
-        @endif
-
-            <?php $i++; } ?>
-        <br><br><br>
-        <div style="text-align : left; font-weight : bold; margin-left : 100px;">
+        <br><br><br><br>
+        <div style="text-align : left; font-weight : bold;">
         إمضـــــاء
         </div>
 </section>

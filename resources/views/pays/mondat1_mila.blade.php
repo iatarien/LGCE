@@ -261,7 +261,7 @@ $ordre = $op->order_ville;
             </tr>
 			<tr>
                 <td>{{$pay->numero_fiche}}</td>
-                <td>{{$prog->code}} {{$prog->designation}}</td>
+                <td>{{$sous_prog->code}} {{$sous_prog->designation}}</td>
                 <td>{{$titre->code}} {{$titre->definition}} <br>
                     {{$sous_titre->code}} {{$sous_titre->definition}}
                 </td>
@@ -329,7 +329,7 @@ $ordre = $op->order_ville;
 				<td colspan="2" style="background-color : lightgray;"> الإطار المخصص للمحاسب العمومي</td>
 			</tr>
 			<tr>
-                <td></td>
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td>المبلغ الإجمالي للدفع</td>
 			</tr>
 			<tr>
@@ -345,7 +345,7 @@ $ordre = $op->order_ville;
 				<td>إقتطاعات المحاسب العمومي </td>
 			</tr>
 			<tr>
-                <td></td>
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td>المبلغ الإجمالي الصافي للدفع</td>
 			</tr>
 		</table>

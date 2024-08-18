@@ -301,7 +301,7 @@ class PaymentController extends Controller
         $txt = $txt."\n".$e->name;
         $txt1 = " تسوية ";
         if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
-            $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." للصفقة رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
+            $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." لل".$pay->deal_type." رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
             
         }
         $txt1 = $txt1." المقدمة من طرف ".$e->name;
