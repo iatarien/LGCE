@@ -230,19 +230,23 @@ class EngagementController extends Controller
                "montant_2" => $sum_montant_2,
             ); 
             foreach($rebriques as $reb){
-                $start = substr($reb->code, 0, 3);
-                $q_Dad = 'SELECT * FROM `titres` WHERE code LIKE "%'.$start.'00%"';
-                $dad = DB::select(DB::raw($q_Dad));
-
-                if(count($dad) != 0){
-                    $dad = $dad[0];
-                    $dad->sous_AP = $reb->sous_AP;
-                    $dad->sous_cumul = $reb->sous_cumul;
-                    $dad->sous_montant = $reb->sous_montant;
-                    $dad->sous_montant_1 = $reb->sous_montant_1;
-                    $dad->sous_montant_2 = $reb->sous_montant_2;
-                    array_unshift($rebriques , $dad);
+                $la_fin = substr($reb->code, -2);
+                if($la_fin !== "00"){
+                    $start = substr($reb->code, 0, 3);
+                    $q_Dad = 'SELECT * FROM `titres` WHERE code LIKE "%'.$start.'00%"';
+                    $dad = DB::select(DB::raw($q_Dad));
+    
+                    if(count($dad) != 0){
+                        $dad = $dad[0];
+                        $dad->sous_AP = $reb->sous_AP;
+                        $dad->sous_cumul = $reb->sous_cumul;
+                        $dad->sous_montant = $reb->sous_montant;
+                        $dad->sous_montant_1 = $reb->sous_montant_1;
+                        $dad->sous_montant_2 = $reb->sous_montant_2;
+                        array_unshift($rebriques , $dad);
+                    }
                 }
+                
                 
                 
             }
@@ -303,6 +307,9 @@ class EngagementController extends Controller
 
         if($this->ville_fr =="Mila" ){
             $the_view = 'engs.mila';
+        }
+        if($this->ville_fr =="Touggourt" ){
+            $the_view = 'engs.touggourt';
         }
         // var_dump($tots);
         // return "";
