@@ -43,6 +43,7 @@
 		font-size: 15px;
 		padding: 7px;
 		width : 40%;
+		text-align :center;
 	}
 	#numero td:firs-child {
 
@@ -65,7 +66,7 @@
 
 	}
 	th {
-		background-color : lightgray;
+		background-color : rgba(240,240,240,1);
 
 	}
 	#sujet {
@@ -85,15 +86,15 @@
 	#engagement th {
 		border : 1px solid;
 		width: 20%;
-		font-size: 15px;
+		font-size: 13.5px;
 		padding : 5px;
 	}
 	#engagement td {
 		border : 1px solid;
 		/* font-weight: 700; */
-		padding: 0 3px 0 3px;
-		padding : 10px;
-        font-size: 15px;
+		padding: 0 1px 0 1px;
+		padding : 5px;
+        font-size: 13.5px;
 	}
 	#engagement td:nth-child(2) {
 		text-align : right;
@@ -124,7 +125,7 @@
 </head>
 <body id="boody" class="container" dir="rtl">
 
-<section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
+<section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px; margin-top : 5%;" id="fiche">
 	<div id="fiche_top">
         <div style=" width : 25%; display: inline-block; float: right; ">
 			<h3 style="margin: 0px 2px 0px 2px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
@@ -167,8 +168,7 @@
 		<div dir="rtl" style="float: right; text-align : right; width : 100%;">
 			<h3> تعيين العملية  : <span>{{$op->intitule_ar}}<span>   </h3>
             <h3> موضوع الدفع : <span>تسوية {{$sujet}} المبريمة مع {{$e->name}}</span>   </h3>
-            <br>
-            <h3></span> تركيب الدفع المقترح  </h3>
+            <h3> تركيب الدفع المقترح  </h3>
 		</div>
         <div style="width : 100%">
             <table id="numero" style="width : 15%; float : right;">
@@ -179,7 +179,7 @@
                     <td></td>
                 </tr>
             </table>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
 
 		<table id="engagement" contenteditable="true" dir="rtl" style="margin-top : 10px;">
@@ -190,6 +190,7 @@
                 <th style="width : 23%; border-right : none;">د ج للمبالغ</th>
 				<th style="width : 20%"> الملاحظات  </th>
             </tr>
+			<?php array_shift($titres); ?>
             @foreach($titres as $t)
             <tr style="text-align :  center; font-weight : bold" dir="ltr">
                 <td>{{$t->code}}</td>
@@ -205,6 +206,13 @@
             </tr>
             @endforeach
 			<tr style="text-align :  center; font-weight : bold" dir="ltr">
+				<td>{{$titre->code}} </td>
+                <td>مجموع {{$titre->definition}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+			<tr style="text-align :  center; font-weight : bold" dir="ltr">
 				<td></td>
                 <td>مبلغ العملية الغير موزعة</td>
                 <td></td>
@@ -215,46 +223,40 @@
 				<td></td>
                 <td>المجموع</td>
                 <td></td>
+                <td style="width : 23%;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
                 <td></td>
-                <td></td>
-            </tr>
-			<tr style="text-align :  center; font-weight : bold" dir="ltr">
-                <td>الصنف : {{$titre->code}} </td>
-                <td>{{$titre->definition}}</td>
-				<td>
-				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
-				
-                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
-            </tr>
-            
+            </tr>      
 		</table>
-		<br>
 	</div>
-    <br><br>
-    <table id="numero" style="width : 25%; float : right; text-align : right;">
-			<tr>
-				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				 مقبولة للدفع بحوالة
-                </td>
-			</tr>
-			<tr>
-                <td>رقم : ...................</td>
-			</tr>
-            <tr>
-                <td> بتاريخ : .....................</td>
-			</tr>
-		</table>
-    <div style="width: 90%; display: inline-block; float: right;">
-    <br>
-		<div align="left">
-            <p style="font-weight : bold; font-size : 18px;">
-            <span>  {{$ville}} في : ........................... </span><br><br><br>
-            </p>
-		</div>
-        <p style="font-weight : bold; font-size : 18px;" align="center">
-			<span>الأمر بالصرف</span>
-        </p>
+	<div dir="rtl" style="float: right; text-align : right; width : 100%;">
+			<h3> خلاصة </h3>
 	</div>
+	<table id="numero" style="width : 70%; float : right; text-align : right;" dir="ltr">
+		<tr  style=" background-color: rgb(245,245,245) !important; ">
+			<td> الدفع الخام</td>
+			<td> الدفع المزدوج</td>
+			<td> المدفوعات السابقة</td>
+			<td>  مبلغ العملية</td>
+		</tr>
+		<tr >
+			<td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
+			<td>{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
+			<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
+			<td>{{ number_format((float)$op->AP_act, 2, '.', ' ')}} </td>
+		</tr>
+	</table>
+    <br><br><br><br><br><br><br><br>
+    <table id="numero" style="width : 33%; float : right; text-align : center;">
+		<tr>
+			<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
+				حوالة رقم : &emsp;&emsp;&emsp;
+			</td>
+		</tr>
+		<tr>
+			<td>&emsp;</td>
+		</tr>
+
+	</table>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <div align="center" style="display : inline-block; width : 100%;">
@@ -293,6 +295,13 @@
 <script src="{{ url('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ url('js/jquery-1.8.3.min.js') }}"></script>
 <script type="text/javascript">
+	
+window.onload = function(){
+
+	html = document.getElementById('boody').innerHTML;
+	html = html.slice(1);
+	document.getElementById('boody').innerHTML = html;
+};
 window.onbeforeunload = function () {
     window.close();
 };

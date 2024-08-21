@@ -13,39 +13,41 @@
     }
     @media print {
         html,body{
-            height:280mm;
             width:420mm;
-            overflow-y : hidden !important;
-            zoom : 110%;
+            height:280mm;
+            float : none;
+            /* overflow-x : hidden !important;
+            overflow-y : hidden !important; */
+           /* zoom : 180%; */
         }
+        .pagebreak { 
+            clear: both;
+            break-after: page;
+            break-before: page;
+            page-break-before: always; 
+            page-break-after: always; 
+        } /* page-break-after works, as well */
+
         
     }
+    
     html body {
         width: 420mm;
         height: 280mm;
         margin: auto;
-        margin-top: 5%;
-        font-size: 13px;
+        float : none;
+        font-size: 16px;
         line-height: 1.5em;
         -webkit-print-color-adjust: exact !important;
-    }
-    html body {
-        width: 420mm;
-        height: 280mm;
-        margin: auto;
-        margin-top: 5%;
-        font-size: 13px;
-        line-height: 1.5em;
-        -webkit-print-color-adjust: exact !important;
+        /* overflow-x : hidden !important; */
     }
     #fiche {
         padding-top: 30px;
         font-weight: bold; 
-        display: inline-block; 
-        width: 100%;
-        max-height: 100%;
-        overflow: hidden;
-		}
+        
+        float : none;
+        /* overflow: hidden; */
+    }
     table{
     	width:100%;
 		margin-right: 0%;
@@ -115,8 +117,14 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
 </script>
 </head>
 <body contenteditable="true">
-
-<section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px; width : 80%; margin-left : 10%;" id="fiche">
+<?php $j = 0;
+$debut = 0;
+$indice = 6;
+$tot = count($engs);
+$n = ceil($tot/$indice);
+$i = 1;
+?>
+<section  style="background-color: white; text-align: center; font-size: 17px; margin: 20px; width : 100%;" id="fiche">
 	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;">
 		<div style="  display: inline-block; ">
 			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
@@ -159,7 +167,7 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
                 </tr>
         </table>
       <br>  
-        <div style="visibility : hidden">
+        <div style="display : none;">
                 @if($engs[0]->source == "PSC") 
 				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px; ">
 				302.145.001
@@ -198,19 +206,66 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
                 <tr>
                     <th rowspan="2" style="width : 8%;"> الرقم التسلسلي للحوالة </th>
                     <th rowspan="2" style="width : 12%;">البرنامج الفرعي</th>
-                    <th colspan="2" style="width : 24%;"> التقييد الميزانياتي</th>
-                    <th rowspan="2" style="width : 16%;">رقم بطاقة الالتزام</th>
+                    <th colspan="2" style="width : 28%;"> التقييد الميزانياتي</th>
+                    <th rowspan="2" style="width : 12%;">رقم بطاقة الالتزام</th>
                     <th colspan="2" style="width : 30%;">المبلغ</th>
                     <th rowspan="2" style="width : 10%;">تاريخ اصدار الحوالة</th>
                 </tr>
                 <tr>
                     <th style="width : 12%;"> الصنف</th>
-                    <th style="width : 12%;">الصنف الفرعي</th>
+                    <th style="width : 16%;">الصنف الفرعي</th>
                     <th style="width : 12%;"> الحوالة </th>
                     <th style="width : 12%;"> الصنف</th>
                 </tr>
-                <?php $i = 0; ?>
-                @foreach($engs as $eng)
+            </table>
+            <?php while($j < $n && $debut < $tot){
+                    // echo ("j = ".$j."<br>");
+                    // echo ("debut = ".$debut."<br>");
+                    // echo ("indice = ".$indice."<br>");
+                    // echo"<tr>";
+                    if( $j < 2 && $j > 0 ){
+                        $indice = 8;
+                        
+                    }
+                    
+
+                    $engss = array_slice($engs, $debut, $indice);  
+                    $j++;
+                    $debut += $indice;
+                     
+                //}
+                ?>
+            <table dir="rtl" style="border-left : none; border-right : none;">
+                <tr style="visibility : collapse; border : white !important;">
+                    <th rowspan="2" style="width : 8%; border : white !important"> الرقم التسلسلي للحوالة </th>
+                    <th rowspan="2" style="width : 12%; border : white !important">البرنامج الفرعي</th>
+                    <th colspan="2" style="width : 28%; border : white !important"> التقييد الميزانياتي</th>
+                    <th rowspan="2" style="width : 12%; border : white !important">رقم بطاقة الالتزام</th>
+                    <th colspan="2" style="width : 30%; border : white !important">المبلغ</th>
+                    <th rowspan="2" style="width : 10%; border : white !important">تاريخ اصدار الحوالة</th>
+                </tr>
+                <tr style="visibility : collapse; border : white !important;">
+                    <th style="width : 12%; border : white !important"> الصنف</th>
+                    <th style="width : 16%; border : white !important">الصنف الفرعي</th>
+                    <th style="width : 12%; border : white !important"> الحوالة </th>
+                    <th style="width : 12%; border : white !important"> الصنف</th>
+                </tr>
+                <?php 
+                $m = count($engss);
+                $eng = $engss[0]; ?>
+                <tr>
+                    <td></td>
+                    <td>َ{{$eng->sous_programme0->code}} - {{$eng->sous_programme0->designation}}</td>
+                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
+                    <td>َ{{$eng->sous_titre->code}} - {{$eng->sous_titre->definition}}</td></td>
+                    <td>{{$eng->numero_fiche}}</td>
+                    <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
+                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
+                    <td rowspan="{{$m}}"></td>
+                </tr>
+
+                <?php array_shift($engss);?>
+                @foreach($engss as $eng)
                 <?php $i++; ?>
                 <tr>
                     <td></td>
@@ -222,8 +277,14 @@ function subject2(deal,deal_num,deal_date,sujet,e,travaux_type,travaux_num,id){
                     <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
                 </tr>
                 @endforeach
+                
             </table>
 	    </div>
+        @if($j <$n && $debut < $tot)
+
+        <div class="pagebreak"></div>
+        @endif
+        <?php $i++; } ?>
         <br><br>
         <h3 style="text-align : right; font-weight : bold;">
         &emsp; الأمر بالصرف &emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;&emsp; &emsp;
@@ -289,7 +350,7 @@ function PrintElem(elem)
 function printdiv(printdivname) {
 	document.getElementById('bouton').style.display = "none";
 	document.getElementById('bouton_2').style.display = "none";
-    document.getElementsByTagName('body')[0].style.marginLeft = "25%";
+    //document.getElementsByTagName('body')[0].style.marginLeft = "25%";
 
 
    /* var footstr = "</body>";
@@ -301,7 +362,7 @@ function printdiv(printdivname) {
     print();
     document.getElementById('bouton').style.display = "inline-block";
 	document.getElementById('bouton_2').style.display = "inline-block";
-    document.getElementsByTagName('body')[0].style.marginLeft = "auto";
+    //document.getElementsByTagName('body')[0].style.marginLeft = "auto";
 
     return false;
 }

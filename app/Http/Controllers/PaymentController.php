@@ -512,21 +512,25 @@ class PaymentController extends Controller
         if($this->ville_fr =="Touggourt"){
             $view = $view."_touggourt";
         }
-    
+        $s_end = substr($sous_titre->code, -2);
+        
         $start = substr($titre->code, 0, 2);
         $q_titres = 'SELECT * FROM `titres` WHERE code LIKE "'.$start.'%" AND code LIKE "%00"';
         $titres = DB::select(DB::raw($q_titres));
 
-        $s_start = substr($sous_titre->code, 0, 3);
-        $ass = array($sous_titre);
-        for($i = 0; $i <count($titres); $i++){
-            $t_start = substr($titres[$i]->code, 0, 3);
-            if($t_start == $s_start){
-                echo $i."\n";
-                array_splice( $titres, $i+1, 0, $ass );
-                break;
+        if($s_end != "00"){
+            $s_start = substr($sous_titre->code, 0, 3);
+            $ass = array($sous_titre);
+            for($i = 0; $i <count($titres); $i++){
+                $t_start = substr($titres[$i]->code, 0, 3);
+                if($t_start == $s_start){
+                    echo $i."\n";
+                    array_splice( $titres, $i+1, 0, $ass );
+                    break;
+                }
             }
         }
+        
 
         // var_dump($titres);
         // return $q_titres;
