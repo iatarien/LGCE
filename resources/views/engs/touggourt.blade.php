@@ -208,13 +208,13 @@
 				<th>الرصيـــد  المتبقي</th>
 				<th> الإلتزام المـــقترح </th>
 				<th>الرصيـد الأولي</th>
-				<th>مجموع الإلتزامات السابقة</th>
+				<th>مجموع الإلتزامات المكتتبة</th>
 				<th>رخصة الإلتزام المفتوحة/المعدلة</th>
 				<th colspan="2" style="text-align : right; width : 30%"> الصنف / الصنف الفرعي </th>
 	
 			</tr>
 			<tbody id="with_all_e" style="display : none">
-			@if($insc == "true" )
+			@if($insc == "lol" )
 				@foreach($titres2 as $titre)
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 					<tr style='font-weight : 900;'>	
@@ -301,7 +301,7 @@
 				@endforeach
 			@endif
 			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
-			@if($insc =="true")
+			@if($insc =="lol")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
@@ -324,7 +324,7 @@
 			</tbody>
             
 			<tbody id="with_all" style="display : none">
-			@if($insc == "true" )
+			@if($insc == "lol" )
 				@foreach($titres as $titre)
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 					<tr style='font-weight : 900;'>	
@@ -405,7 +405,7 @@
 				@endforeach
 			@endif
 
-			@if($insc =="true")
+			@if($insc =="lol")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
@@ -453,7 +453,7 @@
 				@endif
 				@endforeach
 			@endforeach
-			@if($insc !="true")
+			@if($insc !="lol")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
@@ -500,7 +500,7 @@
 				@endif
 				@endforeach
 			@endforeach
-			@if($insc !="true")
+			@if($insc !="lol")
 			<tr style='font-weight : 900;'>	
 				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
 				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>

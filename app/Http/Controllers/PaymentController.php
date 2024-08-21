@@ -447,7 +447,9 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
+
         
+
         // if($this->lang =="fr"){
         //     $txt = " ";
         //     if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
@@ -467,6 +469,8 @@ class PaymentController extends Controller
 
         $txt = " ";
         if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+        }else{
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
         // if($pay->travaux_type  !="facture" && $pay->deal != null){
@@ -505,10 +509,30 @@ class PaymentController extends Controller
 	    if($this->ville_fr =="Ouargla"){
             $view = $view."_medea";
         }
-        // var_dump($prog);
-        // return "";
+        if($this->ville_fr =="Touggourt"){
+            $view = $view."_touggourt";
+        }
+    
+        $start = substr($titre->code, 0, 2);
+        $q_titres = 'SELECT * FROM `titres` WHERE code LIKE "'.$start.'%" AND code LIKE "%00"';
+        $titres = DB::select(DB::raw($q_titres));
+
+        $s_start = substr($sous_titre->code, 0, 3);
+        $ass = array($sous_titre);
+        for($i = 0; $i <count($titres); $i++){
+            $t_start = substr($titres[$i]->code, 0, 3);
+            if($t_start == $s_start){
+                echo $i."\n";
+                array_splice( $titres, $i+1, 0, $ass );
+                break;
+            }
+        }
+
+        // var_dump($titres);
+        // return $q_titres;
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,
-        'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id,"sous_prog"=>$sous_prog,"prog"=>$prog]);   
+        'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id,"sous_prog"=>$sous_prog,
+        "prog"=>$prog,"titres"=>$titres]);   
     }
     public function maitre_ouvrage($id)
     {   

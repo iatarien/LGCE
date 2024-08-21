@@ -49,7 +49,7 @@
             <th>  حساب مؤقت </th>
             @endif
             <th style="display : none"> بطاقة الدفع </th>
-            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
+            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Touggourt" || $ville_fr == "Mila")
             <th> بطاقة الدفع </th>
             @endif
             <th> إشعار بالتحويل </th>
@@ -103,7 +103,7 @@
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
             </td>
             @endif
-            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Mila")
+            @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Touggourt" || $ville_fr == "Mila")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
             </td>
