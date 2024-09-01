@@ -259,7 +259,8 @@
 				@endforeach
 			@else
 				@foreach($titres2 as $titre)
-					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
+					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 
+					|| $titre->sums["montant_1"] != 0 || $titre->id_titre == 128)
 					<tr style='font-weight : 900;'>	
 						<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
