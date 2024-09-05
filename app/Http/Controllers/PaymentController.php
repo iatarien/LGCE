@@ -295,10 +295,10 @@ class PaymentController extends Controller
         }
 
         $txt = " ";
-        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+        if($pay->travaux_type != "فاتورة  " && $pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        $txt = $txt."\n".$e->name;
+        $txt = $txt."\n حصة : ".$pay->lot."\n ".$e->name;
         $txt1 = " تسوية ";
         if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
             $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." لل".$pay->deal_type." رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
@@ -473,6 +473,7 @@ class PaymentController extends Controller
         }else{
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
+        $txt = $txt." حصة : ".$pay->lot."\n ".$e->name;
         // if($pay->travaux_type  !="facture" && $pay->deal != null){
         //     $txt = $txt.$pay->deal_type." ";
         // }
@@ -662,8 +663,13 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
+        $txt = " ";
+        if($pay->travaux_type != "فاتورة  " && $pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+        }
+        $txt = $txt."\n حصة : ".$pay->lot."\n ".$e->name;
 
-        return view($view,["user"=>$user,'pay'=>$pay,
+        return view($view,["user"=>$user,'pay'=>$pay,"txt"=>$txt,
         'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
         "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
 
@@ -786,6 +792,7 @@ class PaymentController extends Controller
         $non_termine_done = $request['non_termine_done'];
         $extra_done = $request['extra_done'];
         $avan_done = $request['avan_done'];
+
         $revision_done = $request['revision_done'];
         $assurance_done = $request['assurance_done'];
         $avancement_done = $request['avancement_done'];
@@ -827,6 +834,7 @@ class PaymentController extends Controller
         }
         $cumul_new = $cumul_old + $to_pay;
         $rebrique = DB::table('reb_pay')->insertGetId(['id'=>NULL,"cumul_old"=>$cumul_old,"cumul_new"=>$cumul_new,"op"=>$op]);
+        
         $id = DB::table('payments')->insertGetId(['etude_done' => $etude_done,
         'non_termine_done' => $non_termine_done,
         'extra_done' => $extra_done,
@@ -864,6 +872,15 @@ class PaymentController extends Controller
         "num_visa"=>$num_visa,
         "visa"=>$visa,
         ]);
+
+        if($this->ville_fr =="Mila"){
+            $rev1_done = $request['rev1_done'];
+            $rev2_done = $request['rev2_done'];
+            DB::table('payments')->where('id',$id)->
+            update(['rev1_done' => $rev1_done,'rev2_done' => $rev2_done]);
+        }
+        
+        
         return Redirect::to('/fiche_pay/'.$id);
 
     }
@@ -937,6 +954,13 @@ class PaymentController extends Controller
         "num_visa"=>$num_visa,
         "visa"=>$visa,
         ]);
+
+        if($this->ville_fr =="Mila"){
+            $rev1_done = $request['rev1_done'];
+            $rev2_done = $request['rev2_done'];
+            DB::table('payments')->where('id',$id)->
+            update(['rev1_done' => $rev1_done,'rev2_done' => $rev2_done]);
+        }
         return Redirect::to('/fiche_pay/'.$id);
         
         //return view('comptabilite.ajouter_pay',["user"=>$user,'id_eng'=>$id_eng]);

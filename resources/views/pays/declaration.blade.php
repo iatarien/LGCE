@@ -147,7 +147,7 @@ $ordre = $op->order_ville;
 		width : 28%; margin-right : 2%; margin-left : 2%;">
 			<table style="text-align : right">
 				<tr>
-					<td>المحاسب العمومي المخنص : <span>  السيد أمين الخزينة لولاية {{$ville}}  
+					<td>المحاسب العمومي المختص : <span>  السيد أمين الخزينة لولاية {{$ville}}  
 					</span>
 					</td>
                 </tr>

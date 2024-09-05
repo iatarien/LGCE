@@ -196,8 +196,8 @@
 				<b> مصادق عليها في :</b> {{$pay->date_visa}}<br>
 				<b> بمبلغ :</b> <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span><br>
 			</p>
-			<p dir="rtl"> <b>  نحن  والي ولاية {{$ville}} </b>
-				<b>رقم نظرا للحساب المؤقت رقم : </b> {{$pay->num}}<br>
+			<p dir="rtl"> <b>  نحن  والي ولاية {{$ville}} الممضي أسفله</b>
+				<b> نظرا للحساب المؤقت رقم  : </b> {{$pay->num}}<br>
 				<b> الذي تبين منه الأشغال المنجزة بتاريخ :</b> {{$pay->date_pay}}<br>
 			</p>
 				<table id="payement">
@@ -228,6 +228,26 @@
 						<td><span style="opacity : 0.3;"></span> :  خصم الضمان    </td>
 						<td style="display: none;">11</td>
 					</tr>
+					@if($pay->rev1_done != NULL && $pay->rev1_done != 0)
+					<tr>
+						<td style="text-align: center;"></td>
+						
+						<td> {{ number_format((float)$pay->rev1_done, 2, '.', ' ')}}</td>
+						
+						<td><span style="opacity : 0.3;"></span> :   مراجعة الاسعار   </td>
+						<td style="display: none;">11</td>
+					</tr>
+					@endif
+					@if($pay->rev2_done != NULL && $pay->rev2_done != 0)
+					<tr>
+						<td style="text-align: center;"></td>
+						
+						<td> {{ number_format((float)$pay->rev2_done, 2, '.', ' ')}}</td>
+						
+						<td><span style="opacity : 0.3;"></span> :    تحيين الاسعار   </td>
+						<td style="display: none;">11</td>
+					</tr>
+					@endif
 					<tr>
 						<td style="text-align: center;"></td>
 						

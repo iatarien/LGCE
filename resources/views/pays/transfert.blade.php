@@ -147,7 +147,7 @@ $ordre = $op->order_ville;
 		width : 28%; margin-right : 2%; margin-left : 2%;">
 			<table style="text-align : right">
 				<tr>
-					<td>المحاسب العمومي المخنص : <span>  السيد أمين الخزينة لولاية {{$ville}} 
+					<td>المحاسب العمومي المختص : <span>  السيد أمين الخزينة لولاية {{$ville}} 
 						<br>    
 					</span></td>
                 </tr>
@@ -164,16 +164,16 @@ $ordre = $op->order_ville;
             <br>
 		</div>
         
-		<div dir="rtl" style="  display: inline-block; width : 90%; font-weight :  normal; text-align : justify; ">
+		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
             <table>
                 <tr>
-                    <th style="width : 17.5%;">تحديد المستفيد  </th>
-					<th style="width : 20%;">رقم الحساب الدائن</th>
-					<th style="width : 7.5%;">البرنامج الفرعي  </th>
-                    <th style="width : 15%;">المبلغ</th>
-                    <th style="width : 15%;">اقتطاع المحاسب العمومي</th>
-                    <th style="width : 15%;">المبلغ الصافي للدفع</th>
-                    <th style="width : 10%;">المرجع و الملاحظة</th>
+                    <th style="width : 13%;">تحديد المستفيد  </th>
+					<th style="width : 18%;">رقم الحساب الدائن</th>
+					<th style="width : 12%;">البرنامج الفرعي  </th>
+                    <th style="width : 14%;">المبلغ</th>
+                    <th style="width : 14%;">اقتطاع المحاسب العمومي</th>
+                    <th style="width : 14%;">المبلغ الصافي للدفع</th>
+                    <th style="width : 15%;">المرجع و الملاحظة</th>
                 </tr>
                 <tr>
                     <td>{{$e->name}}</td>
@@ -184,7 +184,11 @@ $ordre = $op->order_ville;
                     <td dir="ltr">{{ number_format((float)$pay->total_done, 2, '.', ' ')}} </td>
                     <td dir="ltr">{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
                     <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
-                    <td>/َ</td>
+                    @if($ville_fr =="Mila")
+					<td>{!! nl2br($txt) !!}</td>
+					@else
+					<td>/</td>
+					@endif
                 </tr>
             </table>
 	    </div>

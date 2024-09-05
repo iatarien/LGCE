@@ -16,7 +16,16 @@ INSERT INTO `programme` VALUES (NULL, '143','الإدارة العامة',NULL,"
 UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 UPDATE `programme` SET portefeuille = "051" WHERE code = 143;
 
+UPDATE programme SET designation = REPLACE (designation, 'منشئات', 'منشآت')
+WHERE designation LIKE '%منشئات%';
 
+UPDATE programme SET designation = REPLACE (designation, 'منشات', 'منشآت')
+WHERE designation LIKE '%منشات%';
+
+UPDATE programme SET designation = REPLACE (designation, 'مشأت', 'منشآت')
+WHERE designation LIKE '%مشأت%';
+
+****************************************** FR **************************************************
 ALTER TABLE `company` ADD `lang` VARCHAR(3) NOT NULL AFTER `license`;
 ALTER TABLE `portefeuille` ADD `ministere_fr` TEXT NULL AFTER `ministere`;
 ALTER TABLE `programme` ADD `designation_fr` TEXT NULL AFTER `designation`;
@@ -43,3 +52,15 @@ UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 ALTER TABLE `operations` ADD `order_ville` TEXT NULL AFTER `user_id`;
 ALTER TABLE `company` CHANGE `compte_tresor` `compte_tresor` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 UPDATE `company` SET `compte_tresor` = 'الخزينة RIB : 008 43001 424444 3 00150 \r\nالخزينة RIP : 007 99999 0000 3 0005507 ' WHERE `company`.`id_comp` = 1;
+
+
+ALTER TABLE `payments` ADD `rev1_done` DOUBLE NULL AFTER `avan_done`, ADD `rev2_done` DOUBLE NULL AFTER `rev1_done`;
+
+UPDATE programme SET designation = REPLACE (designation, 'منشئات', 'منشآت')
+WHERE designation LIKE '%منشئات%'
+
+UPDATE programme SET designation = REPLACE (designation, 'منشات', 'منشآت')
+WHERE designation LIKE '%منشات%'
+
+UPDATE programme SET designation = REPLACE (designation, 'مشأت', 'منشآت')
+WHERE designation LIKE '%مشأت%'

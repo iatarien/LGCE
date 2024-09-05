@@ -13,10 +13,11 @@
 	}
 	@media print {
 		html, body {
-			height:100vh; 
+			height:297mm;
+	    	width:210mm;
 			margin: 0 !important; 
 			padding: 0 !important;
-			overflow: hidden;
+			/* overflow-y: hidden; */
 		}
 	}
 	html,body{
@@ -32,6 +33,7 @@
 	#fiche {
 		margin: 20px;
 		text-align: center;
+		margin-bottom : 5px;
 	}
 	#numero {
 		border-collapse: collapse;
@@ -82,7 +84,7 @@
 	}
 
 	#payement td {
-		font-size: 16px;
+		font-size: 15px;
 		font-weight: bold;
 		width: 50%;
 		padding: 5px 5px 5px 5px;
@@ -168,7 +170,7 @@
 		</div>
 </section>
 </div>
-<h4 style="float : right; margin-right : 5%;" dir="rtl">   دفعة جزئية : <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span>
+<h4 style="float : right; margin-right : 5%; margin-top : 0px;" dir="rtl">   دفعة جزئية : <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span>
 			</h4>
 <table id="payement" dir="ltr">
         <tr>
@@ -207,33 +209,59 @@
             <td><span style="opacity : 0.3;"></span>خصم الضمان    </td>
             <td>04</td>
         </tr>
+		<?php $i = 4; ?>
+		@if($pay->rev1_done != NULL && $pay->rev1_done != 0)
+		<?php $i++; ?>
+		<tr>
+            <td> {{ number_format((float)$pay->rev1_done, 2, '.', ' ')}}</td>
+            
+            <td> {{ number_format((float)$pay->rev1_done, 2, '.', ' ')}}</td>
+            
+            <td><span style="opacity : 0.3;"></span> مراجعة الاسعار   </td>
+            <td>0{{$i}}</td>
+        </tr>
+		@endif
+		@if($pay->rev2_done != NULL && $pay->rev2_done != 0)
+		<?php $i++; ?>
+		<tr>
+            <td> {{ number_format((float)$pay->rev2_done, 2, '.', ' ')}}</td>
+            
+            <td> {{ number_format((float)$pay->rev2_done, 2, '.', ' ')}}</td>
+            
+            <td><span style="opacity : 0.3;"></span>  تحيين الاسعار   </td>
+            <td>0{{$i}}</td>
+        </tr>
+		@endif
+		<?php $i++; ?>
         <tr>
-            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
+            <td> {{ number_format((float)$pay->revision_done, 2, '.', ' ')}}</td>
             
             <td> {{ number_format((float)$pay->revision_done, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span> مراجعة و تحيين الاسعار   </td>
-            <td>05</td>
+            <td>0{{$i}}</td>
         </tr>
+		<?php $i++; ?>
         <tr>
-            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
+            <td> {{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
             <td>{{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span>   تعويض على التسبيق الجــــزافي      </td>
-            <td>06</td>
+            <td>0{{$i}}</td>
         </tr>
-
+		<?php $i++; ?>
         <tr>
-            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
+            <td> {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
             <td>{{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span>تعويض  على التموين     </td>
-            <td>07</td>
+            <td>0{{$i}}</td>
         </tr>
 
     </table>
-<br><br><br><br>
+
 <div align="center" id="bouton">
+
 	<button  style="
 	  background-color: lightgray; /* Green */
 	  border: none;

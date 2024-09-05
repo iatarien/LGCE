@@ -153,6 +153,22 @@
                     <td><input name="avan_done" @if($pay->avan_done != 0) value="{{ $pay->avan_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td><td>    التسبيقات الجــــزافية   </td>
                     <td>04</td>
                 </tr>
+                @if($ville_fr =="Mila")
+                <tr>	
+                    <td><input name="rev1" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
+                    <td><input name="rev1_cut" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    <td><input name="rev1_done" @if($pay->rev1_done != 0) value="{{ $pay->rev1_done }}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    <td>  مراجعة الاسعار    </td>
+                    <td>05-A</td>
+                </tr>
+                <tr>	
+                    <td><input name="rev2" readonly class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
+                    <td><input name="rev2_cut" readonly style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    <td><input name="rev2_done" @if($pay->rev2_done != 0) value="{{ $pay->rev2_done }}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
+                    <td>    تحيين الاسعار</td>
+                    <td>05-B</td>
+                </tr>
+                @endif
                 <tr>	
                     <td><input name="revision" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="revision_cut" readonly @if($pay->revision_cut !=0) value="{{ $pay->revision_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
@@ -302,6 +318,9 @@ function numberWithCommas(x) {
 
 function somme(){
   var rebriques = ['etude','non_termine','extra','avan','revision','assurance','avancement','sanction','total'];
+  @if($ville_fr =="Mila")
+  var rebriques = ['etude','non_termine','extra','avan','revision','rev1','rev2','assurance','avancement','sanction','total'];
+  @endif
   var S_done = 0;
   var S_cut = 0;
     for(var i = 0;  i < rebriques.length -1; i++){

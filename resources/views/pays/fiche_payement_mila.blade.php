@@ -207,13 +207,13 @@ $sous = $sous_prog;
                 <td></td>
             </tr>
 		</table>
-		<div dir="rtl" style="float: right; margin-right: 30px; text-align : justify;">
-			<h3> موضوع الدفع : <span>{{$sujet}}<span></h3>
+		<div dir="rtl" style="float: right; margin-right: 30px; text-align : center;">
+			<h3> موضوع الدفع : <span>{!! nl2br($sujet) !!}<span></h3>
 		</div>
 		<br><br><br>
 		<table id="numero" >
 			<tr>
-				<td style=" background-color: lightgray !important; "> إطار مخصص لللأمر بالصرف</td>
+				<td style=" background-color: lightgray !important; text-align : center;"> إطار مخصص لللأمر بالصرف</td>
 			</tr>
 			<tr>
 				<td>
