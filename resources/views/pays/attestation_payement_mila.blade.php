@@ -228,7 +228,11 @@
 						<td><span style="opacity : 0.3;"></span> :  خصم الضمان    </td>
 						<td style="display: none;">11</td>
 					</tr>
-					@if($pay->rev1_done != NULL && $pay->rev1_done != 0)
+					<?php $yes = ""; ?>
+					@if(($pay->rev1_done != NULL && $pay->rev1_done != 0) || ($pay->rev2_done != NULL && $pay->rev2_done != 0))
+					<?php $yes = "yes"; ?>
+					@endif
+					@if(($pay->rev1_done != NULL && $pay->rev1_done != 0) || $yes =="yes")
 					<tr>
 						<td style="text-align: center;"></td>
 						
@@ -238,7 +242,7 @@
 						<td style="display: none;">11</td>
 					</tr>
 					@endif
-					@if($pay->rev2_done != NULL && $pay->rev2_done != 0)
+					@if(($pay->rev2_done != NULL && $pay->rev2_done != 0) || $yes =="yes")
 					<tr>
 						<td style="text-align: center;"></td>
 						
@@ -248,6 +252,7 @@
 						<td style="display: none;">11</td>
 					</tr>
 					@endif
+					@if(($pay->revision_done != NULL && $pay->revision_done != 0) || $yes =="" )
 					<tr>
 						<td style="text-align: center;"></td>
 						
@@ -256,6 +261,7 @@
 						<td><span style="opacity : 0.3;"></span> :   مراجعة و تحيين الاسعار   </td>
 						<td style="display: none;">11</td>
 					</tr>
+					@endif
 					<tr>
 						<td></td>
 						<td>{{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>

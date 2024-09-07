@@ -80,10 +80,14 @@
 	                </div>
 	              </div><br>
 	              <!-- Title -->
+				  <?php $readonly = "readonly"; ?>
+				  @if($ville_fr =="Touggourt")
+				  <?php $readonly = ""; ?>
+				  @endif
 	              <div class="form-group row">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">رقم العملية</label>
 	                <div class="col-lg-9">
-	                  <input readonly required="" dir="ltr" style="text-align : right" value="{{$op->numero}}" type="text" class="form-control" id="numero" name="numero">
+	                  <input {{$readonly}} required="" dir="ltr" style="text-align : right" value="{{$op->numero}}" type="text" class="form-control" id="numero" name="numero">
 	                </div>
 	              </div><br>
 	              <!-- Content -->

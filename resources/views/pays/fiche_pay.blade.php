@@ -100,7 +100,7 @@
             @endif
             @if($ville_fr == "Mila")
             <td>
-                <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
+                <a class="btn btn-default" target="_blank" href="/temporary/{{$id}}"> معاينة</a>
             </td>
             @endif
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Touggourt" || $ville_fr == "Mila")

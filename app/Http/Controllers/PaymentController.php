@@ -376,6 +376,48 @@ class PaymentController extends Controller
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,"id"=>$id]);
 
     }
+    public function temporary($id)
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','engagements.deal',"=","deals.id_deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->where('id',$pay->id_op)->first();
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
+        $total = $pay->total_done - $pay->total_cut;
+
+        if($pay->type != "FSDRS"){
+            $matieres = explode('.',$op->numero);
+            if (strlen($matieres[0]) > 2){
+                $matiere = $matieres[2];
+            }else{
+                $matiere = $matieres[3];
+            }
+        }else{
+            $matiere = "";
+        }
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        if($prog == NULL){
+            $prog = (object) [];
+            $prog->code = "";
+            $prog->designation = "";   
+        }
+
+        $view ='pays.temporary';
+
+     
+        return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
+        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
+
+    }
     public function resume_pay($id)
     {   
         $user = Auth::user();
@@ -473,7 +515,8 @@ class PaymentController extends Controller
         }else{
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        $txt = $txt." حصة : ".$pay->lot."\n ".$e->name;
+        $txt = $txt."\n ".$e->name;
+        // $txt = $txt." حصة : ".$pay->lot."\n ".$e->name;
         // if($pay->travaux_type  !="facture" && $pay->deal != null){
         //     $txt = $txt.$pay->deal_type." ";
         // }

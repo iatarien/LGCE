@@ -57,10 +57,10 @@ UPDATE `company` SET `compte_tresor` = 'الخزينة RIB : 008 43001 424444 3 
 ALTER TABLE `payments` ADD `rev1_done` DOUBLE NULL AFTER `avan_done`, ADD `rev2_done` DOUBLE NULL AFTER `rev1_done`;
 
 UPDATE programme SET designation = REPLACE (designation, 'منشئات', 'منشآت')
-WHERE designation LIKE '%منشئات%'
+WHERE designation LIKE '%منشئات%';
 
 UPDATE programme SET designation = REPLACE (designation, 'منشات', 'منشآت')
-WHERE designation LIKE '%منشات%'
+WHERE designation LIKE '%منشات%';;
 
 UPDATE programme SET designation = REPLACE (designation, 'مشأت', 'منشآت')
-WHERE designation LIKE '%مشأت%'
+WHERE designation LIKE '%مشأت%';

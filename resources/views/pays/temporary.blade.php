@@ -91,15 +91,12 @@
         text-align: center;
         border : 1px solid;
 	}
-	#payement td:nth-child(5) {
-        display : none;
-	}
 	#payement td:nth-child(2) {
         width : 35%;
 
 	}
 	#payement td:nth-child(3) {
-		width : 35%;
+		width : 15%;
 	}
 	#summary {
 		border-collapse: collapse;
@@ -122,29 +119,77 @@
 
 <section id="fiche">
 	<div>
-		<h3 style="text-decoration : underline;" >   التلخيــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــص  </h3>
+		<h3 >   الجمهورية الجزائرية الديمقراطية الشعبية   </h3>
 	</div>
-</div>
-	</h4>
-	<table id="payement" dir="ltr">
-        <tr>
-			<td style="text-align : center;">البـــــاقـــــــــــــــي</td>
-            <td style="text-align : center;">خصـــــــــــــم الضمــــــــان</td>
-            <td style="text-align : center;">نفقــــــــــــات متعــــــــددة</td>
-			<td style="text-align : center;">نوعيــــــــة النفقـــــــــات</td>
-            <td style="text-align : center;">#</td>
-        </tr>
+	<div style="text-align: center; width: 100%; display: inline-block;">
+		<div dir="rtl" style="display: inline-block; float: right; text-align: right;">
+            <h4> ولاية {{$ville}}</h4>
+            <h4> مديرية {{$direction}}</h4>
+            <br>
+			<h4> السنة المالية : {{$pay->year}}</h4>
+			<h4> محفظة البرنامج : {{$op->portefeuille}}&emsp;&emsp; وزارة {{$ministere}}</h4>
+			<h4>  البرنامج : {{$op->programme}} &emsp;&emsp; {{$prog->designation}}</h4>
+			<h4>  البرنامج الفرعي : {{$sous_prog->code}} &emsp;&emsp; {{$sous_prog->designation}}</h4>
+			<?php $act_txt = "";
+			if($op->source =="PSC"){
+				$act_txt = $act_txt. "نشاط ممركز ";
+			}else{
+				$act_txt = $act_txt. "نشاط غير ممركز ";
+			}
+			$act_txt = $act_txt." البرنامج الجاري لولاية ميلة";
+			?>	
+            <h4>  الــنشاط : {{$op->activite}} &emsp;&emsp; {{$act_txt}}</h4>
+			@if($op->sous_action !==NULL )
+			
+            <h4>   النشاط الفرعي : {{$op->sous_action}}</h4>
+			@else
+			<h4>   النشاط الفرعي : /</h4>
+			@endif
 
+
+
+		</div>
+	
+	</div>
+	<div style="display: inline-block; width: 100%;">
+		<div style="width: 60%; display: inline-block;">
+			<div align="center" dir="rtl">
+			
+			<div style="float: right; text-align: right;">
+			<p dir="rtl">
+				<b>رقم العملية :</b> {{$op->numero}}<br>
+				<b>عنوان العملية :</b> {{$op->intitule_ar}}<br><span dir="ltr">{{$op->intitule}}</span><br>
+                <b>{{$pay->deal_type }} رقم : </b> {{ $pay->deal_num}}<br>
+				<b> المشروع :</b> {{$pay->lot}}<br>
+				<b> المؤسسة :</b> {{$e->name}}<br>
+				<b> أشغال منجزة لنفقات منفذة بتاريخ :</b> {{$pay->date_pay}}<br>
+			</p>
+		</div>
+		<div style="width: 35%; display: inline-block; margin-left: 4%; float : right; visibility : hidden;">
+
+		</div>
+</section>
+</div>
+<h4 style="float : right; margin-right : 5%; margin-top : 0px;" dir="rtl">   دفعة جزئية : <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span>
+			</h4>
+<table id="payement" dir="ltr">
+        <tr>
+            <td colspan="2" style="text-align : center;">النفــــقات</td>
+            <td rowspan="2" style="text-align : center;">تحديد نوعية الأشغال</td>
+            <td rowspan="2" style="text-align : center;">الرقم التسلسلي للجدول</td>
+        </tr>
+        <tr>
+            <td style="text-align : center;">الباقي</td>
+            <td style="text-align : center;">الخام</td>
+        </tr>
         <tr>
             <td>{{ number_format((float)$pay->etude_done, 2, '.', ' ')}}</td>
-			<td></td>
             <td>{{ number_format((float)$pay->etude_done, 2, '.', ' ')}}</td>
             <td><span style="opacity : 0.3;"></span>   أشغال منجزة</td>
             <td>01</td>
         </tr>
         <tr>
             <td>{{ number_format((float)$pay->avan_done, 2, '.', ' ')}}</td>
-			<td></td>
             <td>{{ number_format((float)$pay->avan_done, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span> التسبيق الجزافي    </td>
@@ -152,32 +197,19 @@
         </tr>
         <tr>
             <td>{{ number_format((float)$pay->extra_done, 2, '.', ' ')}}</td>
-			<td></td>
             <td>{{ number_format((float)$pay->extra_done, 2, '.', ' ')}}</td>
-            <td><span style="opacity : 0.3;"></span>  التموين    </td>
+            <td><span style="opacity : 0.3;"></span>التسبيق على التموين    </td>
             <td>03</td>
         </tr>
-		<?php $i = 4; ?>
         <tr>
-            <td> {{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
-			<td></td>
-            <td>{{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
+            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
             
-            <td><span style="opacity : 0.3;"></span>   تعويض التسبيق الجــــزافي      </td>
-            <td>0{{$i}}</td>
-        </tr>
-		<?php $i = 5; ?>
-		<tr>
-            <td> {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
-			<td></td>
-            <td>{{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
+            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
             
-            <td><span style="opacity : 0.3;"></span>تعويض  التموين     </td>
-            <td>0{{$i}}</td>
+            <td><span style="opacity : 0.3;"></span>خصم الضمان    </td>
+            <td>04</td>
         </tr>
-		<?php $yes ="";?>
-        
-		
+		<?php $i = 4; $yes ="";?>
 
 		@if(($pay->rev1_done != NULL && $pay->rev1_done != 0) || ($pay->rev2_done != NULL && $pay->rev2_done != 0))
 		<?php $yes = "yes"; ?>
@@ -186,7 +218,7 @@
 		@if(($pay->rev1_done != NULL && $pay->rev1_done != 0) || $yes =="yes")
 		<tr>
             <td> {{ number_format((float)$pay->rev1_done, 2, '.', ' ')}}</td>
-            <td></td>
+            
             <td> {{ number_format((float)$pay->rev1_done, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span> مراجعة الاسعار   </td>
@@ -197,7 +229,7 @@
 		<?php $i++; $yes = "yes";?>
 		<tr>
             <td> {{ number_format((float)$pay->rev2_done, 2, '.', ' ')}}</td>
-            <td></td>
+            
             <td> {{ number_format((float)$pay->rev2_done, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span>  تحيين الاسعار   </td>
@@ -208,7 +240,7 @@
 		<?php $i++; ?>
         <tr>
             <td> {{ number_format((float)$pay->revision_done, 2, '.', ' ')}}</td>
-            <td></td>
+            
             <td> {{ number_format((float)$pay->revision_done, 2, '.', ' ')}}</td>
             
             <td><span style="opacity : 0.3;"></span> مراجعة و تحيين الاسعار   </td>
@@ -216,44 +248,26 @@
         </tr>
 		@endif
 		<?php $i++; ?>
-		<tr>
-			
-            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
-            <td> {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
-            <td></td>
-            <td><span style="opacity : 0.3;"></span>خصم الضمان    </td>
-            <td>0{{$i}}</td>
-        </tr>
-		<tr>
-			<td> {{ number_format((float)($pay->total_done - $pay->total_cut), 2, '.', ' ')}}</td>
-			<td> {{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
-            <td> {{ number_format((float)$pay->total_done, 2, '.', ' ')}}</td>
-            <td><span style="opacity : 0.3;"></span> المجموع    </td>
-            <td>0{{$i}}</td>
-        </tr>
         <tr>
-            <td> {{ number_format((float)$pay->old_payments, 2, '.', ' ')}}</td>
-            <td colspan="3" style="text-align : right;">طرح النفقــــــــات المنتسبـــــة إلـــى السنــــوات الماضيـــــــة</td>
+            <td> {{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
+            <td>{{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}}</td>
+            
+            <td><span style="opacity : 0.3;"></span>   تعويض على التسبيق الجــــزافي      </td>
+            <td>0{{$i}}</td>
         </tr>
-		<tr>
-            <td> {{ number_format((float)$pay->new_payment, 2, '.', ' ')}}</td>
-            <td colspan="3" style="text-align : right;"> الباقــــــي للدفــــــع علــــــــى السنــــــة الجاريــــــــة</td>
+		<?php $i++; ?>
+        <tr>
+            <td> {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
+            <td>{{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}}</td>
+            
+            <td><span style="opacity : 0.3;"></span>تعويض  على التموين     </td>
+            <td>0{{$i}}</td>
         </tr>
-		<tr>
-            <td> {{ number_format((float)$pay->this_year_cut, 2, '.', ' ')}}</td>
-            <td colspan="3" style="text-align : right;">يطرح مبلــــــغ الدفعـــــات الجزئيـــــة المسلمــة علـــى السنــة</td>
-        </tr>
-		<tr>
-            <td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-            <td colspan="3" style="text-align : right;">مبلــــغ الدفعـــــــــــــــات المسلمـــــــــــة</td>
-        </tr>
+
     </table>
-	<div align="center" dir="rtl">
-		<b> {{$ville}} في :  </b>
-		<br>
-	</div>
+
 <div align="center" id="bouton">
-<br>	<br>	<br>
+
 	<button  style="
 	  background-color: lightgray; /* Green */
 	  border: none;
