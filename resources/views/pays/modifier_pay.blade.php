@@ -74,7 +74,6 @@
 	      </div>
 	      <div class="panel-body">
 	        <div class="padd">
-
 	          <div class="form quick-post">
 	            <!-- Edit profile form (not working)-->
 	            <form class="form-horizontal" autocomplete="off" action="../update_pay" method="POST" onsubmit="event.preventDefault(); return change_nulls(this);">
@@ -92,18 +91,27 @@
                       <option value="فـــاتورة" >  فاتورة  </option>
                   </select>
 	              </div>
+                <div class="form-group">
+	                <div class="col-lg-8">
+	                  <input required="" value="{{$pay->date_pay}}" type="date" class="form-control" id="date_pay" name="date_pay">
+	                </div>
+                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  الأشغال المنفذة و المصاريف التي دفعت بتاريخ </label>
+	              </div>
+                @if($ville_fr =="Mila")
+                <div class="form-group">
+	                <div class="col-lg-8">
+	                  <input required=""  type="text" class="form-control" id="fiche_pay" name="fiche_pay" value="{{$pay->fiche_pay}}">
+	                </div>
+                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">   رقم  الحساب المؤقت</label>
+	              </div>
+                @endif
 	              <div class="form-group">
 	                <div class="col-lg-8">
 	                  <input required="" value="{{$pay->num}}"  type="text" class="form-control" id="num" name="num">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> رقم بطاقة الدفع</label>
 	              </div>
-                  <div class="form-group">
-	                <div class="col-lg-8">
-	                  <input required="" value="{{$pay->date_pay}}" type="date" class="form-control" id="date_pay" name="date_pay">
-	                </div>
-                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  الأشغال المنفذة و المصاريف التي دفعت بتاريخ </label>
-	              </div>
+                
 
                
                 

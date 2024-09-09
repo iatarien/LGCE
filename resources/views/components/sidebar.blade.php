@@ -165,9 +165,15 @@
         </a>
         <ul id="pays-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            @if($ville_fr =="Mila")
+            <a href="javascript:void(0)" onclick='multiple_pay()'>
+              <i class="bi bi-circle"></i><span> إضافة دفع</span>
+            </a>
+            @else
             <a href="/select/ajouter_pay/1" >
               <i class="bi bi-circle"></i><span> إضافة دفع</span>
             </a>
+            @endif
           </li>
           <li>
             <a href="/payments">

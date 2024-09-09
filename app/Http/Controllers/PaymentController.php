@@ -57,10 +57,19 @@ class PaymentController extends Controller
     {    
         $user = Auth::user();
         $view = 'pays.ajouter_pay';
+        $num = $this->get_last_num($id_eng);
+        $fiche = $this->get_last_fiche($id_eng);;
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-        return view($view,["user"=>$user,'id_eng'=>$id_eng,"n"=>$n]);
+
+        if(isset($num[0]->num)){
+            $num = $num[0]->num +1 ;
+        }
+        if(isset($fiche[0]->fiche_pay)){
+            $fiche = $fiche[0]->fiche_pay +1 ;
+        }
+        return view($view,["user"=>$user,'id_eng'=>$id_eng,"n"=>$n,"fiche"=>$fiche,"num"=>$num]);
     }
     public function index($type=""){
         $user = Auth::user();
@@ -295,12 +304,16 @@ class PaymentController extends Controller
         }
 
         $txt = " ";
-        if($pay->travaux_type != "فاتورة  " && $pay->travaux_num != null){
+        if($pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        $txt = $txt."\n حصة : ".$pay->lot."\n ".$e->name;
+        if($pay->travaux_type != "فـــاتورة"){
+            $txt = $txt."\n ".$pay->deal_type." رقم ".$pay->deal_num;
+        }
+        $txt = $txt."\n ".$e->name."\n ".$pay->lot;
+        
         $txt1 = " تسوية ";
-        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+        if($pay->travaux_num != null){
             $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." لل".$pay->deal_type." رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
             
         }
@@ -509,13 +522,17 @@ class PaymentController extends Controller
         //     }
         // }
 
+        
         $txt = " ";
-        if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
-            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
-        }else{
+        if($pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        $txt = $txt."\n ".$e->name;
+        if($pay->travaux_type != "فـــاتورة"){
+            $txt = $txt.". ".$pay->deal_type." رقم ".$pay->deal_num;
+        }
+        $txt = $txt.". ".$e->name.". ".$pay->lot;
+
+
         // $txt = $txt." حصة : ".$pay->lot."\n ".$e->name;
         // if($pay->travaux_type  !="facture" && $pay->deal != null){
         //     $txt = $txt.$pay->deal_type." ";
@@ -706,11 +723,15 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
+
         $txt = " ";
-        if($pay->travaux_type != "فاتورة  " && $pay->travaux_num != null){
+        if($pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
         }
-        $txt = $txt."\n حصة : ".$pay->lot."\n ".$e->name;
+        if($pay->travaux_type != "فـــاتورة"){
+            $txt = $txt."\n ".$pay->deal_type." رقم ".$pay->deal_num;
+        }
+        $txt = $txt."\n ".$e->name."\n ".$pay->lot;
 
         return view($view,["user"=>$user,'pay'=>$pay,"txt"=>$txt,
         'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
@@ -779,13 +800,23 @@ class PaymentController extends Controller
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
         return view('comptabilite.modifier_fiche_pay',["user"=>$user,'pay'=>$pay,'pay0'=>$pay0]);
     }
-    public function get_last_fiche($id){
-        $query = "SELECT id_op FROM engagements WHERE id IN (SELECT id_eng FROM payments WHERE id =".$id.")";
-        $op = DB::select( DB::raw($query))[0]->id_op;
-        $query = "SELECT fiche_pay from payments WHERE id_eng IN (SELECT id from engagements WHERE id_op = ".$op." ) AND fiche_pay IS NOT NULL ORDER BY id DESC LIMIT 1 ";
+    public function get_last_num($id){
+        $query = "SELECT id_op FROM engagements WHERE id =".$id;
+
+        $op0 = DB::select( DB::raw($query));
+        if(isset($op0[0])){
+            $op = $op0[0]->id_op;
+        }else{
+            return NULL;
+        }
+        
+        $query = "SELECT num from payments WHERE id_eng IN (SELECT id from engagements WHERE id_op = ".$op." ) AND num IS NOT NULL ORDER BY id DESC LIMIT 1 ";
         return DB::select( DB::raw($query));
     }
-   
+    public function get_last_fiche($id){
+        $query = "SELECT fiche_pay from payments WHERE id_eng = ".$id." AND fiche_pay IS NOT NULL ORDER BY id DESC LIMIT 1 ";
+        return DB::select( DB::raw($query));
+    }
     public function update_fiche(Request $request){
         $etude = $request['etude'];
         $genie_civil = $request['genie_civil'];
@@ -865,6 +896,11 @@ class PaymentController extends Controller
         $visa = $request['visa'];
         $id_eng = $request['id_eng'];
 
+        $fiche_pay = NULL;
+
+        if(isset($request['fiche_pay'])){
+            $fiche_pay = $request['fiche_pay'];
+        }
 
         $op = DB::table('engagements')->select('id_op')->where('id',$id_eng)->first()->id_op;
 
@@ -910,7 +946,7 @@ class PaymentController extends Controller
         'inserted_at'=>Date('Y-m-d'),
         'updated_at'=> NULL,
         'user_id'=>$user->id,
-        "fiche_pay"=>NULL,
+        "fiche_pay"=>$fiche_pay,
         "rebrique"=>$rebrique,
         "num_visa"=>$num_visa,
         "visa"=>$visa,
@@ -954,6 +990,13 @@ class PaymentController extends Controller
         $this_year_cut = $request['this_year_cut'];
         $to_pay = $request['to_pay'];
 
+        $fiche_pay = NULL;
+
+        if(isset($request['fiche_pay'])){
+            $fiche_pay = $request['fiche_pay'];
+        }
+
+
         $num = $request['num'];
         $date_pay = $request['date_pay'];
         $travaux_num = $request['travaux_num'];
@@ -996,6 +1039,7 @@ class PaymentController extends Controller
         'updated_at'=>Date('Y-m-d'),
         "num_visa"=>$num_visa,
         "visa"=>$visa,
+        "fiche_pay"=>$fiche_pay,
         ]);
 
         if($this->ville_fr =="Mila"){

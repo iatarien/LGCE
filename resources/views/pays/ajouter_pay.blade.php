@@ -102,41 +102,41 @@
 	              </div>
                 @else
                   <div class="form-group">
-                    <div class="col-lg-8">
-                      <input  type="text" class="form-control" id="travaux_num" name="travaux_num">
+                    <div class="col-lg-12">
+                      <input type="text" readonly class="form-control" id="travaux_num" name="travaux_num">
+                      <input type="hidden" id="date_pay" name="date_pay">
+                      <input type="hidden" id="travaux_type" name="travaux_type">
                     </div>
-                    <select class="form-control col-lg-4" name="travaux_type" style="width: 33%;">
+                  </div>
+                  @for ($i = 1; $i <= $n; $i++)
+                  <div class="form-group">
+                    <div class="col-lg-4">
+                      <input required="" onchange="change_txt()"  type="date" class="form-control" id="date_pay{{$i}}" name="date_pay{{$i}}">
+                    </div>
+                    <div class="col-lg-4">
+                      <input  required="" onkeyup="change_txt()" type="text" class="form-control" id="travaux_num{{$i}}" name="travaux_num{{$i}}">
+                    </div>
+                    <select onchange="change_txt()" onkeyup="change_txt()" class="form-control col-lg-4" id="travaux_type{{$i}}" name="travaux_type{{$i}}" style="width: 33%;">
                         <option value="وضعية الأشغال" > وضعية الأشغال رقم </option>
                         <option value="مذكرة أتعاب" > مذكرة أتعاب رقم </option>
                         <option value="فـــاتورة" >  فاتورة  </option>
                     </select>
+                    
                   </div>
-                  @for ($i = 1; $i <= $n; $i++)
-                    <div class="form-group">
-                      <div class="col-lg-8">
-                        <input required="" onkeyup="update_montant()" onchange="update_montant()" 
-                        type="number" class="form-control" step="0.01" id="montant{{$i}}" 
-                        placeholder="0.00">
-                      </div>
-                        <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title"> قيمة رقم {{$i}} </label>
-                    </div>
                   @endfor
-                  <div class="form-group row">
-                    <label  class="control-label col-sm-4" style="text-align : right; font-weight: bold;" for="title">  المجموع  </label>
-                    <div class="col-sm-8">
-                      <input readonly  required="" type="number" class="form-control" id="montant" name="montant" placeholder="0.00">
-                    </div>
-                  </div><br>
-                  <div class="form-group">
-                    <div class="col-lg-8">
-                      <input required="" type="date" class="form-control" id="date_pay" name="date_pay">
-                    </div>
-                      <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  الأشغال المنفذة و المصاريف التي دفعت بتاريخ </label>
-                  </div>
+
+                @endif
+                @if($ville_fr =="Mila")
+                <div class="form-group">
+	                <div class="col-lg-8">
+	                  <input required=""  type="text" class="form-control" id="fiche_pay" name="fiche_pay" value="0{{$fiche}}">
+	                </div>
+                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">   رقم  الحساب المؤقت</label>
+	              </div>
                 @endif
                 <div class="form-group">
 	                <div class="col-lg-8">
-	                  <input required=""  type="text" class="form-control" id="num" name="num">
+	                  <input required=""  type="text" class="form-control" id="num" name="num" value="0{{$num}}">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">   رقم بطاقة الدفع</label>
 	              </div>
@@ -326,6 +326,31 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
+function change_txt(){
+  n = "{{$n}}";
+  t_type = document.getElementById('travaux_type'+1).value;
+  t_num = document.getElementById('travaux_num'+1).value;
+  t_date = document.getElementById('date_pay'+1).value;
+  txt = t_num+" بتاريخ "+t_date+" ";
+
+  document.getElementById('travaux_type').value = t_type;
+  
+  for(var i = 2; i <= n; i++){
+    t_type = document.getElementById('travaux_type'+i).value;
+    t_num = document.getElementById('travaux_num'+i).value;
+    t_date = document.getElementById('date_pay'+i).value;
+    
+    if(i == n){
+      txt += "و "+t_type +" رقم "+t_num;
+      document.getElementById('date_pay').value = t_date;
+    }else{
+      txt += "و "+t_type +" رقم "+t_num+" بتاريخ "+t_date+" ";
+    }
+  }
+  document.getElementById('travaux_num').value = txt;
+}
+
 
 function update_montant(){
     const n = "{{$n}}";
