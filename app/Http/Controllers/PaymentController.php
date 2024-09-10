@@ -65,9 +65,13 @@ class PaymentController extends Controller
 
         if(isset($num[0]->num)){
             $num = $num[0]->num +1 ;
+        }else{
+            $num = 1;
         }
         if(isset($fiche[0]->fiche_pay)){
             $fiche = $fiche[0]->fiche_pay +1 ;
+        }else{
+            $fiche = 1;
         }
         return view($view,["user"=>$user,'id_eng'=>$id_eng,"n"=>$n,"fiche"=>$fiche,"num"=>$num]);
     }
