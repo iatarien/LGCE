@@ -127,16 +127,19 @@
 
                 @endif
                 @if($ville_fr =="Mila")
+                <?php $num = $the_year."/0".$num; ?>
                 <div class="form-group">
 	                <div class="col-lg-8">
 	                  <input required=""  type="text" class="form-control" id="fiche_pay" name="fiche_pay" value="0{{$fiche}}">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">   رقم  الحساب المؤقت</label>
 	              </div>
+                @else
+                <?php $num = "0".$num; ?>
                 @endif
                 <div class="form-group">
 	                <div class="col-lg-8">
-	                  <input required=""  type="text" class="form-control" id="num" name="num" value="0{{$num}}">
+	                  <input required=""  type="text" class="form-control" id="num" name="num" value="{{$num}}">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title">   رقم بطاقة الدفع</label>
 	              </div>

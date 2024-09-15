@@ -140,7 +140,7 @@ $sous = $sous_prog;
             <div style="display : inline-block" dir="rtl">
                 <div class="boold">
                     <span> &emsp;&emsp;  رقم بطاقة الدفع :&emsp;&emsp;</span>
-                    <span  style="border : 2px solid; padding : 5px 15px 5px 15px;"> {{$pay->year}}/{{ $pay->num }}</span> 
+                    <span  style="border : 2px solid; padding : 5px 15px 5px 15px;"> {{ $pay->num }}</span> 
                 </div>
                 <div class="boold">
                     <span> &emsp; التـــــاريخ :&emsp;&emsp;</span>
