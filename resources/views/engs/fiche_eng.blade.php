@@ -471,6 +471,12 @@
 			<h3> موضوع الإلتزام : <span>{{$eng->real_sujet}}<span></h3>
 		</div>
 		<br><br><br>
+		@if($ville_fr =="Ouled Djellal" && $eng->montant != 0 && $eng->type == "eng")
+		<h3><span style="text-decoration : underline">أوقف هذا الكشف عند مبلغ :</span>
+		<span id="montant"></span>
+		<h3>
+		<br>
+		@endif
 		<table id="numero" >
 			<tr>
 				<td style=" background-color: lightgray !important; "> إطار مخصص لللأمر بالصرف</td>
@@ -588,10 +594,16 @@
 <script src="{{ url('js/jquery.js') }}"></script>
 <script src="{{ url('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ url('js/jquery-1.8.3.min.js') }}"></script>
+<script src="{{ url('js/tagfeet.js') }}" ></script>
 <script type="text/javascript">
 window.onbeforeunload = function () {
     window.close();
 };
+@if($ville_fr =="Ouled Djellal")
+window.onload = function(){
+	convert({{$eng->montant}});
+};
+@endif
 document.getElementById('{{$pref_eng}}').style.display = "contents";
 $('input[type=radio]').on('change',function() {
 
@@ -631,7 +643,25 @@ $('input[type=radio]').on('change',function() {
 		document.getElementById('with_sous').style.display = "none";
 	}
 });
-
+function convert(num){
+	num = ""+ num;
+	var num1 = num;
+	var num2 = null
+	if(num.includes('.')){
+		num1 = parseInt(num.split(".")[0]);
+		num2 = parseInt(num.split(".")[1]);
+	}
+	if(num2 != null && num.split(".")[1].length == 1 ){
+		num2 = num2 *10;
+	}
+	var txt = nArabicWords(num1);
+	txt = txt.replace('ومليون', "و واحد مليون")
+	txt+= " "+"دينار جزائري";
+	if(num2 != null){
+		txt +=" "+"و"+" "+nArabicWords(num2)+" "+"سنتيم";
+	}
+	document.getElementById('montant').innerHTML = txt;
+}
 function PrintElem(elem)
 {
     var mywindow = window.open('', 'PRINT', 'height=400,width=600');
