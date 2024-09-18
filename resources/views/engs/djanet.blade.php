@@ -282,11 +282,11 @@
 			<tbody id="with_none" style="display : none">
 			@foreach($titres1 as $titre)
 				<tr style='font-weight : 900;'>	
-				<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
+					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
 					<td dir="rtl">
 						الصنف / 
 						{{$titre->code}}
