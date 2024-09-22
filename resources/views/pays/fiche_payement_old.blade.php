@@ -168,7 +168,264 @@
 				<td>{{ $op->numero }}</td>
 			</tr>
 		</table>
+		<table id="CF" style="border : none; text-align : center;">
+			<tr>
+				<td>  
+				@if($op->source == "PSC") 
+				<div id="stamp" style = "border : 5px solid red; margin-left : 10mm; width : 60%; font-weight : bold; color : red; font-size : 7mm;">
+				302.145.001
+				</div>
+				@elseif($op->source == "PSD")
+				<div id="stamp" style = "border : 5px solid red; margin-left : 10mm; width : 60%; font-weight : bold; color : red; font-size : 7mm;">
+				302.145.002
+				</div>
+				@elseif($op->source == "FSDRS")
+				<?php $sf = substr($op->numero, 0, 2); ?>
+					@if($sf == "SF")
+					<div id="stamp" style = "border : 5px solid red; margin-left : 10mm; width : 50%; font-weight : bold; color : red; font-size : 5mm;">
+					302.145.012
+					</div>
+					@else
+					<div id="stamp" style = "border : 5px solid red; margin-left : 10mm; width : 50%; font-weight : bold; color : red; font-size : 5mm;">
+					302.145.010
+					</div>
+					@endif
+				@endif
+				</td>
+			</tr>
 
+		</table>
+
+		<br>
+		
+		<table id="titles" >
+			<tr id="intitule">
+				<td><b>        {{ $op->intitule_ar }}   </b> </td>
+				<td style="text-decoration : underline; width: 200px;">     تعييــــــــــن العمليـــــــــــــــــة : </td>
+				
+				
+			</tr>
+			<tr>
+				<td><b>     {{ $sujet }}    </b></td>
+				<td style=" text-decoration : underline; font-weight: bold;"> موضوع الدفـــــــــــع : </td>
+				
+			</tr>
+		</table>
+		<br>
+
+		<div style=" border: 1px solid; display: inline-block; float: right;">
+			<h3 style="padding: 0px 5px 0px 5px;">     تركيـــــــب الدفـــــــــــــع المقتــــــــــــرح  </h3>
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<table id="payement" >
+			<tr>	
+				<th>     الملا حظــــــــــــــــــــات    </th>
+				<th>   المبــــــــــالـــــــــــغ   </th>
+				<th style=" border : none; text-align: right; width : 39%;">العنــــــــــــــــــــــــــــاويــــــــــن</th>
+				<th style="width: 5%; border : none;"></th>
+			</tr>
+			<tr>
+				<td></td>	
+				<td>@if($pay0->etude != 0 and $pay0->etude != NULL) {{ number_format((float)$pay0->etude, 2, '.', ' ')}} @endif</td>
+				<td>   الدراســــــات و/أو الهندســــــة  </td>
+				<td>01</td>
+			</tr>
+			<tr>
+				<td></td>	
+				<td>@if($pay0->genie_civil != 0 and $pay0->genie_civil != NULL) {{ number_format((float)$pay0->genie_civil, 2, '.', ' ')}} @endif</td>
+				<td>    البناء و ما يربط به  هندسة مدنية    </td>
+				<td>02</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->travaux_publics != 0 and $pay0->travaux_publics != NULL) {{ number_format((float)$pay0->travaux_publics, 2, '.', ' ')}} @endif</td>
+				<td>   الأشــــــغال العمــــــومية   </td>
+				<td>03</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->equipements != 0 and $pay0->equipements != NULL) {{ number_format((float)$pay0->equipements, 2, '.', ' ')}} @endif</td>
+				<td>    ألات و تجهيـــــــــــــــــــــــزات   </td>
+				<td>04</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->materiel_transport != 0 and $pay0->materiel_transport != NULL) {{ number_format((float)$pay0->materiel_transport, 2, '.', ' ')}} @endif</td>
+				<td>  عتاد النقــــــل ا ولتفريـــــــغ  </td>
+				<td>05</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->formation != 0 and $pay0->formation != NULL) {{ number_format((float)$pay0->formation, 2, '.', ' ')}} @endif</td>
+				<td>    التكويــــــــــــــــــــــــــــــــن   </td>
+				<td>06</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->travaux_exterieurs != 0 and $pay0->travaux_exterieurs != NULL) {{ number_format((float)$pay0->travaux_exterieurs, 2, '.', ' ')}} @endif</td>
+				<td>  تقديم الخدمـــــات الخارجيـــــة    </td>
+				<td>07</td>
+			</tr>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->publicite != 0 and $pay0->publicite != NULL) {{ number_format((float)$pay0->publicite, 2, '.', ' ')}} @endif</td>
+				<td>الإشهــــــــــــــــــــــــــــار </td>
+				<td>08</td>
+			</tr>
+			<?php $j = 8; ?>
+			@if($pay0->fonds != 0 and $pay0->fonds != NULL)  
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->fonds != 0 and $pay0->fonds != NULL) {{ number_format((float)$pay0->fonds, 2, '.', ' ')}} @endif</td>
+				<td> مال متداول إضافي </td>
+				<td>{{ $i }}</td>
+			</tr>
+			@endif
+			@if($pay0->env != 0 and $pay0->env != NULL)
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->env != 0 and $pay0->env != NULL) {{ number_format((float)$pay0->env, 2, '.', ' ')}} @endif</td>
+				<td> المنشات الأساسية المحيطة  </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->terrain != 0 and $pay0->terrain != NULL)  
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->terrain != 0 and $pay0->terrain != NULL) {{ number_format((float)$pay0->terrain, 2, '.', ' ')}} @endif</td>
+				<td>الأرضية </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->interets != 0 and $pay0->interets != NULL) 
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->interets != 0 and $pay0->interets != NULL) {{ number_format((float)$pay0->interets, 2, '.', ' ')}} @endif</td>
+				<td>الفوائد الاضافية </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->douane != 0 and $pay0->douane != NULL) 
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->douane != 0 and $pay0->douane != NULL) {{ number_format((float)$pay0->douane, 2, '.', ' ')}} @endif</td>
+				<td>حقوق الجمرك و الرسوم </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->stock != 0 and $pay0->stock != NULL)
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->stock != 0 and $pay0->stock != NULL) {{ number_format((float)$pay0->stock, 2, '.', ' ')}} @endif</td>
+				<td>المخزون الأدنى </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->suiv != 0 and $pay0->suiv != NULL)
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->suiv != 0 and $pay0->suiv != NULL) {{ number_format((float)$pay0->suiv, 2, '.', ' ')}} @endif</td>
+				<td> متـــــابعة </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->tech != 0 and $pay0->tech != NULL)
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->tech != 0 and $pay0->tech != NULL) {{ number_format((float)$pay0->tech, 2, '.', ' ')}} @endif</td>
+				<td> مراقبة تقنيــــة </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			@if($pay0->labo != 0 and $pay0->labo != NULL)
+			
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->labo != 0 and $pay0->labo != NULL) {{ number_format((float)$pay0->labo, 2, '.', ' ')}} @endif</td>
+				<td> مخبـــــر </td>
+				<td>{{ $i}}</td>
+			</tr>
+			@endif
+			<?php $j++;
+			$i = $j;
+			if($j< 10){
+				$i = "0".$i;
+			}
+			?>
+			<tr>	
+				<td></td>
+				<td>@if($pay0->montant_libre != 0 and $pay0->montant_libre != NULL) {{ number_format((float)$pay0->montant_libre, 2, '.', ' ')}} @endif</td>
+				<td>   مبلـــــــــــــــــــــــغ غير موزع  </td>
+				<td>{{ $i}}</td>
+			</tr>
+			<tr>	
+
+				<td></td>
+				<td>{{ number_format((float)$pay0->total, 2, '.', ' ')}}</td>
+				<td style="border : none; text-align: right;" >المجمـــــــــــــــوع</td>
+				<td style="border : none;" ></td>
+			</tr>
+		</table>
 		<div style=" display: inline-block; float: right; margin-right: 30px; ">
 			<h3 style="font-weight: bold;"> خـــــــــلاصـــــــــــــــــــــــــــة   </h3>
 		</div>

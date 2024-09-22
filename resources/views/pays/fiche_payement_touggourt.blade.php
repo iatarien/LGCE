@@ -296,12 +296,6 @@
 <script src="{{ url('js/jquery-1.8.3.min.js') }}"></script>
 <script type="text/javascript">
 	
-window.onload = function(){
-
-	html = document.getElementById('boody').innerHTML;
-	html = html.slice(1);
-	document.getElementById('boody').innerHTML = html;
-};
 window.onbeforeunload = function () {
     window.close();
 };

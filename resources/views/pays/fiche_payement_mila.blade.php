@@ -305,9 +305,8 @@ function printdiv(printdivname) {
 		document.getElementById('bouton_3').style.display = "none";
 	}
 
-
-
     print();
+	
     document.getElementById('bouton').style.display = "inline-block";
 	document.getElementById('bouton_2').style.display = "inline-block";
 	if(document.getElementById('bouton_3')){

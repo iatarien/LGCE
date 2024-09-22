@@ -562,21 +562,26 @@ class PaymentController extends Controller
         }
 
         $view ="pays.fiche_payement";
+        
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-        if($this->ville_fr =="Medea"){
+        if($this->ville_fr =="Medea" ){
             $view = $view."_medea";
         }
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-	    if($this->ville_fr =="Ouargla"){
+	    if($this->ville_fr =="Ouargla" ){
             $view = $view."_medea";
         }
         if($this->ville_fr =="Touggourt"){
             $view = $view."_touggourt";
         }
+        if($this->ville_fr =="Ouled Djellal"){
+            $view = $view."_51";
+        }
+        
         $s_end = substr($sous_titre->code, -2);
         
         $start = substr($titre->code, 0, 2);
@@ -589,7 +594,7 @@ class PaymentController extends Controller
             for($i = 0; $i <count($titres); $i++){
                 $t_start = substr($titres[$i]->code, 0, 3);
                 if($t_start == $s_start){
-                    echo $i."\n";
+                    // echo $i."\n";
                     array_splice( $titres, $i+1, 0, $ass );
                     break;
                 }

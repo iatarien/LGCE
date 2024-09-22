@@ -43,6 +43,7 @@
 		font-size: 15px;
 		padding: 7px;
 		width : 40%;
+		text-align :center;
 	}
 	#numero td:firs-child {
 
@@ -65,7 +66,7 @@
 
 	}
 	th {
-		background-color : lightgray;
+		background-color : rgba(240,240,240,1);
 
 	}
 	#sujet {
@@ -85,17 +86,19 @@
 	#engagement th {
 		border : 1px solid;
 		width: 20%;
-		font-size: 15px;
+		font-size: 13.5px;
 		padding : 5px;
 	}
 	#engagement td {
 		border : 1px solid;
 		/* font-weight: 700; */
-		padding: 0 3px 0 3px;
-		padding : 10px;
-        font-size: 15px;
+		padding: 0 1px 0 1px;
+		padding : 5px;
+        font-size: 13.5px;
 	}
-
+	#engagement td:nth-child(2) {
+		text-align : right;
+	}
 	#CF {
 		float: left;
 		border-collapse: collapse;
@@ -122,117 +125,126 @@
 </head>
 <body id="boody" class="container" dir="rtl">
 
-<section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
+<section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px; margin-top : 5%;" id="fiche">
 	<div id="fiche_top">
-    <div style="display : inline-block; width : 100%;" dir="ltr">
-            <div class="boold">
-                <h2 style="text-decoration : underline;">بــطــاقــة الــدفــع</h2>
-            </div>
-        </div>
-        <div style=" width : 25%; border: 1px solid; display: inline-block; float: right; background-color: rgb(245,245,245) !important; ">
-			<h3 style="padding: 0px 5px 0px 5px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
+        <div style=" width : 25%; display: inline-block; float: right; ">
+			<h3 style="margin: 0px 2px 0px 2px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
 		</div>
+        <div style="display : inline-block; width : 100%;" dir="ltr">
+            <div class="boold">
+                <h2 style="text-decoration : underline; margin: 0px 2px 0px 2px;">بــطــاقــة الــدفــع</h2>
+            </div>
+        </div>	
 		
-		<br>
-		<table id="numero" style="width : 25%; float : left; margin-left : 10%;">
-			<tr>
-				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				رقم بطاقة الإلتزام   </td>
+        <div style="width : 100%"><br>	<br></div>
+        <table id="numero" style="width : 25%; float : left;">
+            <tr>
+                <td>رقم البطاقة</td>
+                <td> بطاقة الإلتزام</td>
+
 			</tr>
 			<tr>
+                <td>{{ $pay->num }}</td>
                 <td>{{ $pay->numero_fiche }}</td>
 			</tr>
+
 		</table>
-        <div style="width : 100%"><br><br><br><br><br></div>
-        <table id="numero" style="width : 25%; float : left;">
-			<tr>
-				<td colspan="2" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				رقم البطاقة</td>
-			</tr>
-			<tr>
-                <td>{{ $pay->year }}</td>
-                <td>{{ $pay->num }}</td>
-			</tr>
-            <tr>
-                <td>السنة</td>
-				<td>الرقم</td>
-			</tr>
+        <table id="numero" style="width : 15%; float : right;">
+
 		</table>
-		<table id="numero" style="width : 70%; float : right;">
+		<table id="numero" style="width : 50%; float : right; margin-right : 5%;">
 			<tr>
-				<td style="width: 90%; background-color: rgb(245,245,245) !important; "> رقم الــــــعمـــلــــــــــــــية</td>
-                <td style="width : 10%"></td>
+				<td style="width: 100%;"> رقم الــــــعمـــلــــــــــــــية</td>
 			</tr>
 			<tr>
 				<td>{{ $op->numero }}</td>
-                <td>N</td>
-			</tr>
-            <tr>
-				<td></td>
-                <td>برنامج</td>
 			</tr>
 		</table>
-        
-
 		<div dir="rtl" style="float: right; text-align : right; width : 100%;">
-			<h3> عنوان العملية  : <span>{{$op->intitule_ar}}<span>   </h3>
-            <h3> موضوع الدفع : <span>{{$sujet}}</span>   </h3>
-            <br>
-            <h3 style="text-decoration : underline;"> <span style="visibility : hidden;">&emsp;&emsp;</span> هيكل المدفوعات المقترح  </h3>
+			<br>
+			<h3> تعيين العملية  : <span>{{$op->intitule_ar}}<span>   </h3>
+            <h3> موضوع الدفع : <span>تسوية {{$sujet}} المبريمة مع {{$e->name}}</span>   </h3>
+            <h3> تركيب الدفع المقترح  </h3>
 		</div>
-		<br>
+        <div style="width : 100%">
 
-		<br><br><br><br><br><br><br><br><br>
-		<table id="engagement" contenteditable="true" dir="rtl" >
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+
+		<table id="engagement" contenteditable="true" dir="rtl" style="margin-top : 10px;">
 			<tr>	
-                <th>الصنف / الصنف الفرعي</th>
-                <th>العنوان</th>
-                <th>  المدفوعات السابقة</th>
-				<th>  الدفع المقترح  </th>
-				<th>  مجموع المدفوعات </th>
+                <th style="width : 10%"></th>
+                <th style="width : 40%">العناوين</th>
+                <th style="width : 23%; border-right : none;">د ج للمبالغ</th>
+				<th style="width : 20%"> الملاحظات  </th>
+            </tr>
+			<?php array_shift($titres); ?>
+            @foreach($titres as $t)
+            <tr style="text-align :  center; font-weight : bold" dir="ltr">
+                <td>{{$t->code}}</td>
+                <td>{{$t->definition}}</td>
+				@if($t->code == $sous_titre->code)
+				<td style="width : 23%;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
+				@else
+				<td style="width : 23%;"></td>
+				@endif
+                <td></td>
+            </tr>
+            @endforeach
+			<tr style="text-align :  center; font-weight : bold" dir="ltr">
+				<td>{{$titre->code}} </td>
+                <td>مجموع {{$titre->definition}}</td>
+                <td></td>
+                <td></td>
+
             </tr>
 			<tr style="text-align :  center; font-weight : bold" dir="ltr">
-                <td>الصنف : {{$titre->code}} </td>
-                <td>{{$titre->definition}}</td>
-				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
-				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
-                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
+				<td></td>
+                <td>مبلغ العملية الغير موزعة</td>
+                <td></td>
+                <td></td>
+
             </tr>
-            <tr style="text-align :  center; font-weight : bold" dir="ltr">
-                <td>الصنف الفرعي : {{$sous_titre->code}}</td>
-                <td>{{$sous_titre->definition}}</td>
+			<tr style="text-align :  center; font-weight : bold" dir="ltr">
+				<td></td>
+                <td>المجموع</td>
+                <td style="width : 23%;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
+
                 <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                
+            </tr>      
 		</table>
-		<br>
 	</div>
-    <br><br>
-    <table id="numero" style="width : 25%; float : right; text-align : right;">
-			<tr>
-				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				 مقبولة للدفع بحوالة
-                </td>
-			</tr>
-			<tr>
-                <td>رقم : ...................</td>
-			</tr>
-            <tr>
-                <td> بتاريخ : .....................</td>
-			</tr>
-		</table>
-    <div style="width: 90%; display: inline-block; float: right;">
-    <br>
-		<div align="left">
-            <p style="font-weight : bold; font-size : 18px;">
-            <span>  {{$ville}} في : ........................... </span><br><br><br>
-            </p>
-		</div>
-        <p style="font-weight : bold; font-size : 18px;" align="center">
-			<span>الأمر بالصرف</span>
-        </p>
+	<div dir="rtl" style="float: right; text-align : right; width : 100%;">
+			<h3> خلاصة </h3>
 	</div>
+	<table id="numero" style="width : 90%; float : right; text-align : right;" dir="ltr">
+		<tr  style=" background-color: rgb(245,245,245) !important; ">
+            <td> الملاحظات </td>
+			<td> الدفع الخام</td>
+			<td> الدفع المزدوج</td>
+			<td> المدفوعات السابقة</td>
+		</tr>
+		<tr >
+            <td></td>
+			<td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
+			<td>{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
+			<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
+
+		</tr>
+	</table>
+    <br><br><br><br><br><br><br><br>
+    <table id="numero" style="width : 33%; float : right; text-align : center;">
+		<tr>
+			<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
+				حوالة رقم : &emsp;&emsp;&emsp;
+			</td>
+		</tr>
+		<tr>
+			<td>&emsp;</td>
+		</tr>
+
+	</table>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <div align="center" style="display : inline-block; width : 100%;">
@@ -271,6 +283,7 @@
 <script src="{{ url('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ url('js/jquery-1.8.3.min.js') }}"></script>
 <script type="text/javascript">
+
 window.onbeforeunload = function () {
     window.close();
 };
@@ -309,8 +322,9 @@ function printdiv(printdivname) {
 		document.getElementById('bouton_3').style.display = "none";
 	}
 
+
+
     print();
-	
     document.getElementById('bouton').style.display = "inline-block";
 	document.getElementById('bouton_2').style.display = "inline-block";
 	if(document.getElementById('bouton_3')){
@@ -327,6 +341,7 @@ jQuery(document).bind(" keydown", function(e){
 		printdiv('fiche');
 		return false;
     }
+	
 });
 </script>
 </body>
