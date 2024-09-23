@@ -125,7 +125,7 @@ $n = ceil($tot/$indice);
 $i = 1;
 ?>
 <section  style="background-color: white; text-align: center; font-size: 17px; margin: 20px; width : 100%;" id="fiche">
-	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;">
+	<div id="fiche_top" style="margin-right : 5%; margin-left : 5%;">
 		<div style="  display: inline-block; ">
 			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
             <h3>    République Algérienne Démocratique et Populaire    </h3>
