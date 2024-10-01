@@ -306,7 +306,9 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila" || $this->ville_fr =="Touggourt"){
             $view = $view."_mila";
         }
-
+        if($this->ville_fr =="Ouled Djellal"){
+            $view = $view."_51";
+        }
         $txt = " ";
         if($pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;

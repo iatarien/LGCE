@@ -5,25 +5,28 @@
 	<style type="text/css">
 		@page {
 			size: auto;   /* auto is the initial value */
-			size: A3 landscape;
+			size: A4 landscape;
 			margin: 0;  /* this affects the margin in the printer settings */
 		}
 		@media print {
 			html,body{
-				height:280mm;
-				width:420mm;
+				height:210mm;
+	    	    width:275mm;
+				margin-left : 4%;
 				overflow-y : hidden !important;
-				zoom : 110%;
+				zoom : 100%;
 			}
 			
 		}
 		html body {
-			width: 420mm;
-			height: 280mm;
+			height:210mm;
+            width:275mm;
 			margin: auto;
-			margin-top: 5%;
-			font-size: 13px;
-			line-height: 1.5em;
+		
+			margin-top: 2%;
+			font-size: 12px;
+			line-height: 1em;
+
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
@@ -35,16 +38,16 @@
 			overflow: hidden;
 		}
 		#sarf {
-			border : 1px solid;
+			border : 2px solid;
 			border-collapse : collapse;
 			width : 100%;
 		}
 		#sarf td {
-			border : 1px solid;
+			border : 2px solid;
 			padding: 3px;
 		}
 		#sarf th {
-			border : 1px solid;
+			border : 2px solid;
 			padding: 3px;
 		}
 		#things {
@@ -53,7 +56,7 @@
 			
 		}
 		#things td {
-			border : 1px solid;
+			border : 2px solid;
 			padding: 5px;
 		}
 		#big-tab {
@@ -63,7 +66,7 @@
 			
 		}
 		#big-tab td {
-			border : 1px solid;
+			border : 2px solid;
 			padding: 5px;
 			vertical-align: top;
 		}
@@ -75,7 +78,7 @@
 			
 		}
 		#bottom-left td {
-			border : 1px solid;
+			border : 2px solid;
 			padding: 5px;
 			width: 50%;
 		}
@@ -88,9 +91,9 @@
         République Algerienne Democratique et Populaire
     </h3>
 	<div style="float: right; width: 60%;" id="top-right">
-		<div style="width: 40%; display: inline-block; text-align: center; float: right; margin-right: 10%;">
+		<div style="width: 40%; display: inline-block; text-align: center; float: right;">
 
-			<br><br>
+
 			<table id="sarf">
 				<tr>
 					<th> 
@@ -107,7 +110,7 @@
 				
 			</table>
 		</div>
-		<div style="width: 30%; margin-top: 5%; margin-right: 10%; text-align: center; float: right;">
+		<div style="width: 30%; margin-top: 1%; margin-right: 10%; text-align: center; float: right;">
 			<table id="things">
 				<tr>
                     <td colspan="2" style="background-color : lightgray">حوالة الدفع</td>
@@ -133,7 +136,7 @@
 		</div>
 	</div>
 	<div style="width: 40%; float: right; text-align: center; visibility : hidden;" id="top-left">
-		<br><br><br><br><br><br>
+		<br><br><br><br><br>
 		@if($op->source == "PSC") 
 				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 8mm;">
 				302.145.001
@@ -158,8 +161,8 @@
 		<br><br><br>
 
 	</div>
-    <div style="width: 35%; margin-right: 5%; float: right;">
-        <br><br>
+    <div style="width: 35%; margin-top : 3%;  float: right;">
+        
         <table id="things" dir="rtl">
             <tr>
                 <td colspan="2" style="background-color : lightgray;
@@ -193,9 +196,9 @@
             </tr>
 
         </table>
-        <br>
+        
     </div>
-    <div style="width: 35%; margin-right: 20%; float: right;">
+    <div style="width: 50%; margin-right: 5%; float: right;">
         <p style="text-align : center">القيد الميزانياتي و المحاسبي</p>
         <table id="things" dir="rtl">
             <tr>
@@ -266,7 +269,7 @@
         <br>
     </div>
     <br>
-    <div style="width: 90%; margin-right: 5%; float: right;">
+    <div style="width: 90%;  float: right;">
     <table id="things" dir="rtl" style="text-align: center">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
@@ -319,10 +322,12 @@
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
+	
 		<div align= "center">
+		<br><br>
 		حــــدد المبـــلغ <br><b id="montant">   </b>
 		<div>
-		<br>
+		
 		
     </div>
 	
@@ -347,7 +352,7 @@
 
 	</div>
 	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 12px;">
-		<table id="bottom-left">
+		<table id="bottom-left" style = " margin-top : -25%;">
 			<tr>
 				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
 				<td>المبلغ الخام</td>
@@ -441,17 +446,10 @@ function convert(num){
 }
 function printdiv(printdivname) {
 	document.getElementById('bouton').style.display = "none";
-	//document.getElementsByTagName('body')[0].style.marginRight = "30%";
-	//document.getElementsByTagName('body')[0].style.marginLeft = "25%";
-   /* var footstr = "</body>";
-    var newstr = document.getElementById(printdivname).innerHTML;
-    var oldstr = document.body.innerHTML;
-    document.body.innerHTML = ""+newstr+footstr;
-    window.print();
-    document.body.innerHTML = oldstr;*/
+
     print();
     document.getElementById('bouton').style.display = "block";
-	//document.getElementsByTagName('body')[0].style.marginLeft = "auto";
+
     return false;
 }
 jQuery(document).bind(" keydown", function(e){
