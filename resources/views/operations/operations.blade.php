@@ -56,7 +56,7 @@ table {
 					@endforeach
 				</select>
 			</div>
-			<div class="col-lg-2 form-group">
+			<div class="col-lg-1 form-group">
 				<select class="form-control" onchange="filter('source',this.value);">
 					<option style="visibility : hidden"> النشاط</option>
 					<option value="PSD">(PSD)</option>
@@ -80,7 +80,11 @@ table {
                       @endforeach
                     </div>
 			</div>
-			
+			<div class="col-lg-1 form-group">
+				<button style="cursor : pointer" onclick="situation()" class="btn btn-basic">
+					<img style="max-width : 60%;" src="{{ url('img/print.png') }}">
+				</button>
+			</div>
 
 
 		</div>
@@ -219,6 +223,35 @@ function load_ops(value){
 	}
 	filter("","",value);
 }
+
+function situation(){
+	Swal.fire({
+      title: "Date de l'etat",
+	  html: '<input type="date" required id="date_situation" class="form-control">',
+
+      confirmButtonText : 'ok',
+      cancelButtonText : "annuler",
+      showCancelButton : true,
+      closeOnCancel: false
+	}).then((result) => {
+		if (result.value) {
+			date = document.getElementById("date_situation").value;
+			if(date ==""){
+				return;
+			}
+			const portefeuille = "{{$porte}}";
+			const filters = ['programme','source','year'];
+			var query = "";
+			for(var i =0; i<filters.length; i++){
+				query += document.getElementById("filters-"+filters[i]).innerHTML+"*1989*";
+			}
+			var url = "/situation/"+date+"/"+portefeuille+"/"+query;
+			document.location.href = url;
+		}
+	});
+}
+
+
 function display(operations,value,order){
 	const user_id = "{{$user->id}}";
 	var user_service = "{{ $user->service }}";

@@ -214,6 +214,12 @@ class OperationsController extends Controller
     {
         $user = Auth::user();
         $op = DB::table('operations')->where('id',$id)->first();
+        $cp = DB::table("cp")->where('ze_op',$id)->where('year',$this->year)->first();
+        if($cp != NULL && !empty($cp)){
+            $cp = $cp->montant_cp;
+        }else{
+            $cp = 0;
+        }
         $portefeuilles= DB::table('portefeuille')->orderBy("code","ASC")->get();
         $p = DB::table("portefeuille")->where("code",$op->portefeuille)->first();
         $programmes = DB::table("programme")->whereNull("parent")->where("portefeuille",$p->code)->get();
@@ -228,7 +234,7 @@ class OperationsController extends Controller
             $view = 'operations.modifier_operation_fr';
         }
         return view($view,
-        ['user'=>$user,'op'=>$op,
+        ['user'=>$user,'op'=>$op,"cp"=>$cp,
         "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,
         "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps]);
     }
@@ -263,6 +269,13 @@ class OperationsController extends Controller
             DB::table('operations')->where('id',$id)->
             update(['order_ville'=>$request['order_ville']]);
         }
+        $cp = 0;
+        if(isset($request['cp'])){
+            $cp = $request['cp'];
+        }
+        DB::table('cp')->
+        insert(["ze_op"=>$id,"montant_cp"=>$cp,
+        "year"=>$this->year]);
         return Redirect::to('/operations_ar/all');
     }
 
@@ -311,8 +324,17 @@ class OperationsController extends Controller
             update(['num_cloture'=>$num_cloture,'date_cloture'=>$date_cloture]);
 
         }
- 
+        if(isset($request['cp'])){
+            $cp = $request['cp'];
+            DB::table('cp')->where('ze_op',$id)->where('year',$this->year)->delete();
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp,
+            "year"=>$this->year]);
+        }
+        
         return Redirect::to('/operations_ar/all');
     }
+
+    
     
 }

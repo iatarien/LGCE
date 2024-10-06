@@ -188,6 +188,8 @@ Route::get('/get_last_sous/{op}/{sous}','SamController@get_last_sous');
 Route::get('/sam/{secteur}','SamController@operations');
 Route::get('/sam_cumul/{portefeuille}/{filters?}/{op?}','SamController@get_cumul');
 
+Route::get('/situation/{date}/{portefeuille}/{filters?}/{op?}/','SamController@situation');
+
 Route::get('/sam_cumul_clotures/{portefeuille}/{filters?}/{op?}','SamController@get_cumul_clotures');
 
 

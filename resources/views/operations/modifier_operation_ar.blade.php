@@ -148,7 +148,12 @@
 	                  <input dir="ltr" style="text-align : right;" value="{{$op->AP_act}}" type="number" step="0.01" placeholder="0.00" class="form-control" id="AP_act" name="AP_act">
 		            </div>
                   </div><br>
-				 
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" type="number" step="0.01" placeholder="0.00" class="form-control" id="CP" name="cp" value="{{$cp}}">
+		            </div>
+                  </div><br>
 				  <div class="form-group row ">
 				  	<label  class="control-label col-lg-3" style="text-align : left;" for="content">مقرر غلق العملية</label>
 	              	<div class="col-lg-9">

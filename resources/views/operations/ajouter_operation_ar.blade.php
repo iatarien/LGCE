@@ -116,7 +116,12 @@
 	                  <input dir="ltr" style="text-align : right;" type="number" step="0.01" placeholder="0.00" class="form-control" id="AP_init" name="AP_init">
 		            </div>
                   </div><br>
-
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" step="0.01" placeholder="0.00" class="form-control" id="CP" name="cp">
+		            </div>
+                  </div><br>
 
 	              <!-- Buttons -->
 	              <div class="form-group" align="center">
