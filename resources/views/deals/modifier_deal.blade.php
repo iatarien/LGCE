@@ -103,7 +103,22 @@
                       <input  type="date" class="form-control" value="{{$deal->deal_date}}" id="deal_date" name="deal_date" style="color: black;" >
                     </div> 
                   </div><br>
-                  
+                  @if($ville_fr =="Mila")
+                  <div class="form-group row">
+                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  تاريخ الإمضاء </label>
+	                <div class="col-sm-7">
+	                  <input  type="date" class="form-control" id="signed" name="signed" value="{{$deal->signed}}">
+	                </div>
+                  </div><br>
+                  @endif
+                  @if($ville_fr =="Mila")
+                  <div class="form-group row">
+                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> تاريخ المصادقة من طرف لجنة الصفقات العمومية</label>
+	                <div class="col-sm-7">
+	                  <input type="date" class="form-control" id="visa_cmw" name="visa_cmw" value="{{$deal->visa_cmw}}">
+	                </div>
+                  </div><br>
+                  @endif
                   <div class="form-group row">
                     <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  قيمة ال{{$deal->deal_type}}</label>
 	                <div class="col-sm-7">

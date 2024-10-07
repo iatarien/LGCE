@@ -254,6 +254,7 @@ class DealController extends Controller
         $inserted_at = Date('Y-m-d');
         $updated_at = null;
         $observations = "";
+        
         $id = DB::table('deals')->
         insertGetId(["id_op"=>$id_op,"deal_type"=>$deal_type,
         "deal_num"=>$deal_num,'deal_date'=>$deal_date,'lot'=>$lot,
@@ -261,6 +262,13 @@ class DealController extends Controller
         'bank'=>$bank,'duree'=>$duree,'taux'=>$taux,
         'inserted_at'=>$inserted_at,"observations"=>$observations,
         'updated_at'=>$updated_at,"user_id"=>$user_id]);
+
+        if(isset($request['signed']) && isset($request['visa_cmw'])){
+            $signed = $request['signed'];
+            $visa_cmw = $request['visa_cmw'];
+            DB::table('deals')->where('id_deal',$id)->
+            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw]);
+        }
         return Redirect::to('/deals/all');
     }
     public function add_avenant(Request $request){
@@ -345,6 +353,14 @@ class DealController extends Controller
         'parent'=>$parent,'montant'=>$montant,'entreprise'=>$entreprise,
         'duree'=>$duree,'taux'=>$taux,'updated_at'=>$updated_at,
         "observations"=>$observations]);
+
+        if(isset($request['signed']) && isset($request['visa_cmw'])){
+            $signed = $request['signed'];
+            $visa_cmw = $request['visa_cmw'];
+            DB::table('deals')->where('id_deal',$id)->
+            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw]);
+        }
+
         return Redirect::to('/deals/all');
     }
     public function delete($id)

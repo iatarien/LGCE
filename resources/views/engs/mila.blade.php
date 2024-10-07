@@ -165,8 +165,8 @@ $ordre = $eng->order_ville;
 			?>	
             <h3>  رمز الــنشاط : {{$eng->activite}} &emsp;&emsp; {{$act_txt}}</h3>
 			@if($eng->sous_action !==NULL )
-			
-            <h3>  رمز النشاط الفرعي : {{$eng->sous_action}}</h3>
+			<?php $sousy = explode(".",$eng->sous_action)[0]; ?>
+            <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif

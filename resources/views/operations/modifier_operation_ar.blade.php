@@ -81,9 +81,9 @@
 	              </div><br>
 	              <!-- Title -->
 				  <?php $readonly = "readonly"; ?>
-				  @if($ville_fr =="Touggourt")
+
 				  <?php $readonly = ""; ?>
-				  @endif
+
 	              <div class="form-group row">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">رقم العملية</label>
 	                <div class="col-lg-9">

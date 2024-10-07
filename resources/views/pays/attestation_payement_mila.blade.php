@@ -192,8 +192,10 @@
 				<b>عنوان العملية :</b> {{$op->intitule_ar}}<br><span dir="ltr">{{$op->intitule}}</span><br>
 				<b> المشروع :</b> {{$pay->lot}}<br>
 				<b> المؤسسة :</b> {{$e->name}}<br>
-				<b> أشغال موجودة بال{{$pay->deal_type}} بتاريخ :</b> {{$pay->deal_date}}<br>
-				<b> مصادق عليها في :</b> {{$pay->date_visa}}<br>
+				<b> أشغال موجودة بال{{$pay->deal_type}} بتاريخ :</b> {{$pay->signed}}<br>
+				@if(isset($pay->visa_cmw) && $pay->visa_cmw != null)
+				<b> مصادق عليها في:</b> {{$pay->visa_cmw}}<br>
+				@endif
 				<b> بمبلغ :</b> <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span><br>
 			</p>
 			<p dir="rtl"> <b>  نحن  والي ولاية {{$ville}} الممضي أسفله</b>
