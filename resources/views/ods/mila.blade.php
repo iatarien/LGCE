@@ -23,7 +23,7 @@
 	    height:287mm;
 	    width:210mm;
 	    margin: auto;
-	    line-height: 1.6;
+	    line-height: 1.5;
 	    -webkit-print-color-adjust: exact !important;
 	}
 
@@ -32,7 +32,14 @@
 
 </head>
 <body contenteditable="true">
-
+<?php 
+function convert_date($var){
+	if($var == ""){
+		return "/";
+	}
+	return date("d-m-Y", strtotime($var) );
+}
+?>
 <section  style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div style="  display: inline-block; text-decoration : underline; ">
@@ -49,6 +56,9 @@
 		$sujet = $ods->lot; 
 		$op = $ods->numero; 
 		$intitule = $ods->intitule_ar;
+		if($intitule ==""){
+			$intitule = $ods->intitule;
+		}
 		$num = $ods->ods_num;
 		if($num <10){
 			$num = "0".$num;
@@ -60,20 +70,21 @@
 		
 		
 		?>
-		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
+		<div style="  display: inline-block; text-align : justify; float: left; max-width : 50%; " dir="rtl">
             <h4 style=""> 
+                 - رقم العملية:    <strong>{{$op}}</strong> 
                 <br>
-                 رقم العملية:    <strong>{{$op}}</strong> 
+                - عنوان العملية : <strong> {{$intitule}} </strong>
                 <br>
-                عنوان العملية : <strong> {{$intitule}} </strong>
+                - عنوان المشروع : <strong> {{$ods->lot}} </strong>
+				<?php $alayha = "عليها";
+				if($deal =="عقد"){ $alayha = "عليه"; } ?>
                 <br>
-                عنوان المشروع : <strong> {{$ods->lot}} </strong>
+				- موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
+					 {{convert_date($ods->visa_cmw)}} تحت رقم  {{$num}} و من طرف المراقب المالي بتاريخ 
+					 {{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> 
                 <br>
-                   ال{{$deal}} رقم : <strong>{{$deal_num}}</strong> 
-                <br>
-                و ذلك من أجل : <strong> {{$sujet}} </strong>
-                <br>
-                مبــرمة مع : <strong>{{$e}}<strong>
+
                 
             </h4>
 		</div>
@@ -86,86 +97,71 @@
             مكتب المنازعات الصفقات و الأرشيف
 
 			</h3>
-            <h3 style="text-align : right;" >     الرقم التسلسلي للسجل:  {{$num}} &emsp;/{{$year}}  </h3>
+            <h3 style="text-align : right;" >     الرقم التسلسلي للسجل: &emsp;&emsp;/{{$year}}  </h3>
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
-			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">     أمر مصلحي ب{{$ods_type}}   </h3>
+			<h2 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">     أمر  بالخدمة رقم {{$num}}   </h2>
 		</div>
-		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-			 أعطي الأمر لـ : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
-			
-			
-			 هذا الأمر المصلحي المصادق عليه بأنه مطابق للنسخة الأصلية المسجلة تحت رقم : &emsp;&emsp;/{{$year}}<br>
-			@if($cause != NULL and $cause != "")
-				السبب : {{$cause}} <br>
-			@endif
+		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  bold; text-align : justify; font-size : 3.8mm;">
+		السيد / {{$e}} مدعو لـ : <br>  
+		01- {{$ods_type}} بتاريخ {{convert_date($ods_date)}} 
+		موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
+		{{convert_date($ods->visa_cmw)}} تحت رقم  {{$num}} و من طرف المراقب المالي بتاريخ 
+		{{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> الخاص بمشروع {{$intitule}} <br>
+		الحصة : {{$sujet}}<br>
+		@if($cause != NULL and $cause != "")
+			السبب : {{$cause}} <br>
+		@endif
+		02-  يستلم نسخة من هذا الأمر بالخدمة.<br>
+		يشهد على مطابقة هذا الأمر بالخدمــة للنسخة المقيدة بالسجل تحت رقم: &emsp;&emsp;/{{$year}}
+		<br>
+		و سيبلغ إلى : {{$e}} الكائن مقره بـ
+		  : حي بوتلياتين الرواشد ــ ميلـــة ــ من طرف السيد
+		
+		: مـديـر {{$direction}} لولايـة {{$ville}} .                                                               
 
-			 سيبلغ للسيد : <strong>{{$e}}</strong> <br>
-			@if($user->service =="Suivi") 
-			عن طريق السيد : رئيس مصلحة متابعة العمليات المنجزة
-			@elseif($user->service =="Etude")
-			عن طريق السيد : رئيس مصلحة الدراسة و التقويم
-			@else
-			عن طريق السيد : رئيس مصلحة الإدارة و الوسائل
-			@endif
 		</div>
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
-			<span>         <span style="color : black;">{{$ods_date}}</span> {{$ville}} في        </span>
+			<span>         <span style="color : black;">{{convert_date($ods_date)}}</span> {{$ville}} في        </span>
+		</div>
+		<br><br><br>
+		<div style="font-size: 16px; font-weight: bold; float: right ;margin-right: 20px;" >
+			<span style=" text-decoration : underline;">        رئيس المصلحة       </span>
+		</div>
+		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
+			<span style=" text-decoration : underline;">       المــــدير      </span>
 		</div>
 
 	</div>
 
 </section>
-<br>
+<br><br><br>
 <hr>
 <section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
-
-		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style=""> 
-                <br>
-                 رقم العملية:    <strong>{{$op}}</strong> 
-                <br>
-                عنوان العملية : <strong> {{$intitule}} </strong>
-                <br>
-                   ال{{$deal}} رقم : <strong>{{$deal_num}}</strong> 
-                <br>
-                و ذلك من أجل : <strong> {{$sujet}} </strong>
-                <br>
-                مبــرمة مع : <strong>{{$e}}<strong>
-                
-            </h4>
-		</div>
 		<div style="  display: inline-block; float: right; ">
-		<h3 style="text-align : right;"> {{$ministere}}<br>
-			ولاية {{$ville}}  
-			<br>  
-			مديرية {{$direction}}
-			@if ($user->service == "Suivi")
-			<br> مصلحة متابعة العمليات المنجزة
-			@endif
-			@if ($user->service == "Etude")
-			<br> مصلحة الدراسة و التقويم
-			@endif
-			</h3>
-			
-            <h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+            <h3 style="text-align : right;"> وزارة {{$ministere}}<br>
+			مديرية {{$direction}} لولاية {{$ville}}  <br>
+			    الرقم التسلسلي للسجل:   &emsp;/{{$year}}  </h3>
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
-			<h3 style="background-color: rgb(210,210,210) !important;  padding: 0px 5px 0px 5px;">    التــبليــــغ  </h3>
+			<h2 style="background-color: rgb(210,210,210) !important;  padding: 0px 5px 0px 5px;">    إشعار  </h2>
 		</div>
-		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-			<p>
-				الموقع أعلاه : مدير  {{$direction}} المصرح بأن الأمر المصلحي المؤرخ في <strong dir="ltr">{{$ods_date}}</strong> مسجل تحت رقم : <span style="margin-left : 1mm;">&emsp;&emsp;/{{$year}}</span>  بأنه مبلغ للسيد : <strong> {{$e}} </strong> يوم <strong dir="ltr">{{$ods_date}}</strong>
-		
-			</p>
+		<div dir="rtl" style="  display: inline-block; width : 100%; font-size : 3.8mm; font-weight :  bold; text-align : justify; ">
+			
+			في  <span style="color : black;">{{convert_date($ods_date)}}</span> أنا الممضي أدناه السيد / {{$e}} 
+			الكائن مقره بـ: حي بوتلياتين الرواشد ــ ميلـــة ــ  استلمت النسخة
+			 المطابقة للأمر بالخدمــة المسجل تحت الرقم التسلسلي ................./2024.
+			
 		</div>
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 50px;" >
-			<span>         <span style="color : transparent;">...................</span> الإمضــــــاء         </span>
+			<span>         <span style="color : transparent;">...................</span> 
+المتعامل المتعاقد
+         </span>
 		</div>
 
 	</div>
