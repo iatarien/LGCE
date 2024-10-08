@@ -81,7 +81,7 @@ function convert_date($var){
 				if($deal =="عقد"){ $alayha = "عليه"; } ?>
                 <br>
 				- موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
-					 {{convert_date($ods->visa_cmw)}} تحت رقم  {{$num}} و من طرف المراقب المالي بتاريخ 
+					 {{convert_date($ods->visa_cmw)}} تحت رقم  {{$ods->num_cmw}} و من طرف المراقب المالي بتاريخ 
 					 {{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> 
                 <br>
 
@@ -107,7 +107,7 @@ function convert_date($var){
 		السيد / {{$e}} مدعو لـ : <br>  
 		01- {{$ods_type}} بتاريخ {{convert_date($ods_date)}} 
 		موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
-		{{convert_date($ods->visa_cmw)}} تحت رقم  {{$num}} و من طرف المراقب المالي بتاريخ 
+		{{convert_date($ods->visa_cmw)}} تحت رقم  {{$ods->num_cmw}} و من طرف المراقب المالي بتاريخ 
 		{{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> الخاص بمشروع {{$intitule}} <br>
 		الحصة : {{$sujet}}<br>
 		@if($cause != NULL and $cause != "")
@@ -117,7 +117,7 @@ function convert_date($var){
 		يشهد على مطابقة هذا الأمر بالخدمــة للنسخة المقيدة بالسجل تحت رقم: &emsp;&emsp;/{{$year}}
 		<br>
 		و سيبلغ إلى : {{$e}} الكائن مقره بـ
-		  : حي بوتلياتين الرواشد ــ ميلـــة ــ من طرف السيد
+		  : {{$ods->adresse}}  من طرف السيد
 		
 		: مـديـر {{$direction}} لولايـة {{$ville}} .                                                               
 
@@ -153,7 +153,7 @@ function convert_date($var){
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-size : 3.8mm; font-weight :  bold; text-align : justify; ">
 			
 			في  <span style="color : black;">{{convert_date($ods_date)}}</span> أنا الممضي أدناه السيد / {{$e}} 
-			الكائن مقره بـ: حي بوتلياتين الرواشد ــ ميلـــة ــ  استلمت النسخة
+			الكائن مقره بـ: {{$ods->adresse}}  استلمت النسخة
 			 المطابقة للأمر بالخدمــة المسجل تحت الرقم التسلسلي ................./2024.
 			
 		</div>

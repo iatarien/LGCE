@@ -69,6 +69,11 @@ class EntrepriseController extends Controller
         $name = $request['name'];
         $nature = $request['nature'];
         $id = DB::table('entreprises')->insertGetId(['name'=>$name,"nature"=>$nature]);
+        if(isset($request['adresse'])){
+            $adresse = $request['adresse'];
+            DB::table('entreprises')->where('id',$id)->
+            update(["adresse"=>$adresse]);
+        }
         return Redirect::to('/close');
     }
     public function update(Request $request){
@@ -77,6 +82,11 @@ class EntrepriseController extends Controller
         $id = $request['id'];
         
         DB::table('entreprises')->where('id',$id)->update(['name'=>$name,"nature"=>$nature]);
+        if(isset($request['adresse'])){
+            $adresse = $request['adresse'];
+            DB::table('entreprises')->where('id',$id)->
+            update(["adresse"=>$adresse]);
+        }
         return Redirect::to('/close');
     }
 }

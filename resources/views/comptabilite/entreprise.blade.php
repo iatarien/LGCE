@@ -12,7 +12,7 @@
 				<div class="col-sm-10">
 				<textarea required=""  type="text" rows="5" style="resize: none; color: black;" dir="rtl" class="form-control" id="name" name="name"></textarea>
 				</div>
-				<label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> اسم  المقاول </label>
+				<label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> اسم  الشركة </label>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-10">
@@ -23,6 +23,14 @@
 				</div>
 				<label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  نوع الشركة  </label>
 			</div>
+			@if($ville_fr =="Mila")
+			<div class="form-group">
+				<div class="col-sm-10">
+				<textarea required=""  type="text" rows="5" style="resize: none; color: black;" dir="rtl" class="form-control" id="adresse" name="adresse"></textarea>
+				</div>
+				<label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> العنوان</label>
+			</div>
+			@endif
 			<div class="form-group" align="center">
 				<button type="submit" class="btn btn-primary">حفظ</button>
 			</div>

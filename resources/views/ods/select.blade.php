@@ -239,7 +239,7 @@ function display(engagements,value){
 			}
 		    
 			tds +='<td>'+
-		        '<span><h5><strong>'+numberWithCommas(op[i].montant)+'</strong></h5></span>'+
+		        '<span dir="ltr" style="text-align : right;"><h5><strong>'+numberWithCommas(op[i].montant)+'</strong></h5></span>'+
 		    '</td>';
 			tds +='<td>'+
 		    	'<span><button class="btn btn-success"  onclick="document.location.href=\'/ajouter_ods/'+op[i].eng_id+'\'">اختيار</button></span>'+

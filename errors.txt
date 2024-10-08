@@ -65,3 +65,5 @@ UPDATE programme SET designation = REPLACE (designation, 'مشأت', 'منشآت
 WHERE designation LIKE '%مشأت%';
 
 ALTER TABLE `deals` ADD `signed` DATE NULL AFTER `user_id`, ADD `visa_cmw` DATE NULL AFTER `signed`;
+ALTER TABLE `deals` ADD `num_cmw` TEXT NULL AFTER `signed`;
+ALTER TABLE `entreprises` ADD `adresse` TEXT NULL AFTER `nature`;

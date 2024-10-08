@@ -263,11 +263,12 @@ class DealController extends Controller
         'inserted_at'=>$inserted_at,"observations"=>$observations,
         'updated_at'=>$updated_at,"user_id"=>$user_id]);
 
-        if(isset($request['signed']) && isset($request['visa_cmw'])){
+        if(isset($request['signed']) && isset($request['visa_cmw']) && isset($request['num_cmw'] )){
             $signed = $request['signed'];
             $visa_cmw = $request['visa_cmw'];
+            $num_cmw = $request['num_cmw'];
             DB::table('deals')->where('id_deal',$id)->
-            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw]);
+            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw,'num_cmw'=>$num_cmw]);
         }
         return Redirect::to('/deals/all');
     }
@@ -353,12 +354,13 @@ class DealController extends Controller
         'parent'=>$parent,'montant'=>$montant,'entreprise'=>$entreprise,
         'duree'=>$duree,'taux'=>$taux,'updated_at'=>$updated_at,
         "observations"=>$observations]);
-
-        if(isset($request['signed']) && isset($request['visa_cmw'])){
+         
+        if(isset($request['signed']) && isset($request['visa_cmw']) && isset($request['num_cmw'] )){
             $signed = $request['signed'];
             $visa_cmw = $request['visa_cmw'];
+            $num_cmw = $request['num_cmw'];
             DB::table('deals')->where('id_deal',$id)->
-            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw]);
+            update(["signed"=>$signed,'visa_cmw'=>$visa_cmw,'num_cmw'=>$num_cmw]);
         }
 
         return Redirect::to('/deals/all');

@@ -344,7 +344,7 @@ function display(engagements,value){
 		        '</td>';
 			}else{
 				tds +='<td>'+
-		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].eng_id+'\'">تعديل</button></span>'+
+		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].deal_id+'\'">تعديل</button></span>'+
 		        '</td>';
 			}
 			if((user_id == op[i].user_id || user_service =="Engagement" ) && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){

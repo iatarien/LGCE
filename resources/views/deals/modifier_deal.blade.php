@@ -110,8 +110,12 @@
 	                  <input  type="date" class="form-control" id="signed" name="signed" value="{{$deal->signed}}">
 	                </div>
                   </div><br>
-                  @endif
-                  @if($ville_fr =="Mila")
+                  <div class="form-group row">
+                    <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> رقم المصادقة من طرف لجنة الصفقات العمومية</label>
+	                <div class="col-sm-7">
+	                  <input type="text" class="form-control" id="num_cmw" name="num_cmw" value="{{$deal->num_cmw}}">
+	                </div>
+                  </div><br>
                   <div class="form-group row">
                     <label  class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> تاريخ المصادقة من طرف لجنة الصفقات العمومية</label>
 	                <div class="col-sm-7">
