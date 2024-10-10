@@ -120,7 +120,7 @@
 						</select>  
 					</div>
 	              </div><br>
-				  @if($ville_fr =="Mila")
+				  @if(($ville_fr =="Mila" || $ville_fr =="Biskra") && isset($op->order_ville))
 				  <div class="form-group row ">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> رمز الأمر بالصرف </label>
 	              	<div class="col-lg-9">

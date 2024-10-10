@@ -122,6 +122,9 @@
 </style>
 
 </head>
+<?php if(isset($eng->order_ville) && $eng->order_ville !="" && $eng->order_ville !=NULL){
+$ordre = $eng->order_ville;
+} ?>
 <body id="boody" class="container">
 <?php 	$font = "14.5px"; ?>
 @if($ville_fr =="Touggourt")
