@@ -125,8 +125,11 @@
 </head>
 <body id="boody" class="container" dir="rtl">
 
-<section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px; margin-top : 5%;" id="fiche">
+<section  style="background-color: white; text-align: center; font-size: 14.5px; 
+margin: 20px; margin-top : 5%; margin-right : 60px;
+		margin-left : 60px;" id="fiche">
 	<div id="fiche_top">
+		<br><br>
         <div style=" width : 25%; display: inline-block; float: right; ">
 			<h3 style="margin: 0px 2px 0px 2px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
 		</div>

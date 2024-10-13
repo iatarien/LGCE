@@ -31,6 +31,8 @@
 	}
 	#fiche {
 		margin: 20px;
+		margin-right : 60px;
+		margin-left : 60px;
 		text-align: center;
 	}
 	#numero {
@@ -241,7 +243,7 @@
 					<tr>
 						<td style="border-top : 1px solid;"></td>
 						<td>@if($pay->etude_done != 0)  {{ number_format((float)$pay->etude_done, 2, '.', ' ')}} @endif </td>
-						<td><span style="opacity : 0.3;">..........................................</span> أشغال تامة  </td>
+						<td><span style="opacity : 0.3;">.....................................</span> أشغال تامة  </td>
 						<td style="display: none;">1</td>
 					</tr>
 
@@ -262,42 +264,42 @@
 						<td></td>
 						<td>@if($pay->avan_done != 0)  {{ number_format((float)$pay->avan_done, 2, '.', ' ')}} @endif</td>
 						
-						<td><span style="opacity : 0.3;">................................</span>  التسبيقات الجزافية   </td>
+						<td><span style="opacity : 0.3;">.......................</span>  التسبيقات الجزافية   </td>
 						<td style="display: none;">9</td>
 					</tr>
 					<tr>
 						<td rowspan="2" style="text-align: center;">@if($pay->total_done != 0)  {{ number_format((float)$pay->total_done, 2, '.', ' ')}} @endif</td>
 						<td></td>
 						
-						<td><span style="opacity : 0.3;">............................</span>   تموين  5/4 من قيمتها  </td>
+						<td><span style="opacity : 0.3;">.......................</span>   تموين  5/4 من قيمتها  </td>
 						<td style="display: none;">4</td>
 					</tr>
 
 					<tr>
 		
 						<td style="border : none;"></td>
-						<td><span style="opacity : 0.3;">......................................</span> أشغال التسيير   </td>
+						<td><span style="opacity : 0.3;">..........................</span> أشغال التسيير   </td>
 						<td style="display: none;">5</td>
 					</tr>
 
 					<tr>
 						<td></td>
 						<td></td>
-						<td><span style="opacity : 0.3;">......................................</span>  تسديد النفقات   </td>
+						<td><span style="opacity : 0.3;">..................................</span>  تسديد النفقات   </td>
 						<td style="display: none;">6</td>
 					</tr>
 
 					<tr>
 						<td></td>
 						<td></td>
-						<td><span style="opacity : 0.3;">..............................................</span> الضمان  </td>
+						<td><span style="opacity : 0.3;">......................................</span> الضمان  </td>
 						<td style="display: none;">7</td>
 					</tr>
 
 					<tr>
 						<td style="border-bottom: 0.1px dotted;"></td>
 						<td></td>
-						<td><span style="opacity : 0.3;">....................................</span> مراجعة الأسعار  </td>
+						<td><span style="opacity : 0.3;">............................</span> مراجعة الأسعار  </td>
 						<td style="display: none;">8</td>
 					</tr>
 
@@ -305,7 +307,7 @@
 						<td></td>
 						<td>@if($pay->avancement_cut != 0)  {{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}} @endif</td>
 						
-						<td><span style="opacity : 0.3;">....................</span>  استرجاع التسبيقات الجزافية   </td>
+						<td><span style="opacity : 0.3;">...............</span>  استرجاع التسبيقات الجزافية   </td>
 						<td style="display: none;">9</td>
 					</tr>
 
@@ -322,27 +324,27 @@
 						<td style="border-bottom: 1px solid;"></td>
 						<td>@if($pay->sanction_cut != 0)  {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
 						
-						<td><span style="opacity : 0.3;">.............................................</span>  العقوبات    </td>
+						<td><span style="opacity : 0.3;">.................................</span>  العقوبات    </td>
 						<td style="display: none;">12</td>
 					</tr>
 
 					<tr>
 						<td style="text-align: center;">{{ number_format((float)$total, 2, '.', ' ')}}</td>
-						<td><span style="opacity : 0.3;">........................................</span></td>
-						<td><span style="opacity : 0.3;">................................................</span>      الباقي      </td>
+						<td><span style="opacity : 0.3;">........................</span></td>
+						<td><span style="opacity : 0.3;">.....................................</span>      الباقي      </td>
 						<td style="display: none;">13</td>
 					</tr>
 
 					<tr>
 						<td style="text-align: center;">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
-						<td><span style="opacity : 0.3;">........................................</span></td>
+						<td><span style="opacity : 0.3;">...................</span></td>
 						<td> على إثره قد تم تسديد  المبالغ السابقة  من قبل   </td>
 						<td style="display: none;">14</td>
 					</tr>
 
 					<tr>
 						<td style="border-bottom : 1px solid; border-top : 1px solid; text-align: center;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-						<td><span style="opacity : 0.3;">........................................</span></td>
+						<td><span style="opacity : 0.3;">......................</span></td>
 						<td> <span style="opacity : 0.3;">...........................</span>  ما تبق   للتسديد و الدفع </td>
 						<td style="display: none;">15</td>
 					</tr>

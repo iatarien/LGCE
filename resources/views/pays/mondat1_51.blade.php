@@ -270,31 +270,31 @@
     </div>
     <br>
     <div style="width: 90%;  float: right;">
-    <table id="things" dir="rtl" style="text-align: center">
+    <table id="things" dir="rtl" style="text-align: center; font-size : 11px;">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
                   الرمز الميزانياتي للنفقة
                 </td>
-                <td rowspan="2" style="text-align : center; width : 9%;">
+                <td rowspan="2" style="text-align : center; width : 11%;">
                 المبلغ الخام
                 </td>
-				<td colspan="3" style="text-align : cente; width : 15%;">
+				<td colspan="3" style="text-align : cente; width : 19%;">
                  اقتطاعات
                 </td>
-				<td rowspan="2"  style="text-align : center; width : 9%;">
+				<td rowspan="2"  style="text-align : center; width : 11%;">
                  المبلغ الصافي للدفع للمستفيد
                 </td>
-				<td colspan="5" style="text-align : center; width : 52%;">
+				<td colspan="5" style="text-align : center; width : 51%;">
                  تحديد المستفيد
                 </td>
             </tr>
             <tr>
                 <td> التحديد</td>
                 <td>الحساب الدائن</td>
-                <td>المبلغ</td>
+                <td style="width  : 10%;">المبلغ</td>
                 <td style="width : 15%;">التسمية</td>
                 <td style="width : 15%;">رقم حساب المستفيد</td>
-                <td colspan="2" style="width : 15%">مرجع وثيقة الدفع</td>
+                <td colspan="2" style="width : 8%">مرجع وثيقة الدفع</td>
 				<td>ملاحظات</td>
             </tr>
 			<tr>
@@ -323,9 +323,9 @@
             </tr>
         </table>
 	
-		<div align= "center">
-		<br><br>
-		حــــدد المبـــلغ <br><b id="montant">   </b>
+		<div align= "center" >
+		<br>
+		حــــدد المبـــلغ <br><br><b style="width : 35%; display : block;" id="montant">   </b>
 		<div>
 		
 		

@@ -50,6 +50,9 @@ UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 
 ****** MIIIIIIILAAAAAAAA *****
 ALTER TABLE `operations` ADD `order_ville` TEXT NULL AFTER `user_id`;
+
+
+
 ALTER TABLE `company` CHANGE `compte_tresor` `compte_tresor` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 UPDATE `company` SET `compte_tresor` = 'الخزينة RIB : 008 43001 424444 3 00150 \r\nالخزينة RIP : 007 99999 0000 3 0005507 ' WHERE `company`.`id_comp` = 1;
 
