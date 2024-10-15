@@ -84,7 +84,7 @@
 
 	          <div class="form quick-post">
 	            <!-- Edit profile form (not working)-->
-	            <form class="form-horizontal" autocomplete="off" action="/add_deal" method="POST">
+	            <form class="form-horizontal" onsubmit="return checking()" autocomplete="off" action="/add_deal" method="POST">
 	            @csrf
                 <input type="hidden" name="type" value="{{ $type}}">
                 <input type="hidden" name="id_op" value="" id="id_op">
@@ -178,7 +178,7 @@
                     <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title"> الشركة</label>
 	              
 	                <div class="col-sm-7">
-                        <input id="comp_input"  class="form-control" onclick="comp_like(event,this.value)" onkeyup="comp_like(event,this.value)" > 
+                        <input id="comp_input" required class="form-control" onclick="comp_like(event,this.value)" onkeyup="comp_like(event,this.value)" > 
                         <div id="myDropdown_comp" class="dropdown-content" style="display: none;">
                             <input type="hidden" required id="entreprise" name="entreprise_id" >
                             <div id="es">
@@ -286,6 +286,18 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
+
+function checking(){
+  entreprise = document.getElementById('entreprise').value;
+  if(entreprise ==""){
+    alert("يرجى إختيار الشركة من القائمة");
+    return false;
+  }
+  return true;
+  
+}
+
 document.onclick= function(event) {
 	if(event.srcElement.id != "op_input"){
 		document.getElementById('myDropdown').style.display = "none";
