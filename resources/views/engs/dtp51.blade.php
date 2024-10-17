@@ -204,6 +204,13 @@
 			<tbody id="with_all" style="display : none">
 			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Ouled djellal") && $insc == "true" )
 				@foreach($titres as $titre)
+				<?php 
+				$old_AP = $titre->sums["AP"];
+				if($eng->type =="decision" || $eng->type =="reevaluation"){
+					$old_AP = $titre->sums["AP"] - $titre->sums["montant"]; 
+				}
+				
+				?>
                 <?php $reb = (object) $titre->rebriques[0]; ?>
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 					<tr style='font-weight : 900;'>	
@@ -211,19 +218,25 @@
 						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-						<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$old_AP, 2, '.', ' ')}}</td>
 						<td dir="rtl">الصنف الفرعي<br>{{$reb->code}}  </td>
                         <td dir="rtl">الصنف<br>{{$titre->code}} </td>
 					</tr>
 					@endif
 					@foreach($titre->rebriques as $reb)
+					<?php 
+					$sous_AP = $reb->sous_AP;
+					if($eng->type =="decision" || $eng->type =="reevaluation"){
+						$sous_AP = $reb->sous_AP - $reb->sous_montant; 
+					}			
+					?>
 					@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 					<tr>	
 						<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
 							<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
-						<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$sous_AP, 2, '.', ' ')}}</td>
                         @if($titre->id_titre == 128)
                         <td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
                         @else
@@ -237,6 +250,13 @@
 				@endforeach
 			@else
 				@foreach($titres as $titre)
+				<?php 
+				$old_AP = $titre->sums["AP"];
+				if($eng->type =="decision" || $eng->type =="reevaluation"){
+					$old_AP = $titre->sums["AP"] - $titre->sums["montant"]; 
+				}
+				
+				?>
                 <?php $reb = (object) $titre->rebriques[0]; ?>
 					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 					<tr style='font-weight : 900;'>	
@@ -244,7 +264,7 @@
 						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-						<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$old_AP, 2, '.', ' ')}}</td>
 						@if($titre->id_titre == 128)
                         <td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
                         @else
@@ -254,40 +274,48 @@
 					</tr>
 					@endif
 					@foreach($titre->rebriques as $reb)
+					<?php 
+					$sous_AP = $reb->sous_AP;
+					if($eng->type =="decision" || $eng->type =="reevaluation"){
+						$sous_AP = $reb->sous_AP - $reb->sous_montant; 
+					}			
+					?>
 					@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 					<tr>	
 						<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
 						<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
-						<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$sous_AP, 2, '.', ' ')}}</td>
+						@if($titre->id_titre == 128)
+						<td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
+						@else
 						<td dir="rtl">الصنف الفرعي<br>{{$reb->code}}  </td>
-                        <td dir="rtl">الصنف<br>{{$titre->code}} </td>
+						<td dir="rtl">الصنف<br>{{$titre->code}} </td>
+						@endif
 					</tr>
 					@endif
 					@endforeach
 				@endforeach
 			@endif
-			@if($ville_fr =="Biskra")
-			<tr style='font-weight : 900;'>	
-				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant_1, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
-				<td dir="rtl">المجموع</td>
-			</tr>
-			@endif
+
 			</tbody>
 			<tbody id="with_sous" style="display : none;">
 			@foreach($titres as $titre)
+			<?php 
+				$old_AP = $titre->sums["AP"];
+				if($eng->type =="decision" || $eng->type =="reevaluation"){
+					$old_AP = $titre->sums["AP"] - $titre->sums["montant"]; 
+				}
+				
+			?>
             <?php $reb = (object) $titre->rebriques[0]; ?>
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$old_AP, 2, '.', ' ')}}</td>
 					@if($titre->id_titre == 128)
                     <td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
                     @else
@@ -296,13 +324,20 @@
                     @endif
 				</tr>
 				@foreach($titre->rebriques as $reb)
+				<?php
+				$sous_AP = $reb->sous_AP;
+				if($eng->type =="decision" || $eng->type =="reevaluation"){
+					$sous_AP = $reb->sous_AP - $reb->sous_montant; 
+				}			
+				?>
+				
 				@if($reb->sous_montant != 0)
 				<tr>	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$sous_AP, 2, '.', ' ')}}</td>
 					@if($titre->id_titre == 128)
                     <td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
                     @else
@@ -313,45 +348,32 @@
 				@endif
 				@endforeach
 			@endforeach
-			@if($ville_fr =="Biskra")
-			<tr style='font-weight : 900;'>	
-				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant_1, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
-				<td dir="rtl">المجموع</td>
-			</tr>
-			@endif
 			</tbody>
 			<tbody id="with_none" style="display : none">
 			@foreach($titres as $titre)
+				<?php 
+					$old_AP = $titre->sums["AP"];
+					if($eng->type =="decision" || $eng->type =="reevaluation"){
+						$old_AP = $titre->sums["AP"] - $titre->sums["montant"]; 
+					}
+					
+				?>
                 <?php $reb = (object) $titre->rebriques[0]; ?>
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$old_AP, 2, '.', ' ')}}</td>
 					@if($titre->id_titre == 128)
                     <td colspan="2" dir="rtl">{{$titre->code." ".$titre->definition}}</td>
                     @else
                     <td dir="rtl">الصنف الفرعي<br>{{$reb->code}}  </td>
 <td dir="rtl">الصنف<br>{{$titre->code}} </td>
                     @endif
-				</tr>
-                
+				</tr>  
 			@endforeach
-			@if($ville_fr =="Biskra")
-			<tr style='font-weight : 900;'>	
-				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->montant_1, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
-				<td>{{ number_format((float)$tots->AP, 2, '.', ' ')}}</td>
-				<td dir="rtl">المجموع</td>
-			</tr>
-			@endif
+
 			</tbody>
 		</table>
 		<br>
