@@ -80,8 +80,15 @@ function convert_date($var){
 				<?php $alayha = "عليها";
 				if($deal =="عقد"){ $alayha = "عليه"; } ?>
                 <br>
-				- موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
-					 {{convert_date($ods->visa_cmw)}} تحت رقم  {{$ods->num_cmw}} و من طرف المراقب المالي بتاريخ 
+				- موضوع  ال{{$deal}}   : 
+					<strong>
+					@if($deal =="صفقة")
+					مصادق {{$alayha}} 
+					من طرف لجنة الصفقات الولائية بتاريخ 
+					 {{convert_date($ods->visa_cmw)}} تحت رقم و
+					 @endif
+					 مؤشر {{$alayha}} 
+					 {{$ods->num_cmw}}  من طرف المراقب المالي بتاريخ 
 					 {{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> 
                 <br>
 
@@ -106,14 +113,35 @@ function convert_date($var){
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  bold; text-align : justify; font-size : 3.8mm;">
 		السيد / {{$e}} مدعو لـ : <br>  
 		01- {{$ods_type}} بتاريخ {{convert_date($ods_date)}} 
-		موضوع  ال{{$deal}}   : <strong>مصادق {{$alayha}} من طرف لجنة الصفقات الولائية بتاريخ 
-		{{convert_date($ods->visa_cmw)}} تحت رقم  {{$ods->num_cmw}} و من طرف المراقب المالي بتاريخ 
-		{{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> الخاص بمشروع {{$intitule}} <br>
+
+		 موضوع  ال{{$deal}}   : 
+		<strong>
+		@if($deal =="صفقة")
+		مصادق {{$alayha}} 
+		من طرف لجنة الصفقات الولائية بتاريخ 
+			{{convert_date($ods->visa_cmw)}} تحت رقم و
+			@endif
+			مؤشر {{$alayha}} 
+			{{$ods->num_cmw}}  من طرف المراقب المالي بتاريخ 
+			{{convert_date($visa_date)}} تحت رقم {{$visa}}</strong> 
+		
+		الخاص بمشروع {{$intitule}} <br>
 		الحصة : {{$sujet}}<br>
 		@if($cause != NULL and $cause != "")
 			السبب : {{$cause}} <br>
 		@endif
+		@if($ods->real_type =="d")
+		<strong>مدة الإنجاز : {{$ods->duree}} يوم.</strong><br>
+		@endif
+		@if(str_contains($ods_type,'شعار'))
+		03-   يستلم نسخة أصلية من ال{{$deal}}.<br>
+		03-  يستلم نسخة من هذا الأمر بالخدمة.<br>
+		@else
 		02-  يستلم نسخة من هذا الأمر بالخدمة.<br>
+		@endif
+
+		
+
 		يشهد على مطابقة هذا الأمر بالخدمــة للنسخة المقيدة بالسجل تحت رقم: &emsp;&emsp;/{{$year}}
 		<br>
 		و سيبلغ إلى : {{$e}} الكائن مقره بـ

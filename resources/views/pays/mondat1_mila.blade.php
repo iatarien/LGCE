@@ -156,13 +156,16 @@ $ordre = $op->order_ville;
 					@endif
 					
                 </tr>
+				@if($op->sous_action !==NULL )
+				<?php $sousy = explode(".",$op->sous_action)[0]; ?>
+				@endif
                 <tr>
                     <td>النشاط الفرعي </td>
 					@if($op->sous_action =="")
 					<td>/</td>
 					<td>/</td>
 					@else
-					<td>{{$op->sous_action}}</td>
+					<td>{{$sousy}}</td>
 					<td></td>
 					@endif
 					

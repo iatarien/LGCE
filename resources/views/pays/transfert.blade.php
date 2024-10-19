@@ -106,8 +106,12 @@ $ordre = $op->order_ville;
 						
                 </tr>
                 <tr>
+				<?php $sousy =  $op->sous_action; ?>
+					@if($ville_fr =="Mila" )
+					<?php $sousy = explode(".",$op->sous_action)[0]; ?>
+					@endif
                     <td>النشاط الفرعي </td>
-					<td>{{$op->sous_action}}</td>
+					<td>{{$sousy}}</td>
 					<td></td>
                 </tr>
         </table>

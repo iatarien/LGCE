@@ -62,14 +62,15 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-
+       
         if(isset($num[0]->num)){
-            $num = $num[0]->num +1 ;
+            $num = intval($num[0]->num) +1 ;
         }else{
             $num = 1;
         }
+
         if(isset($fiche[0]->fiche_pay)){
-            $fiche = $fiche[0]->fiche_pay +1 ;
+            $fiche = intval($fiche[0]->fiche_pay) +1 ;
         }else{
             $fiche = 1;
         }

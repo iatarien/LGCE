@@ -162,8 +162,8 @@ $sous = $sous_prog;
 			?>	
             <h3>  رمز الــنشاط : {{$op->activite}} &emsp;&emsp; {{$act_txt}}</h3>
 			@if($op->sous_action !==NULL )
-			
-            <h3>  رمز النشاط الفرعي : {{$op->sous_action}}</h3>
+			<?php $sousy = explode(".",$op->sous_action)[0]; ?>
+            <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif

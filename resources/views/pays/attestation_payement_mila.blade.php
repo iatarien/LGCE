@@ -161,10 +161,10 @@
 			?>	
             <h4>  الــنشاط : {{$op->activite}} &emsp;&emsp; {{$act_txt}}</h4>
 			@if($op->sous_action !==NULL )
-			
-            <h4>   النشاط الفرعي : {{$op->sous_action}}</h4>
+			<?php $sousy = explode(".",$op->sous_action)[0]; ?>
+            <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
 			@else
-			<h4>   النشاط الفرعي : /</h4>
+			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
 			<h4>   دفعة جزئية : <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -196,7 +196,7 @@
 				@if(isset($pay->visa_cmw) && $pay->visa_cmw != null)
 				<b> مصادق عليها في:</b> {{$pay->visa_cmw}}<br>
 				@endif
-				<b> بمبلغ :</b> <span dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span><br>
+				<b> بمبلغ :</b> <span dir="ltr">{{ number_format((float)$pay->montant, 2, '.', ' ')}}</span><br>
 			</p>
 			<p dir="rtl"> <b>  نحن  والي ولاية {{$ville}} الممضي أسفله</b>
 				<b> نظرا للحساب المؤقت رقم  : </b> {{$pay->num}}<br>

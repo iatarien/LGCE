@@ -140,10 +140,10 @@
 			?>	
             <h4>  الــنشاط : {{$op->activite}} &emsp;&emsp; {{$act_txt}}</h4>
 			@if($op->sous_action !==NULL )
-			
-            <h4>   النشاط الفرعي : {{$op->sous_action}}</h4>
+			<?php $sousy = explode(".",$op->sous_action)[0]; ?>
+            <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
 			@else
-			<h4>   النشاط الفرعي : /</h4>
+			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
 
 

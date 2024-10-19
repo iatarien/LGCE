@@ -293,7 +293,7 @@ class ODSController extends Controller
         $duree = "";
         $real_type = $request['real_type'];
         $extra_type = $request['extra_type'];
-
+        
         if($real_type =="d"){
             $type_ods = "إنطلاق ".$request['extra_type'];
             if($this->lang =="fr"){
@@ -301,6 +301,9 @@ class ODSController extends Controller
             }
         }elseif($real_type =="a"){
             $type_ods = "توقف ".$request['extra_type'];
+            if($ville_fr="Mila"){
+                $type_ods = "وقف ".$request['extra_type'];
+            }
             if($this->lang =="fr"){
                 $type_ods = "Arret ".$request['extra_type'];
             }
@@ -313,6 +316,11 @@ class ODSController extends Controller
         }
         elseif($real_type =="other"){
             $type_ods = $request['extra_type'];
+        }
+        else{
+            if($this->ville_fr =="Mila"){
+                $type_ods = $request['real_type'];
+            }
         }
         $user = Auth::user()->id;
 
@@ -351,7 +359,11 @@ class ODSController extends Controller
         elseif($real_type =="other"){
             $type_ods = $request['extra_type'];
         }
-
+        else{
+            if($this->ville_fr =="Mila"){
+                $type_ods = $request['real_type'];
+            }
+        }
         DB::table('ods')->where('id',$id)->update(['ods_num'=>$ods_num,"real_type"=>$real_type,
         'ods_date'=>$ods_date,'duree'=>$duree,'cause'=>$cause,'type_ods'=>$type_ods,"extra_type"=>$extra_type,]);
         
@@ -447,7 +459,7 @@ class ODSController extends Controller
                 array_push($r_odss,$ods);
             }
         }
-        if(count($d_odss) < 0){
+        if(count($d_odss) <= 0){
             if($this->lang =='fr'){
                 return "Il n'existe pas un ODS de démarrage ";
             }else{

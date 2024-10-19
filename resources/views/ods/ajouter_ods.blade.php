@@ -87,10 +87,39 @@
 	            </div>
               <div class="form-group">
               <div class="col-xs-7">
-                    <input dir="rtl" required style="text-align : right" type="text" class="form-control" id="extra_type" name="extra_type">
+                    <input dir="rtl"  style="text-align : right" type="text" class="form-control" id="extra_type" name="extra_type">
                   </div>
 	                <div class="col-xs-3">
+                    @if($ville_fr =="Mila")
 	                  <select class="form-control" id="real_type" name="real_type">
+                      @if($last == NULL)
+                      <option>إشعار بال{{$ods->deal_type}}</option>
+                      <option value="d">إنطلاق</option>
+                      <option >إشعار بإنطلاق الأشغال الإضافية</option>
+                      <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="d">إنطلاق</option>
+                      @elseif($last =="d")
+                      <option value="a">وقف</option>
+                      <option >إشعار بإنطلاق الأشغال الإضافية</option>
+                      <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      @elseif($last =="a")
+                      <option value="r">استئناف</option>
+                      <option >إشعار بإنطلاق الأشغال الإضافية</option>
+                      <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      @elseif($last =="r")
+                      <option value="a">وقف</option>
+                      <option >إشعار بإنطلاق الأشغال الإضافية</option>
+                      <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      @else
+                      <option value="a">وقف </option>
+                      <option value="r">استئناف</option>
+                      <option value="d">إنطلاق</option>
+                      <option >إشعار بإنطلاق الأشغال الإضافية</option>
+                      <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      @endif
+                    </select>
+                    @else
+                    <select class="form-control" id="real_type" name="real_type">
                       @if($last == NULL)
                       <option value="d">إنطلاق</option>
                       @elseif($last =="d")
@@ -109,6 +138,7 @@
                       <option value="other">أخرى</option>
                       @endif
                     </select>
+                    @endif
 	                </div>
                   
                     <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title"> أمر مصلحي ب : </label>
