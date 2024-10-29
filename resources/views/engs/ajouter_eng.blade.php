@@ -429,7 +429,11 @@ function fiche_num(id){
           var value = response;
           if(value[0] != null){
             var old = value[0].numero_fiche;
-            old = old.split("/")[1];
+            old0 = old.split("/")[1];
+            if(old0 == null){
+              old0 = old;
+            }
+            old = old0;
           }else{
             var old = "0";
           }
@@ -438,7 +442,12 @@ function fiche_num(id){
           if(nv.length == 1){
             nv = "0"+nv;
           }
+          @if($ville_fr =="Biskra")
+          var new_num = nv;
+          @else
           var new_num = "{{$the_year}}"+"/"+nv;
+          @endif
+          
           //console.log(new_num);
           document.getElementsByName('numero_fiche')[0].value = new_num;
         },
