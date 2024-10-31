@@ -809,7 +809,11 @@ class PaymentController extends Controller
         $user = Auth::user();
         $pay = DB::table('payments')->where('id',$id)->first();
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
-        return view('comptabilite.modifier_fiche_pay',["user"=>$user,'pay'=>$pay,'pay0'=>$pay0]);
+        $view ="pays.modifier_fiche_pay";
+        if($this->ville_fr == "Mila"){
+            $view ="pays.modifier_fiche_pay_mila"; 
+        }
+        return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0]);
     }
     public function get_last_num($id){
         $query = "SELECT id_op FROM engagements WHERE id =".$id;

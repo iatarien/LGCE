@@ -106,6 +106,10 @@
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Ouled Djellal" || $ville_fr == "Touggourt" || $ville_fr == "Mila")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
+                @if($ville_fr == "Mila")
+                    <br><br>
+                    <a class="btn btn-primary" target="_blank" href="/edit_fiche_payment/{{$id}}"> تعديل</a>
+                @endif
             </td>
             @endif
             <td>
