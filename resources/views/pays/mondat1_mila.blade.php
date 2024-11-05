@@ -152,7 +152,7 @@ $ordre = $op->order_ville;
 					@if($op->source =="PSC")
 					<td>َتفويض التسيير القطاعي الممركز</td>
 					@else
-					<td>َتفويض التسيير الغير ممركز</td>
+					<td>َتفويض التسيير الغير ممركز لولاية {{$ville}}</td>
 					@endif
 					
                 </tr>
@@ -199,7 +199,11 @@ $ordre = $op->order_ville;
 			السنة المالية : {{ $pay->year}} <br>
             رقم  الحوالة :  <br>
             تاريخ  الحوالة :  <br>
-			@if($ville_fr =="Touggourt")
+
+			@if($ville_fr =="Ouargla" )
+			 موضوع النفقة : {{$pay->lot}} <br>
+			@endif
+			@if($ville_fr =="Touggourt" )
 			 موضوع النفقة : {{$txt1}} <br>
 			@endif
 			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
@@ -265,9 +269,13 @@ $ordre = $op->order_ville;
 			<tr>
                 <td>{{$pay->numero_fiche}}</td>
                 <td>{{$sous_prog->code}} {{$sous_prog->designation}}</td>
-                <td>{{$titre->code}} {{$titre->definition}} <br>
+				@if($ville_fr =="Ouargla")
+                <td>التأشيرة رقم {{$pay->num_visa}} بتاريخ <br>{{$pay->date_visa}} </td>
+				@else
+				td>{{$titre->code}} {{$titre->definition}} <br>
                     {{$sous_titre->code}} {{$sous_titre->definition}}
                 </td>
+				@endif
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
                 <td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
@@ -276,7 +284,11 @@ $ordre = $op->order_ville;
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
 				</td>
+				@if($ville_fr =="Ouargla")
+				<td>{!! nl2br($txt1) !!}</td>
+				@else
                 <td></td>
+				@endif
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				@if($ville_fr =="Mila")
 				<td>{!! nl2br($txt) !!}</td>
