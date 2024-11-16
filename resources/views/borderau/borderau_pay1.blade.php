@@ -254,13 +254,13 @@ $i = 1;
                 $m = count($engss);
                 $eng = $engss[0]; ?>
                 <tr>
-                    <td></td>
+                    <td>@if(isset($eng->num_mondat)) {{$eng->num_mondat}} @endif</td>
                     <td>َ{{$eng->sous_programme0->code}} - {{$eng->sous_programme0->designation}}</td>
-                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
-                    <td>َ{{$eng->sous_titre->code}} - {{$eng->sous_titre->definition}}</td></td>
+                    <td>َ{{$eng->titre->code}}</td></td>
+                    <td>َ{{$eng->sous_titre->code}}</td></td>
                     <td>{{$eng->numero_fiche}}</td>
                     <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
-                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
+                    <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
                     <td rowspan="{{$m}}"></td>
                 </tr>
 
@@ -268,13 +268,13 @@ $i = 1;
                 @foreach($engss as $eng)
                 <?php $i++; ?>
                 <tr>
-                    <td></td>
+                    <td>@if(isset($eng->num_mondat)) {{$eng->num_mondat}} @endif</td>
                     <td>َ{{$eng->sous_programme0->code}} - {{$eng->sous_programme0->designation}}</td>
-                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
-                    <td>َ{{$eng->sous_titre->code}} - {{$eng->sous_titre->definition}}</td></td>
+                    <td>َ{{$eng->titre->code}}</td></td>
+                    <td>َ{{$eng->sous_titre->code}}</td></td>
                     <td>{{$eng->numero_fiche}}</td>
                     <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
-                    <td>َ{{$eng->titre->code}} - {{$eng->titre->definition}}</td></td>
+                    <td dir="ltr">{{ number_format((float)$eng->to_pay, 2, '.', ' ')}} </td>
                 </tr>
                 @endforeach
                 

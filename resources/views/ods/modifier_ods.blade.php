@@ -108,12 +108,33 @@
 	                </div>
                     <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   السبب : </label>
 	            </div>
+
+              @if($ville_fr =="Ouargla")
+                <div class="form-group">
+	                <div class="col-xs-10">
+	                  <input min="01-01-1962" max="31-12-20100" dir="rtl" style="text-align : right; color :  black; font-weight :  bold;" required 
+                    value="{{$ods->ods_date0}}" dir="ltr"  type="date" class="form-control" id="ods_date0" name="ods_date0">
+	                </div>
+                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   التاريخ : </label>
+	              </div>
+                
+                <div class="form-group">
+	                <div class="col-xs-10">
+	                  <input min="01-01-1962" max="31-12-20100" dir="rtl" style="text-align : right; color :  black; font-weight :  bold;" 
+                    value="{{$ods->ods_date}}"  
+                    dir="ltr"  type="date" class="form-control" id="ods_date" name="ods_date">
+	                </div>
+                    <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   تاريخ التبليغ : </label>
+	              </div>
+                @else
                 <div class="form-group">
 	                <div class="col-xs-10">
 	                  <input dir="rtl" style="text-align : right; color :  black; font-weight :  bold;" value="{{$ods->ods_date}}" required value="{{Date('Y-m-d')}}" dir="ltr"  type="date" class="form-control" id="ods_date" name="ods_date">
 	                </div>
                     <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   التاريخ : </label>
 	            </div>
+                @endif
+                
                 
                 <div class="form-group">
 	                <div class="col-xs-10">

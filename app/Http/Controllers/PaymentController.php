@@ -304,7 +304,7 @@ class PaymentController extends Controller
         if($this->lang =="fr"){
             $view = $view."_fr";
         }
-        if($this->ville_fr =="Mila" || $this->ville_fr =="Touggourt" || $this->ville_fr =="Ouargla"){
+        if($this->ville_fr =="Mila" || $this->ville_fr =="Touggourt" || $this->ville_fr =="Ouargla" || $this->ville_fr =="Djanet"){
             $view = $view."_mila";
         }
         if($this->ville_fr =="Ouled Djellal"){
@@ -976,7 +976,12 @@ class PaymentController extends Controller
             DB::table('payments')->where('id',$id)->
             update(['rev1_done' => $rev1_done,'rev2_done' => $rev2_done]);
         }
-        
+        if(isset($request['num_mondat']) && isset($request['date_mondat'])){
+            $num_mondat = $request['num_mondat'];
+            $date_mondat = $request['date_mondat'];
+            DB::table('payments')->where('id',$id)->
+            update(['num_mondat' => $num_mondat,'date_mondat' => $date_mondat]);
+        }
         
         return Redirect::to('/fiche_pay/'.$id);
 
@@ -1065,6 +1070,12 @@ class PaymentController extends Controller
             $rev2_done = $request['rev2_done'];
             DB::table('payments')->where('id',$id)->
             update(['rev1_done' => $rev1_done,'rev2_done' => $rev2_done]);
+        }
+        if(isset($request['num_mondat']) && isset($request['date_mondat'])){
+            $num_mondat = $request['num_mondat'];
+            $date_mondat = $request['date_mondat'];
+            DB::table('payments')->where('id',$id)->
+            update(['num_mondat' => $num_mondat,'date_mondat' => $date_mondat]);
         }
         return Redirect::to('/fiche_pay/'.$id);
         

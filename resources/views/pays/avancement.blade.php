@@ -205,7 +205,7 @@
 				</tr>
 				<tr>
 					<td>@if($pay->old_payments != 0) {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
-					<td style="border-top : 3px; border-bottom : none; text-align: center;" colspan="3">اقتطاع الصفقات السنوية الى السنوات الماضية</td>
+					<td style="border-top : 3px; border-bottom : none; text-align: center;" colspan="3">اقتطاع النفقات  السنوية الى السنوات الماضية</td>
 				</tr>
 				<tr>
 					<td>{{ number_format((float)$pay->new_payment, 2, '.', ' ')}}</td>

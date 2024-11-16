@@ -24,7 +24,7 @@
 			margin: auto;
 			margin-top: 2%;
 			font-size: 13px;
-			line-height: 1.5em;
+			line-height: 1.4em;
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
@@ -105,7 +105,9 @@
             border-top : none;
             text-align : right;
         }
-
+		#stamp {
+			display : none;
+		}
 	</style>
 </head>
 <body contenteditable ="true">
@@ -197,8 +199,8 @@ $ordre = $op->order_ville;
 		<div style="  display: inline-block; width : 35%; float: right; margin-right : 5%;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
 			السنة المالية : {{ $pay->year}} <br>
-            رقم  الحوالة :  <br>
-            تاريخ  الحوالة :  <br>
+            رقم  الحوالة : @if(isset($pay->num_mondat)) {{$pay->num_mondat}} @endif <br>
+            تاريخ  الحوالة :  @if(isset($pay->date_mondat)) {{$pay->date_mondat}} @endif <br>
 
 			@if($ville_fr =="Ouargla" )
 			 موضوع النفقة : {{$pay->lot}} <br>
@@ -227,14 +229,14 @@ $ordre = $op->order_ville;
                 </tr>
 				@else
 				<tr>
-					<td dir="rtl">  الخزينة RIP/RIB  : <span dir="rtl">{{$compte_tresor}} الجزائر </span> </td>
+					<td dir="rtl">  الخزينة RIP/RIB   : <span dir="rtl">{{$compte_tresor}} الجزائر </span> </td>
                 </tr>
 				@endif
         	</table>
             <br>
 		</div>
     <br>
-    <div style="width: 90%; margin-right: 5%; float: right;">
+    <div style="width: 95%; margin-right: 5%; float: right;">
     <table id="things" dir="rtl" style="text-align: center; borde : none;">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 8%;">
@@ -267,12 +269,12 @@ $ordre = $op->order_ville;
 				
             </tr>
 			<tr>
-                <td>{{$pay->numero_fiche}}</td>
+                <td> {{$pay->numero_fiche}}</td>
                 <td>{{$sous_prog->code}} {{$sous_prog->designation}}</td>
 				@if($ville_fr =="Ouargla")
                 <td>التأشيرة رقم {{$pay->num_visa}} بتاريخ <br>{{$pay->date_visa}} </td>
 				@else
-				td>{{$titre->code}} {{$titre->definition}} <br>
+				<td>{{$titre->code}} {{$titre->definition}} <br>
                     {{$sous_titre->code}} {{$sous_titre->definition}}
                 </td>
 				@endif
@@ -284,13 +286,13 @@ $ordre = $op->order_ville;
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
 				</td>
-				@if($ville_fr =="Ouargla")
+				@if($ville_fr =="Ouargla" )
 				<td>{!! nl2br($txt1) !!}</td>
 				@else
                 <td></td>
 				@endif
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-				@if($ville_fr =="Mila")
+				@if($ville_fr =="Mila" || $ville_fr =="Djanet")
 				<td>{!! nl2br($txt) !!}</td>
 				@else
 				<td>/</td>
@@ -344,7 +346,8 @@ $ordre = $op->order_ville;
 				<td colspan="2" style="background-color : lightgray;"> الإطار المخصص للمحاسب العمومي</td>
 			</tr>
 			<tr>
-				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				
+				<td dir="ltr"></td>
 				<td>المبلغ الإجمالي للدفع</td>
 			</tr>
 			<tr>
@@ -360,7 +363,7 @@ $ordre = $op->order_ville;
 				<td>إقتطاعات المحاسب العمومي </td>
 			</tr>
 			<tr>
-				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td dir="ltr"></td>
 				<td>المبلغ الإجمالي الصافي للدفع</td>
 			</tr>
 		</table>
@@ -403,7 +406,7 @@ $ordre = $op->order_ville;
  <br><br><br><br>
 </div>
 <script src="{{ url('js/tagfeet.js') }}" ></script>
-
+<script src="{{ url('js/jquery.js') }}"></script>
 <script type="text/javascript">
 window.onbeforeunload = function () {
     window.close();

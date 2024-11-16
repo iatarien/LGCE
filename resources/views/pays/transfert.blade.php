@@ -141,8 +141,8 @@ $ordre = $op->order_ville;
 		<div style="  display: inline-block; width : 22%; float: right;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
 			سنة التسيير : {{ $pay->year}} <br>
-             رقم  الحوالة :  <br>
-             تاريخ  الحوالة :  <br>
+			رقم  الحوالة : @if(isset($pay->num_mondat)) {{$pay->num_mondat}} @endif <br>
+            تاريخ  الحوالة :  @if(isset($pay->date_mondat)) {{$pay->date_mondat}} @endif <br>
 			 طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
 			</h3>
             

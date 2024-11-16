@@ -44,7 +44,7 @@
         $e = $ods->name;
 		$deal_num = $ods->deal_num;
 		$visa = $ods->num_visa;
-		$ods_date = $ods->ods_date;
+		$ods_date0 = $ods->ods_date0;
 		$visa_date = $ods->date_visa;
 		$sujet = $ods->lot; 
 		$op = $ods->numero; 
@@ -116,7 +116,7 @@
 		</div>
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
-			<span>         <span style="color : black;">{{$ods_date}}</span> {{$ville}} في        </span>
+			<span>         <span style="color : black;">{{$ods_date0}}</span> {{$ville}} في        </span>
 		</div>
 
 	</div>
@@ -163,8 +163,8 @@
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
 			<p>
-				الموقع أعلاه : مدير  {{$direction}} المصرح بأن الأمر المصلحي المؤرخ في <strong dir="ltr">{{$ods_date}}</strong> مسجل تحت رقم : 
-				<span style="margin-left : 1mm;">{{$year}}/{{$num}}</span>  بأنه مبلغ للسيد : <strong> {{$e}} </strong>  يوم :<strong dir="ltr"></strong>
+				الموقع أعلاه : مدير  {{$direction}} المصرح بأن الأمر المصلحي المؤرخ في <strong dir="ltr">{{$ods_date0}}</strong> مسجل تحت رقم : 
+				<span style="margin-left : 1mm;">{{$year}}/{{$num}}</span>  بأنه مبلغ للسيد : <strong> {{$e}} </strong>  يوم :<strong dir="ltr">{{$ods->ods_date}}</strong>
 		
 			</p>
 		</div>

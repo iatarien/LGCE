@@ -111,7 +111,20 @@
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> رقم بطاقة الدفع</label>
 	              </div>
-                
+
+                <div class="form-group">
+	                <div class="col-lg-8">
+	                  <input   type="text" class="form-control" id="num_mondat" name="num_mondat">
+	                </div>
+                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> رقم حوالة الدفع</label>
+	              </div>
+                <div class="form-group">
+	                <div class="col-lg-8">
+	                  <input   type="date" class="form-control" id="date_mondat" name="date_mondat">
+	                </div>
+                    <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> تاريخ حوالة الدفع</label>
+	              </div>
+
 
                
                 
@@ -235,7 +248,7 @@
                     <td></td>
                 </tr>
                 <tr>	
-                  <td><input @if($pay->this_year_cut !=0 and $pay->this_year_cut != NULL ) value="{{ $pay->this_year_cut}}" @endif name="this_year_cut" readonly class="input_num form-control" class="input_num form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
+                  <td><input @if($pay->this_year_cut !=0 and $pay->this_year_cut != NULL ) value="{{ $pay->this_year_cut}}" @endif name="this_year_cut"  class="input_num form-control" class="input_num form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td colspan="3" style="border : none; text-align: right;" >افتطاع مبلغ الدفعات المسلمة في السنة الحالية</td>
                     <td></td>
                 </tr>
@@ -250,14 +263,14 @@
 	                <div class="col-lg-8">
 	                  <input value="{{ $pay->num_visa }}"  type="text" class="form-control" id="num_visa" name="num_visa">
 	                </div>
-                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">   رقم حوالة الدفع   </label>
+                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  رقم تأشيرة الدفع   </label>
 	          </div>
             <br>
             <div class="form-group">
 	                <div class="col-lg-8">
 	                  <input   value="{{ $pay->visa }}" type="date" class="form-control" id="visa" name="visa">
 	                </div>
-                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  تاريخ الدفــــع </label>
+                    <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  تاريخ تأشيرة الدفع </label>
 	              </div>
             <br>
 	              <!-- Buttons -->
@@ -410,6 +423,18 @@ function somme(){
         txt += ".00";
     }
     document.getElementsByName('new_payment')[0].value = txt;
+
+    var this_year_cut = document.getElementsByName('this_year_cut')[0].value;
+    if(this_year_cut ==  null || this_year_cut ==  ""){
+      this_year_cut = 0.00;
+    }else {
+      this_year_cut = this_year_cut.replaceAll(',',"");
+    }
+    new_payment = t - this_year_cut;
+    txt = new_payment.toLocaleString("en");
+    if(!txt.includes(".")){
+        txt += ".00";
+    }
     document.getElementsByName('to_pay')[0].value = txt;
 }
 $( ".input_num" ).on('keyup', function () {

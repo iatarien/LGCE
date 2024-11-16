@@ -330,7 +330,12 @@ class ODSController extends Controller
         $id = DB::table('ods')->insertGetId(['id_eng'=>$id_eng,'ods_num'=>$ods_num,
         'ods_date'=>$ods_date,'duree'=>$duree,'cause'=>$cause,"extra_type"=>$extra_type,
         'type_ods'=>$type_ods,"user"=>$user,"real_type"=>$real_type]);
-        
+
+        if($this->ville_fr =="Ouargla"){
+            $ods_date0 = $request['ods_date0'];
+            DB::table('ods')->where('id',$id)->
+            update(['ods_date0' => $ods_date0]);
+        }
         return Redirect::to('/ods/'.$id);
         
     }
@@ -369,7 +374,11 @@ class ODSController extends Controller
         }
         DB::table('ods')->where('id',$id)->update(['ods_num'=>$ods_num,"real_type"=>$real_type,
         'ods_date'=>$ods_date,'duree'=>$duree,'cause'=>$cause,'type_ods'=>$type_ods,"extra_type"=>$extra_type,]);
-        
+        if($this->ville_fr =="Ouargla"){
+            $ods_date0 = $request['ods_date0'];
+            DB::table('ods')->where('id',$id)->
+            update(['ods_date0' => $ods_date0]);
+        }
         return Redirect::to('/ods/'.$id);
         
     }

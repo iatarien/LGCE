@@ -154,7 +154,7 @@ $ordre = $eng->order_ville;
 		@endif
 		<br><br><br><br><br><br><br><br><br><br>
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
-			<h3>  رمز البرنامج : {{$eng->programme}} &emsp;&emsp; {{$prog->designation}}</h3>
+			<h3>  رمز البرنامج : {{$eng->programme}} &emsp;&emsp; <span style="display : none;">{{$prog->designation}}</span></h3>
 			<?php $act_txt = "";
 			if($eng->source =="PSC"){
 				$act_txt = $act_txt. "نشاط ممركز ";
@@ -163,7 +163,7 @@ $ordre = $eng->order_ville;
 			}
 			$act_txt = $act_txt." البرنامج الجاري لولاية ميلة";
 			?>	
-            <h3>  رمز الــنشاط : {{$eng->activite}} &emsp;&emsp; {{$act_txt}}</h3>
+            <h3>  رمز الــنشاط : {{$eng->activite}} &emsp;&emsp; <span style="display : none;">{{$act_txt}}</span></h3>
 			@if($eng->sous_action !==NULL )
 			<?php $sousy = explode(".",$eng->sous_action)[0]; ?>
             <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
@@ -171,7 +171,7 @@ $ordre = $eng->order_ville;
 			<h3>  رمز النشاط الفرعي : /</h3>
 			@endif
 
-			<h3>  رمز البرنامج الفرعي : {{$sous->code}} &emsp;&emsp; {{$sous->designation}}</h3>
+			<h3>  رمز البرنامج الفرعي : {{$sous->code}} &emsp;&emsp; <span style="display : none;">{{$sous->designation}}</span></h3>
 
             
 		</div>
