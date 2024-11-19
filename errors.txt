@@ -1,4 +1,4 @@
-UPDATE `titres` SET `definition` = 'مصاريف التطوير و الأبحاث و الدراسات' WHERE `titres`.`id_titre` = 123;
+﻿UPDATE `titres` SET `definition` = 'مصاريف التطوير و الأبحاث و الدراسات' WHERE `titres`.`id_titre` = 123;
 UPDATE `portefeuille` SET `ministere` = 'الآشغال العمومية و المنشآت القاعدية' WHERE `portefeuille`.`code` = '024';
 UPDATE `programme` SET `designation` = 'المنشئات الآساسية للطرق والطرق السيارة' WHERE `programme`.`id` = 61;
 ALTER TABLE `company` CHANGE `ministere_fr` `ministere_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
@@ -85,6 +85,7 @@ ALTER TABLE `ods` CHANGE `extra_type` `extra_type` TEXT CHARACTER SET utf8 COLLA
 
 ********* OUARGLA ********************
 ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
+
 ALTER TABLE `ods` ADD `ods_date0` DATE NULL AFTER `ods_date`;
 ALTER TABLE `ods` CHANGE `ods_date` `ods_date` DATE NULL;
 UPDATE ods SET ods_date0 = ods_date;
