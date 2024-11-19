@@ -164,8 +164,11 @@ $ordre = $eng->order_ville;
 			$act_txt = $act_txt." البرنامج الجاري لولاية ميلة";
 			?>	
             <h3>  رمز الــنشاط : {{$eng->activite}} &emsp;&emsp; <span style="display : none;">{{$act_txt}}</span></h3>
-			@if($eng->sous_action !==NULL )
+			@if($eng->sous_action !== NULL )
 			<?php $sousy = explode(".",$eng->sous_action)[0]; ?>
+			@if($sousy =="000")
+			<?php $sousy = "/"; ?>
+			@endif
             <h3>  رمز النشاط الفرعي : {{$sousy}}</h3>
 			@else
 			<h3>  رمز النشاط الفرعي : /</h3>
