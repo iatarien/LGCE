@@ -37,6 +37,10 @@ Route::get('/operations_clotures/{secteur}','OperationsController@operations_clo
 
 Route::get('/ajouter_operation_ar','OperationsController@ajouter_ar');
 Route::get('/modifier_operation_ar/{id}','OperationsController@modifier_ar');
+Route::get('/delete_op/{id}','OperationsController@delete_op');
+
+Route::get('/redirect/{message}/{type}/{redirect_to}','UsersController@redirect');
+
 
 Route::post('/add_op','OperationsController@add_op');
 Route::post('/add_op_ar','OperationsController@add_op_ar');

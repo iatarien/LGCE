@@ -32,11 +32,10 @@ class OperationsController extends Controller
             $chapitre = $filters[0];
             $source = $filters[1];
             //$year = $filters[2];
-
+            $query = "SELECT * FROM operations LEFT JOIN engagements 
+            ON operations.id = engagements.id_op WHERE ";
             if($portefeuille !="all"){
-                $query = "SELECT * FROM operations WHERE portefeuille = '".$portefeuille."' AND";
-            }else{
-                $query = "SELECT * FROM operations WHERE ";
+                $query = $query." portefeuille = '".$portefeuille."' AND";
             }
             
             if ($chapitre != ""){
@@ -56,14 +55,17 @@ class OperationsController extends Controller
             //     $query = $query." ORDER BY ".$order; 
             // } 
             //echo $query;
-            return DB::select( DB::raw($query));
+            $ops =  DB::select( DB::raw($query));
+            return $ops;
         }else{
+            $query = "SELECT * FROM operations LEFT JOIN engagements 
+            ON operations.id = engagements.id_op WHERE ";
             if($portefeuille !="all"){
-                return DB::table('operations')->where('portefeuille',$portefeuille)->whereNull("date_cloture")->orderby("id","DESC")->get();
-            }else{
-                return DB::table('operations')->whereNull("date_cloture")->orderby("id","DESC")->get();
+                $query = $query." portefeuille = '".$portefeuille."' AND";
             }
-                       
+            $query= $query." numero !='N?' AND date_cloture IS NULL ORDER BY id DESC";
+            $ops =  DB::select( DB::raw($query));
+            return $ops;           
         }
     }
 
@@ -335,6 +337,20 @@ class OperationsController extends Controller
         return Redirect::to('/operations_ar/all');
     }
 
-    
+    public function delete_op($id){
+        $S = 0;
+        $c1 = DB::table("engagements")->where("id_op",$id)->count();
+        $c2 =  DB::table("deals")->where("id_op",$id)->count();
+        $S = $c1 + $c2;
+        if($S == 0){
+            DB::table("operations")->where("id",$id)->delete();
+            return Redirect::to('/operations_ar/all');
+        }else{
+
+            return Redirect::to('/redirect/لا يمكن حذف هذه العملية/error/*operations_ar*all');
+
+        }
+
+    }
     
 }

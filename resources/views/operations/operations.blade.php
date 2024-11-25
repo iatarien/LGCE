@@ -251,7 +251,13 @@ function situation(){
 	});
 }
 
-
+function supprimer(id){
+	link = "/delete_op/"+id;
+	var result = confirm("هل أنت متأكد من أنك تريد حذف هذه العملية ؟");
+	if (result) {
+		document.location.href = link;
+	}
+}
 function display(operations,value,order){
 	const user_id = "{{$user->id}}";
 	var user_service = "{{ $user->service }}";
@@ -264,8 +270,8 @@ function display(operations,value,order){
 		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>  مجموع الدفعات</div></td>'+
 		        '<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div>  PEC</div></td>'+
 				'<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div> Solde sur AE</div></td>'+
-				'<td style="cursor : pointer;text-align : cente; width : 5%;"><div><i class="bi bi-pencil"></i></div></td>'+
-				'<td style="cursor : pointer; text-align : cente; width : 5%;"><div><i class="bi bi-eye"></i></div></td>'+
+				'<td style="cursor : pointer; text-align : center; width : 5%;"><div><i class="bi bi-pencil"></i></div></td>'+
+				'<td style="cursor : pointer; text-align : center; width : 5%;"><div><i class="bi bi-trash"></i></div></td>'+
 		      '</tr>';
 	const op = operations;
 	console.log()
@@ -303,9 +309,15 @@ function display(operations,value,order){
 		    	'<span><button  class="btn btn-primary" disabled  onclick="document.location.href=\'/modifier_operation_ar/'+op[i].oper_id+'\'"><i class="bi bi-pencil"></i></button></span>'+
 		    	'</td>';
 			}
+			if(user_id == op[i].user_id || user_service =="Engagement" ){
 			tds+='<td>'+
-		    	'<span><button  class="btn btn-default"  onclick="document.location.href=\'/engagements/'+op[i].numero+'\'"><i class="bi bi-eye"></i></button></span>'+
+		    	'<span><button  class="btn btn-danger"  onclick="supprimer('+op[i].oper_id+')"><i class="bi bi-trash"></i></button></span>'+
 		    	'</td>';
+			}else{
+				tds+='<td>'+
+		    	'<span><button disabled  class="btn btn-danger"  onclick="supprimer('+op[i].oper_id+')"><i class="bi bi-trash"></i></button></span>'+
+		    	'</td>';
+			}
 
 		tds+='</tr>';
 	}

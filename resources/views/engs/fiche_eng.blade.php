@@ -648,6 +648,8 @@ $('input[type=radio]').on('change',function() {
 });
 function convert(num){
 	num = ""+ num;
+	num= num.replace("-", "");
+	console.log(num);
 	var num1 = num;
 	var num2 = null
 	if(num.includes('.')){

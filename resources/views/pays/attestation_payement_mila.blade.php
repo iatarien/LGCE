@@ -199,7 +199,7 @@
 				<b> بمبلغ :</b> <span dir="ltr">{{ number_format((float)$pay->montant, 2, '.', ' ')}}</span><br>
 			</p>
 			<p dir="rtl"> <b>  نحن  والي ولاية {{$ville}} الممضي أسفله</b>
-				<b> نظرا للحساب المؤقت رقم  : </b> {{$pay->num}}<br>
+				<b> نظرا للحساب المؤقت رقم  : </b> {{$pay->fiche_pay}}<br>
 				<b> الذي تبين منه الأشغال المنجزة بتاريخ :</b> {{$pay->date_pay}}<br>
 			</p>
 				<table id="payement">

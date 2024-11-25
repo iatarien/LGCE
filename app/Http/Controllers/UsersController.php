@@ -118,4 +118,7 @@ class UsersController extends Controller
 	//echo $temp;
         return "success";
     }
+    public function redirect($message,$type,$redirect_to){
+        return view('redirect',["message"=>$message,"type"=>$type,"redirect_to"=>str_replace('*','/',$redirect_to)]);
+    }
 }

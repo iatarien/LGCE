@@ -78,11 +78,6 @@ ALTER TABLE `ods` CHANGE `extra_type` `extra_type` TEXT CHARACTER SET utf8 COLLA
 
 
 
-
-
-
-
-
 ********* OUARGLA ********************
 ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
 
