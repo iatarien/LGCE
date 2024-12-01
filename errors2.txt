@@ -1,0 +1,3 @@
+UPDATE `programme` SET `designation` = 'التعليم المتوسط العادي و المتخصص و عن بعد' WHERE `programme`.`id` = 8;
+UPDATE `programme` SET `designation` = 'التعليم الثانوي العادي و المتخصص و عن بعد' WHERE `programme`.`id` = 9;
+UPDATE `programme` SET `designation` = 'التكوين قيد الخدمة و المتخصص' WHERE `programme`.`id` = 206;
