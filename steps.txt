@@ -1,3 +1,5 @@
+https://drive.google.com/drive/u/1/folders/1VoyGcehHhWZhM291Wn3snhH6Puxmc4iC
+
 - install VM 
 - add rule on port 8080 in firewall
 - copy virtual machine
