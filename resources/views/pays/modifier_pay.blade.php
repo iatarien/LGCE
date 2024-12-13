@@ -430,7 +430,7 @@ function somme(){
     }else {
       this_year_cut = this_year_cut.replaceAll(',',"");
     }
-    new_payment = t - this_year_cut;
+    new_payment = new_payment - this_year_cut;
     txt = new_payment.toLocaleString("en");
     if(!txt.includes(".")){
         txt += ".00";
