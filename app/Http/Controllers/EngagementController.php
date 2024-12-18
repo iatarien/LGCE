@@ -294,7 +294,7 @@ class EngagementController extends Controller
         if($this->lang =="fr"){
             $the_view = 'engs.fiche_eng_fr';
         }
-        if($this->ville_fr =="Djanet" || $this->ville_fr =="djanet" ||
+        if($this->ville_fr =="Djanet" || $this->ville_fr =="djanet" || 
         $this->ville_fr =="Illizi" || $this->ville_fr =="illizi"){
             $the_view = 'engs.djanet';
         }
@@ -313,6 +313,9 @@ class EngagementController extends Controller
         }
         if($this->ville_fr =="Ouargla" ){
             $the_view = 'engs.ouargla';
+        }
+        if($this->ville_fr =="In Salah"  ){
+            $the_view = 'engs.InSalah';
         }
         // var_dump($tots);
         // return "";

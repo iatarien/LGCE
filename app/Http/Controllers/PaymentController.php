@@ -346,7 +346,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
 
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
@@ -411,7 +411,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
 
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
@@ -453,7 +453,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
 
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
@@ -672,7 +672,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $nums = NULL;
 
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
@@ -716,7 +716,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $nums = NULL;
         
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
@@ -772,7 +772,7 @@ class PaymentController extends Controller
             "sanction"=>floatval($pay->sanction_done) - floatval($pay->sanction_cut),
             "total"=>floatval($pay->total_done) - floatval($pay->total_cut),
         );
-        if($pay->type != "FSDRS"){
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
             $matieres = explode('.',$op->numero);
             if (strlen($matieres[0]) > 2){
                 $matiere = $matieres[2];
