@@ -240,7 +240,7 @@ margin: 20px; margin-top : 5%; margin-right : 60px;
     <table id="numero" style="width : 33%; float : right; text-align : center;">
 		<tr>
 			<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				حوالة رقم : &emsp;&emsp;&emsp;
+				حوالة رقم : &emsp; {{$pay->num_mondat}}
 			</td>
 		</tr>
 		<tr>

@@ -114,13 +114,13 @@
 
                 <div class="form-group">
 	                <div class="col-lg-8">
-	                  <input   type="text" class="form-control" id="num_mondat" name="num_mondat">
+	                  <input   type="text" class="form-control" id="num_mondat" name="num_mondat" value="{{$pay->num_mondat}}">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> رقم حوالة الدفع</label>
 	              </div>
                 <div class="form-group">
 	                <div class="col-lg-8">
-	                  <input   type="date" class="form-control" id="date_mondat" name="date_mondat">
+	                  <input   type="date" class="form-control" id="date_mondat" name="date_mondat" value="{{$pay->date_mondat}}">
 	                </div>
                     <label class="control-label col-lg-4" style="text-align : center; font-weight: bold;" for="title"> تاريخ حوالة الدفع</label>
 	              </div>
