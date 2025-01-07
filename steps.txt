@@ -16,7 +16,7 @@ https://drive.google.com/drive/u/1/folders/1VoyGcehHhWZhM291Wn3snhH6Puxmc4iC
 FR 
 - set company lang  = fr
 - update Banks
-
+https://drive.google.com/drive/u/2/folders/1O5ukH-9GmrWuXkmwMIjuw_6ayWztOKUG
 
 Mono
 - install vc_redit
