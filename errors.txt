@@ -46,7 +46,7 @@ UPDATE programme SET designation_fr ="Enseignement Secondaire normal et spécifi
 UPDATE `portefeuille` SET `ministere_fr` = 'Hydraulique' WHERE `portefeuille`.`code` = '051';
 UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 
-
+ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
 
 ****** MIIIIIIILAAAAAAAA *****
 ALTER TABLE `operations` ADD `order_ville` TEXT NULL AFTER `user_id`;
@@ -79,7 +79,7 @@ ALTER TABLE `ods` CHANGE `extra_type` `extra_type` TEXT CHARACTER SET utf8 COLLA
 
 
 ********* OUARGLA ********************
-ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
+
 
 ALTER TABLE `ods` ADD `ods_date0` DATE NULL AFTER `ods_date`;
 ALTER TABLE `ods` CHANGE `ods_date` `ods_date` DATE NULL;
