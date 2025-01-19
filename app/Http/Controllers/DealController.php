@@ -231,10 +231,10 @@ class DealController extends Controller
         $deal_type = $request['type_ar'];
         $deal_num = $request['deal_num'];
         $deal_date = $request['deal_date'];
-        $check = $this->check_deal($deal_num,$deal_date);
-        if($check > 0){
-            return redirect("/redirect/رقم الصفقة مكرر !/error/ajouter_deal");
-        }
+        // $check = $this->check_deal($deal_num,$deal_date);
+        // if($check > 0){
+        //     return redirect("/redirect/رقم الصفقة مكرر !/error/ajouter_deal");
+        // }
 
         $lot = $request['lot'];
         
