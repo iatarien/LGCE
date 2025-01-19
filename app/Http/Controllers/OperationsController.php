@@ -240,7 +240,10 @@ class OperationsController extends Controller
         "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,
         "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps]);
     }
+    public function check_num($numero){
+        return DB::table('operations')->where("numero",$numero)->count();
 
+    }
     public function add_op_ar(Request $request){
         $user = Auth::user()->id;
         $portefeuille = $request['portefeuille'];
@@ -248,6 +251,10 @@ class OperationsController extends Controller
         $sous_programme = $request['sous_id'];
         $annee = $request['annee'];
         $numero = $request['numero'];
+        $check = $this->check_num($numero);
+        if($check > 0){
+            return redirect("/redirect/رقم العملية مكرر !/error/ajouter_operation_ar");
+        }
         $intitule = $request['intitule'];
         $intitule_ar = $request['intitule_ar'];
         $date = $request['date'];

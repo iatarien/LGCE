@@ -221,12 +221,21 @@ class DealController extends Controller
         ['user'=>$user,"type"=>$type,'operations'=>$operations,"type_ar"=>$type_ar,
         "entreprises"=>$entreprises,"banques"=>$banques,"number"=>$number]);
     }
+    public function check_deal($deal_num,$deal_date){
+        return DB::table('deals')->where("deal_num",$deal_num)->
+        where("deal_date",$deal_date)->count();
+    }
     public function add_deal(Request $request){
         $user_id = $user = Auth::user()->id;
         $id_op = $request['id_op'];
         $deal_type = $request['type_ar'];
         $deal_num = $request['deal_num'];
         $deal_date = $request['deal_date'];
+        $check = $this->check_deal($deal_num,$deal_date);
+        if($check > 0){
+            return redirect("/redirect/رقم الصفقة مكرر !/error/ajouter_deal");
+        }
+
         $lot = $request['lot'];
         
         $montant = $request['montant'];
