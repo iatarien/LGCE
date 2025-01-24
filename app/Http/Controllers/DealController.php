@@ -78,7 +78,7 @@ class DealController extends Controller
             }
             
 
-            $query = "SELECT *, d.id_deal as deal_id, d.montant as montant ,d.user_id as user_id FROM deals d 
+            $query = "SELECT *,engagements.id as id_eng, d.id_deal as deal_id, d.montant as montant ,d.user_id as user_id FROM deals d 
             INNER JOIN operations ON d.id_op = operations.id 
             LEFT JOIN entreprises ON d.entreprise = entreprises.id 
             LEFT JOIN engagements ON d.id_deal = engagements.deal WHERE ";

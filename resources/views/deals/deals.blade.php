@@ -347,7 +347,8 @@ function display(engagements,value){
 		    	'<span><button disabled class="btn btn-primary"  onclick="document.location.href=\'/'+type+'/'+op[i].deal_id+'\'">تعديل</button></span>'+
 		        '</td>';
 			}
-			if((user_id == op[i].user_id || user_service =="Engagement" ) && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){
+			console.log(op[i].numero +","+op[i].id_eng)
+			if((user_id == op[i].user_id || user_service =="Engagement" ) && (op[i].id_eng == null) && (!op[i].num_visa || op[i].num_visa == null || op[i].num_visa == "")){
 				tds +='<td style="text-align : center;">'+
 			'<span><button class="btn btn-danger"   onclick="supprimer(\'/delete_deal/'+op[i].deal_id+'\')">خذف</button></span>'+
 			'</td>';
