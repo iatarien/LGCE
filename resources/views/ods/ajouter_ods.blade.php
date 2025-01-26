@@ -97,25 +97,30 @@
                       <option value="d">إنطلاق</option>
                       <option >إشعار بإنطلاق الأشغال الإضافية</option>
                       <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="other">أخرى</option>
                       <option value="d">إنطلاق</option>
                       @elseif($last =="d")
                       <option value="a">وقف</option>
                       <option >إشعار بإنطلاق الأشغال الإضافية</option>
                       <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="other">أخرى</option>
                       @elseif($last =="a")
                       <option value="r">استئناف</option>
                       <option >إشعار بإنطلاق الأشغال الإضافية</option>
                       <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="other">أخرى</option>
                       @elseif($last =="r")
                       <option value="a">وقف</option>
                       <option >إشعار بإنطلاق الأشغال الإضافية</option>
                       <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="other">أخرى</option>
                       @else
                       <option value="a">وقف </option>
                       <option value="r">استئناف</option>
                       <option value="d">إنطلاق</option>
                       <option >إشعار بإنطلاق الأشغال الإضافية</option>
                       <option >استلام الإشعار بإنجاز الأشغال الاضافية </option>
+                      <option value="other">أخرى</option>
                       @endif
                     </select>
                     @else
