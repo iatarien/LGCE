@@ -96,7 +96,7 @@
 	              
                 <div class="form-group">
 	                <div class="col-lg-8">
-	                  <input required="" type="date" class="form-control" id="date_pay" name="date_pay">
+	                  <input type="date" class="form-control" id="date_pay" name="date_pay">
 	                </div>
                     <label  class="control-label col-lg-4" style="text-align : right; font-weight: bold;" for="title">  الأشغال المنفذة و المصاريف التي دفعت بتاريخ </label>
 	              </div>

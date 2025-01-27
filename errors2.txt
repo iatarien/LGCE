@@ -2,3 +2,6 @@ UPDATE `programme` SET `designation` = 'التعليم المتوسط العاد
 UPDATE `programme` SET `designation` = 'التعليم الثانوي العادي و المتخصص و عن بعد' WHERE `programme`.`id` = 9;
 UPDATE `programme` SET `designation` = 'التكوين قيد الخدمة و المتخصص' WHERE `programme`.`id` = 206;
 UPDATE `programme` SET `designation` = 'التعليم' WHERE `programme`.`id` = 1;
+
+ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
+ALTER TABLE `payments` CHANGE `date_pay` `date_pay` DATE NULL;

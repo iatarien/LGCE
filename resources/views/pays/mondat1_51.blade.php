@@ -188,7 +188,11 @@
             </tr>
             <tr>
                 <td style="width: 30%;">موضوع النفقة</td>
+				@if($pay->travaux_type != "فـــاتورة")
                 <td style="width: 70%;">{{$pay->travaux_type }} رقم {{ $pay->travaux_num}}  لل{{ $pay->deal_type }} رقم {{ $pay->deal_num }}  و ذلك من أجل {{ $pay->lot }}</td>
+				@else
+				<td style="width: 70%;">{{$pay->travaux_type }} رقم {{ $pay->travaux_num}}   و ذلك من أجل {{ $pay->lot }}</td>
+				@endif
             </tr>
             <tr>
                 <td style="width: 30%;">مرجع التأشيرة</td>

@@ -312,7 +312,10 @@ class PaymentController extends Controller
         }
         $txt = " ";
         if($pay->travaux_num != null){
-            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num;
+        }
+        if($pay->date_pay != null){
+            $txt = $txt." بتاريخ ".$pay->date_pay;
         }
         if($pay->travaux_type != "فـــاتورة"){
             $txt = $txt."\n ".$pay->deal_type." رقم ".$pay->deal_num;
@@ -535,7 +538,10 @@ class PaymentController extends Controller
         
         $txt = " ";
         if($pay->travaux_num != null){
-            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num;
+        }
+        if($pay->date_pay != null){
+            $txt = $txt." بتاريخ ".$pay->date_pay;
         }
         if($pay->travaux_type != "فـــاتورة"){
             $txt = $txt.". ".$pay->deal_type." رقم ".$pay->deal_num;
