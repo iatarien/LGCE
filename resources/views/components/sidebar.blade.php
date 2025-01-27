@@ -102,7 +102,7 @@
             </a>
           </li>
           <li>
-            <a href="/ajouter_deal/facture/1">
+            <a href="javascript:void(0)" onclick='facture()'>
               <i class="bi bi-circle"></i><span> إضافة فاتورة</span>
             </a>
           </li>
