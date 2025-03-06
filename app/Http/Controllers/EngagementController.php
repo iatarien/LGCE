@@ -121,12 +121,177 @@ class EngagementController extends Controller
         return view($view,['user'=>$user,"type"=>$type,"deal"=>$deal,"eng"=>$eng,
         "titres"=>$titres,"parent"=>$parent,'the_op'=>$the_op]);
     }
+    private function get_eng0($id_op,$id){
+        $query = "SELECT *, engagements.id as eng_id from engagements RIGHT JOIN operations ON
+        engagements.id_op = operations.id
+        WHERE operations.id =".$id_op." AND engagements.id < ".$id." ORDER BY engagements.id DESC LIMIT 1 ";
+        $engs = DB::select( DB::raw($query));
+        $engs = (array) $engs;
+        if(count($engs) > 0 && isset($engs[0]->eng_id) && $engs[0]->eng_id != NULL){
+            $eng = $engs[0];
+            $type = $eng->type;
+            if($type =='eng' ){
+                $ze_deal = DB::table('deals')->where('id_deal',$eng->deal)->first();
+                $e = DB::table('entreprises')->select('name')->
+                where('id',$ze_deal->entreprise)->first();
+                $e = $e->name;
+                $deal = $ze_deal->deal_type;
+                $deal_num = $ze_deal->deal_num;
+                $deal_date = $ze_deal->deal_date;
+            }
+            $sujet = $eng->real_sujet; 
+            $sous = DB::table("programme")->where("id",$eng->sous_programme)->first();
+            if($sous == NULL){
+                $sous = (object) [];
+                $sous->code = "";
+                $sous->designation = "";
+                
+            }
+            $q_titres = "SELECT * FROM titres WHERE type ='parent' AND id_titre IN 
+            (SELECT father FROM titres WHERE id_titre IN 
+            (SELECT sous_titre FROM rebriques WHERE id_eng =".$id." 
+            ) ) ORDER BY id_titre ASC";
+            $titres = DB::select(DB::raw($q_titres));
+
+            $titres2 = DB::select(DB::raw($q_titres));
+
+            $q_titres1 = "SELECT * FROM titres WHERE type ='parent' AND id_titre IN 
+            (SELECT father FROM titres WHERE id_titre IN 
+            (SELECT sous_titre FROM rebriques WHERE id_eng =".$id." AND sous_montant != 0
+            ) ) AND id_titre != 128 ORDER BY id_titre ASC";
+
+            $titres1 = DB::select(DB::raw($q_titres1));
+
+            //$rebriques = DB::table('rebriques')->where('id_eng',$id)->get();
+            $big_ones = DB::select(DB::raw('SELECT code FROM `titres` WHERE code like "%00%" AND code > 31000 and code < 32000'));
+            foreach($big_ones as $big_one){
+                $start = substr($big_one->code, 0, 3);
+                $q = 'SELECT code FROM `titres` WHERE code LIKE "'.$start.'%" AND code NOT LIKE "%00"';
+
+                $big_one->sons = DB::select(DB::raw($q));
+            }
+            
+            $tots = new stdClass();
+            $tots->AP = 0;
+            $tots->cumul = 0;
+            $tots->montant = 0;
+            $tots->montant_1 = 0;
+            $tots->montant_2 = 0;
+            
+            for($i =0; $i<count($titres); $i = $i +1){
+                $qq = "SELECT *
+                from rebriques INNER JOIN titres ON
+                titres.id_titre = rebriques.sous_titre WHERE  
+                father = ".$titres[$i]->id_titre."  
+                AND id_eng = ".$id." ORDER BY sous_titre ASC ";
+                $rebriques = DB::select(DB::raw($qq));
+                // $rebriques = $this->unique_multidimensional_array( $rebriques, 
+                // "sous_titre");
+                $titres[$i]->rebriques = $rebriques;
+                $sum_AP = array_sum(array_column($rebriques, 'sous_AP'));
+                $sum_cumul = array_sum(array_column($rebriques, 'sous_cumul'));
+                $sum_montant = array_sum(array_column($rebriques, 'sous_montant'));
+                $sum_montant_1 = array_sum(array_column($rebriques, 'sous_montant_1'));
+                $sum_montant_2 = array_sum(array_column($rebriques, 'sous_montant_2'));
+                $titres[$i]->sums = array(
+                "AP" => $sum_AP,
+                "cumul" => $sum_cumul,
+                "montant" => $sum_montant,
+                "montant_1" => $sum_montant_1,
+                "montant_2" => $sum_montant_2,
+                ); 
+                $tots->AP += $sum_AP;
+                $tots->cumul += $sum_cumul;
+                $tots->montant += $sum_montant;
+                $tots->montant_1 += $sum_montant_1;
+                $tots->montant_2 += $sum_montant_2;
+            }
+            for($i =0; $i<count($titres2); $i = $i +1){
+                $qq = "SELECT *
+                from rebriques INNER JOIN titres ON
+                titres.id_titre = rebriques.sous_titre WHERE  
+                father = ".$titres2[$i]->id_titre."  
+                AND id_eng = ".$id." ORDER BY sous_titre ASC ";
+                $rebriques = DB::select(DB::raw($qq));
+
+
+                $sum_AP = array_sum(array_column($rebriques, 'sous_AP'));
+                $sum_cumul = array_sum(array_column($rebriques, 'sous_cumul'));
+                $sum_montant = array_sum(array_column($rebriques, 'sous_montant'));
+                $sum_montant_1 = array_sum(array_column($rebriques, 'sous_montant_1'));
+                $sum_montant_2 = array_sum(array_column($rebriques, 'sous_montant_2'));
+                $titres2[$i]->sums = array(
+                "AP" => $sum_AP,
+                "cumul" => $sum_cumul,
+                "montant" => $sum_montant,
+                "montant_1" => $sum_montant_1,
+                "montant_2" => $sum_montant_2,
+                ); 
+                foreach($rebriques as $reb){
+                    $la_fin = substr($reb->code, -2);
+                    if($la_fin !== "00"){
+                        $start = substr($reb->code, 0, 3);
+                        $q_Dad = 'SELECT * FROM `titres` WHERE code LIKE "%'.$start.'00%"';
+                        $dad = DB::select(DB::raw($q_Dad));
+        
+                        if(count($dad) != 0){
+                            $dad = $dad[0];
+                            $dad->sous_AP = $reb->sous_AP;
+                            $dad->sous_cumul = $reb->sous_cumul;
+                            $dad->sous_montant = $reb->sous_montant;
+                            $dad->sous_montant_1 = $reb->sous_montant_1;
+                            $dad->sous_montant_2 = $reb->sous_montant_2;
+                            array_unshift($rebriques , $dad);
+                        }
+                    }
+                    
+                    
+                    
+                }
+                $titres2[$i]->rebriques = $rebriques;
+            }
+            for($i =0; $i<count($titres1); $i = $i +1){
+                $qq = "SELECT *
+                from rebriques INNER JOIN titres ON
+                titres.id_titre = rebriques.sous_titre WHERE id_eng = ".$id." 
+                AND father = ".$titres1[$i]->id_titre."
+                ORDER BY sous_titre ASC ";
+                $rebriques = DB::select(DB::raw($qq));
+                // $rebriques = $this->unique_multidimensional_array( $rebriques, 
+                // "sous_titre");
+            
+
+                $titres1[$i]->rebriques = $rebriques;
+                
+                $titres1[$i]->sums = array(
+                "AP" => array_sum(array_column($rebriques, 'sous_AP')),
+                "cumul" => array_sum(array_column($rebriques, 'sous_cumul')),
+                "montant" => array_sum(array_column($rebriques, 'sous_montant')),
+                "montant_1" => array_sum(array_column($rebriques, 'sous_montant_1')),
+                "montant_2" => array_sum(array_column($rebriques, 'sous_montant_2')),
+                ); 
+            }
+
+            $engs[0]->tots = $tots;
+            $engs[0]->titres2 = $titres2;
+            $engs[0]->titres = $titres;
+            $engs[0]->titres1 = $titres1;
+
+            
+        }else{
+            $engs = null;
+        }
+        
+
+        return $engs;
+    }
     public function fiche_eng($id){
         $user = Auth::user();
         $eng = DB::table('engagements')->select("*","engagements.id as id_eng")
         ->join("operations",'engagements.id_op','=','operations.id')->
         where('engagements.id',$id)->first();
-
+        $eng0 = $this->get_eng0($eng->id_op,$id);
+        //return $eng0;
         $prog = DB::table('programme')->where('code',$eng->programme)->first();
         $porte = DB::table('portefeuille')->where('code',$eng->portefeuille)->first();
 
@@ -314,13 +479,16 @@ class EngagementController extends Controller
         if($this->ville_fr =="Ouargla" ){
             $the_view = 'engs.ouargla';
         }
+        if($this->ville_fr =="Biskra" ){
+            $the_view = 'engs.biskra';
+        }
         if($this->ville_fr =="In Salah"  ){
             $the_view = 'engs.InSalah';
         }
         // var_dump($tots);
         // return "";
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
-        "prog"=>$prog,"porte"=>$porte,"titres2"=>$titres2,
+        "prog"=>$prog,"porte"=>$porte,"titres2"=>$titres2,"eng0"=>$eng0,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);
         
     }

@@ -120,7 +120,7 @@
 		$debut = 0;
 
 		//echo ("indice = ".$indice."<br>");
-		$indice = 9;
+		$indice = 6;
 		$tot = count($ops);
 		$n = ceil($tot/$indice);
 		$i = 1;	
@@ -150,10 +150,10 @@
 
 			<tr>
                 <th style="width : 2%;">N°</th>
-                <th style="width : 25%; ">DESIGNATION DE LA STRUCTURE ET L'ORDONNATEUR DELEGUE </th>
-                <th style="width : 10%; ">MONTANT DE AE </th>
-                <th style="width : 10%; ">MONTANT DES CP (Notifié {{ $the_year}}) </th>
-				<th style="width : 10%; ">MONTANT DES CREDITS ENGAGES</th>
+                <th style="width : 28%; ">DESIGNATION DE LA STRUCTURE ET L'ORDONNATEUR DELEGUE </th>
+                <th style="width : 9%; ">MONTANT DE AE </th>
+                <th style="width : 9%; ">MONTANT DES CP (Notifié {{ $the_year}}) </th>
+				<th style="width : 9%; ">MONTANT DES CREDITS ENGAGES</th>
                 <th style="width : 10%; ">SOLDE</th>
                 <th style="width : 10%; ">TAUX DES ENGAGEMENTS</th>
 				<th style="width : 10%; ">CONSOMMATION DES CP ({{$the_year}}) </th>

@@ -56,7 +56,7 @@ $debut = 0;
 $indice = 7;
 //var_dump($conges); ?>
 <body>
-<div style="height : 10mm;"></div>
+<!-- <div style="height : 10mm;"></div> -->
 <div class="row">
 
 	<div >
@@ -73,7 +73,7 @@ $indice = 7;
                      
                 //}
                 ?>
-
+<div style="height : 10mm;"></div>
 				  <table id="demo-table" class="table table-bordered personal-task resizable">
 				    <tbody id="ops_place">
                         <tr style="  font-weight : bolder;">
