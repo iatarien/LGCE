@@ -122,9 +122,13 @@ input[readonly] {
 	                <div class="col-sm-9">
                     <input id="op_input" dir="ltr" style="text-align : right;" list="ops" class="form-control" id="numero_op_txt" onclick="op_like(this.value)" onkeyup="op_like(this.value)" > 
                     <div id="myDropdown" class="dropdown-content" style="display: none;">
-                      @foreach ($operations as $operation)
-                      <span dir="ltr" class="ops_clss" style="cursor: pointer; text-align : right;" onclick="ops_changed('{{ $operation->id }}1989raouf1989{{$operation->intitule_ar}}1989raouf1989{{$operation->numero}}')">{{ $operation->numero  }}</span>
+                    @foreach ($operations as $operation)
+                      <?php $phrase = $operation->id."1989raouf1989".$operation->intitule_ar."1989raouf1989".$operation->numero;
+                            $phrase = str_replace("'"," ",$phrase); ?>
+                      <span dir="ltr" class="ops_clss" style="cursor: pointer; text-align : right;" 
+                      onclick="ops_changed('{{$phrase}}')">{{ $operation->numero  }}</span>
                       @endforeach
+
                     </div>
 	                </div>
                 </div><br>
