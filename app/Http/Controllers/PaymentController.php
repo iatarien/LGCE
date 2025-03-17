@@ -747,6 +747,7 @@ class PaymentController extends Controller
             $view = $view."_fr";
         }
 
+        
         $txt = " ";
         if($pay->travaux_num != null){
             $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
