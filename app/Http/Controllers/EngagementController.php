@@ -126,8 +126,10 @@ class EngagementController extends Controller
         engagements.id_op = operations.id
         WHERE operations.id =".$id_op." AND engagements.id < ".$id." ORDER BY engagements.id DESC LIMIT 1 ";
         $engs = DB::select( DB::raw($query));
+        //var_dump($engs[0]);
         $engs = (array) $engs;
         if(count($engs) > 0 && isset($engs[0]->eng_id) && $engs[0]->eng_id != NULL){
+            $id = $engs[0]->eng_id;
             $eng = $engs[0];
             $type = $eng->type;
             if($type =='eng' ){
@@ -481,6 +483,7 @@ class EngagementController extends Controller
         }
         if($this->ville_fr =="Biskra" ){
             $the_view = 'engs.biskra';
+
         }
         if($this->ville_fr =="In Salah"  ){
             $the_view = 'engs.InSalah';

@@ -208,7 +208,7 @@ $ordre = $eng->order_ville;
 		<br>
         @if($eng0 != NULL)
         <?php  
-            //var_dump($eng0[0]->titres);
+            //var_dump($eng0[0]);
             $tots0 =   $eng0[0]->tots;
             $titres20 =  $eng0[0]->titres2 ;
             //$titres0 = $eng0[0]->$titres;
