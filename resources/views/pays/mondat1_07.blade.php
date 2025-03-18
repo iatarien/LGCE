@@ -244,7 +244,7 @@
     <br>
     <div style="width: 90%; margin-right: 5%; float: right;">
     <table id="things" dir="rtl" style="text-align: center">
-            <tr>
+            <tr style="height : 45px;">
                 <td rowspan="2" style="text-align : center; width : 15%;">
                   الرمز الميزانياتي للنفقة
                 </td>
@@ -261,7 +261,7 @@
                  تحديد المستفيد
                 </td>
             </tr>
-            <tr>
+            <tr style="height : 45px;">
                 <td> التحديد</td>
                 <td>الحساب الدائن</td>
                 <td>المبلغ</td>
@@ -270,24 +270,24 @@
                 <td colspan="2" style="width : 15%">مرجع وثيقة الدفع</td>
 				<td>ملاحظات</td>
             </tr>
-			<tr>
-                <td>{{$op->numero}}</td>
-                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-                <td></td>
-                <td dir="ltr">@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
-                <td></td>
-                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-				<td>{{$e->name}}</td>
-                <td>
+			<tr style="height : 150px; vertical-align : top;">
+			<td style="padding-top : 20px;" >{{$op->numero}}</td>
+                <td style="padding-top : 20px;" dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td style="padding-top : 20px;"></td>
+                <td style="padding-top : 20px;" dir="ltr">@if($pay->sanction_cut != 0) {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
+                <td style="padding-top : 20px;"></td>
+                <td style="padding-top : 20px;" dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				<td style="padding-top : 20px;">{{$e->name}}</td>
+                <td style="padding-top : 20px;">
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
 				</td>
-                <td></td>
-				<td ></td>
-                <td>/</td>
+                <td style="padding-top : 20px;"></td>
+				<td style="padding-top : 20px;" ></td>
+                <td style="padding-top : 20px;">/</td>
 				
             </tr>
-			<tr>
+			<tr style="height : 35px;">
                 <td>  المبلغ الإجمالي الخام</td>
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td colspan="2">المبلغ الإجمالي للإقتطاعات</td>

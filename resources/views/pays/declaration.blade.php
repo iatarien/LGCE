@@ -148,7 +148,7 @@ $ordre = $op->order_ville;
 		</div>
         
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-            <table style="border : none;">
+            <table style="border : none;  min-height : 200px;">>
                 <tr>
                     <th style="width : 25%;">تحديد المستفيد  </th>
 					<th style="width : 10%;">البرنامج الفرعي  </th>
