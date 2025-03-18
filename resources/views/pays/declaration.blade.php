@@ -67,19 +67,18 @@ $ordre = $op->order_ville;
 <section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;" >
 		<div style="  display: inline-block; ">
-			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
-            <h3>    République Algérienne Démocratique et Populaire    </h3>
+			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية <br>
+             République Algérienne Démocratique et Populaire </h3>
 		</div>
-		<br>
         <div style="width : 100%; background-color : lightgray" >
-            <h3>   بيان بالتحويل </h3>
+            <h3>   إشعار بالتحويل </h3>
         </div>
 		<div style="width : 100%;" >
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
         </div>
 		
 		<div style="  display: inline-block; max-width : 45%; " dir="rtl">
-        <table id="le_table">
+        <table id="le_table" style="font-size : 11.5px;">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
                     <th style="width : 33%;">الرمز</th>
@@ -96,17 +95,17 @@ $ordre = $op->order_ville;
                     <td>{{$prog->designation}}</td>
                 </tr>
                 <tr>
-				<td> النشاط</td>
-					<td>{{$op->activite}}</td>
+					<td> النشاط</td>
+					<td>{{$op->activite}} </td>
 					@if($op->source =="PSC")
 					<td>َتفويض التسيير القطاعي الممركز</td>
 					@else
 					<td>َتفويض التسيير الغير ممركز</td>
 					@endif
-					
+						
                 </tr>
                 <tr>
-					<?php $sousy =  $op->sous_action; ?>
+				<?php $sousy =  $op->sous_action; ?>
 					@if($ville_fr =="Mila" )
 					<?php $sousy = explode(".",$op->sous_action)[0]; ?>
 					@endif
@@ -115,28 +114,9 @@ $ordre = $op->order_ville;
 					<td></td>
                 </tr>
         </table>
-      <br>  
-      @if($op->source == "PSC") 
-				<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px; ">
-				302.145.001
-				</div>
-				@elseif($op->source == "PSD")
-				<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-				302.145.002
-				</div>
-				@elseif($op->source == "FSDRS")
-				<?php $sf = substr($op->numero, 0, 2); ?>
-					@if($sf == "SF")
-					<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-					302.145.012
-					</div>
-					@else
-					<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-					302.145.010
-					</div>
-					@endif
-				@endif
 
+
+        <br>
         </div>
 		<div style="  display: inline-block; width : 22%; float: right;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
@@ -151,9 +131,9 @@ $ordre = $op->order_ville;
 		width : 28%; margin-right : 2%; margin-left : 2%;">
 			<table style="text-align : right">
 				<tr>
-					<td>المحاسب العمومي المختص : <span>  السيد أمين الخزينة لولاية {{$ville}}  
-					</span>
-					</td>
+					<td>المحاسب العمومي المختص : <span>  السيد أمين الخزينة لولاية {{$ville}} 
+						<br>    
+					</span></td>
                 </tr>
 				@if($ville_fr =="Mila")
 				<tr>
@@ -165,10 +145,9 @@ $ordre = $op->order_ville;
                 </tr>
 				@endif
         	</table>
-            <br>
 		</div>
         
-		<div dir="rtl" style="  display: inline-block; width : 60%; font-weight :  normal; text-align : justify; ">
+		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
             <table style="border : none;">
                 <tr>
                     <th style="width : 25%;">تحديد المستفيد  </th>

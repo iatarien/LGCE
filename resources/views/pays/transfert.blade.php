@@ -67,10 +67,9 @@ $ordre = $op->order_ville;
 <section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top" style="margin-right : 10%; margin-left : 10%;" >
 		<div style="  display: inline-block; ">
-			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية    </h3>
-            <h3>    République Algérienne Démocratique et Populaire    </h3>
+			<h3>    الجمهورية الجزائرية الديمقراطية الشعبية <br>
+             République Algérienne Démocratique et Populaire </h3>
 		</div>
-		<br>
         <div style="width : 100%; background-color : lightgray" >
             <h3>   إشعار بالتحويل </h3>
         </div>
@@ -79,7 +78,7 @@ $ordre = $op->order_ville;
         </div>
 		
 		<div style="  display: inline-block; max-width : 45%; " dir="rtl">
-        <table id="le_table">
+        <table id="le_table" style="font-size : 11.5px;">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
                     <th style="width : 33%;">الرمز</th>
@@ -115,28 +114,9 @@ $ordre = $op->order_ville;
 					<td></td>
                 </tr>
         </table>
-      <br>  
-      @if($op->source == "PSC") 
-				<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px; ">
-				302.145.001
-				</div>
-				@elseif($op->source == "PSD")
-				<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-				302.145.002
-				</div>
-				@elseif($op->source == "FSDRS")
-				<?php $sf = substr($op->numero, 0, 2); ?>
-					@if($sf == "SF")
-					<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-					302.145.012
-					</div>
-					@else
-					<div id="stamp"  style = "border : 5px solid transparent; margin-left : 20mm;  font-weight : bold; color : transparent; font-size : 5mm; padding : 2px;">
-					302.145.010
-					</div>
-					@endif
-				@endif
 
+
+        <br>
         </div>
 		<div style="  display: inline-block; width : 22%; float: right;">
             <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
@@ -165,7 +145,6 @@ $ordre = $op->order_ville;
                 </tr>
 				@endif
         	</table>
-            <br>
 		</div>
         
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
