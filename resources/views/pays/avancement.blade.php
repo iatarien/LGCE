@@ -233,8 +233,12 @@
 	<div style=" text-align: right; border-right : 1px solid; margin-right: 1%;" id="words" class="half">
 		<br><br>
         <div style="display: inline-block; width: 30%; padding-right: 2%; float : right; ">
-            <span>   {{$ministere}}<br> مديرية {{$direction}}  <br> لولايــــة {{$ville}}    </span>
-
+			@if($cdars)
+			<span>   {{$ministere}}<br> {{$direction}}  <br> لولايــــة {{$ville}}    </span>
+			@else
+			<span>   {{$ministere}}<br> مديرية {{$direction}}  <br> لولايــــة {{$ville}}    </span>
+			@endif
+     
         </div>
 		<div style="display: inline-block; width: 50%; padding-right: 2%; text-align: center;  float: right;">
             <span>   مـــيــزانيـــة التجهيـــز   </span>

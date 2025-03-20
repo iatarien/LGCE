@@ -130,6 +130,12 @@ $ordre = $eng->order_ville;
 @if($ville_fr =="Touggourt")
 <?php 	$font = "12px"; ?>
 @endif
+<?php 
+$cdars = false;
+if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
+$cdars = true;
+}
+?>
 <section style="background-color: white; text-align: center; font-size: {{$font}}; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
@@ -137,8 +143,12 @@ $ordre = $eng->order_ville;
 		</div>
 		<div style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<h3>  الوزارة :     {{$ministere}}  </h3>
+			@if(!$cdars)
             <h3>  الهيئة الإدارية : مديرية {{$direction}} لولاية {{$ville}}</h3>
-            <h3>  رمز الأمر بالصرف : {{$ordre}} </h3>
+            @else
+			<h3>  الهيئة الإدارية :  {{$direction}} لولاية {{$ville}}</h3>
+			@endif
+			<h3>  رمز الأمر بالصرف : {{$ordre}} </h3>
             <br>
             <div style="display : inline-block" dir="rtl">
                 <div class="boold">

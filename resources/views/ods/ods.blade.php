@@ -29,7 +29,12 @@
 
 
 </style>
-
+<?php 
+$cdars = false;
+if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
+$cdars = true;
+}
+?>
 </head>
 <body contenteditable="true">
 
@@ -79,7 +84,11 @@
             <h3 style="text-align : right;"> {{$ministere}}<br>
 			ولاية {{$ville}}  
 			<br>  
+			@if($cdars)
+			 {{$direction}}  
+			@else
 			مديرية {{$direction}}
+			@endif
 			@if ($user->service == "Suivi")
 			<br> مصلحة متابعة العمليات المنجزة
 			@endif
@@ -146,7 +155,11 @@
 		<h3 style="text-align : right;"> {{$ministere}}<br>
 			ولاية {{$ville}}  
 			<br>  
+			@if($cdars)
+			 {{$direction}}  
+			@else
 			مديرية {{$direction}}
+			@endif
 			@if ($user->service == "Suivi")
 			<br> مصلحة متابعة العمليات المنجزة
 			@endif

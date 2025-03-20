@@ -41,6 +41,11 @@ class Controller extends BaseController
         }
         
 
+        $this->cdars = false;
+        if (str_contains($settings->direction, 'محافظة تنمية الفلاحة')) {
+            $this->cdars = true;
+        }
+
         View::share('ville', $this->ville);
         View::share('ville_fr', $this->ville_fr);
         View::share('direction', $this->direction);
@@ -55,5 +60,6 @@ class Controller extends BaseController
         View::share('license', $this->license);
         View::share('pref_eng', $this->pref_eng);
         View::share('lang', $this->lang);
+        View::share('cdars', $this->cdars);
     }
 }

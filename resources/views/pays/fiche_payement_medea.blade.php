@@ -130,7 +130,12 @@
             </div>
         </div>
         <div style=" width : 25%; border: 1px solid; display: inline-block; float: right; background-color: rgb(245,245,245) !important; ">
+			@if($cdars)
+			<h3 style="padding: 0px 5px 0px 5px;">       {{ $direction }} <br>لولاية {{ $ville }}   </h3>
+			@else
 			<h3 style="padding: 0px 5px 0px 5px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
+			@endif	
+	
 		</div>
 		
 		<br>

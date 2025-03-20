@@ -35,3 +35,5 @@ Mono
 - hide D drive
 - download videos and put em on desktop
 - create shortcut on desktop
+
+https://drive.google.com/drive/folders/1hjvbyygi-YCCTuOBTbDfI3HaifoS7CUL

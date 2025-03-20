@@ -165,7 +165,11 @@
 
 		</div>
 		<div style="display: inline-block; float: right; text-align: right;">
+			@if($cdars)
+			<span style="text-decoration: underline; font-weight: bold; " >   ولايـــــة {{$ville}}<br>  {{$direction}} </span>	
+			@else
 			<span style="text-decoration: underline; font-weight: bold; " >   ولايـــــة {{$ville}}<br> مديرية  {{$direction}} </span>
+			@endif
 			<br>
 		</div>
 		<div align="center">
