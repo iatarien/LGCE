@@ -587,8 +587,11 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-	    if($this->ville_fr =="Ouargla" ){
+	    if($this->ville_fr =="Ouargla"){
             $view = $view."_medea";
+        }
+        if($this->ville_fr =="Biskra"){
+            $view = $view."_biskra";
         }
         if($this->ville_fr =="Touggourt"){
             $view = $view."_touggourt";
@@ -616,11 +619,17 @@ class PaymentController extends Controller
             }
         }
         
-
+        $sous = DB::table("programme")->where("id",$op->sous_programme)->first();
+        if($sous == NULL){
+            $sous = (object) [];
+            $sous->code = "";
+            $sous->designation = "";
+            
+        }
 
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,
         'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id,"sous_prog"=>$sous_prog,
-        "prog"=>$prog,"titres"=>$titres]);   
+        "prog"=>$prog,"titres"=>$titres,"sous"=>$sous]);   
     }
     public function maitre_ouvrage($id)
     {   

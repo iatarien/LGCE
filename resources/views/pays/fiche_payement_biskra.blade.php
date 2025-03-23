@@ -129,26 +129,35 @@
                 <h2 style="text-decoration : underline;">بــطــاقــة الــدفــع</h2>
             </div>
         </div>
-        <div style=" width : 25%; border: 1px solid; display: inline-block; float: right; background-color: rgb(245,245,245) !important; ">
-			@if($cdars)
-			<h3 style="padding: 0px 5px 0px 5px;">       {{ $direction }} <br>لولاية {{ $ville }}   </h3>
+        <div style="float: right; margin-right: 30px; text-align : right; width : 100%;">
+			<h3>  الوزارة :     {{$ministere}}  </h3>
+			@if(!$cdars)
+            <h3>  الهيئة الإدارية : مديرية {{$direction}} لولاية {{$ville}}</h3>
+            @else
+			<h3>  الهيئة الإدارية :  {{$direction}} لولاية {{$ville}}</h3>
+			@endif
+			<h3>  رمز الأمر بالصرف : {{$ordre}} </h3>
+	    	<h3>  رمز البرنامج : {{$op->programme}}</h3>
+            <h3>  رمز الــنشاط : {{$op->activite}}</h3>
+			@if($op->sous_action !==NULL )
+			
+            <h3>  رمز النشاط الفرعي : {{$op->sous_action}}</h3>
 			@else
-			<h3 style="padding: 0px 5px 0px 5px;">      مديرية {{ $direction }} <br>لولاية {{ $ville }}   </h3>
-			@endif	
-	
+			<h3>  رمز النشاط الفرعي : /</h3>
+			@endif
+			@if($op->sous_programme == "")
+			<h3>رمز البرنامج الفرعي : </h3>
+			@elseif(strlen($op->sous_programme) == 1)
+			<h3>  رمز البرنامج الفرعي : 0{{$sous->code}}</h3>
+			@else
+			<h3>  رمز البرنامج الفرعي : {{$sous->code}}</h3>
+			@endif
+            
 		</div>
 		
 		<br>
-		<table id="numero" style="width : 25%; float : left; margin-left : 10%;">
-			<tr>
-				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
-				رقم بطاقة الإلتزام   </td>
-			</tr>
-			<tr>
-                <td>{{ $pay->numero_fiche }}</td>
-			</tr>
-		</table>
-        <div style="width : 100%"><br><br><br><br><br></div>
+
+
         <table id="numero" style="width : 25%; float : left;">
 			<tr>
 				<td colspan="2" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
@@ -163,7 +172,16 @@
 				<td>الرقم</td>
 			</tr>
 		</table>
-		<table id="numero" style="width : 70%; float : right;">
+        <table id="numero" style="width : 20%; float : left; margin-left : 5%;margin-right : 5%;">
+			<tr>
+				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
+				رقم بطاقة الإلتزام   </td>
+			</tr>
+			<tr>
+                <td>{{ $pay->numero_fiche }}</td>
+			</tr>
+		</table>
+		<table id="numero" style="width : 45%; float : right;">
 			<tr>
 				<td style="width: 90%; background-color: rgb(245,245,245) !important; "> رقم الــــــعمـــلــــــــــــــية</td>
                 <td style="width : 10%"></td>
@@ -172,10 +190,7 @@
 				<td>{{ $op->numero }}</td>
                 <td>N</td>
 			</tr>
-            <tr>
-				<td></td>
-                <td>برنامج</td>
-			</tr>
+
 		</table>
         
 
