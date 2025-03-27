@@ -135,7 +135,9 @@ $cdars = false;
 if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
 $cdars = true;
 }
+//echo $direction."\n".$cdars;
 ?>
+
 <section style="background-color: white; text-align: center; font-size: {{$font}}; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
@@ -146,7 +148,7 @@ $cdars = true;
 			@if(!$cdars)
             <h3>  الهيئة الإدارية : مديرية {{$direction}} لولاية {{$ville}}</h3>
             @else
-			<h3>  الهيئة الإدارية :  {{$direction}} لولاية {{$ville}}</h3>
+			<h3>  الهيئة الإدارية :  {{$direction}} ب{{$ville}}</h3>
 			@endif
 			<h3>  رمز الأمر بالصرف : {{$ordre}} </h3>
             <br>

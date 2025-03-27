@@ -478,7 +478,7 @@ class EngagementController extends Controller
         if($this->ville_fr =="Touggourt" ){
             $the_view = 'engs.touggourt';
         }
-        if($this->ville_fr =="Ouargla" ){
+        if($this->ville_fr =="Ouargla" && !$this->cdars){
             $the_view = 'engs.ouargla';
         }
         if($this->ville_fr =="Biskra" ){
