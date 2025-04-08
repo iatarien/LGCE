@@ -22,7 +22,7 @@ class ProgrammeController extends Controller
     }
     public function get_progs($porte){
         $q = "SELECT * FROM programme WHERE portefeuille = '".$porte."' AND 
-        ( parent IS NULL OR parent = '') ";
+        ( parent IS NULL OR parent = '') ORDER BY code ASC";
         return DB::select(DB::raw($q));
         return DB::table("programme")->where("portefeuille",$porte)
         ->where("parent","")->orWhereNull("parent")->get();

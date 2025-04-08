@@ -5,3 +5,9 @@ UPDATE `programme` SET `designation` = 'التعليم' WHERE `programme`.`id` =
 
 ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
 ALTER TABLE `payments` CHANGE `date_pay` `date_pay` DATE NULL;
+
+
+INSERT INTO `programme` VALUES (NULL, '035',
+'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء',
+NULL,"008");
+
