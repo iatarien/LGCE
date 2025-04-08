@@ -107,7 +107,7 @@
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Biskra")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>
-                @if($ville_fr == "Mila")
+                @if($ville_fr == "Mila" || $ville_fr =="Biskra")
                     <br><br>
                     <a class="btn btn-primary" target="_blank" href="/edit_fiche_payment/{{$id}}"> تعديل</a>
                 @endif

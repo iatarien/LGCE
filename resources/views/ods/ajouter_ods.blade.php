@@ -126,6 +126,10 @@
                     <select class="form-control" id="real_type" name="real_type">
                       @if($last == NULL)
                       <option value="d">إنطلاق</option>
+                      @if($ville_fr =="Biskra")
+                      <option value="d0">الخدمة و الإنطلاق في</option>
+                      @endif
+
                       @elseif($last =="d")
                       <option value="a">توقف</option>
                       <option value="other">أخرى</option>

@@ -162,6 +162,7 @@ class ODSController extends Controller
         join('deals','engagements.deal',"=","deals.id_deal")->
         join('entreprises','deals.entreprise',"=","entreprises.id")->
         where('ods.id',$id)->first();
+        $prog = DB::table('programme')->where('code',$ods->programme)->first();
         $d = DB::table('ods')->where('id_eng',$ods->id_eng)->where('real_type',"d")->first();
         $year = explode('-',$ods->ods_date)[0];
         //$delai = $this->delai($ods->id_eng);
@@ -184,6 +185,9 @@ class ODSController extends Controller
         }
         if($this->ville_fr =="Biskra"){
             $view = "ods.ods07";
+            if($this->direction_fr =="Direction de l'Urbanisme de l'Architecture et de la Construction"){
+                $view = "ods.duac07";
+            }
         }
         if($this->ville_fr =="Mila"){
             $view = "ods.mila";
@@ -191,7 +195,7 @@ class ODSController extends Controller
         if($this->ville_fr =="Ouargla" && !$this->cdars){
             $view = "ods.ouargla";
         }
-        return view($view,["user"=>$user,"ods"=>$ods,'year'=>$year]);
+        return view($view,["user"=>$user,"ods"=>$ods,'year'=>$year,"prog"=>$prog]);
     }
     public function odss()
     {   
@@ -296,9 +300,18 @@ class ODSController extends Controller
         $duree = "";
         $real_type = $request['real_type'];
         $extra_type = $request['extra_type'];
-        
-        if($real_type =="d"){
+        if($real_type =="d0"){
+            $real_type = "d";
+            $type_ods = "الخدمة و الإنطلاق في ".$request['extra_type'];
+            if($this->lang =="fr"){
+                $type_ods = "Démarrage ".$request['extra_type'];
+            }
+        }
+        elseif($real_type =="d"){
             $type_ods = "إنطلاق ".$request['extra_type'];
+            if($this->ville_fr =="Biskra" && $this->direction_fr =="Direction de l'Urbanisme de l'Architecture et de la Construction"){
+                $type_ods = "الإنطلاق في ".$request['extra_type']; 
+            }
             if($this->lang =="fr"){
                 $type_ods = "Démarrage ".$request['extra_type'];
             }

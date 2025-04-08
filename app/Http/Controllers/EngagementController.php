@@ -682,7 +682,7 @@ class EngagementController extends Controller
             deals ON e.deal = deals.id_deal
             LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
             WHERE type IN (".$type.") AND";
-            if($first_type =="ajouter_pay" || $first_type =="add_att"){
+            if(($first_type =="ajouter_pay" || $first_type =="add_att") && $this->ville_fr != "Touggourt"){
                 $query = $query." ( deals.parent IS NULL OR deals.parent =0) AND";
             }
             

@@ -604,7 +604,7 @@ class PaymentController extends Controller
             $s_end = substr($sous_titre->code, -2);
         }
 
-        $start = "";
+        $start = "31";
         if(isset($titre->code)){
             $start = substr($titre->code, 0, 2);
         }
@@ -838,7 +838,7 @@ class PaymentController extends Controller
         $pay = DB::table('payments')->where('id',$id)->first();
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
         $view ="pays.modifier_fiche_pay";
-        if($this->ville_fr == "Mila"){
+        if($this->ville_fr == "Mila" || $this->ville_fr =="Biskra"){
             $view ="pays.modifier_fiche_pay_mila"; 
         }
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0]);

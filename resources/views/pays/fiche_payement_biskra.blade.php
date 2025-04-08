@@ -216,8 +216,8 @@
 				<td>الصنف : {{$titre->code}} </td>
                 <td>{{$titre->definition}}</td>
 				@else
-				<td>الصنف   </td>
-				<td></td>
+				<td>الصنف : 32000  </td>
+				<td>تثبيتات عينية</td>
 				@endif
 
 				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
@@ -230,8 +230,8 @@
 				<td>الصنف الفرعي : {{$sous_titre->code}}</td>
 				<td>{{$sous_titre->definition}}</td>
 				@else
-				<td>الصنف الفرعي  </td>
-				<td></td>
+				<td>الصنف الفرعي :  31100</td>
+				<td>الأراضي</td>
 				@endif
 				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
 				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
