@@ -11,3 +11,6 @@ INSERT INTO `programme` VALUES (NULL, '035',
 'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء',
 NULL,"008");
 
+UPDATE `portefeuille` SET `ministere` = 'البيئة و الطاقات المتجددة' WHERE `portefeuille`.`code` = '030';
+
+

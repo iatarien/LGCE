@@ -64,7 +64,7 @@
 	              </div><br>
 	              <!-- Title -->
 				  <?php $readonly = "readonly"; ?>
-				  @if($ville_fr =="Touggourt")
+				  @if($ville_fr =="Touggourt" || $ville_fr =="Biskra")
 				  <?php $readonly = ""; ?>
 				  @endif
 	              <div class="form-group row">
