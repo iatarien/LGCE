@@ -216,7 +216,7 @@ $ordre = $eng->order_ville;
         ?>
         @endif
 
-
+		<?php $finale = false;  ?>
 		<br><br><br><br><br><br><br><br><br>
 		<table id="engagement" contenteditable="true" >
 			<tr>	
@@ -252,10 +252,11 @@ $ordre = $eng->order_ville;
 						@endif
 					</tr>
 					@endif
-                    <?php $j = -1;?>
+                    <?php $j = -1; ?>
+					<?php $finale = false;  ?>
 					@foreach($titre->rebriques as $reb)
-                        @if($reb->id_titre == 127)
-
+						@if($reb->id_titre == 127 && ($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0 ))
+						<?php $finale = true; ?>
                         @else
                         <?php $j++; ?>
 						@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
@@ -282,6 +283,16 @@ $ordre = $eng->order_ville;
 					
 					@endforeach
 				@endforeach
+				@if(!$finale)
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td dir="rtl">مبلغ العملية غير الموزع</td>
+					</tr>
+				@endif
 			@else
 				@foreach($titres as $titre)
                 <?php $i++; ?>
@@ -307,13 +318,13 @@ $ordre = $eng->order_ville;
 						@endif
 					</tr>
 					@endif
-                    <?php $j = -1;?>
+                    <?php $j = -1; $finale = false;?>
 					@foreach($titre->rebriques as $reb)
                         <?php $j++; ?>
-                        @if($reb->id_titre == 127)
-
+                        @if($reb->id_titre == 127 && ($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0 ))
+						<?php $finale = true;?>
                         @else
-                            @if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
+                            @if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0 )
                             <tr>	
                                 <td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
                                 <td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
@@ -335,6 +346,16 @@ $ordre = $eng->order_ville;
                     @endif
 					@endforeach
 				@endforeach
+				@if(!$finale)
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td dir="rtl">مبلغ العملية غير الموزع</td>
+					</tr>
+				@endif
 			@endif
 			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
 			@if($insc =="true")
@@ -372,6 +393,7 @@ $ordre = $eng->order_ville;
 			</tbody>
 			<tbody id="with_none" style="display : none">
             <?php $i = -1; ?>
+			<?php $finale = false; ?>
 			@foreach($titres1 as $titre)
             <?php $i++; ?>
 				<tr style='font-weight : 900;'>	
@@ -389,6 +411,7 @@ $ordre = $eng->order_ville;
 					<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
 					@else
 						@if($titre->id_titre == 128)
+						<?php $finale = true; ?>
 						<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
 						@else
 						<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
@@ -412,6 +435,16 @@ $ordre = $eng->order_ville;
 				</tr>
 				@endif
 				@endforeach
+				@if(!$finale)
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td dir="rtl">مبلغ العملية غير الموزع</td>
+					</tr>
+				@endif
 			@endforeach
 			@if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
 			@if($insc !="true")

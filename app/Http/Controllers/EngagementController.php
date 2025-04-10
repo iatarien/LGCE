@@ -326,7 +326,7 @@ class EngagementController extends Controller
 
         $q_titres1 = "SELECT * FROM titres WHERE type ='parent' AND id_titre IN 
         (SELECT father FROM titres WHERE id_titre IN 
-        (SELECT sous_titre FROM rebriques WHERE id_eng =".$id." AND sous_montant != 0
+        (SELECT sous_titre FROM rebriques WHERE id_eng =".$id." AND (sous_montant != 0 OR sous_titre = 127 )
          ) ) AND id_titre != 128 ORDER BY id_titre ASC";
 
         $titres1 = DB::select(DB::raw($q_titres1));
