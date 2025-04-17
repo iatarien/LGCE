@@ -170,19 +170,22 @@
             </h4>
 		</div>
 		<div style="  display: inline-block; float: right; ">
-		<h3 style="text-align : right;"> {{$ministere}}<br>
-			ولاية {{$ville}}  
+            <h3 style="text-align : right;"> وزارة {{$ministere}}<br>
+
+			مديرية {{$direction}}<br>
+            لولاية {{$ville}}  
 			<br>  
-			مديرية {{$direction}}
 			@if ($user->service == "Suivi")
 			<br> مصلحة متابعة العمليات المنجزة
 			@endif
 			@if ($user->service == "Etude")
 			<br> مصلحة الدراسة و التقويم
 			@endif
+			@if ($user->username == "rabhi" or $user->username == "halim" or $user->username == "nasri" or $user->username == "said")
+			<br> مكتب التربية و التعليم العالي
+			@endif
 			</h3>
-			
-            <h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+            <h3 style="text-align : right;" >       رقم التسجيل :  {{$num}}  /{{$year}}  </h3>
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
