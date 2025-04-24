@@ -344,14 +344,15 @@
 					<th> السنة     </th>
 
 				</tr>
+
 				<tr>
 					<td><span>@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}}@else &emsp;@endif</span></td>
 					<td></td>
 
 				</tr>
 				<tr>
-					<td>&emsp;</td>
-					<td></td>
+				<td><span>@if($pay->this_year_cut != 0)  {{ number_format((float)$pay->this_year_cut, 2, '.', ' ')}}@else &emsp;@endif</span></td>
+				<td>{{$pay->year}}</td>
 
 				</tr>
 				<tr>
@@ -425,8 +426,9 @@
 
 			</table>
 			<table id="summary-bottom">
+				<?php $oldies = $pay->old_payments + $pay->this_year_cut ; ?>
 				<tr>
-					<td>@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
+					<td>@if($oldies != 0)  {{ number_format((float)$oldies, 2, '.', ' ')}} @endif</td>
 					<td>   المجمـــــــوع السابق   </td>
 				</tr>
 				<tr>

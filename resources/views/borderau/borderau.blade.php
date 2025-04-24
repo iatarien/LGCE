@@ -62,7 +62,13 @@ $indice = 5;
 $tot = count($engs);
 $n = ceil($tot/$indice);
 $i = 1;
-//var_dump($conges); ?>
+
+$cdars = false;
+if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
+$cdars = true;
+}
+//echo $direction."\n".$cdars;
+?>
 </head>
 <body contenteditable="true">
 
@@ -79,8 +85,17 @@ $i = 1;
         <h3>الى السيد : المراقب الميزانياتي لولاية {{$ville}}</h3>
 		</div>
 		<div style="  display: inline-block; float: right; ">
+            @if(!$cdars)
             <h3 style="text-align : right;"> وزارة    {{$ministere}}  <br>
-			مديرية  {{$direction}}<br> لولاية {{$ville}} <br>
+            @else
+            <h3 style="text-align : right;">     {{$ministere}}  <br>
+            @endif
+            @if(!$cdars)
+            مديرية  {{$direction}}<br> لولاية {{$ville}} <br>
+            @else
+			{{$direction}} ب{{$ville}} <br>
+			@endif
+
             مكتب المحاسبة  
 			</h3>
             <h3 style="text-align : right;" >       رقم :   &emsp;&emsp;/{{$year}}  </h3>

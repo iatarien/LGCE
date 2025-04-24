@@ -124,6 +124,13 @@ $tot = count($engs);
 $n = ceil($tot/$indice);
 $i = 1;
 ?>
+<?php 
+$cdars = false;
+if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
+$cdars = true;
+}
+//echo $direction."\n".$cdars;
+?>
 <section  style="background-color: white; text-align: center; font-size: 17px; margin: 20px; width : 100%;" id="fiche">
 	<div id="fiche_top" style="margin-right : 5%; margin-left : 5%;">
 		<div style="  display: inline-block; ">

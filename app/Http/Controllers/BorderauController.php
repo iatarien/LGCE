@@ -126,8 +126,25 @@ class BorderauController extends Controller
                     $engs[$i]->sous_programme0->designation = "";   
                 }
                 $engs[$i]->sous_titre = DB::table('rebriques')->where('id_eng',$engs[$i]->id_eng)->where("sous_montant","!=",0)->first();
-                $engs[$i]->sous_titre = DB::table('titres')->where('id_titre',$engs[$i]->sous_titre->sous_titre)->first();
-                $engs[$i]->titre = DB::table('titres')->where('id_titre',$engs[$i]->sous_titre->father)->first();
+                if(!isset($engs[$i]->sous_titre->sous_titre)){
+                    $sous = (object) [];
+                    $sous->code = "";
+                    $sous->designation = "";
+                    $engs[$i]->sous_titre = $sous;
+             
+                }else{
+                    $engs[$i]->sous_titre = DB::table('titres')->where('id_titre',$engs[$i]->sous_titre->sous_titre)->first();
+             
+                }
+                if(isset($engs[$i]->sous_titre->father)){
+                    $engs[$i]->titre = DB::table('titres')->where('id_titre',$engs[$i]->sous_titre->father)->first();
+                }else{
+                    $sous = (object) [];
+                    $sous->code = "";
+                    $sous->designation = "";
+                    $engs[$i]->titre = $sous;
+                }
+     
             }
             //return $engs;
             $n = count($engs);
