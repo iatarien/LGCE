@@ -52,8 +52,9 @@
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Ouled Djellal" 
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Biskra") <th> بطاقة الدفع </th>
             @endif
-            <th> إشعار بالتحويل </th>
             <th> بيان بالتحويل </th>
+            <th> إشعار بالتحويل </th>
+
             <th> تعديل رقم الحساب </th>
         </tr>
         <tr>

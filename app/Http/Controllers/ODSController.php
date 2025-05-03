@@ -192,7 +192,7 @@ class ODSController extends Controller
         if($this->ville_fr =="Mila"){
             $view = "ods.mila";
         }
-        if($this->ville_fr =="Ouargla" && !$this->cdars){
+        if($this->ville_fr =="Ouargla" && $this->ville_fr =="Direction de l'Education"){
             $view = "ods.ouargla";
         }
         return view($view,["user"=>$user,"ods"=>$ods,'year'=>$year,"prog"=>$prog]);

@@ -109,7 +109,7 @@
                     <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   السبب : </label>
 	            </div>
 
-              @if($ville_fr =="Ouargla")
+              @if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Education")
                 <div class="form-group">
 	                <div class="col-xs-10">
 	                  <input min="01-01-1962" max="31-12-20100" dir="rtl" style="text-align : right; color :  black; font-weight :  bold;" required 
@@ -133,7 +133,7 @@
 	                </div>
                     <label class="control-label col-xs-2" style="text-align : right; font-weight: bold;" for="title">   التاريخ : </label>
 	            </div>
-                @endif
+              @endif
                 
                 
                 <div class="form-group">

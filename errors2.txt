@@ -14,3 +14,8 @@ NULL,"008");
 UPDATE `portefeuille` SET `ministere` = 'البيئة و الطاقات المتجددة' WHERE `portefeuille`.`code` = '030';
 
 
+
+
+** DAL OUARGLa ** 
+
+ALTER TABLE `operations` ADD `old_numero` TEXT NULL AFTER `numero`;

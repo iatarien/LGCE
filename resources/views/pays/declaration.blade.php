@@ -123,7 +123,7 @@ $ordre = $op->order_ville;
 			سنة التسيير : {{ $pay->year}} <br>
 			رقم  الحوالة : @if(isset($pay->num_mondat)) {{$pay->num_mondat}} @endif <br>
             تاريخ  الحوالة :  @if(isset($pay->date_mondat)) {{$pay->date_mondat}} @endif <br>
-			 طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
+			 طريقة الدفع : {{$bank->bank}} وكالة  {{$bank->bank_agc}}  <br>
 			</h3>
             
 		</div>
@@ -145,10 +145,13 @@ $ordre = $op->order_ville;
                 </tr>
 				@endif
         	</table>
+			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+			<h1>1812.145.020</h1>
+			@endif
 		</div>
         
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-            <table style="border : none;  min-height : 200px;">>
+            <table style="border : none;  min-height : 200px;">
                 <tr>
                     <th style="width : 25%;">تحديد المستفيد  </th>
 					<th style="width : 10%;">البرنامج الفرعي  </th>
@@ -160,6 +163,10 @@ $ordre = $op->order_ville;
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
+						@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+						{{$bank->abr}} <br>
+						{{$bank->num}} <br>
+						@endif
 					</td>
                    	<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
                 </tr>
