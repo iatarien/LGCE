@@ -74,7 +74,14 @@
 	                </div>
 	              </div><br>
 	              <!-- Content -->
-				  
+				  @if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+	              <div class="form-group row">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title">رقم العملية القديم</label>
+	                <div class="col-lg-9">
+	                  <input required="" dir="ltr" style="text-align : right" value="" type="text" class="form-control" id="old_numero" name="old_numero">
+	                </div>
+	              </div><br>
+				  @endif
                   <div class="form-group row ">
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content">تعيين العملية</label>
 	              	<div class="col-lg-9">

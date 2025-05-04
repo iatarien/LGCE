@@ -282,6 +282,10 @@ class OperationsController extends Controller
         if(isset($request['cp'])){
             $cp = $request['cp'];
         }
+        if(isset($request['old_numero'])){
+            DB::table('operations')->where('id',$id)->
+            update(['old_numero' => $request['old_numero']]);
+        }
         DB::table('cp')->
         insert(["ze_op"=>$id,"montant_cp"=>$cp,
         "year"=>$this->year]);
@@ -340,7 +344,10 @@ class OperationsController extends Controller
             insert(["ze_op"=>$id,"montant_cp"=>$cp,
             "year"=>$this->year]);
         }
-        
+        if(isset($request['old_numero'])){
+            DB::table('operations')->where('id',$id)->
+            update(['old_numero' => $request['old_numero']]);
+        }
         return Redirect::to('/operations_ar/all');
     }
 

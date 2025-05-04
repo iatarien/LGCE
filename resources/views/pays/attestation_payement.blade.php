@@ -174,6 +174,9 @@
 		</div>
 		<div align="center">
 			<span>  {{ $op->numero }}  : عملية رقم     </span><br>
+			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+			<span> {{ $op->old_numero }}</span><br>
+			@endif
 			<span dir="rtl">  {{ $op->intitule_ar }}     </span>
 		</div>
 		<br><br><br>

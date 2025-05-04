@@ -244,6 +244,9 @@
             <span>   مـــيــزانيـــة التجهيـــز   </span>
 			<br>
 			<span>	<b> {{ $op->numero }}</b>	 : عملية رقم  	</span>
+			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+			<br><span>	<b> {{ $op->old_numero }}</b>	 	</span>
+			@endif
 
         </div>
 		<div style="display: inline-block; width: 18%; padding-right: 2%; text-align: center;  float: left;">

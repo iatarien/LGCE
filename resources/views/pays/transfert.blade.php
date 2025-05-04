@@ -71,7 +71,7 @@ $ordre = $op->order_ville;
              République Algérienne Démocratique et Populaire </h3>
 		</div>
         <div style="width : 100%; background-color : lightgray" >
-            <h3>   إشعار بالتحويل </h3>
+            <h3>  بيان التحويل</h3>
         </div>
 		<div style="width : 100%;" >
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
@@ -123,7 +123,7 @@ $ordre = $op->order_ville;
 			سنة التسيير : {{ $pay->year}} <br>
 			رقم  الحوالة : @if(isset($pay->num_mondat)) {{$pay->num_mondat}} @endif <br>
             تاريخ  الحوالة :  @if(isset($pay->date_mondat)) {{$pay->date_mondat}} @endif <br>
-			 طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
+			 طريقة الدفع : {{$bank->bank}} وكالة   {{$bank->bank_agc}}  <br>
 			</h3>
             
 		</div>
@@ -145,6 +145,9 @@ $ordre = $op->order_ville;
                 </tr>
 				@endif
         	</table>
+			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+			<h1>1812.145.020</h1>
+			@endif
 		</div>
         
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
@@ -162,6 +165,10 @@ $ordre = $op->order_ville;
                     <td>{{$e->name}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
+						@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+						{{$bank->abr}} <br>
+						{{$bank->num}} <br>
+						@endif
 					</td>
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
                     <td dir="ltr">{{ number_format((float)$pay->total_done, 2, '.', ' ')}} </td>

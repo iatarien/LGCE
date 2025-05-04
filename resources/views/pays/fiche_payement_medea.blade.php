@@ -173,8 +173,15 @@
                 <td>N</td>
 			</tr>
             <tr>
+			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+
+			<td>{{ $op->old_numero }}</td>
+			<td></td>
+			@else
 				<td></td>
                 <td>برنامج</td>
+			@endif
+
 			</tr>
 		</table>
         
