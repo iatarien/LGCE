@@ -25,6 +25,15 @@ WHERE designation LIKE '%منشات%';
 UPDATE programme SET designation = REPLACE (designation, 'مشأت', 'منشآت')
 WHERE designation LIKE '%مشأت%';
 
+UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
+
+ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
+
+UPDATE `programme` SET `designation` = 'التعليم' WHERE `programme`.`id` = 1;
+UPDATE programme SET designation ="التعليم القاعدي و التحضيري" WHERE id=7;
+UPDATE programme SET designation ="التعليم المتوسط العادي و المتخصص" WHERE id=8;
+UPDATE programme SET designation ="التعليم الثانوي العادي و المتخصص و عن بعد" WHERE id=9;
+
 ****************************************** FR **************************************************
 ALTER TABLE `company` ADD `lang` VARCHAR(3) NOT NULL AFTER `license`;
 ALTER TABLE `portefeuille` ADD `ministere_fr` TEXT NULL AFTER `ministere`;
@@ -33,20 +42,13 @@ ALTER TABLE `titres` ADD `definition_fr` TEXT NULL AFTER `definition`;
 ALTER TABLE `operations` CHANGE `intitule_ar` `intitule_ar` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
 
 
-UPDATE `programme` SET `designation` = 'التعليم' WHERE `programme`.`id` = 1;
-UPDATE programme SET designation ="التعليم القاعدي و التحضيري" WHERE id=7;
-UPDATE programme SET designation ="التعليم المتوسط العادي و المتخصص" WHERE id=8;
-UPDATE programme SET designation ="التعليم الثانوي العادي و المتخصص و عن بعد" WHERE id=9;
 
 UPDATE `programme` SET `designation_fr` = 'Enseignement' WHERE `programme`.`id` = 1;
 UPDATE programme SET designation_fr ="Enseignement préparatoire et primaire" WHERE id=7;
 UPDATE programme SET designation_fr ="Enseignement moyen normal et spécifique et à distance" WHERE id=8;
 UPDATE programme SET designation_fr ="Enseignement Secondaire normal et spécifique et à distance" WHERE id=9;
-
 UPDATE `portefeuille` SET `ministere_fr` = 'Hydraulique' WHERE `portefeuille`.`code` = '051';
-UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 
-ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
 
 ****** MIIIIIIILAAAAAAAA *****
 ALTER TABLE `operations` ADD `order_ville` TEXT NULL AFTER `user_id`;

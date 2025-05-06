@@ -366,17 +366,17 @@
 				<td>المبلغ المرفوض من طرف المحاسب</td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
-				<td> المبلغ المقبول للدفع</td>
+				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+				
+				<td>المبلغ الخام</td>
 			</tr>
 			<tr>
 				<td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
 				<td> إقتطاعات</td>
 			</tr>
 			<tr>
-				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
-				
-				<td>المبلغ الخام</td>
+				<td dir="ltr">َ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
+				<td> المبلغ المقبول للدفع</td>
 			</tr>
 		</table>
 </section>
