@@ -393,7 +393,7 @@ $ordre = $eng->order_ville;
 			@endif
 			</tbody>
 			<tbody id="with_none" style="display : none">
-			@foreach($titres1 as $titre)
+			@foreach($titres as $titre)
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					@if( $insc == "true" )
@@ -415,7 +415,7 @@ $ordre = $eng->order_ville;
 					@endif
 				</tr>
 				@foreach($titre->rebriques as $reb)
-				@if($reb->sous_montant != 0)
+				@if($reb->sous_montant != 0 || $reb->sous_montant_1 != 0 || $reb->sous_montant_2 != 0)
 				<tr>	
 					<td>/</td>
 					<td>/</td>
