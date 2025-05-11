@@ -591,10 +591,10 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-	    if($this->ville_fr =="Ouargla"){
+	    if($this->ville_fr =="Ouargla" ){
             $view = $view."_medea";
         }
-        if($this->ville_fr =="Biskra"){
+        if($this->ville_fr =="Biskra" || $this->ville_fr =="Tamenrasset"){
             $view = $view."_biskra";
         }
         if($this->ville_fr =="Touggourt"){
@@ -842,7 +842,7 @@ class PaymentController extends Controller
         $pay = DB::table('payments')->where('id',$id)->first();
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
         $view ="pays.modifier_fiche_pay";
-        if($this->ville_fr == "Mila" || $this->ville_fr =="Biskra"){
+        if($this->ville_fr == "Mila" || $this->ville_fr =="Ouargla" || $this->ville_fr =="Biskra"){
             $view ="pays.modifier_fiche_pay_mila"; 
         }
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0]);

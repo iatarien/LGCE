@@ -17,7 +17,7 @@
 			height:297mm;
 	    	width:210mm;
 			overflow-y : hidden !important;
-			
+			overflow-x : hidden !important;
 		}
 		
 	}
@@ -25,7 +25,7 @@
 	    height:287mm;
 	    width:210mm;
 	    margin: auto;
-	    line-height: 1.2;
+	    line-height: 1.1;
 	    -webkit-print-color-adjust: exact !important;
 	}
 	
@@ -120,7 +120,7 @@
 </style>
 
 </head>
-<body id="boody" class="container" dir="rtl">
+<body id="boody" class="container" dir="rtl" >
 
 <section  style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
@@ -200,9 +200,7 @@
             <br>
             <h3 style="text-decoration : underline;"> <span style="visibility : hidden;">&emsp;&emsp;</span> هيكل المدفوعات المقترح  </h3>
 		</div>
-		<br>
 
-		<br><br><br><br><br><br><br><br><br>
 		<table id="engagement" contenteditable="true" dir="rtl" >
 			<tr>	
                 <th>الصنف / الصنف الفرعي</th>
@@ -256,7 +254,7 @@
 		</table>
 		<br>
 	</div>
-    <br><br>
+    <br>
     <table id="numero" style="width : 25%; float : right; text-align : right;">
 			<tr>
 				<td colspan="1" style="width: 90px; background-color: rgb(245,245,245) !important; ">       
@@ -274,7 +272,7 @@
     <br>
 		<div align="left">
             <p style="font-weight : bold; font-size : 18px;">
-            <span>  {{$ville}} في : ........................... </span><br><br><br>
+            <span>  {{$ville}} في : ........................... </span><br>
             </p>
 		</div>
         <p style="font-weight : bold; font-size : 18px;" align="center">
