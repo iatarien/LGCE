@@ -99,7 +99,11 @@ $cdars = true;
 			<br> مكتب التربية و التعليم العالي
 			@endif
 			</h3>
-            <h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+			@if($direction_fr =="de l'Education")
+			<h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}&emsp;/{{$year}}  </h3>
+			@else
+			<h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+			@endif
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
@@ -115,13 +119,18 @@ $cdars = true;
 			@endif
 
 			 سيبلغ للسيد : <strong>{{$e}}</strong> <br>
-			@if($user->service =="Suivi") 
-			عن طريق السيد : رئيس مصلحة متابعة العمليات المنجزة
-			@elseif($user->service =="Etude")
-			عن طريق السيد : رئيس مصلحة الدراسة و التقويم
+			@if($direction_fr =="de l'Education")
+			عن طريق السيد : مدير {{$direction}} لولاية {{$ville}}
 			@else
-			عن طريق السيد : رئيس مصلحة الإدارة و الوسائل
+				@if($user->service =="Suivi") 
+				عن طريق السيد : رئيس مصلحة متابعة العمليات المنجزة
+				@elseif($user->service =="Etude")
+				عن طريق السيد : رئيس مصلحة الدراسة و التقويم
+				@else
+				عن طريق السيد : رئيس مصلحة الإدارة و الوسائل
+				@endif
 			@endif
+
 		</div>
 
 		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
@@ -168,8 +177,11 @@ $cdars = true;
 			@endif
 			</h3>
 			
-            <h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
-            
+			@if($direction_fr =="de l'Education")
+			<h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}&emsp;/{{$year}}  </h3>
+			@else
+			<h3 style="text-align : right;" >      أمر مصلحي رقم :  {{$num}}   ر.س &emsp;&emsp;/{{$year}}  </h3>
+			@endif
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
 			<h3 style="background-color: rgb(210,210,210) !important;  padding: 0px 5px 0px 5px;">    التــبليــــغ  </h3>

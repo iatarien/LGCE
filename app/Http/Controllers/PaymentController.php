@@ -288,7 +288,7 @@ class PaymentController extends Controller
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $nums = Null;
         $qq = "SELECT * FROM titres WHERE id_titre = (SELECT sous_titre FROM rebriques WHERE id_eng = ".$pay->id_eng." 
-        AND ( sous_montant != 0 OR sous_montant_1 != 0) LIMIT 1)";
+        AND ( sous_montant != 0 OR sous_montant_1 != 0 AND sous_titre != 127)  LIMIT 1)";
  
         $sous_titre = NULL;
         if(isset(DB::select(DB::raw($qq))[0])){

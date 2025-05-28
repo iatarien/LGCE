@@ -206,7 +206,12 @@ $ordre = $op->order_ville;
 			 موضوع النفقة : {{$pay->lot}} <br>
 			@endif
 			@if($ville_fr =="Touggourt" )
-			 موضوع النفقة : {{$txt1}} <br>
+				@if($direction_fr =="de l'Education")	
+				موضوع النفقة : {{$txt}} <br>
+				@else
+				موضوع النفقة : {{$txt1}} <br>
+				@endif
+
 			@endif
 			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
             رقم العملية : <span>{{$op->numero}}</span> <br>
