@@ -155,7 +155,11 @@ $ordre = $op->order_ville;
                 <tr>
                     <th style="width : 25%;">تحديد المستفيد  </th>
 					<th style="width : 10%;">البرنامج الفرعي  </th>
-					<th style="width : 20%;">رقم الحساب الدائن</th>
+					@if($ville_fr == "Djanet")
+					<th style="width : 18%;">رقم الحساب المستفيد</th>
+					@else
+					<th style="width : 18%;">رقم الحساب الدائن</th>
+					@endif
                     <th style="width : 25%;">المبلغ</th>                
 				</tr>
                 <tr>

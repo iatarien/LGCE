@@ -458,9 +458,7 @@ class EngagementController extends Controller
         }
         
         $the_view = 'engs.fiche_eng';
-        if($this->lang =="fr"){
-            $the_view = 'engs.fiche_eng_fr';
-        }
+
         if($this->ville_fr =="Djanet" || $this->ville_fr =="djanet" || 
         $this->ville_fr =="Illizi" || $this->ville_fr =="illizi"){
             $the_view = 'engs.djanet';
@@ -490,6 +488,9 @@ class EngagementController extends Controller
         }
         // var_dump($tots);
         // return "";
+        if($this->lang =="fr"){
+            $the_view = 'engs.fiche_eng_fr';
+        }
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
         "prog"=>$prog,"porte"=>$porte,"titres2"=>$titres2,"eng0"=>$eng0,
         "eng"=>$eng,'id'=>$id,"sous"=>$sous,"titres"=>$titres,"titres1"=>$titres1]);

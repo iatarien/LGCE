@@ -339,6 +339,10 @@ class PaymentController extends Controller
             $txt1 = $txt1."   لمشروع ".$pay->lot;
         }
 
+        if($this->lang =="fr"){
+            $view ='pays.mondat1';
+            $view = $view."_fr";
+        }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,'txt'=>$txt,'txt1'=>$txt1,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
@@ -637,6 +641,11 @@ class PaymentController extends Controller
             
         }
 
+        
+        if($this->lang =="fr"){
+            $view ="pays.fiche_payement";
+            $view = $view."_fr";
+        }
         return view($view,["user"=>$user,'pay'=>$pay,'pay0'=>$pay0,'op'=>$op,"titre"=>$titre,"sous_titre"=>$sous_titre,
         'e'=>$e,'bank'=>$bank,'total'=>$total,'sujet'=>$txt,"id"=>$id,"sous_prog"=>$sous_prog,
         "prog"=>$prog,"titres"=>$titres,"sous"=>$sous]);   

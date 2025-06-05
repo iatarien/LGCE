@@ -154,7 +154,11 @@ $ordre = $op->order_ville;
             <table style=" min-height : 200px;">
                 <tr>
                     <th style="width : 13%;">تحديد المستفيد  </th>
+					@if($ville_fr == "Djanet")
+					<th style="width : 18%;">رقم الحساب المستفيد</th>
+					@else
 					<th style="width : 18%;">رقم الحساب الدائن</th>
+					@endif
 					<th style="width : 12%;">البرنامج الفرعي  </th>
                     <th style="width : 14%;">المبلغ</th>
                     <th style="width : 14%;">اقتطاع المحاسب العمومي</th>
