@@ -150,6 +150,10 @@ class BorderauController extends Controller
             $n = count($engs);
             //echo $query;
             $view = "borderau.borderau_pay1";
+            if($this->ville_fr =="Biskra" && $this->direction_fr =="Direction de l'Urbanisme de l'Architecture et de la Construction"){
+                $view = "borderau.borderau_pay1_portrait";
+            }
+
             if($this->lang =="fr"){
                 $view = $view."_fr";
             }

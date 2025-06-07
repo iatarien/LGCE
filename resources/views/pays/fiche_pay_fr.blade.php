@@ -73,8 +73,8 @@
                 
             </td>
             <td>
-                <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> Consulter</a>
-                
+                <a class="btn btn-default" target="_blank" href="/order_pay/{{$id}}"> Consulter</a><br><br>
+                <a class="btn btn-default" target="_blank" href="/avis/{{$id}}"> Consulter</a>
             </td>
             <td style="display : none;">
                 <a class="btn btn-default" target="_blank" href="/declaration_pay/{{$id}}"> consulter</a>

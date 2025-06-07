@@ -65,9 +65,9 @@
                 <br>
                 رقم العملية : <strong> {{$op}} </strong>
                 <br>
-                اسم البرنامج : <strong> {{$prog->designation}} </strong>
+				اسم العملية : <strong> {{$intitule}}</strong>
                 <br>
-                المشروع : <strong> {{$intitule}}<br>{{$sujet}} </strong>
+                المشروع : <strong>{{$sujet}} </strong>
                 <br>
                 المـــقاولة : <strong>{{$e}}<strong>
                 
@@ -113,7 +113,7 @@
              @endif
              @endif
              
-             الخاصة بمشروع : {{$intitule}} {{$sujet}}
+             الخاصة بمشروع : {{$sujet}}
              <br>
              @if($deal =="عقد")
              <?php $t = "عليه"; ?>
@@ -161,9 +161,9 @@
                 <br>
                 رقم العملية : <strong> {{$op}} </strong>
                 <br>
-                اسم البرنامج : <strong> {{$prog->designation}} </strong>
+				اسم العملية : <strong> {{$intitule}}</strong>
                 <br>
-                المشروع : <strong> {{$intitule}}<br>{{$sujet}} </strong>
+                المشروع : <strong>{{$sujet}} </strong>
                 <br>
                 المـــقاولة : <strong>{{$e}}<strong>
                 

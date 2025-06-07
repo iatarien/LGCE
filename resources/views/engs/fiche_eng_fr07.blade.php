@@ -141,7 +141,12 @@
                 </div>
                 <div class="boold">
                     <span> &emsp; Date :&emsp;&emsp;</span>
-                    <span style="border : 2px solid; padding : 5px 15px 5px 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> 
+					@if($ville_fr =="Biskra")
+					<span style="border : 2px solid; padding : 5px 15px 5px 15px;">{{ $eng->inserted_at }}</span> 
+					@else
+					<span style="border : 2px solid; padding : 5px 15px 5px 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> 
+					@endif
+
                 </div>
             </div>
 		</div>
@@ -189,7 +194,16 @@
             <h3> Titre 3 : les dépenses d'investissement  </h3>
 		</div>
 		<br>
-
+        @if($eng0 != NULL)
+        <?php  
+            //var_dump($eng0[0]);
+            $tots0 =   $eng0[0]->tots;
+            $titres20 =  $eng0[0]->titres2 ;
+            //$titres0 = $eng0[0]->$titres;
+            //$titres10 = $eng0[0]->$titres1;
+        ?>
+        @endif
+		<?php $finale = false;  ?>
 		<br><br><br><br><br><br><br><br><br>
 		<table id="engagement" contenteditable="true" dir="rtl" >
 			<tr dir="ltr">	
@@ -201,29 +215,75 @@
 				<th style="text-align : left; width : 30%"> Imputation budgétaire Cat/S.cat</th>
 			</tr>
 			<tbody id="with_all" style="display : none">
-            @foreach($titres1 as $titre)
+			<?php $i = -1; ?>
+            @foreach($titres as $titre)
+			<?php $i++; ?>
 				<tr dir="ltr" style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					@if(isset($eng0[0]->titres[$i]))
+					<td>{{ number_format((float)$eng0[0]->titres[$i]->sums["AP"], 2, '.', ' ')}}</td>
+					@else
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					@endif
 					<td dir="ltr">{{$titre->code." ".$titre->definition_fr}}</td>
 				</tr>
-				@foreach($titre->rebriques as $reb)
-				@if($reb->sous_montant != 0)
-				<tr dir="ltr">	
-					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
-					<td dir="ltr">{{$reb->code." ".$reb->definition_fr}}</td>
-				</tr>
-				@endif
-				@endforeach
+                    <?php $j = -1; ?>
+					<?php $finale = false;  ?>
+					@foreach($titre->rebriques as $reb)
+						@if($reb->id_titre == 127 && ($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0 ))
+						<?php $finale = true; ?>
+                        @else
+                        <?php $j++ ?>
+							@if($reb->sous_montant != 0 && $reb->sous_titre != 127)
+							<tr dir="ltr">	
+								<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
+								<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
+								<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
+								<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
+								@if(isset($eng0[0]->titres[$i]->rebriques[$j]))
+                                <td>{{ number_format((float)$eng0[0]->titres[$i]->rebriques[$j]->sous_AP, 2, '.', ' ')}}</td>
+                                @else
+                                <td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+                                @endif
+
+								<td dir="ltr">{{$reb->code." ".$reb->definition_fr}}</td>
+							</tr>
+							@endif
+						@endif
+					@endforeach
 			@endforeach
-            
+			@if(!$finale)
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td dir="rtl">Montant Non Ventillé</td>
+					</tr>
+				@endif
+            @if($ville_fr =="Biskra" || $ville_fr =="Touggourt")
+			<tr style='font-weight : 900;' dir="ltr">	
+				<td>{{ number_format((float)$tots->montant_2, 2, '.', ' ')}}</td>
+				@if($insc == true)
+				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->montant_1, 2, '.', ' ')}}</td>
+				@else
+				<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+				<td>{{ number_format((float)$tots->montant, 2, '.', ' ')}}</td>
+				@endif
+				<td>{{ number_format((float)$tots->cumul, 2, '.', ' ')}}</td>
+				@if(isset($tots0))
+                <td>{{ number_format((float)$tots0->AP, 2, '.', ' ')}}</td>
+                @else
+                <td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+                @endif
+				<td dir="rtl">Total</td>
+			</tr>
+			@endif
 
 			</tbody>
 			<tbody id="with_sous" style="display : none;">

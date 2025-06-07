@@ -254,8 +254,8 @@
             </a>
           </li>
           <li>
-            <a href="/ajouter_deal/facture/1">
-              <i class="bi bi-circle"></i><span> Ajouter un Facture</span>
+            <a href="javascript:void(0)" onclick='facture_fr()'>
+            <i class="bi bi-circle"></i><span> Ajouter une Facture</span>
             </a>
           </li>
           <li>

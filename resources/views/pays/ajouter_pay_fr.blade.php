@@ -142,10 +142,21 @@
                 <label class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title">  Fiche paiement N°  </label>
                
 	                <div class="col-lg-8">
-	                  <input   type="text" class="form-control" id="num" name="num">
+	                  <input  value={{$num}} type="text" class="form-control" id="num" name="num">
 	                </div>
                 </div>
-             
+                <div class="form-group">
+                <label class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title"> N° Mandat </label>
+	                <div class="col-lg-8">
+	                  <input   type="text" class="form-control" id="num_mondat" name="num_mondat">
+	                </div>
+	              </div>
+                <div class="form-group">
+                <label class="control-label col-lg-2" style="text-align : left; font-weight: bold;" for="title"> Date Mandat </label>
+	                <div class="col-lg-8">
+	                  <input   type="date" class="form-control" id="date_mondat" name="date_mondat">
+	                </div>
+	              </div>
             <table id="engagement" class="col-lg-12" dir="rtl">
                 <tr dir="ltr">
                     <th> Reste </th>

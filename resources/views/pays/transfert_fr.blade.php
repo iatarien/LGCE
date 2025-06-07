@@ -5,19 +5,19 @@ $txt = " ";
 if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
     $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
 }
-if($pay->travaux_type  !="facture" && $pay->deal != null){
+elseif($pay->travaux_type  !="facture" && $pay->deal != null){
     $txt = $txt.$pay->deal_type." ";
 }
 
 if($pay->deal_num != null){
-    $txt=$txt." N° ".$pay->deal_num;
+    $txt=$txt." ".$pay->deal_type." N° ".$pay->deal_num;
 }
 if($pay->deal_date != null){
     $txt=$txt." DU ".$pay->deal_date." ";
 }
 
 
-$txt =$txt."lot ".$pay->lot;
+$txt =$txt." Relative à : ".$pay->lot;
 ?>
 <!DOCTYPE html>
 <html>

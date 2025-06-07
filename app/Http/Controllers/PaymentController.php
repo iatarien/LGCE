@@ -47,7 +47,7 @@ class PaymentController extends Controller
         $es = DB::select( DB::raw($q));
         $view = 'comptabilite.select';
         
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,["user"=>$user,
@@ -59,7 +59,7 @@ class PaymentController extends Controller
         $view = 'pays.ajouter_pay';
         $num = $this->get_last_num($id_eng);
         $fiche = $this->get_last_fiche($id_eng);;
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
        
@@ -98,7 +98,7 @@ class PaymentController extends Controller
         $operations = DB::select( DB::raw($query));
         $es = DB::select( DB::raw($q));
         $view = 'pays.payments';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" ){
             $view = $view."_fr";
         }
         return view($view,["user"=>$user,"type"=>$type,
@@ -175,7 +175,7 @@ class PaymentController extends Controller
         $banques = DB::table('banques')->get();
 
         $view = 'comptabilite.edit_bank';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,['id'=>$id,
@@ -202,7 +202,7 @@ class PaymentController extends Controller
         $op_id = DB::select(DB::raw($q))[0]->op;
         $op = DB::table('operations')->select('numero')->where('id',$op_id)->first()->numero;
         $view = 'pays.fiche_pay';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,['id'=>$id,'user'=>$user,"editor"=>$editor,"visa"=>$visa,"op"=>$op]);
@@ -256,7 +256,7 @@ class PaymentController extends Controller
         $nums = Null;
         
         $view ="comptabilite.mondat";
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"nums"=>$nums]);
@@ -301,7 +301,7 @@ class PaymentController extends Controller
         
         
         $view ='pays.mondat1';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         if($this->ville_fr =="Mila" || $this->ville_fr =="Touggourt" || $this->ville_fr =="Ouargla" || $this->ville_fr =="Djanet"){
@@ -339,7 +339,7 @@ class PaymentController extends Controller
             $txt1 = $txt1."   لمشروع ".$pay->lot;
         }
 
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view ='pays.mondat1';
             $view = $view."_fr";
         }
@@ -390,7 +390,7 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
      
@@ -497,7 +497,7 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
      
@@ -529,7 +529,7 @@ class PaymentController extends Controller
 
         
 
-        // if($this->lang =="fr"){
+        // if($this->lang =="fr" || $this->ville_fr =="Biskra"){
         //     $txt = " ";
         //     if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
         //         $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
@@ -586,7 +586,7 @@ class PaymentController extends Controller
 
         $view ="pays.fiche_payement";
         
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         if($this->ville_fr =="Medea" ){
@@ -642,7 +642,7 @@ class PaymentController extends Controller
         }
 
         
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view ="pays.fiche_payement";
             $view = $view."_fr";
         }
@@ -728,7 +728,7 @@ class PaymentController extends Controller
         }
 
         $view ='pays.declaration';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
 
@@ -771,7 +771,60 @@ class PaymentController extends Controller
             $sous_prog->designation = "";   
         }
         $view ='pays.transfert';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
+            $view = $view."_fr";
+        }
+
+        
+        $txt = " ";
+        if($pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+        }
+        if($pay->travaux_type != "فـــاتورة"){
+            $txt = $txt."\n ".$pay->deal_type." رقم ".$pay->deal_num;
+        }
+        $txt = $txt."\n ".$e->name."\n ".$pay->lot;
+
+        return view($view,["user"=>$user,'pay'=>$pay,"txt"=>$txt,
+        'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
+        "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
+
+    }
+    public function avis($id)
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','deals.id_deal',"=","engagements.deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->
+        leftjoin('banques','banques.nom','=',"banks.bank")->
+        where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->
+        join("portefeuille","portefeuille.code","=","operations.portefeuille")->
+        where('id',$pay->id_op)->first();
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
+        $nums = NULL;
+        
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
+            $matieres = explode('.',$op->numero);
+            if (strlen($matieres[0]) > 2){
+                $matiere = $matieres[2];
+            }else{
+                $matiere = $matieres[3];
+            }
+        }else{
+            $matiere = "";
+        }
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        $view ='pays.avis';
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
 
@@ -827,7 +880,7 @@ class PaymentController extends Controller
             $sous_prog->designation = "";   
         }
         $view ='pays.avancement';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
 
@@ -840,7 +893,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $pay = DB::table('payments')->where('id',$id)->first();
         $view ='pays.modifier_pay';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,["user"=>$user,'pay'=>$pay]);
@@ -1171,7 +1224,7 @@ class PaymentController extends Controller
         //echo count($engs);
         //echo $n;
         $view ='pays.print_pays';
-        if($this->lang =="fr"){
+        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
         return view($view,["pays"=>$pays,"n"=>$n]);

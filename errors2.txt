@@ -14,7 +14,9 @@ NULL,"008");
 UPDATE `portefeuille` SET `ministere` = 'البيئة و الطاقات المتجددة' WHERE `portefeuille`.`code` = '030';
 
 
-
+** FR ****
+UPDATE `titres` SET `definition_fr` = 'Montant de l\'opération non ventilé' WHERE `titres`.`id_titre` = 128;
+UPDATE `titres` SET `definition_fr` = 'Montant non ventilé' WHERE `titres`.`id_titre` = 127;
 
 ** DAL OUARGLa ** 
 

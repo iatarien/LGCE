@@ -446,7 +446,14 @@ class EngagementController extends Controller
         }
         /*var_dump($rebriques); 
         return ""; */
-        $les_nums = explode("/",$eng->numero_fiche); if(count($les_nums) > 1){ $le_num = $les_nums[1]; }else{ $le_num = $les_nums[0]; } 
+        if($this->lang =="fr"){
+            $les_nums = explode("/",$eng->numero_fiche); if(count($les_nums) > 1){ $le_num = $les_nums[0]; }else{ $le_num = $les_nums[1]; } 
+        }
+
+        else{
+            $les_nums = explode("/",$eng->numero_fiche); if(count($les_nums) > 1){ $le_num = $les_nums[1]; }else{ $le_num = $les_nums[0]; } 
+        }
+
 		$is_first = "false";
 		if((int) $le_num == 1 && $eng->type =="decision"){
 			$is_first = "true";
@@ -490,6 +497,9 @@ class EngagementController extends Controller
         // return "";
         if($this->lang =="fr"){
             $the_view = 'engs.fiche_eng_fr';
+        }
+        if($this->lang =="fr" && $this->ville_fr == "Biskra"){
+            $the_view = 'engs.fiche_eng_fr07';
         }
         return view($the_view,['user'=>$user,"type"=>$eng->type,"insc"=>$insc,"tots"=>$tots,
         "prog"=>$prog,"porte"=>$porte,"titres2"=>$titres2,"eng0"=>$eng0,

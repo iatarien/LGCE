@@ -42,7 +42,20 @@
           }
       });
   }
-
+  function facture_fr(){
+    Swal.fire({
+      title: 'Entrez le nombre de factures',
+      input: 'number',
+      confirmButtonText : 'OK',
+      cancelButtonText : "Annuler",
+      showCancelButton : true,
+      closeOnCancel: false
+      }).then((result) => {
+        if (result.value) {
+             document.location.href="/ajouter_deal/facture/"+result.value;
+          }
+      });
+  }
   function multiple_pay(){
     Swal.fire({
       title: 'ما هو عدد الوضعيات ؟',

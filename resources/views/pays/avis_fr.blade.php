@@ -25,7 +25,7 @@
 	    height:287mm;
 	    width:210mm;
 	    margin: auto;
-	    line-height: 1.2;
+	    line-height: 1.1;
 	    -webkit-print-color-adjust: exact !important;
 	}
 	
@@ -121,6 +121,7 @@
 
 </head>
 <body id="boody" class="container">
+@include('pays.nuts')
 <?php 
 
 $brut = (float)$pay->to_pay + (float)$pay->total_cut;
@@ -142,11 +143,20 @@ if($pay->deal_date != null){
 
 $txt =$txt." Relative à : ".$pay->lot;
 ?>
-<section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
+
+<?php 
+
+$brut = (float)$pay->to_pay + (float)$pay->total_cut;
+$obj = new nuts($pay->to_pay, "EUR");
+$text = $obj->convert("fr-FR");
+$text = str_replace("euro","Dinar",$text);
+$text = str_replace(","," et",$text);
+$text = ucfirst($text);
+?>
+<section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche" contenteditable="true">
 	<div id="fiche_top">
 		<div>
 			<h3 >République Algérienne Démocratique et Populaire  </h3>
-            <h4 style="text-decoration : underline">Opérations Budgétaires  </h4>
 		</div>
 		<div style="float: left;  text-align : left; width : 70%;">
 			<h3>  {{$ministere_fr}} </h3>
@@ -154,29 +164,23 @@ $txt =$txt." Relative à : ".$pay->lot;
             <h3>   Code Ordonnateur  : {{$ordre}} </h3>
             <br>
 		</div>
-		<div style="float: right;  text-align : center; width : 30%;">
-            <table id="numero" >
-                <tr dir="ltr">
-                    <td style=" background-color: lightgray !important; "> Gestion  </td>
-                    <td style=" background-color: lightgray !important; ">  N° </td>
-                </tr>
-                <tr dir="ltr">
-                    <td>{{$pay->year}}</td>
-                    <td>{{$pay->num}}</td>    
-                </tr>
-            </table>
-		</div>
         <div style="display : inline-block; width : 40%; marign-left : 30%" dir="ltr">
             <div class="boold">
-                <h2 style="border : 2px solid;">Fiche de Paiement</h2>
+                <h2>Avis de Virement</h2>
             </div>
         </div>
-
+		<div align="left">
+                <h2>&emsp;&emsp;&emsp;&emsp;Date : &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				Lieu : {{$ville_fr}}</h2>
+		</div>
 		<div dir="ltr" style="float: left; margin-right: 30px; text-align : left; width : 100%;">
-			<h3>   N° de l'opération :&emsp;
+			<h3><span>Par le débit de notre compte ouvert dans vos écritures comptables sous le </span></h3>
+			<h3>   N° RIB :&emsp;
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
-				$numero = str_replace(".","",$op->numero);
+
+				$numero = str_replace(" ","",$compte_tresor);
 				$numeros = str_split($numero); 
 				
 				?>
@@ -194,65 +198,48 @@ $txt =$txt." Relative à : ".$pay->lot;
 			</span>
 			</h3>
 			<br>
+			<h3> Designation de donneur d'ordre de, entité : <span> {{$direction_fr}} de la Wilaya de <span> {{$ville_fr}}   </h3>
 			<h3> Libellé de l'opération   : <span>{{$op->intitule}}<span>   </h3>
-            <h3> Objet de paiement   : <span>{{$txt}}</span>   </h3>
-            <h3> Bénificiaire   : <strong>{{$e->name}}</strong>   </h3>
+			<h3><span>Nous vous prions de vouloir créditer notre créancier (le bénéficiaire) dont le </span></h3>
+            <h3> Nom : <span>{{$e->name}}</span>   </h3>
+            <h3> Prenom   : <strong></strong>   </h3>
+			<h3> Raison Sociale   : <strong></strong>   </h3>
+			<h3> Adresse du bénéficiaire   : <strong></strong>   </h3>
+			<h3>   N° RIB :&emsp;
+				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
+				<?php 
+				$pay0 = $pay;
+				$numero = str_replace(" ","",$bank->bank_acc);
+				$numeros = str_split($numero); 
+				
+				?>
+				<?php $max = count($numeros); $i = 0;?>
+				@foreach ($numeros as $n)
+				<?php $i++; ?>
+					@if($n !== '-' && $n !== '/' && $n !== '.' && $n !== ',')
+						@if($i == $max)
+						<span style='font-weight : bold; padding : 2px 2px 2px 2px;'>{{$n}}</span>
+						@else
+						<span style='font-weight : bold; border-right : 3px solid; padding : 2px 5px 2px 2px;'>{{$n}}</span>
+						@endif 
+					@endif
+				 @endforeach
+			</span>
+			</h3>
+			<h3> D'un montant de    </h3>
+			<h3> En chiffres   : <span>{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} DA</span>  </h3>
+			<h3> En lettres   : <span>{{$text}}</span>   </h3>
 		</div>
 		<br>
-		<table id="engagement" contenteditable="true" dir="ltr" >
-			<tr>	
-                <th>Imputation budgétaire </th>
-                <th>Designaation</th>
-				<th>Paiements Antérieurs</th>
-				<th>  Paiement proposé </th>
-				<th> Total Paiements</th>
-            </tr>
-			<tr style="text-align :  center; font-weight : bold" dir="ltr">
-				@if(isset($titre->code))
-				<td>{{$titre->code}} </td>
-                <td>{{$titre->definition_fr}}</td>
-				@else
-				<td>  31000  </td>
-				<td>lmmobilisations corporelles</td>
-				@endif
-				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
-				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
-                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
-            </tr>
-			@if($ville_fr =="Biskra")
-			<tr style="text-align :  center; font-weight : bold" dir="ltr">
-                <td>{{$sous_titre->code}}</td>
-                <td>{{$sous_titre->definition_fr}}</td>
-				<td>{{ number_format((float)$pay0->cumul_old, 2, '.', ' ')}} </td>
-				<td> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}  </td>
-                <td>{{ number_format((float)$pay0->cumul_new, 2, '.', ' ')}} </td>
-          
-            </tr>
-			@else
-			<tr style="text-align :  center; font-weight : bold" dir="ltr">
-				@if(isset($sous_titre->code))
-				<td>{{$sous_titre->code}}</td>
-				<td>{{$sous_titre->definition}}</td>
-				@else
-				<td>31420</td>
-				<td>Batiments </td>
-				@endif
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-			@endif
-
-		</table>
+		
 		<br>
 	</div>
-    <div style="width: 90%; display: inline-block; float: left;">
+    <div style="width: 20%; display: inline-block; float: right;">
     <br><br><br>
-		<div align="right">
+		<div align="center">
             <p style="font-weight : bold; font-size : 18px;">
-            <span> à {{$ville_fr}} le : ........................... </span><br><br><br>
-			<span> <span style="text-decoration : underline">Le Gestionnaire</span>
-             <i style="visibility : hidden">...........................</i> </span>
+			<span> <span style="">Cachet humide du donneur d'ordre</span>
+             <i style="visibility : hidden">........</i> </span>
 			<br>
             </p>
 		</div>

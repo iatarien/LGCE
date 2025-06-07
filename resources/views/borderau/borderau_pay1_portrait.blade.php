@@ -8,13 +8,13 @@
 <style type="text/css">
 	@page {
         size: auto;   /* auto is the initial value */
-        size: A3 landscape;
+        size: A4 portrait;
         margin: 0;  /* this affects the margin in the printer settings */
     }
     @media print {
         html,body{
-            width:420mm;
-            height:280mm;
+            width:280mm;
+            height:420mm;
             float : none;
             /* overflow-x : hidden !important;
             overflow-y : hidden !important; */
@@ -32,8 +32,8 @@
     }
     
     html body {
-        width: 420mm;
-        height: 280mm;
+        width: 280mm;
+        height: 420mm;
         margin: auto;
         float : none;
         font-size: 16px;

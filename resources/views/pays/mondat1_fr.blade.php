@@ -2,6 +2,28 @@
 <?php 
 
 $brut = (float)$pay->to_pay + (float)$pay->total_cut;
+$txt = " ";
+if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
+    $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
+}
+elseif($pay->travaux_type  !="facture" && $pay->deal != null){
+    $txt = $txt.$pay->deal_type." ";
+}
+
+if($pay->deal_num != null){
+    $txt=$txt." ".$pay->deal_type." N° ".$pay->deal_num;
+}
+if($pay->deal_date != null){
+    $txt=$txt." DU ".$pay->deal_date." ";
+}
+
+
+$txt =$txt." Relative à : ".$pay->lot;
+?>
+
+<?php 
+
+$brut = (float)$pay->to_pay + (float)$pay->total_cut;
 $obj = new nuts($pay->to_pay, "EUR");
 $text = $obj->convert("fr-FR");
 $text = str_replace("euro","Dinar",$text);
@@ -126,11 +148,11 @@ $text = ucfirst($text);
                 </tr>
                 <tr>
                     <td style="width: 50%;">Numéro</td>
-                    <td style="width: 50%;"></td>
+                    <td style="width: 50%;">{{$pay->num_mondat}}</td>    
                 </tr>
                 <tr>
                     <td style="width: 50%;">Date</td>
-                    <td style="width: 50%;"></td>
+                    <td style="width: 50%;">{{$pay->date_mondat}}</td>    
                 </tr>
                 <tr>
                     <td style="width: 50%;">Mandat</td>
@@ -191,26 +213,7 @@ $text = ucfirst($text);
                 <td style="border : none;"><br></td>
                 <td style="border : none;"></td>
             </tr>
-            <?php 
-            $txt = " ";
-            if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
-                $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
-            }
-            if($pay->travaux_type  !="facture" && $pay->deal != null){
-                $txt = " ".$txt.$pay->deal_type." ";
-            }
-            
-            if($pay->deal_num != null){
-                $txt=$txt." N° ".$pay->deal_num;
-            }
-            if($pay->deal_date != null){
-                $txt=$txt." DU ".$pay->deal_date." ";
-            }
-            
-            
-            $txt =$txt."lot ".$pay->lot;
-        
-            ?>
+
             <tr>
                 <td style="width: 30%;"> Objet de paiement</td>
                 <td style="width: 70%;">{{$txt }}</td>
@@ -294,13 +297,13 @@ $text = ucfirst($text);
                 <td rowspan="2" style="text-align : center; width : 9%;">
                  Montant total à payer
                 </td>
-				<td colspan="3" style="text-align : center; width : 30%;">
+				<td colspan="3" style="text-align : center; width : 20%;">
                  Retenus
                 </td>
 				<td rowspan="2"  style="text-align : center; width : 9%;">
                     Montant brut
                 </td>
-				<td colspan="5" style="text-align : center; width : 37%;">
+				<td colspan="5" style="text-align : center; width : 47%;">
                   Designation du benficiaire
                 </td>
             </tr>
@@ -308,10 +311,10 @@ $text = ucfirst($text);
                 <td> Désignation</td>
                 <td> Compte à Débiter</td>
                 <td>Montant</td>
-                <td style="width : 15%;">Désignation</td>
-                <td style="width : 15%;">  N° du compte du bénificiaire</td>
-                <td colspan="2" style="width :15%">  Référence de dépenses</td>
-				<td>Observation</td>
+                <td style="width : 12%;">Désignation</td>
+                <td style="width : 12%;">  N° du compte du bénificiaire</td>
+                <td colspan="2" style="width :10%">  Référence de dépenses</td>
+				<td style="width : 17.5%">Observation</td>
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
@@ -326,8 +329,8 @@ $text = ucfirst($text);
 					{{$bank->bank}} <br>Agence : {{$bank->bank_agc}}
 				</td>
                 <td ></td>
-				<td style="width : 11.5%"></td>
-                <td>/</td>
+				<td></td>
+                <td >{{$txt}}</td>
 				
             </tr>
 			<tr>
@@ -345,26 +348,26 @@ $text = ucfirst($text);
 		
     </div>
 
-	<div style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
+	<div dir="rtl" style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
 		<table id="bottom-left">
 			<tr>
-				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+				<td></td>
 				<td> Montant total à payer</td>
 			</tr>
 			<tr>
-				<td>0.00</td>
+				<td></td>
 				<td>  Rejets  </td>
 			</tr>
 			<tr>
-				<td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+				<td></td>
 				<td>   Dépenses admises</td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+				<td></td>
 				<td> Retenues</td>
 			</tr>
 			<tr>
-				<td dir="ltr">َ{{ number_format($pay->to_pay, 2, '.', ' ')}}</td>
+				<td></td>
 				<td> Montant total net à payer</td>
 			</tr>
 		</table>

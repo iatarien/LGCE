@@ -429,15 +429,26 @@ function fiche_num(id){
         cache: false,
         success:function(response) {
           var value = response;
-          if(value[0] != null){
-            var old = value[0].numero_fiche;
-            if(old.includes("/")){
-              old = old.split("/")[1];
+          @if($lang =="fr")
+            if(value[0] != null){
+              var old = value[0].numero_fiche;
+              if(old.includes("/")){
+                old = old.split("/")[0];
+              }
+            }else{
+              var old = "0";
             }
-          }else{
-            var old = "0";
-          }
-          
+          @else
+
+            if(value[0] != null){
+              var old = value[0].numero_fiche;
+              if(old.includes("/")){
+                old = old.split("/")[1];
+              }
+            }else{
+              var old = "0";
+            }
+          @endif
           var nv = ""+(parseInt(old) + 1);
           if(nv.length == 1){
             nv = "0"+nv;
@@ -630,7 +641,7 @@ function subject(){
         txt += "Date :  "+parent_date +" ";
       }
     @else
-    txt += "lot : "+lot+"\n";
+    txt += " Relative à : "+lot+"\n";
     @endif
     txt += "Entreprise : "+e+" ";
   @endif
