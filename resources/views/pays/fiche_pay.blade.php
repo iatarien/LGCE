@@ -121,6 +121,8 @@
             </td>
             <td>
                 <a class="btn btn-default" target="_blank" href="/declaration_pay/{{$id}}"> معاينة</a>
+                <br><br>
+                <a class="btn btn-default" target="_blank" href="/avis/{{$id}}"> معاينة</a>
             </td>
             <td>
                 <br>

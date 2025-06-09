@@ -153,6 +153,12 @@ input[readonly] {
 	                  <input dir="ltr" style="text-align : left" required=""  type="text" class="form-control" id="numero_fiche" name="numero_fiche">
 	                </div>
                 </div><br>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" style="text-align : left; font-weight: bold;" for="title"> Date</label>
+	                <div class="col-sm-9">
+	                  <input dir="ltr" style="text-align : left"  type="date" class="form-control" id="inserted_at" name="inserted_at">
+	                </div>
+                </div><br>
                 @if($type=="eng")
                 <div class="form-group">
                     <label class="control-label col-sm-2" style="text-align : left; font-weight: bold;" for="title"> Entreprise</label>

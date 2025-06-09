@@ -141,7 +141,7 @@
                 </div>
                 <div class="boold">
                     <span> &emsp; Date :&emsp;&emsp;</span>
-					@if($ville_fr =="Biskra")
+					@if($ville_fr =="Biskra" && $eng->inserted_at != NULL)
 					<span style="border : 2px solid; padding : 5px 15px 5px 15px;">{{ $eng->inserted_at }}</span> 
 					@else
 					<span style="border : 2px solid; padding : 5px 15px 5px 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> 

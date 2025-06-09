@@ -857,11 +857,18 @@ class EngagementController extends Controller
         $date_visa = $request['date_visa'];
         $user_id = Auth::user()->id;
 
+
+        if(isset($request['inserted_at'])){
+            $inserted_at = $request['inserted_at'];
+        }else{
+            $inserted_at = Date('Y-m-d');
+        }
+
         $id = DB::table('engagements')->insertGetId(['id_op'=>$id_op,
         "numero_fiche"=>$numero_fiche,"real_sujet"=>$real_sujet,
         "type"=>$type,"deal"=>$deal,"montant"=>$montant,
         "num_visa"=>$num_visa,"date_visa"=>$date_visa,
-        "user_id"=>$user_id,"inserted_at"=>Date('Y-m-d'),"updated_at"=>NULL]);
+        "user_id"=>$user_id,"inserted_at"=>$inserted_at,"updated_at"=>NULL]);
     
         $titres = DB::table('titres')->where('type',"")->get();
         foreach($titres as $sous_titre){
@@ -909,6 +916,12 @@ class EngagementController extends Controller
         update(["numero_fiche"=>$numero_fiche,"real_sujet"=>$real_sujet,
         "type"=>$type,"montant"=>$montant,
         "num_visa"=>$num_visa,"date_visa"=>$date_visa,"updated_at"=>Date('Y-m-d')]);
+
+        if(isset($request['inserted_at'])){
+            $inserted_at = $request['inserted_at'];
+            DB::table('engagements')->where("id",$id)->
+            update(["inserted_at"=>$inserted_at]);
+        }
         DB::table('rebriques')->where('id_eng',$id)->delete();
         $titres = DB::table('titres')->where('type',"")->get();
         foreach($titres as $sous_titre){
