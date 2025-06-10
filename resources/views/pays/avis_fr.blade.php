@@ -245,7 +245,9 @@ $text = ucfirst($text);
 		</div>
 	</div>
 </section>
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br>
 <div align="center">
 	<button id="bouton" style="
 	  background-color: lightgray; /* Green */

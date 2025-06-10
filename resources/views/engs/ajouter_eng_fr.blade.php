@@ -631,7 +631,7 @@ function subject(){
     txt += "N° "+deal_num +" ";
   }
   if(deal_date !="" && deal_date != null){
-    txt += "du : "+deal_date +" ";
+    txt += "du : "+deal_date +" Relative à : "+projet+" \n";
   }
     @if($deal->deal_type == "avenant")
       const parent_num = "{{$parent->deal_num}}";
@@ -647,7 +647,7 @@ function subject(){
         txt += "Date :  "+parent_date +" ";
       }
     @else
-    txt += " Relative à : "+lot+"\n";
+    //txt += " Relative à : "+lot+"\n";
     @endif
     txt += "Entreprise : "+e+" ";
   @endif
