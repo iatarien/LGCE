@@ -330,9 +330,13 @@ class PaymentController extends Controller
         $txt = $txt."\n ".$e->name."\n ".$pay->lot;
         
         $txt1 = " تسوية ";
-        if($pay->travaux_num != null){
+        if($pay->travaux_num != null && $pay->deal_type !="فاتورة"){
             $txt1 = $txt1.$pay->travaux_type." رقم ".$pay->travaux_num." لل".$pay->deal_type." رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
             
+        }else{
+            if($pay->deal_type =="فاتورة"){
+                $txt1 = $txt1.$pay->deal_type." رقم ".$pay->deal_num." بتاريخ ".$pay->date_pay;
+            }
         }
         if($this->ville_fr !="Ouargla"){
             $txt1 = $txt1." المقدمة من طرف ".$e->name;

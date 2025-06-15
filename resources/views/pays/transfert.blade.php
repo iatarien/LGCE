@@ -185,6 +185,15 @@ $ordre = $op->order_ville;
 					@endif
                 </tr>
             </table>
+			<br>
+			<div align= "center">
+			توقف مجموع هذا الجدول على مبلغ : <b id="montant">   </b>
+			<div>
+			<br>
+			<div align="left">
+				<b> الأمـــر بالصــرف </b>
+				<br>
+			</div>
 	    </div>
         <br><br>
         
@@ -223,10 +232,32 @@ $ordre = $op->order_ville;
 <script src="{{ url('js/jquery.js') }}"></script>
 <script src="{{ url('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ url('js/jquery-1.8.3.min.js') }}"></script>
+<script src="{{ url('js/tagfeet.js') }}" ></script>
 <script type="text/javascript">
 window.onbeforeunload = function () {
     window.close();
 };
+convert({{ $pay->to_pay }});
+
+function convert(num){
+	num = ""+ num;
+	var num1 = num;
+	var num2 = null
+	if(num.includes('.')){
+		num1 = parseInt(num.split(".")[0]);
+		num2 = parseInt(num.split(".")[1]);
+	}
+	if(num2 != null && num.split(".")[1].length == 1 ){
+		num2 = num2 *10;
+	}
+	var txt = nArabicWords(num1);
+	txt = txt.replace('ومليون', "و واحد مليون")
+	txt+= " "+"دينار جزائري";
+	if(num2 != null){
+		txt +=" "+"و"+" "+nArabicWords(num2)+" "+"سنتيم";
+	}
+	document.getElementById('montant').innerHTML = txt;
+}
 function retour(){
 	if(window.history.length == 1){
 		window.close();

@@ -180,15 +180,7 @@ $ordre = $op->order_ville;
                    	<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
                 </tr>
             </table>
-			<br>
-			<div align= "center">
-			توقف مجموع هذا الجدول على مبلغ : <b id="montant">   </b>
-			<div>
-			<br>
-			<div align="left">
-				<b> الأمـــر بالصــرف </b>
-				<br>
-			</div>
+
 	    </div>
         <br><br>
         

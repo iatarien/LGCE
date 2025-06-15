@@ -3,7 +3,7 @@
 
 $brut = (float)$pay->to_pay + (float)$pay->total_cut;
 $txt = " ";
-if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null && $pay->travaux_type  !="facture"){
+if($pay->travaux_type != "فاتورة" && $pay->travaux_num != null){
     $txt = $txt.$pay->travaux_type." N° ".$pay->travaux_num." DU ".$pay->date_pay;
 }
 elseif($pay->travaux_type  !="facture" && $pay->deal != null){
@@ -116,58 +116,143 @@ $text = ucfirst($text);
     <h3 align="center">
         République Algerienne Democratique et Populaire
     </h3>
-	<h4 align="center">
-		Mandat de Paiement T2,T3,T4,T5 et T6<br>
-		Dépenses imputables au Budget Geenrale de l'Etat
-	</h4>
-	<div style="float: left; width: 25%; margin-left: 5%;" id="top-right">
-		<h3>Code ordonnateur : {{$ordre}} </h3>
-		<h3>Gestion : {{$pay->year}} </h3>
-		<h3>Numero de fiche d'engagement : {{$pay->numero_fiche}} </h3>
-		<h3>Numero de Mandat : {{$pay->num_mondat }} </h3>
-		<h3>Date de Mandat : {{$pay->date_mondat }} </h3>
-		<h3>Objet de Paiement : {{$txt}} </h3>
-		<h3>Mode de Paiement : {{$bank->bank}} </h3>
+	<div style="float: left; width: 90%;" id="top-right">
+		<div style="width: 40%; display: inline-block; text-align: center; float: left; margin-left: 10%;">
 
-		<h3>Libellé de l'operation : {{$op->intitule}} </h3>
-		<h3>Numero de l'operation : {{$op->numero}} </h3>
+			<br><br>
+			<table id="sarf">
+				<tr>
+                    <th style="background-color : lightgray"> Code Ordonnateur </th>
+					<th> 
+                        @if($pay->type =="FSDRS")
+                        {{$ordre}}
+                        @elseif($op->source=="PSC")
+                        {{$ordre}}
+                        @else
+                        {{$ordre}}
+                        @endif 
+                    </th>
+                    
+				</tr>
+				
+			</table>
+		</div>
+		<div style="width: 30%; margin-top: 5%; margin-left: 10%; text-align: center; float: left; display : inline-block">
+			<table id="things">
+				<tr>
+                    <td colspan="2" style="background-color : lightgray"> Mandat de Paiement</td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;"> Gestion</td>
+                    <td style="width: 50%;">{{$pay->year}}</td>     
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Numéro</td>
+                    <td style="width: 50%;">{{$pay->num_mondat}}</td>    
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Date</td>
+                    <td style="width: 50%;">{{$pay->date_mondat}}</td>    
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Mandat</td>
+                    <td style="width: 50%;">Méthode de paiement</td>
+                </tr>
+
+			</table>
+		</div>
 	</div>
-	<div style="width: 25%; margin-left: 5%; float: left;">
+	<div style="width: 40%; float: left; text-align: center; display : none;" id="top-left">
+		<br><br><br><br><br><br>
+		@if($op->source == "PSC") 
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 7mm;">
+				302.145.001
+				</div>
+				@elseif($op->source == "PSD")
+				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 7mm;">
+				302.145.002
+				</div>
+				@elseif($op->source == "FSDRS")
+				<?php $sf = substr($op->numero, 0, 2); ?>
+					@if($sf == "SF")
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 5mm;">
+					302.145.012
+					</div>
+					@else
+					<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm; width : 25%; font-weight : bold; color : red; font-size : 5mm;">
+					302.145.010
+					</div>
+					@endif
+				@endif
+
+		<br><br><br>
+
+	</div>
+    <div style="width: 30%; margin-left: 5%; float: left;">
         <br><br>
         <table id="things" dir="ltr">
+            <tr>
+                <td colspan="2" style="background-color : lightgray;
+                    text-align : center">
+                Dépenses imputables au budget de l'Etat
+                </td>
+            </tr>
             <tr>
                 <td style="width: 30%;"> Comptable Assignataire</td>
                 <td style="width: 70%;">
 					<span>     Monsieur le Trésorier de la wilaya de {{$ville_fr}} 
+						<br>  RIB {{$compte_tresor}}    
 					</span>
 				</td>
             </tr>
             <tr>
-                <td style="width: 30%;"> RIB/RIP du Tresor</td>
-                <td style="width: 70%;">{{$compte_tresor}}   </td>
+                <td style="width: 30%;"> Date</td>
+                <td style="width: 70%;"></td>
             </tr>
+            <tr >
+                <td style="border : none;"><br></td>
+                <td style="border : none;"></td>
+            </tr>
+
+            <tr>
+                <td style="width: 30%;"> Objet de paiement</td>
+                <td style="width: 70%;">{{$txt }}</td>
+            </tr>
+            <tr>
+                <td style="width: 30%;"> N° de visa CB</td>
+                <td style="width: 70%;">N°  {{ $pay->num_visa }}  DU <b dir="ltr">{{ $pay->date_visa }}</b>  </td>
+            </tr>
+
         </table>
         <br>
     </div>
-	<div style="width: 30%; margin-left: 5%; float: left;">
+    <div style="width: 50%; margin-left: 10%; float: left;">
         <br>
         <table id="things" dir="ltr">
             <tr>
                 <td colspan="3" style="text-align : center">
                 Classification par Activité
                 </td>
-
+                <td colspan="3" style="text-align : center">
+                Classification par titre
+                </td>
             </tr>
             <tr>
                 <td style="width : 18%"> Portefeuille</td>
                 <td style="width : 10%">{{$op->portefeuille}}</td>
                 <td style="width : 22%">{{$op->ministere_fr}}</td>
+                <td style="width : 18%">Titre</td>
+                <td style="width : 10%">03</td>
+                <td style="width : 22%">Dépenses d'investissement</td>
                 
             </tr>
             <tr>
                 <td>Programme</td>
                 <td>{{$prog->code}}</td>
                 <td>{{$prog->designation_fr}}</td>
+                <td rowspan="2">Catégorie</td>
+                <td rowspan="2">{{$titre->code}}</td>
+                <td rowspan="2">{{$titre->definition_fr}}</td>
             </tr>
             <tr >
                 <td> Sous Programme</td>
@@ -186,7 +271,10 @@ $text = ucfirst($text);
 				<td> Programme Sectoriel Déconcentrés</td>
 				@endif
 				
-
+                
+				<td rowspan="2"> Sous-catégorie </td>
+				<td rowspan="2">{{$sous_titre->code}}</td>
+                <td rowspan="2">{{$sous_titre->definition_fr}}</td>
 
             </tr>
             <tr>
@@ -199,55 +287,62 @@ $text = ucfirst($text);
         </table>
         <br>
     </div>
-	
+    <br>
     <div style="width: 90%; margin-left: 5%; float: left;">
-    	<table id="things" dir="ltr" style="text-align: center">
+    <table id="things" dir="ltr" style="text-align: center">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
-                  Imputation Budgetaire
+                  N° d'opération
                 </td>
                 <td rowspan="2" style="text-align : center; width : 9%;">
-                 Montant But
+                 Montant total à payer
                 </td>
-				<td colspan="2" style="text-align : center; width : 20%;">
+				<td colspan="3" style="text-align : center; width : 20%;">
                  Retenus
                 </td>
-
-				<td colspan="3" style="text-align : center; width : 47%;">
+				<td rowspan="2"  style="text-align : center; width : 9%;">
+                    Montant brut
+                </td>
+				<td colspan="5" style="text-align : center; width : 47%;">
                   Designation du benficiaire
                 </td>
-				<td rowspan="2"  style="text-align : center; width : 9%;">
-                    Montant à payer
-                </td>
-				<td rowspan="2"  style="width : 17.5%">Observation</td>
             </tr>
             <tr>
-                <td> Compte à Créditer</td>
+                <td> Désignation</td>
+                <td> Compte à Débiter</td>
                 <td>Montant</td>
-                <td style="width : 12%;">Bénéficiaire</td>
+                <td style="width : 12%;">Désignation</td>
                 <td style="width : 12%;">  N° du compte du bénificiaire</td>
-                <td style="width :10%">  Piece de dépenses</td>
-
+                <td colspan="2" style="width :10%">  Référence de dépenses</td>
+				<td style="width : 17.5%">Observation</td>
             </tr>
 			<tr>
                 <td>{{$op->numero}}</td>
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
+                <td></td>
 				<td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 				<td>{{$e->name}}</td>
-				<td>
+                <td>
 					{{$bank->bank_acc}}<br>
 					{{$bank->bank}} <br>Agence : {{$bank->bank_agc}}
 				</td>
-				<td ></td>
-                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                <td ></td>
+				<td></td>
                 <td >{{$txt}}</td>
 				
             </tr>
-
+			<tr>
+                <td>    Montant total brute</td>
+                <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
+                <td colspan="2">  Montant total des retnues</td>
+                <td dir="ltr">َ{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
+                <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+            </tr>
         </table>
-		<div align= "left"><br>
-		Arreté à la somme de : <b id="montant"> {{$text}}  </b>
+		<div align= "center"><br>
+		Arreté à la somme de  <br><b id="montant"> {{$text}}  </b>
 		<div>
 		<br>
 		
