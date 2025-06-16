@@ -51,7 +51,7 @@
             <th style="display : none"> بطاقة الدفع </th>
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Ouled Djellal" 
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Tamenrasset" 
-            || $ville_fr == "Biskra") <th> بطاقة الدفع </th>
+            || $ville_fr == "Biskra" || $ville_fr == "Djanet") <th> بطاقة الدفع </th>
             @endif
             <th> بيان بالتحويل </th>
             <th> إشعار بالتحويل </th>
@@ -106,7 +106,7 @@
             </td>
             @endif
             @if($ville_fr == "Medea" || $ville_fr == "Ouargla" || $ville_fr == "Ouled Djellal" 
-            || $ville_fr == "Tamenrasset" 
+            || $ville_fr == "Tamenrasset" || $ville_fr == "Djanet"
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Biskra")
             <td>
                 <a class="btn btn-default" target="_blank" href="/fiche_payment/{{$id}}"> معاينة</a>

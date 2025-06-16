@@ -599,7 +599,7 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-	    if($this->ville_fr =="Ouargla" ){
+	    if($this->ville_fr =="Ouargla" || $this->ville_fr =="Djanet"  ){
             $view = $view."_medea";
         }
         if($this->ville_fr =="Biskra" || $this->ville_fr =="Tamenrasset"){

@@ -307,17 +307,18 @@ $ordre = $op->order_ville;
                 <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
             </tr>
         </table>
+		<br>
 		@if($ville_fr =="Touggourt")
 		<br>
 		<div align= "center">
 		توقف الحوالة على المبـــلغ بالأحرف : <b id="montant" style="border : 2px solid; padding : 5px 10px 5px 10px;">   </b>
 		<div>
 		@else
-		<div align= "center">
+		<div align= "center" style="font-size : 14px;">
 		توقف الحوالة على المبـــلغ : <b id="montant">   </b>
 		<div>
 		@endif
-		
+		<br>
     </div>
 	
 	<div style="width: 30%; margin-right: 35%; display: inline-block; float: right; visibility : hidden;">
