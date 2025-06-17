@@ -360,7 +360,9 @@ class PaymentController extends Controller
         join('deals','engagements.deal',"=","deals.id_deal")->
         where('payments.id',$id)->first();
         $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
-        $op = DB::table('operations')->where('id',$pay->id_op)->first();
+        $op = DB::table('operations')->
+        join("portefeuille","portefeuille.code","=","operations.portefeuille")->
+        where('id',$pay->id_op)->first();
         $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
         $total = $pay->total_done - $pay->total_cut;
 
@@ -386,6 +388,17 @@ class PaymentController extends Controller
             $prog->code = "";
             $prog->designation = "";   
         }
+        $qq = "SELECT * FROM titres WHERE id_titre = (SELECT sous_titre FROM rebriques WHERE id_eng = ".$pay->id_eng." 
+        AND ( sous_montant != 0 OR sous_montant_1 != 0  AND sous_titre != 127 ) LIMIT 1)";
+ 
+        $sous_titre = NULL;
+        if(isset(DB::select(DB::raw($qq))[0])){
+            $sous_titre = DB::select(DB::raw($qq))[0];
+        }
+        $titre = NULL;
+        if(isset($sous_titre->father)){
+            $titre = DB::table("titres")->where("id_titre",$sous_titre->father)->first();
+        }
 
         $view ='pays.attestation_payement';
         if($this->ville_fr =="Medea"){
@@ -399,7 +412,7 @@ class PaymentController extends Controller
         }
      
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
-        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog]);
+        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog,"titre"=>$titre,"sous_titre"=>$sous_titre]);
 
     }
     public function attestation_2($id)

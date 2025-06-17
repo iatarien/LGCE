@@ -41,7 +41,7 @@
             @endif
             <th style="display : none"> Décompte</th>
             <th>  Mandat </th>
-            <th style="display : none">Attestation de paiement</th> 
+            <th> Certificat pour paiement</th> 
             <th > Fiche de paiement </th>
             <th>  Avis de virement </th>
             <th style="display : none">  Déclaration de virement </th>
@@ -67,20 +67,15 @@
                     <a class="btn btn-primary" disabled href="/modifier_pay/{{$id}}">Modifier </a>
                 @endif
              </td>
-            <td style="display : none"> 
+            <td > 
                 <a class="btn btn-default" target="_blank" href="/attestation_payment/{{$id}}">Consulter</a>
-                @if($editor == $user->id)
-                <a class="btn btn-primary" disabled href="/edit_fiche_payment/{{$id}}">Modifier </a>
-                @else
-                <a class="btn btn-primary"  disabled href="/edit_fiche_payment/{{$id}}">Modifier </a>
-                @endif
             </td>
             
             <td >
                 <a class="btn btn-default"  target="_blank" href="/fiche_payment/{{$id}}"> Consulter</a>
                 @if($ville_fr == "Mila" || $ville_fr =="Biskra" || $ville_fr =="Ouargla")
                     <br><br>
-                    <a class="btn btn-primary" target="_blank" href="/edit_fiche_payment/{{$id}}"> تعديل</a>
+                    <a class="btn btn-primary" target="_blank" href="/edit_fiche_payment/{{$id}}"> Modifier</a>
                 @endif
             </td>
             <td>
