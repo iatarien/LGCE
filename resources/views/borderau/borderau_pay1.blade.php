@@ -142,7 +142,7 @@ $cdars = true;
             <h3> جدول حوالات الدفع </h3>
         </div>
 		<div style="  display: inline-block; max-width : 70%; " dir="rtl">
-        <table id="le_table">
+            <table id="le_table">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
                     <th style="width : 33%;">الرمز</th>
@@ -172,8 +172,14 @@ $cdars = true;
                     <td>/</td>
                     <td>/</td>
                 </tr>
-        </table>
-      <br>  
+            </table>
+        <br>  
+        @if( $ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+            
+        <div id="stamp"  style = "font-weight : bold; text-align : center; width : 100%; color : black; font-size : 5.5mm; padding : 2px; ">
+            1812.145.020
+        </div>
+        @endif
         <div style="display : none;">
                 @if($engs[0]->source == "PSC") 
 				<div id="stamp"  style = "border : 5px solid red; margin-left : 20mm;  font-weight : bold; color : red; font-size : 5mm; padding : 2px; ">
@@ -205,7 +211,13 @@ $cdars = true;
              تاريخ جدول الحوالة :  <br>
              المحاسب المختص : السيد أمين الخزينة لولاية {{$ville}} <br>
 			</h3>
-            
+            @if( $ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+            <div style="  display: inline-block; float: right; ">
+                <h3 dir="rtl" style="text-align : right;"> رقم العملية : - {{$engs[0]->old_numero}}<br>
+                <b style="color : transparent">رقم العملية :</b> - {{$engs[0]->numero}}<br><br>
+                </h3>
+		    </div>
+            @endif
 		</div>
         <br><br>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">

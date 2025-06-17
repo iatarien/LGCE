@@ -141,21 +141,50 @@
         border-collapse: collapse;
         text-align: center;
     }
-    #le_table td {
+	#le_table1 {
+        width: 100%;
+        margin-right: 0%;
+        border: solid 1px black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    #le_table1 td:first-child {
         border-bottom : none;
         border-top : none;
         text-align : left;
-        border : 1px solid;
+		border-left :none;
     }
-    #le_table th {
+	#le_table1 td {
         border-bottom : none;
         border-top : none;
-        text-align : left;
-        border : 1px solid;
+		border-left : 1px solid;
+        text-align : center;
+
     }
+	.boghders td {
+		border-top : 1px solid !important;
+		border-bottom : 1px solid !important;
+	}
 </style>
 
 </head>
+<?php
+$deal_type = $pay->deal_type;
+if($deal_type =="صفقة"){
+	$deal_type = "{{$deal_type}}";
+}else if($deal_type =="عقد"){
+	$deal_type = "Convention";
+}else if($deal_type =="فاتورة"){
+	$deal_type = "Facture";
+}
+$le ="la";
+$du ="de la";
+if($deal_type =="Marché"){
+	$le = "le";
+	$du = "du";
+}
+
+?>
 <body contenteditable ="true">
 
 <section id="fiche">
@@ -221,9 +250,9 @@
 			<br>
             <b> ACTION : {{$direction_fr}} </b>
 			<br>
-            <b> CHAPITRE : {{$titre->definition_fr}} </b>
+            <b> CHAPITRE : @if(isset($titre->definition_fr)){{$titre->definition_fr}}@endif </b>
 			<br>
-            <b> ARTICLE : {{$sous_titre->definition_fr}} </b>
+            <b> ARTICLE : @if(isset($sous_titre->definition_fr)){{$sous_titre->definition_fr}} @endif </b>
 			<br>
             <b> SOMME A PAYER : {{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</b>
 			<br><br>
@@ -239,212 +268,9 @@
 		
 		
 	</div>
-	<div style="display: inline-block; width: 100%;">
-		<div style="width: 55%; display: inline-block; float : right">
-			<div align="center" dir="rtl">
-			
-			<span style="font-size: 1.3em; font-weight: bold;">      {{$pay->deal_type }} رقم  {{ $pay->deal_num}}  </span>
+	
+	<div style="display: inline-block; width: 100%; border-top : 1px solid; border-right : 1px solid;">
 
-				<br>
-				<span style="font-size: 1.17em; font-weight: bold;"> المقاول  : {{ $e->name }}    </span>
-			</div>
-			
-			<p dir="rtl">
-			{{ $pay->lot }}
-			</p>
-			<div dir="rtl" style="float: left; text-align: justify;">
-				<span>      الصافي للدفع  :&emsp; 
-					<b dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</b>   </span>
-				<br>
-				<span> 		المبلغ الخام  : &emsp;
-					<b dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</b> </span><br>
-				<span dir="ltr" style="margin-right: 20px;"> &emsp;&emsp;&emsp;.............. حوالة رقم    </span>
-			</div>
-			<div style="float: right; margin-right : 10mm;  text-align: justify;">
-				@if($op->source == "PSC") 
-				<div id="stamp" style = "border : 5px solid transparent; margin-left : 10mm; width : 80%; font-weight : bold; color : transparent; font-size : 7mm;">
-				302.145.001
-				</div>
-				@elseif($op->source == "PSD")
-				<div id="stamp"  style = "border : 5px solid transparent; margin-left : 10mm; width : 80%; font-weight : bold; color : transparent; font-size : 7mm;">
-				302.145.002
-				</div>
-				@elseif($op->source == "FSDRS")
-				<?php $sf = substr($op->numero, 0, 2); ?>
-					@if($sf == "SF")
-					<div id="stamp"  style = "border : 5px solid transparent; text-align : center; margin-left : 10mm; width : 80%; font-weight : bold; color : transparent; font-size : 5mm;">
-					302.145.012
-					</div>
-					@else 
-					<div id="stamp"  style = "border : 5px solid transparent; text-align : center; margin-left : 10mm; width : 80%; font-weight : bold; color : transparent; font-size : 5mm;">
-
-					302.145.010
-					</div>
-					@endif
-				@endif
-			</div>
-			<br>
-			<div style="float: right; text-align: right;">
-				@if($pay->deal_date != NULL )
-					@if($pay->travaux_num !=NULL)
-						<p dir="rtl">   ان السيد والي ولاية {{$ville}}  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}/{{ date('Y', strtotime($pay->deal_date)) }} المصادق عليها في {{ $pay->deal_date}} 
-						لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  رقم     <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>
-					@else
-						<p dir="rtl">   ان السيد والي ولاية {{$ville}}  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}/{{ date('Y', strtotime($pay->deal_date)) }} المصادق عليها في {{ $pay->deal_date}} 
-						لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم   <br>  و نظرا  ل{{ $pay->travaux_type }} رقم    {{ $pay->travaux_num }} بتاريخ   <span dir="ltr">{{ $pay->date_pay }}</span>  <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>		
-					@endif
-				@else 
-					@if($pay->travaux_num !=NULL)
-						<p dir="rtl">   ان السيد والي ولاية {{$ville}}  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}
-						لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم     <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>		
-					@else
-						<p dir="rtl">   ان السيد والي ولاية {{$ville}}  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }} 
-						لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم   <br>  و نظرا  ل{{ $pay->travaux_type }} رقم    {{ $pay->travaux_num }} بتاريخ   <span dir="ltr">{{ $pay->date_pay }}</span>  <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>
-					@endif
-				@endif
-				<table id="payement">
-					<tr>
-						<td style="border-top : 1px solid;"></td>
-						<td>@if($pay->etude_done != 0)  {{ number_format((float)$pay->etude_done, 2, '.', ' ')}} @endif </td>
-						<td><span style="opacity : 0.3;">.....................................</span> أشغال تامة  </td>
-						<td style="display: none;">1</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td>@if($pay->non_termine_done != 0)  {{ number_format((float)$pay->non_termine_done, 2, '.', ' ')}} @endif</td>
-						<td><span style="opacity : 0.3;">...................................</span> أشغال غير متمة   </td>
-						<td style="display: none;">2</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td>@if($pay->extra_done != 0)  {{ number_format((float)$pay->extra_done, 2, '.', ' ')}} @endif</td>
-						<td><span style="opacity : 0.3;">......................................</span>  أشغال إضافية    </td>
-						<td style="display: none;">3</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>@if($pay->avan_done != 0)  {{ number_format((float)$pay->avan_done, 2, '.', ' ')}} @endif</td>
-						
-						<td><span style="opacity : 0.3;">.......................</span>  التسبيقات الجزافية   </td>
-						<td style="display: none;">9</td>
-					</tr>
-					<tr>
-						<td rowspan="2" style="text-align: center;">@if($pay->total_done != 0)  {{ number_format((float)$pay->total_done, 2, '.', ' ')}} @endif</td>
-						<td></td>
-						
-						<td><span style="opacity : 0.3;">.......................</span>   تموين  5/4 من قيمتها  </td>
-						<td style="display: none;">4</td>
-					</tr>
-
-					<tr>
-		
-						<td style="border : none;"></td>
-						<td><span style="opacity : 0.3;">..........................</span> أشغال التسيير   </td>
-						<td style="display: none;">5</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td><span style="opacity : 0.3;">..................................</span>  تسديد النفقات   </td>
-						<td style="display: none;">6</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td><span style="opacity : 0.3;">......................................</span> الضمان  </td>
-						<td style="display: none;">7</td>
-					</tr>
-
-					<tr>
-						<td style="border-bottom: 0.1px dotted;"></td>
-						<td></td>
-						<td><span style="opacity : 0.3;">............................</span> مراجعة الأسعار  </td>
-						<td style="display: none;">8</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td>@if($pay->avancement_cut != 0)  {{ number_format((float)$pay->avancement_cut, 2, '.', ' ')}} @endif</td>
-						
-						<td><span style="opacity : 0.3;">...............</span>  استرجاع التسبيقات الجزافية   </td>
-						<td style="display: none;">9</td>
-					</tr>
-
-					<tr>
-						<td style="text-align: center;">@if($pay->total_cut != 0)  {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
-						
-						<td>@if($pay->assurance_cut != 0)  {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}} @endif</td>
-						
-						<td><span style="opacity : 0.3;">..................................</span>  استقطاع الضمان    </td>
-						<td style="display: none;">11</td>
-					</tr>
-
-					<tr>
-						<td style="border-bottom: 1px solid;"></td>
-						<td>@if($pay->sanction_cut != 0)  {{ number_format((float)$pay->sanction_cut, 2, '.', ' ')}} @endif</td>
-						
-						<td><span style="opacity : 0.3;">.................................</span>  العقوبات    </td>
-						<td style="display: none;">12</td>
-					</tr>
-
-					<tr>
-						<td style="text-align: center;">{{ number_format((float)$total, 2, '.', ' ')}}</td>
-						<td><span style="opacity : 0.3;">........................</span></td>
-						<td><span style="opacity : 0.3;">.....................................</span>      الباقي      </td>
-						<td style="display: none;">13</td>
-					</tr>
-
-					<tr>
-						<td style="text-align: center;">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
-						<td><span style="opacity : 0.3;">...................</span></td>
-						<td> على إثره قد تم تسديد  المبالغ السابقة  من قبل   </td>
-						<td style="display: none;">14</td>
-					</tr>
-
-					<tr>
-						<td style="border-bottom : 1px solid; border-top : 1px solid; text-align: center;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
-						<td><span style="opacity : 0.3;">......................</span></td>
-						<td> <span style="opacity : 0.3;">...........................</span>  ما تبق   للتسديد و الدفع </td>
-						<td style="display: none;">15</td>
-					</tr>
-				</table>
-				<p style="color: transparent;">dgggggggggggggggggggg</p>
-				@if($op->source == "FSDRS")
-				<?php $sf = substr($op->numero, 0, 2); ?>
-					@if($sf == "SF")
-					<?php $chap_chap = "302.145.012"; ?>
-					@else 
-					<?php $chap_chap = "302.145.010"; ?>
-					@endif
-				@else 
-					<?php $chap_chap =  $op->programme."-".$op->sous_programme; ?>
-				@endif
-				<?php ?>
-				<div dir='rtl'>
-
-					<p>يشهد  أنه   يمكن الدفع الى السيد  <span> {{ $e->name }} </span> من   ميزانية التجهيز  لسنة  <span>{{ $pay->year }}</span> المبلغ :  
-					<span id="montant" style="font-weight: bold;">  </span>
-					</p>
-					@if($op->source == "PSC") 
-					<div id="stamp1"  style = "text-align : center; visbility hidden; padding : 3px; margin-right : 20%; float : right; border : 5px solid transparent; margin-left : 10mm; width : 150px; font-weight : bold; color : transparent; font-size : 6mm;">
-					عــن الــوزير
-					</div>
-					@else
-					<div id="stamp1"  style = "text-align : center; visbility hidden; padding : 3px; margin-right : 20%; float : right; border : 5px solid transparent; margin-left : 10mm; width : 150px; font-weight : bold; color : transparent; font-size : 6mm;">
-					عــن الــــوالي
-					</div>
-					@endif
-					<div dir="ltr" style='text-align : right'>
-					<span> ................. {{$ville}} في </span><br>
-					</div>
-				</div>
-
-			</div>
-		</div>
 		<div style="width: 44%; display: inline-block; margin-right: 1%; font-size : 12px; float : left;">
 			<div style="border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
 				<b>  CERTIFICATS DELIVRES</b>
@@ -625,14 +451,71 @@
 			</table>
 
 			<div style="float: left; text-align: left; margin-top: 30px; font-weight : bold;     line-height: 2;  ">
-				les pieces du marché pnt été joint au mandat<br>
+				les pieces du {{$deal_type}} pnt été joint au mandat<br>
                 N° {{$pay->num_mondat}}&emsp;&emsp;&emsp;&emsp; DU {{$pay->date_mondat}}<br>
                 de {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} <br>
                 EX {{$pay->year}}
 
 			</div>
 		</div>
-		
+		<div style="width: 55%; display: inline-block; line-height : 1.5;
+		 float : right; text-align : left; font-size : 13px;">
+			<b>Le Directeur soussigne <br>
+			Vu {{$le}}
+			{{$deal_type}} passé le : {{$pay->deal_date}}
+			aprouvé le : {{$pay->date_visa}} <br>
+			au profit de l'entrepreneur ci-dessous exécutant des travaux ci-dessous 
+			désignés moyennant les prix du borderau, le dit {{$deal_type}} enregistré à 
+			{{$ville_fr}} sous le N° {{$pay->deal_num}}<br>
+			Le montant {{$du}} {{$deal_type}} est de : 
+			{{ number_format((float)$pay->montant, 2, '.', ' ')}} DA 
+			</b>
+			<hr>
+			<b>Vu le décompte provisoire N° &emsp;&emsp;&emsp;&emsp;
+				en date du &emsp;&emsp;&emsp;&emsp;<br>
+				duquel il resulte que les ouvrages executés et les dépenses faites <br>
+				en vertu du marché sus-visé s'éelevent à : 
+				{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} DA 
+			</b><br>
+			<table id="le_table1" style="width : 100%; margin-bottom : 2%; border : none;">
+
+                <tr style="">
+                    <td style="width : 40%;">Travaux Terminés</td>
+                    <td style="width : 35%; border-top : 1px solid;">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                    <td style="width : 25%; border-top : 1px solid;"></td>
+                </tr>
+                <tr>
+                    <td>Travaux non terminés </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+				<tr>
+                    <td>Travaux en règle </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+				<tr>
+                    <td>Approvisionnement (4/5) </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+				<tr>
+                    <td>Revision des prix </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+				<tr class="boghders">
+                    <td>Retenue de garantie </td>
+                    <td>{{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
+                    <td></td>
+                </tr>
+				<tr class="boghders">
+                    <td>Net</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+        </table>
+		</div>
 	</div>
 	
 
