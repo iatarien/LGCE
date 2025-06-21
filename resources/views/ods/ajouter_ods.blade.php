@@ -125,7 +125,11 @@
                     @else
                     <select class="form-control" id="real_type" name="real_type">
                       @if($last == NULL)
-                      <option value="d">إنطلاق</option>
+                        @if($ville_fr != "Medea")
+                          <option value="d">إنطلاق</option>
+                        @else
+                          <option value="d">تبليغ {{$ods->deal_type }} و إنطلاق</option>
+                        @endif
                       @if($ville_fr =="Biskra")
                       <option value="d0">الخدمة و الإنطلاق في</option>
                       @endif

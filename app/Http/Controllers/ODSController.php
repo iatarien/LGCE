@@ -192,6 +192,9 @@ class ODSController extends Controller
         if($this->ville_fr =="Mila"){
             $view = "ods.mila";
         }
+        if($this->ville_fr =="Medea"){
+            $view = "ods.medea";
+        }
         if($this->ville_fr =="Ouargla" && $this->ville_fr =="Direction de l'Education"){
             $view = "ods.ouargla";
         }
@@ -311,6 +314,10 @@ class ODSController extends Controller
             $type_ods = "إنطلاق ".$request['extra_type'];
             if($this->ville_fr =="Biskra" && $this->direction_fr =="Direction de l'Urbanisme de l'Architecture et de la Construction"){
                 $type_ods = "الإنطلاق في ".$request['extra_type']; 
+            }
+            if($this->ville_fr =="Medea"){
+           
+                $type_ods = "تبليغ الصفقة و إنطلاق ".$request['extra_type']; 
             }
             if($this->lang =="fr"){
                 $type_ods = "Démarrage ".$request['extra_type'];

@@ -1,3 +1,4 @@
+@include('pays.nuts')
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,16 +24,16 @@
 	    height:297mm;
 	    width:210mm;
 	    margin: auto;
-	    margin-top: 5mm !important;
-	    line-height: 1.3;
-	    font-size: 15px;
+	    margin-top: 1mm !important;
+	    line-height: 1.15;
+	    font-size: 12.5px;
 	    -webkit-print-color-adjust: exact !important;
 		page-break-after: auto;
 	}
 	#fiche {
-		margin: 20px;
-		margin-right : 60px;
-		margin-left : 60px;
+		margin: 10px;
+		margin-right : 40px;
+		margin-left : 40px;
 		text-align: center;
 	}
 	#numero {
@@ -187,12 +188,22 @@ if($deal_type =="Marché"){
 ?>
 <body contenteditable ="true">
 
+<?php 
+
+$brut = (float)$pay->to_pay + (float)$pay->total_cut;
+$obj = new nuts($pay->to_pay, "EUR");
+$text = $obj->convert("fr-FR");
+$text = str_replace("euro","Dinar",$text);
+$text = str_replace(","," et",$text);
+$text = ucfirst($text);
+?>
+
 <section id="fiche">
 <div style="  display: inline-block; ">
             <h3>    République Algérienne Démocratique et Populaire    </h3>
 		</div>
     <div style="  display: inline-block; width : 100%; float : left;" dir="ltr">
-        <table id="le_table" style="width : 70%; margin-bottom : 2%;">
+        <table id="le_table" style="width : 80%; margin-bottom : 2%;">
                 <tr>
                     <th style="width : 34%;">Classification par activité </th>
                     <th style="width : 20%;">Code</th>
@@ -260,7 +271,7 @@ if($deal_type =="Marché"){
 		</div>
         <div style="display: inline-block; float: left; text-align: left; width : 100%;">
             <br>
-            <b> COMPTE BANCAIRE N° : {{$bank->bank_acc}} </b>
+            <b> COMPTE BANCAIRE N° : {{$bank->bank_acc}} {{$bank->bank}}</b>
 		</div>
 
 
@@ -269,7 +280,7 @@ if($deal_type =="Marché"){
 		
 	</div>
 	
-	<div style="display: inline-block; width: 100%; border-top : 1px solid; border-right : 1px solid;">
+	<div style="display: inline-block; width: 100%; border-top : 1px solid; ">
 
 		<div style="width: 44%; display: inline-block; margin-right: 1%; font-size : 12px; float : left;">
 			<div style="border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
@@ -289,20 +300,22 @@ if($deal_type =="Marché"){
 					<td>N°</td>
 					<td>DU</td>
 				</tr>
+				@if($pay->old_payments != 0) 
+				<tr>
+                    <td></td>
+                    <td></td>
+					<td><span>@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</span></td>
+					<td></td>
+					<td></td>
+
+				</tr>
+				@endif
 				<tr>
                     <td>{{$pay->year}}</td>
                     <td></td>
 					<td><span>@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</span></td>
 					<td></td>
 					<td></td>
-
-				</tr>
-				<tr>
-					<td>&emsp;</td>
-					<td></td>
-					<td></td>
-                    <td></td>
-                    <td></td>
 
 				</tr>
 				<tr>
@@ -431,11 +444,11 @@ if($deal_type =="Marché"){
 					<td colspan="3">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
-                    <td colspan="2"></td>
+                    <td colspan="2">L'entrepreneur aura reçu</td>
 					<td colspan="3">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
-                    <td colspan="2"></td>
+                    <td colspan="2">les depenses s'elevent</td>
 					<td colspan="3">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
@@ -458,13 +471,13 @@ if($deal_type =="Marché"){
 
 			</div>
 		</div>
-		<div style="width: 55%; display: inline-block; line-height : 1.5;
-		 float : right; text-align : left; font-size : 13px;">
+		<div style="width: 54%; display: inline-block; line-height : 1.5;
+		 float : right; text-align : left; font-size : 13px; border-right : 1px solid;">
 			<b>Le Directeur soussigne <br>
 			Vu {{$le}}
 			{{$deal_type}} passé le : {{$pay->deal_date}}
 			aprouvé le : {{$pay->date_visa}} <br>
-			au profit de l'entrepreneur ci-dessous exécutant des travaux ci-dessous 
+			au profit de l'entrepreneur ci-dessus exécutant des travaux ci-dessus 
 			désignés moyennant les prix du borderau, le dit {{$deal_type}} enregistré à 
 			{{$ville_fr}} sous le N° {{$pay->deal_num}}<br>
 			Le montant {{$du}} {{$deal_type}} est de : 
@@ -509,13 +522,35 @@ if($deal_type =="Marché"){
                     <td>{{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
                     <td></td>
                 </tr>
-				<tr class="boghders">
+				<tr class="boghders" style="display : none;">
                     <td>Net</td>
                     <td></td>
                     <td></td>
                 </tr>
+				<tr >
+                    <td colspan="2" style="text-align : center">Reste du </td>
+                    <td></td>
+                </tr>
+				<tr >
+                    <td colspan="2" style="text-align : center">sur lesquels à été payé précédemment une somme de </td>
+                    <td></td>
+                </tr>
+				<tr >
+                    <td colspan="2" style="text-align : center">Reste à payer </td>
+                    <td></td>
+                </tr>
         </table>
+		<br><br><br><br>
+		<div style="text-align: left;  line-height: 2;  ">
+				Certifie qu'il reste à payer à : <b>{{$e->name}}</b><br>
+                A &emsp;&emsp;&emsp;&emsp; sur la sec &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;chap&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;art  <br>
+                au budget de : <b>l'exercice {{$pay->year}}</b> <br>
+                LA somme de <b id="montant"> {{$text}}  </b><br>
+				pièces jointes du présent paement <br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{$ville_fr}}}  <br>
+			</div>
 		</div>
+
 	</div>
 	
 
@@ -532,7 +567,7 @@ if($deal_type =="Marché"){
 	  text-decoration: none;
 	  display: inline-block;
 	  font-size: 16px;" 
-  onclick="printdiv('fiche')"> طبع </button>
+  onclick="printdiv('fiche')"> Imprimer </button>
   <button  style="
 	  background-color: lightblue; /* Green */
 	  border: none;
@@ -543,7 +578,7 @@ if($deal_type =="Marché"){
 	  text-decoration: none;
 	  display: inline-block;
 	  font-size: 16px;" 
-  onclick="retour()"> رجوع </button>
+  onclick="retour()"> Retour </button>
 
  <br><br>
 </div>

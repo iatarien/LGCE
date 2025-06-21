@@ -841,10 +841,14 @@ class PaymentController extends Controller
             $sous_prog->designation = "";   
         }
         $view ='pays.avis';
+        
         if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
 
+        if($this->ville_fr =="Mila"){
+            $view = "pays.avis_mila";
+        }
         
         $txt = " ";
         if($pay->travaux_num != null){
