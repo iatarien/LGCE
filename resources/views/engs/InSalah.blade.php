@@ -130,6 +130,7 @@ $ordre = $eng->order_ville;
 @if($ville_fr =="Touggourt")
 <?php 	$font = "12px"; ?>
 @endif
+<?php $sanf = ""; ?>
 <section style="background-color: white; text-align: center; font-size: {{$font}}; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>
@@ -352,6 +353,7 @@ $ordre = $eng->order_ville;
 			</tr>
 				@foreach($titre->rebriques as $reb)
 				@if($reb->sous_montant != 0)
+				<?php $sinf = "الصنف الفرعي : ".$reb->code; ?>
 				<tr>	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
                     @if( $insc == "true" )
@@ -421,7 +423,11 @@ $ordre = $eng->order_ville;
 				</tr>
 				@foreach($titre->rebriques as $reb)
 				@if($reb->sous_montant != 0)
+				@if($ville_fr == "In Salah")
+				<tr style='display : none'>	
+				@else
 				<tr>	
+				@endif
 					<td>/</td>
 					<td>/</td>
 					<td>/</td>
@@ -490,6 +496,9 @@ $ordre = $eng->order_ville;
 			<h3> موضوع الإلتزام : <span>{{$eng->real_sujet}}<span></h3>
 		</div>
 		<br><br><br>
+		@if($ville_fr =="In Salah")
+			<h3 align="right" style="margin-right: 30px;">{{$sinf}}<h3>
+		@endif
 		@if($ville_fr =="Ouled Djellal" && $eng->montant != 0 && $eng->type == "eng")
 		<h3><span style="text-decoration : underline">أوقف هذا الكشف عند مبلغ :</span>
 		<span id="montant"></span>
