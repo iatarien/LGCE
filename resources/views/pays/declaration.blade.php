@@ -180,7 +180,14 @@ $ordre = $op->order_ville;
                    	<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
                 </tr>
             </table>
+			@if($ville_fr =="Mila")
+			<br>				<br>
+			<div align="left">
 
+				<b> الأمـــر بالصــرف </b>
+				<br>
+			</div>
+			@endif
 	    </div>
         <br><br>
         

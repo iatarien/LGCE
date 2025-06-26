@@ -142,6 +142,11 @@ if($pay->deal_date != null){
 
 
 $txt =$txt." Relative à : ".$pay->lot;
+
+$RIB = explode("RIB",$compte_tresor)[1];
+$RIB = explode("الخزينة RIP : ",$RIB)[0];
+$RIB = str_replace(":","",$RIB);
+?>
 ?>
 
 <?php 
@@ -184,7 +189,7 @@ $text = ucfirst($text);
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
 
-				$numero = str_replace(" ","",$compte_tresor);
+				$numero = str_replace(" ","",$RIB);
 				$numeros = str_split($numero); 
 				
 				?>
