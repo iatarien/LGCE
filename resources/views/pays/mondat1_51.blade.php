@@ -296,8 +296,8 @@
                 <td> التحديد</td>
                 <td>الحساب الدائن</td>
                 <td style="width  : 10%;">المبلغ</td>
-                <td style="width : 15%;">التسمية</td>
-                <td style="width : 15%;">رقم حساب المستفيد</td>
+                <td style="width : 12%;">التسمية</td>
+                <td style="width : 18%;">رقم حساب المستفيد</td>
                 <td colspan="2" style="width : 8%">مرجع وثيقة الدفع</td>
 				<td>ملاحظات</td>
             </tr>
