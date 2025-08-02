@@ -410,7 +410,9 @@ class PaymentController extends Controller
         if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
-     
+        if($this->ville_fr =="Djanet"){
+            $view = $view."_Djanet";
+        }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
         'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog,"titre"=>$titre,"sous_titre"=>$sous_titre]);
 
@@ -612,7 +614,7 @@ class PaymentController extends Controller
         if($this->ville_fr =="Mila"){
             $view = $view."_mila";
         }
-	    if($this->ville_fr =="Ouargla" || $this->ville_fr =="Djanet"  ){
+	    if($this->ville_fr =="Ouargla"  ){
             $view = $view."_medea";
         }
         if($this->ville_fr =="Biskra" || $this->ville_fr =="Tamenrasset"){
@@ -620,6 +622,9 @@ class PaymentController extends Controller
         }
         if($this->ville_fr =="Touggourt"){
             $view = $view."_touggourt";
+        }
+        if($this->ville_fr =="Djanet"){
+            $view = $view."_Djanet";
         }
         if($this->ville_fr =="Ouled Djellal"){
             $view = $view."_51";
