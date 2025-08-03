@@ -213,7 +213,11 @@ $ordre = $op->order_ville;
 				@endif
 
 			@endif
+			@if($ville_fr =="Djanet" )
+			طريقة الدفع : الخزينة  <br>
+			@else
 			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
+			@endif
             رقم العملية : <span>{{$op->numero}}</span> <br>
             عنوان العملية : <span>{{$op->intitule_ar}}</span> <br>
             <span dir="ltr"> {{$op->intitule}}</span> 
