@@ -152,11 +152,11 @@
                 <th style="width : 2%;">N°</th>
                 <th style="width : 28%; ">DESIGNATION DE LA STRUCTURE ET L'ORDONNATEUR DELEGUE </th>
                 <th style="width : 9%; ">MONTANT DE AE </th>
-                <th style="width : 9%; ">MONTANT DES CP (Notifié {{ $the_year}}) </th>
+                <th style="width : 9%; ">MONTANT DES CP (Notifié {{ $year}}) </th>
 				<th style="width : 9%; ">MONTANT DES CREDITS ENGAGES</th>
                 <th style="width : 10%; ">SOLDE</th>
                 <th style="width : 10%; ">TAUX DES ENGAGEMENTS</th>
-				<th style="width : 10%; ">CONSOMMATION DES CP ({{$the_year}}) </th>
+				<th style="width : 10%; ">CONSOMMATION DES CP ({{$year}}) </th>
                 <th style="width : 10%; ">TAUX DE CONSOMMATION</th>
 			</tr>
 				@foreach($opss as $op)

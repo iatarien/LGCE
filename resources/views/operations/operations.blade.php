@@ -268,6 +268,7 @@ function display(operations,value,order){
 		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>رخصة الإلتزام الحالي</div></td>'+
 				'<td style="cursor : pointer; width : 10%;" id="eng_cumul" onclick="load_ops(\'eng_cumul\')" ><div> مجموع الإلتزامات</div></td>'+
 		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>  مجموع الدفعات</div></td>'+
+				'<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>  CP {{$the_year}} </div></td>'+
 		        '<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div>  PEC</div></td>'+
 				'<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div> Solde sur AE</div></td>'+
 				'<td style="cursor : pointer; text-align : center; width : 5%;"><div><i class="bi bi-pencil"></i></div></td>'+
@@ -275,7 +276,7 @@ function display(operations,value,order){
 		      '</tr>';
 	const op = operations;
 	console.log()
-	for (var i = 0; i < operations.length - 3; i++) {
+	for (var i = 0; i < operations.length - 4; i++) {
 		tds +=
 		'<tr style="font-weight : bold">'+
 		    '<td><span><h5><strong>'+(i+1)+'</strong></h5></span></td>'+
@@ -293,6 +294,9 @@ function display(operations,value,order){
 		    '</td>'+
 			'<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].somme_total_pay)+'</strong></h5></span>'+
+		    '</td>'+
+			'<td>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].montant_cp)+'</strong></h5></span>'+
 		    '</td>'+
 		    '<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].AP_act-op[i].somme_total_pay)+'</strong></h5></span>'+
@@ -329,9 +333,9 @@ function display(operations,value,order){
 			// '<td>'+
 		    //     '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -7 ])+'</strong></h5></span>'+
 		    // '</td>'+
-		    // '<td>'+
-		    //     '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -6 ])+'</strong></h5></span>'+
-		    // '</td>'+
+		    '<td>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -4 ])+'</strong></h5></span>'+
+		    '</td>'+
 			'<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -3 ])+'</strong></h5></span>'+
 		    '</td>'+
@@ -342,10 +346,10 @@ function display(operations,value,order){
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -1 ])+'</strong></h5></span>'+
 		    '</td>'+
 			'<td>'+
-		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -3 ] - operations[operations.length -1 ])+'</strong></h5></span>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -4 ] - operations[operations.length -2 ])+'</strong></h5></span>'+
 		    '</td>'+
 			'<td>'+
-		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -3 ] - operations[operations.length -2 ])+'</strong></h5></span>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(operations[operations.length -4 ] - operations[operations.length -3 ])+'</strong></h5></span>'+
 		    '</td>'+
 			'<td colspan="2" style="text-align : center">'+
 		        '<span><h5><strong></strong></h5></span>'+

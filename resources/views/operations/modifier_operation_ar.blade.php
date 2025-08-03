@@ -161,6 +161,26 @@
 	                  <input dir="ltr" style="text-align : right;" type="number" step="0.01" placeholder="0.00" class="form-control" id="CP" name="cp" value="{{$cp}}">
 		            </div>
                   </div><br>
+				  @if($ville_fr =="Medea")
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+1}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" value="{{$cp1}}" step="0.01" placeholder="0.00" class="form-control" id="CP1" name="cp1">
+		            </div>
+                  </div><br>
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+2}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" value="{{$cp2}}" step="0.01" placeholder="0.00" class="form-control" id="CP2" name="cp2">
+		            </div>
+                  </div><br>
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+3}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" value="{{$cp3}}" step="0.01" placeholder="0.00" class="form-control" id="CP3" name="cp3">
+		            </div>
+                  </div><br>
+				 @endif
 				  <div class="form-group row ">
 				  	<label  class="control-label col-lg-3" style="text-align : left;" for="content">مقرر غلق العملية</label>
 	              	<div class="col-lg-9">

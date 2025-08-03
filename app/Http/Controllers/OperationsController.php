@@ -222,6 +222,24 @@ class OperationsController extends Controller
         }else{
             $cp = 0;
         }
+        $cp1 = DB::table("cp")->where('ze_op',$id)->where('year',$this->year+1)->first();
+        if($cp1 != NULL && !empty($cp1)){
+            $cp1 = $cp1->montant_cp;
+        }else{
+            $cp1 = 0;
+        }
+        $cp2 = DB::table("cp")->where('ze_op',$id)->where('year',$this->year+2)->first();
+        if($cp2 != NULL && !empty($cp2)){
+            $cp2 = $cp2->montant_cp;
+        }else{
+            $cp2 = 0;
+        }
+        $cp3 = DB::table("cp")->where('ze_op',$id)->where('year',$this->year+3)->first();
+        if($cp3 != NULL && !empty($cp3)){
+            $cp3 = $cp3->montant_cp;
+        }else{
+            $cp3 = 0;
+        }
         $portefeuilles= DB::table('portefeuille')->orderBy("code","ASC")->get();
         $p = DB::table("portefeuille")->where("code",$op->portefeuille)->first();
         $programmes = DB::table("programme")->whereNull("parent")->where("portefeuille",$p->code)->get();
@@ -236,7 +254,7 @@ class OperationsController extends Controller
             $view = 'operations.modifier_operation_fr';
         }
         return view($view,
-        ['user'=>$user,'op'=>$op,"cp"=>$cp,
+        ['user'=>$user,'op'=>$op,"cp"=>$cp,"cp1"=>$cp1,"cp2"=>$cp2,"cp3"=>$cp3,
         "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,
         "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps]);
     }
@@ -289,6 +307,25 @@ class OperationsController extends Controller
         DB::table('cp')->
         insert(["ze_op"=>$id,"montant_cp"=>$cp,
         "year"=>$this->year]);
+        if(isset($request['cp1'])){
+            $cp1 = $request['cp1'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp1,
+            "year"=>$this->year+1]);
+        }
+        if(isset($request['cp2'])){
+            $cp2 = $request['cp2'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp2,
+            "year"=>$this->year+2]);
+        }
+        if(isset($request['cp3'])){
+            $cp3 = $request['cp3'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp3,
+            "year"=>$this->year+3]);
+        }
+
         return Redirect::to('/operations_ar/all');
     }
 
@@ -343,6 +380,24 @@ class OperationsController extends Controller
             DB::table('cp')->
             insert(["ze_op"=>$id,"montant_cp"=>$cp,
             "year"=>$this->year]);
+        }
+        if(isset($request['cp1'])){
+            $cp1 = $request['cp1'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp1,
+            "year"=>$this->year+1]);
+        }
+        if(isset($request['cp2'])){
+            $cp2 = $request['cp2'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp2,
+            "year"=>$this->year+2]);
+        }
+        if(isset($request['cp3'])){
+            $cp3 = $request['cp3'];
+            DB::table('cp')->
+            insert(["ze_op"=>$id,"montant_cp"=>$cp3,
+            "year"=>$this->year+3]);
         }
         if(isset($request['old_numero'])){
             DB::table('operations')->where('id',$id)->

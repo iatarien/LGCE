@@ -138,7 +138,14 @@ class SamController extends Controller
             $c_tot->somme_pay = $somme_pay;
             $c_tot->somme_total_pay = $c_tot->somme_pay ;
             $c_tot->somme_pay_cumul = 0;
+            $q = "SELECT montant_cp FROM cp WHERE ze_op =".$c_tot->oper_id." AND year = ".$this->year;
 
+            $cp = DB::select(DB::raw($q));
+            if(!isset($cp[0]->montant_cp)){
+                $c_tot->montant_cp = 0;
+            }else{
+                $c_tot->montant_cp = $cp[0]->montant_cp;
+            }
             // /* cumul_eng 2023 */
             // $eng_2023 = DB::select( DB::raw($q2));
             // if($eng_2023 != null){
@@ -187,6 +194,7 @@ class SamController extends Controller
         $eng = array_sum(array_column($cumul_total,'somme_total_eng'));
         $pay = array_sum(array_column($cumul_total,'somme_total_pay'));
         $ap = array_sum(array_column($cumul_total,'AP_act'));
+        $cp = array_sum(array_column($cumul_total,'montant_cp'));
         $eng2023 = array_sum(array_column($cumul_total,'eng_2023'));
         $pay2023 = array_sum(array_column($cumul_total,'pay_2023'));
         $eng2024 = array_sum(array_column($cumul_total,'eng_2024'));
@@ -194,7 +202,7 @@ class SamController extends Controller
         array_push($cumul_total,$ap);
         array_push($cumul_total,$eng);
         array_push($cumul_total,$pay);
-
+        array_push($cumul_total,$cp);
         // array_push($cumul_total,$eng2023);
         // array_push($cumul_total,$pay2023);
         // array_push($cumul_total,$eng2024);
@@ -284,7 +292,7 @@ class SamController extends Controller
             $c_tot->somme_pay = $somme_pay;
             $c_tot->somme_total_pay = $c_tot->somme_pay ;
             $c_tot->somme_pay_cumul = 0;
-
+            
             // /* cumul_eng 2023 */
             // $eng_2023 = DB::select( DB::raw($q2));
             // if($eng_2023 != null){
@@ -355,7 +363,7 @@ class SamController extends Controller
 
         $ops = $this->get_cumul($portefeuille,$filters,$op);
      
-        $ops = array_splice($ops, 0, -3);
+        $ops = array_splice($ops, 0, -4);
         $n = count($ops);
 
         for ($i = 0; $i < $n; $i++) {

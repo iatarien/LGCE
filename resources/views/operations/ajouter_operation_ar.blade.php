@@ -129,7 +129,26 @@
 	                  <input dir="ltr" style="text-align : right;" required type="number" step="0.01" placeholder="0.00" class="form-control" id="CP" name="cp">
 		            </div>
                   </div><br>
-
+				  @if($ville_fr =="Medea")
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+1}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" step="0.01" placeholder="0.00" class="form-control" id="CP1" name="cp1">
+		            </div>
+                  </div><br>
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+2}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" step="0.01" placeholder="0.00" class="form-control" id="CP2" name="cp2">
+		            </div>
+                  </div><br>
+				  <div class="form-group row ">
+				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="content"> CP {{$the_year+3}} </label>
+	              	<div class="col-lg-9">
+	                  <input dir="ltr" style="text-align : right;" required type="number" step="0.01" placeholder="0.00" class="form-control" id="CP3" name="cp3">
+		            </div>
+                  </div><br>
+				 @endif
 	              <!-- Buttons -->
 	              <div class="form-group" align="center">
 	                <!-- Buttons -->

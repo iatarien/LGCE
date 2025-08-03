@@ -314,8 +314,8 @@ class PaymentController extends Controller
         if($this->ville_fr =="Ouled Djellal"){
             $view = $view."_51";
         }
-        if($this->ville_fr =="Biskra"){
-            $view = $view."_07";
+        if($this->ville_fr =="Medea"){
+            $view = $view."_fr";
         }
         $txt = " ";
         if($pay->travaux_num != null){
@@ -753,7 +753,9 @@ class PaymentController extends Controller
         if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
-
+        if($this->ville_fr =="Medea"){
+            $view = $view."_Medea";
+        }
         return view($view,["user"=>$user,'pay'=>$pay,
         'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
         "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
@@ -853,6 +855,9 @@ class PaymentController extends Controller
 
         if($this->ville_fr =="Mila"){
             $view = "pays.avis_mila";
+        }
+        if($this->ville_fr =="Medea"){
+            $view = "pays.avis_medea";
         }
         
         $txt = " ";
