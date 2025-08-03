@@ -100,6 +100,7 @@ Route::get('/edit_fiche_payment/{id}','PaymentController@edit_fiche_pay');
 Route::get('/get_last_fiche_pay/{id_op}','PaymentController@get_last_fiche');
 Route::get('/maitre_ouvrage/{id}','PaymentController@maitre_ouvrage');
 
+
 Route::get('/edit_bank/{id}','PaymentController@edit_bank');
 Route::post('/update_bank','PaymentController@update_bank');
 
@@ -116,10 +117,14 @@ Route::get('/declaration_pay/{id}','PaymentController@declaration');
 Route::get('/resume_pay/{id}','PaymentController@resume_pay');
 Route::get('/temporary/{id}','PaymentController@temporary');
 
+Route::get('/avis51/{id}','PaymentController@avis51');
+Route::get('/ordre51/{id}/{ordre}','PaymentController@avis51');
+
 Route::post('/add_pay','PaymentController@add_pay');
 Route::get('/delete_pay/{id}','PaymentController@delete');
 Route::post('/update_pay','PaymentController@update_pay');
 Route::post('/update_fiche_pay','PaymentController@update_fiche');
+
 
 Route::get('/print_pays/{filters?}','PaymentController@print_pays');
 Route::get('/print_pays2/{filters?}','PaymentController@print_pays2');

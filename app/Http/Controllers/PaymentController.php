@@ -814,6 +814,59 @@ class PaymentController extends Controller
         "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
 
     }
+    public function avis51($id,$order="")
+    {   
+        $user = Auth::user();
+        $pay = DB::table('payments')->
+        join('engagements','payments.id_eng',"=","engagements.id")->
+        join('deals','deals.id_deal',"=","engagements.deal")->
+        where('payments.id',$id)->first();
+        $bank = DB::table('banks')->
+        leftjoin('banques','banques.nom','=',"banks.bank")->
+        where('banks.id',$pay->bank)->first();
+        $op = DB::table('operations')->
+        join("portefeuille","portefeuille.code","=","operations.portefeuille")->
+        where('id',$pay->id_op)->first();
+        $e = DB::table('entreprises')->where('id',$pay->entreprise)->first();
+        $nums = NULL;
+        
+        if($pay->type != "FSDRS" && $this->ville_fr !="In Salah"){
+            $matieres = explode('.',$op->numero);
+            if (strlen($matieres[0]) > 2){
+                $matiere = $matieres[2];
+            }else{
+                $matiere = $matieres[3];
+            }
+        }else{
+            $matiere = "";
+        }
+        $prog = DB::table('programme')->where('code',$op->programme)->first();
+        $sous_prog =  DB::table('programme')->where('id',$op->sous_programme)->first();
+        if($sous_prog == NULL){
+            $sous_prog = (object) [];
+            $sous_prog->code = "";
+            $sous_prog->designation = "";   
+        }
+        $view ='pays.avis51';
+        
+        if($order != ""){
+            $view ='pays.ordre51';
+        }
+
+        $txt = " ";
+        if($pay->travaux_num != null){
+            $txt = $txt.$pay->travaux_type." رقم ".$pay->travaux_num." بتاريخ ".$pay->date_pay;
+        }
+        if($pay->travaux_type != "فـــاتورة"){
+            $txt = $txt."\n ".$pay->deal_type." رقم ".$pay->deal_num;
+        }
+        $txt = $txt."\n ".$e->name."\n ".$pay->lot;
+
+        return view($view,["user"=>$user,'pay'=>$pay,"txt"=>$txt,
+        'op'=>$op,'e'=>$e,'bank'=>$bank,"id"=>$id,"prog"=>$prog,
+        "sous_prog"=>$sous_prog,"matiere"=>$matiere]);
+
+    }
     public function avis($id)
     {   
         $user = Auth::user();

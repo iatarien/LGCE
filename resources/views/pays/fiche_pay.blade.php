@@ -53,6 +53,9 @@
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Tamenrasset" 
             || $ville_fr == "Biskra" || $ville_fr == "Djanet") <th> بطاقة الدفع </th>
             @endif
+            @if($ville_fr == "Djanet")
+            <th>  Avis et Ordre </th>
+            @endif
             <th> بيان بالتحويل </th>
             <th> إشعار بالتحويل </th>
 
@@ -114,6 +117,13 @@
                     <br><br>
                     <a class="btn btn-primary" target="_blank" href="/edit_fiche_payment/{{$id}}"> تعديل</a>
                 @endif
+            </td>
+            @endif
+            @if($ville_fr == "Djanet")
+            <td>
+                <a class="btn btn-default" target="_blank" href="/avis51/{{$id}}"> Avis</a>
+                <br><br>
+                <a class="btn btn-default" target="_blank" href="/ordre51/{{$id}}/ordre"> Ordre</a>
             </td>
             @endif
             <td>
