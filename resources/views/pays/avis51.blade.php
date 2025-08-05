@@ -142,8 +142,47 @@ $txt =$txt." Relative à : ".$pay->lot;
         <br>
         <h3>Mandat N° &emsp;{{$pay->num_mondat}} &emsp; de {{$pay->date_mondat}}</h3>
 </section>
-<br>
+<section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
+	<div id="fiche_top" style="margin-right : 2.5%; margin-left : 2.5%;" >
+		<div style="width : 30.5%; float : left; display: inline-block; text-align : left;" >
+            <h3> 
+                 Republique Algerienne <br> Democratique Et Populaire <br>
+				{{$direction_fr}} <br>
+				Wilaya de {{$ville_fr}}
+			</h3>
+        </div>
+		<div style=" float: left; margin-left : 0.5%; display: inline-block; width : 60%;">
+            <span style="font-size : 9mm; font-weight : bold;">ORDRE DE VIREMENT</span><br>
+			<span style="font-size : 7mm;">ET PAIEMENT D'UNE DEPENSE IMPUTABLE 
+			A LA WILAYA DE {{$ville_fr}}
+			</span>
+		</div>
 
+		<br><br><br><br><br><br><br><br><br><br>
+        
+		<div dir="ltr" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
+            <table>
+                <tr>
+					<th style="width : 2%;"> N° DE LIGNE <br> 1 </th>
+                    <th style="width : 14%;">Désignation du Bénificiaire <br> 2  </th>
+					<th style="width : 15%;">N° de Compte à Crediter <br>3</th>
+                    <th style="width : 12%;">Montant (DA) <br> 4</th>
+				</tr>
+                <tr>
+					<td></td>
+                    <td>{{$bank->bank_user}}</td>
+                    <td>
+						{{$bank->bank_acc}} <br>
+                        <?php //{{$bank->bank}} Agence : {{$bank->bank_agc}} ?>
+					</td>
+					<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+
+                </tr>
+            </table>
+	    </div>
+        <br>
+        <h3>Mandat N° &emsp;{{$pay->num_mondat}} &emsp; de {{$pay->date_mondat}}</h3>
+</section>
 
 <br><br><br><br>
 <div align="center">

@@ -121,9 +121,7 @@
             @endif
             @if($ville_fr == "Djanet")
             <td>
-                <a class="btn btn-default" target="_blank" href="/avis51/{{$id}}"> Avis</a>
-                <br><br>
-                <a class="btn btn-default" target="_blank" href="/ordre51/{{$id}}/ordre"> Ordre</a>
+                <a class="btn btn-default" target="_blank" href="/avis51/{{$id}}"> معاينة</a>
             </td>
             @endif
             <td>
