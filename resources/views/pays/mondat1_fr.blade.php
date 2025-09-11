@@ -53,7 +53,7 @@ $text = ucfirst($text);
 			height: 280mm;
 			margin: auto;
 			margin-top: 2%;
-			font-size: 12px;
+			font-size: 14px;
 			line-height: 1.5em;
 			-webkit-print-color-adjust: exact !important;
 		}
@@ -121,16 +121,13 @@ $text = ucfirst($text);
 		Dépenses imputables au Budget Geenrale de l'Etat
 	</h4>
 	<div style="float: left; width: 25%; margin-left: 5%;" id="top-right">
-		<h3>Code ordonnateur : {{$ordre}} </h3>
-		<h3>Gestion : {{$pay->year}} </h3>
-		<h3>Numero de fiche d'engagement : {{$pay->numero_fiche}} </h3>
-		<h3>Numero de Mandat : {{$pay->num_mondat }} </h3>
-		<h3>Date de Mandat : {{$pay->date_mondat }} </h3>
-		<h3>Objet de Paiement : {{$txt}} </h3>
-		<h3>Mode de Paiement : {{$bank->bank}} </h3>
-
-		<h3>Libellé de l'operation : {{$op->intitule}} </h3>
-		<h3>Numero de l'operation : {{$op->numero}} </h3>
+		<h3>Code ordonnateur : {{$ordre}} 
+		Gestion : {{$pay->year}} <br>
+		Numero de fiche d'engagement : {{$pay->numero_fiche}} <br>
+		Numero de Mandat : {{$pay->num_mondat }} <br>
+		Date de Mandat : {{$pay->date_mondat }} <br>
+		Objet de Paiement : {{$txt}} <br>
+		Mode de Paiement : {{$bank->bank}} </h3>
 	</div>
 	<div style="width: 25%; margin-left: 5%; float: left;">
         <br><br>
@@ -199,7 +196,11 @@ $text = ucfirst($text);
         </table>
         <br>
     </div>
-	
+	<div style="float: left; width: 95%; margin-left: 5%;" id="top-right">
+
+		<h3>Libellé de l'operation : {{$op->intitule}} </h3>
+		<h3>Numero de l'operation : {{$op->numero}} </h3>
+	</div>
     <div style="width: 90%; margin-left: 5%; float: left;">
     	<table id="things" dir="ltr" style="text-align: center">
             <tr>
@@ -249,11 +250,13 @@ $text = ucfirst($text);
 		<div align= "left"><br>
 		Arreté à la somme de : <b id="montant"> {{$text}}  </b>
 		<div>
-		<br>
-		
     </div>
-
-	<div dir="rtl" style="width: 20%; margin-left: 5%; display: inline-block; font-size : 11px;">
+	<div style="width: 20%; display: inline-block; float: left">
+	<br><br><br><span> Ordonnateur </span>
+	<br><br><br><br><br><span> Comptable public assignataire </span>
+	</div><br>
+	<div dir="rtl" style="width: 40%; float : right; display: inline-block; font-size : 11px;">
+		<br>
 		<table id="bottom-left">
 			<tr>
 				<td></td>
@@ -276,35 +279,8 @@ $text = ucfirst($text);
 				<td> Montant total net à payer</td>
 			</tr>
 		</table>
-	</div>
-		
-	<div style="width: 20%; margin-left: 35%; display: inline-block; float: left; visibility : hidden">
-		<div style='text-align : left'>
-			<span> Date de Réglement </span><br>
-		</div>
-		<br><br>
-		<div align="left">
-			<span> Ordonnateur </span>
-			<br>
-		</div>
-		<div align="right">
-			<span> Comptable public assignataire </span>
-			<br>
-		</div>
-	</div><br>
-	<div style="width: 90%; display: inline-block; float: left;">
-		<div style='text-align : left'>
-			<span> Date de Réglement </span><br>
-		</div>
-		<br><br>
-		<div align="left">
-			<span> Ordonnateur </span>
-			<br>
-		</div>
-		<div align="right">
-			<span> Comptable public assignataire </span>
-			<br>
-		</div>
+		<br>
+		<span style="font-size : 14px;"> Date de Réglement </span><br>
 	</div>
 </section>
 
