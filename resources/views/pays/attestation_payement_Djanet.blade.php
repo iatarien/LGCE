@@ -361,16 +361,17 @@ $text = ucfirst($text);
 				</tr>
                 <tr>
                     <td colspan="2">Montant du present</td>
-					<td colspan="1">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
-				</tr>
-                <tr>
-                    <td colspan="2">L'entrepreneur aura reçu</td>
 					<td colspan="1">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
-                    <td colspan="2">les depenses s'elevent</td>
+                    <td colspan="2">L'entrepreneur aura reçu</td>
 					<td colspan="1">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
+			
 				</tr>
+                <tr>
+                    <td colspan="2">les depenses s'elevent</td>
+					<td colspan="1">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
+			</tr>
                 <tr>
                     <td colspan="2">Retenues de garantie</td>
 					<td colspan="1">@if($pay->assurance_cut != 0)  {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}} @endif</td>
@@ -437,9 +438,15 @@ $text = ucfirst($text);
                     <td></td>
                     <td></td>
                 </tr>
-				<tr class="boghders">
+				<tr >
                     <td>Retenue de garantie </td>
                     <td>{{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}}</td>
+                    <td></td>
+                </tr>
+				<tr class="boghders">
+                    <td colspan="1" style="">Reste à payer </td>
+					<td>{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+                   
                     <td></td>
                 </tr>
 				<tr class="boghders" style="display : none;">
@@ -447,6 +454,7 @@ $text = ucfirst($text);
                     <td></td>
                     <td></td>
                 </tr>
+
 				<tr >
                     <td colspan="2" style="text-align : center">Reste du </td>
                     <td></td>
@@ -455,10 +463,7 @@ $text = ucfirst($text);
                     <td colspan="2" style="text-align : center">sur lesquels à été payé précédemment une somme de </td>
                     <td></td>
                 </tr>
-				<tr >
-                    <td colspan="2" style="text-align : center">Reste à payer </td>
-                    <td></td>
-                </tr>
+
         </table>
 		<br><br><br><br>
 		<div style="text-align: left;  line-height: 2;  ">
