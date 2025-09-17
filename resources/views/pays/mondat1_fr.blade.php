@@ -201,7 +201,7 @@ $text = ucfirst($text);
 		<h3>Libellé de l'operation : {{$op->intitule}} </h3>
 		<h3>Numero de l'operation : {{$op->numero}} </h3>
 	</div>
-    <div style="width: 90%; margin-left: 5%; float: left;">
+    <div style="width: 90%; margin-left: 5%; float: left; font-size : 18px;">
     	<table id="things" dir="ltr" style="text-align: center">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
@@ -210,11 +210,11 @@ $text = ucfirst($text);
                 <td rowspan="2" style="text-align : center; width : 9%;">
                  Montant But
                 </td>
-				<td colspan="2" style="text-align : center; width : 20%;">
+				<td colspan="2" style="text-align : center; width : 15%;">
                  Retenus
                 </td>
 
-				<td colspan="3" style="text-align : center; width : 47%;">
+				<td colspan="3" style="text-align : center; width : 52%;">
                   Designation du benficiaire
                 </td>
 				<td rowspan="2"  style="text-align : center; width : 9%;">
@@ -226,8 +226,8 @@ $text = ucfirst($text);
                 <td> Compte à Créditer</td>
                 <td>Montant</td>
                 <td style="width : 12%;">Bénéficiaire</td>
-                <td style="width : 12%;">  N° du compte du bénificiaire</td>
-                <td style="width :10%">  Piece de dépenses</td>
+                <td style="width : 15%;">  N° du compte du bénificiaire</td>
+                <td style="width :8%">  Piece de dépenses</td>
 
             </tr>
 			<tr>
