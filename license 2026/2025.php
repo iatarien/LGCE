@@ -14,7 +14,7 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
-$query = "UPDATE company SET license ='2025-10-31'";
+$query = "UPDATE company SET license ='2026-10-31'";
 
 try {
     $stmt = $conn->prepare($query);
