@@ -71,7 +71,8 @@ $ordre = $op->order_ville;
              République Algérienne Démocratique et Populaire </h3>
 		</div>
         <div style="width : 100%; background-color : lightgray" >
-            <h3>  بيان التحويل</h3>
+		<h3>   إشعار بالتحويل </h3>
+
         </div>
 		<div style="width : 100%;" >
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
@@ -173,7 +174,7 @@ $ordre = $op->order_ville;
                     <td>
 						{{$bank->bank_acc}} <br>
 						@if($ville_fr =="Ouargla" )
-						{{$bank->abr}} <br>
+						{{$bank->bank}} وكالة  {{$bank->bank_agc}}<br>
 						{{$bank->num}} <br>
 						@endif
 					</td>
