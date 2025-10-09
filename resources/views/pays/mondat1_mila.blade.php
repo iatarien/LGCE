@@ -126,7 +126,17 @@ $ordre = $op->order_ville;
 			<h4>نفقات مقيدة في الميزانية العامة للدولة</h4>
         </div>
 		
-		<div style="  display: inline-block; max-width : 35%; " dir="rtl">
+		<div style=" display: inline-block; max-width : 35%; " dir="rtl">
+		@if($ville_fr =="Ouargla" && $direction_fr == "Direction de l'Education Nationale")
+		<div  style = " margin-bottom : 10px; margin-left : 30%; float : left; border : 3px solid black;  font-weight : bold; color : black; font-size : 6mm; padding : 2px; width : 40%;">
+			@if($op->source =="PSD")	
+				1812.145.020
+			@else
+				1812.145.010
+			
+			@endif
+		</div>
+		@endif
         <table id="le_table">
                 <tr>
                     <th style="width : 34%;">التصنيف حسب النشاط </th>
@@ -172,6 +182,11 @@ $ordre = $op->order_ville;
 					@endif
 					
                 </tr>
+				@if($ville_fr =="Ouargla" && $direction_fr == "Direction de l'Education Nationale" && $sous_titre != NULL)
+					<td>الصنف الفرعي  </td>
+                    <td>{{$sous_titre->code}}</td>
+                    <td> {{$sous_titre->definition}}</td>
+				@endif
         </table>
       <br>  
       @if($op->source == "PSC") 
@@ -220,7 +235,9 @@ $ordre = $op->order_ville;
 			@endif
             رقم العملية : <span>{{$op->numero}}</span> <br>
             عنوان العملية : <span>{{$op->intitule_ar}}</span> <br>
+			@if($ville_fr == "Mila")
             <span dir="ltr"> {{$op->intitule}}</span> 
+			@endif
 			</h3>
             
 		</div>

@@ -104,8 +104,8 @@
 				  	<label readonly class="control-label col-lg-3" style="text-align : left;" for="title"> النشاط </label>
 	                <div class="col-lg-9">
 	                	<select  name="source" id="source" class="form-control">
-							<option value="PSC">تفويض التسيير القطاعي الممركز (PSC)</option>
-							<option value="PSD">تفويض التسيير الغير ممركز (PSD)</option>
+							<option value="PSC">تفويض التسيير القطاعي الممركز (PSC عن الوزير)</option>
+							<option value="PSD">تفويض التسيير الغير ممركز (PSD عن الوالي)</option>
 						</select>  
 					</div>
 	              </div><br>

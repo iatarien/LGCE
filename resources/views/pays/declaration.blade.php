@@ -123,7 +123,11 @@ $ordre = $op->order_ville;
 			سنة التسيير : {{ $pay->year}} <br>
 			رقم  الحوالة : @if(isset($pay->num_mondat)) {{$pay->num_mondat}} @endif <br>
             تاريخ  الحوالة :  @if(isset($pay->date_mondat)) {{$pay->date_mondat}} @endif <br>
-			 طريقة الدفع : {{$bank->bank}} وكالة  {{$bank->bank_agc}}  <br>
+			@if($ville_fr =="Ouargla")
+            طريقة الدفع : بنك  <br>
+			@else 
+			طريقة الدفع : {{$bank->bank}} وكالة  {{$bank->bank_agc}}  <br>
+			@endif
 			</h3>
             
 		</div>
@@ -167,7 +171,7 @@ $ordre = $op->order_ville;
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
-						@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")
+						@if($ville_fr =="Ouargla" )
 						{{$bank->abr}} <br>
 						{{$bank->num}} <br>
 						@endif

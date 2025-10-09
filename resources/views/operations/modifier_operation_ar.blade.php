@@ -122,8 +122,8 @@
 	                <div class="col-lg-9">
 	                	<select  name="source" id="source" class="form-control">
                             <option selected style="visibility :  hidden" value="{{$op->source}}">{{$op->source}}</option>
-							<option value="PSD">تفويض التسيير الغير ممركز (PSD)</option>
-							<option value="PSC">تفويض التسيير القطاعي الممركز (PSC)</option>
+							<option value="PSD">تفويض التسيير الغير ممركز (PSD عن الوالي)</option>
+							<option value="PSC">تفويض التسيير القطاعي الممركز (PSC عن الوزير)</option>
 						</select>  
 					</div>
 	              </div><br>
