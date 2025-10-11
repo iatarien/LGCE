@@ -190,7 +190,14 @@ $ordre = $op->order_ville;
                    	<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>
                 </tr>
             </table>
-			@if($ville_fr =="Mila")
+						<br>
+					@if($ville_fr =="Ouargla")
+			<div align= "center">
+			توقف مجموع هذا الجدول على مبلغ : <b id="montant">   </b>
+			<div>
+				@endif
+			<br>
+			@if($ville_fr =="Mila" || $ville_fr = "Ouargla")
 			<br>				<br>
 			<div align="left">
 
