@@ -23,7 +23,7 @@
 			border-bottom : none;
 			margin-top: 5%;
 			font-size: 15px;
-			line-height: 1.5em;
+			line-height: 1.2em;
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
@@ -373,7 +373,7 @@
 			<br><br>
 		</div>
 	</div>
-	
+</div>	
 
 
 </section>
