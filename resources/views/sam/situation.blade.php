@@ -106,13 +106,20 @@
             $ministere_fr = str_replace('è',"e",$ministere_fr);
             $direction_fr = str_replace('é',"e",$direction_fr); 
             $direction_fr = str_replace('è',"e",$direction_fr); ?>
-            {{strtoupper($ministere_fr)}}<br>
+			@if($cdars)
+			{{$ministere_fr}}<br>
+            {{$direction_fr}}<br>
+            DE LA WILAYA DE {{strtoupper($ville_fr)}}<br>
+			@else
+			{{strtoupper($ministere_fr)}}<br>
             {{strtoupper($direction_fr)}}<br>
             DE LA WILAYA DE {{strtoupper($ville_fr)}}<br>
+			@endif
+
             </div>
         </div>
         <div contenteditable="true" style="font-size : 5mm; width : 100%; font-weight : bold;" >
-            Situation Financière Arretée le {{$date}}
+            Situation Financière Arretée le {{$date}} 
         </div> 
         <br>
 		<?php 
