@@ -463,6 +463,7 @@ function convert(num){
 		num2 = num2 *10;
 	}
 	var txt = nArabicWords(num1);
+	txt = txt.replace('وألف', "و واحد ألف");
 	txt = txt.replace('ومليون', "و واحد مليون")
 	txt+= " "+"دينار جزائري";
 	if(num2 != null){
