@@ -161,7 +161,7 @@ $text = ucfirst($text);
 		<div style="float: left;  text-align : left; width : 70%;">
 			<h3>  {{$ministere_fr}} </h3>
             <h3> {{$direction_fr}} de la Wilaya de {{$ville_fr}}</h3>
-            <h3>   Code Ordonnateur  : {{$ordre}} </h3>
+            <h3>   Code Ordonnateur  : <span dir="rtl">{{$ordre}}</span> &emsp; </h3>
             <br>
 		</div>
         <div style="display : inline-block; width : 40%; marign-left : 30%" dir="ltr">

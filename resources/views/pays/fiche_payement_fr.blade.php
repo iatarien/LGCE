@@ -151,7 +151,7 @@ $txt =$txt." Relative à : ".$pay->lot;
 		<div style="float: left;  text-align : left; width : 70%;">
 			<h3>  {{$ministere_fr}} </h3>
             <h3> {{$direction_fr}} de la Wilaya de {{$ville_fr}}</h3>
-            <h3>   Code Ordonnateur  : {{$ordre}} </h3>
+            <h3 dir="ltr">   Code Ordonnateur  :<span dir="rtl">{{$ordre}} &emsp;</span> </h3>
             <br>
 		</div>
 		<div style="float: right;  text-align : center; width : 30%;">

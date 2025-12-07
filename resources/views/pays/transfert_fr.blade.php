@@ -152,7 +152,7 @@ $txt =$txt." Relative à : ".$pay->lot;
 
         </div>
 		<div style="  display: inline-block; width : 25%; float: left;">
-            <h3 dir="ltr" style="text-align : left;">Code Ordonnateur : {{$ordre}}<br>
+            <h3 dir="ltr" style="text-align : left;">Code Ordonnateur : <span dir="rtl">{{$ordre}}</span> &emsp;<br>
 			 Budget : {{ $pay->year}} <br>
              N° de mandat :  <br>
              Date de mandat :  <br>

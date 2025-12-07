@@ -121,7 +121,7 @@ $text = ucfirst($text);
 		Dépenses imputables au Budget Geenrale de l'Etat
 	</h4>
 	<div style="float: left; width: 25%; margin-left: 5%;" id="top-right">
-		<h3>Code ordonnateur : {{$ordre}} 
+		<h3>Code ordonnateur : <span dir="rtl">{{$ordre}}</span> &emsp;
 		Gestion : {{$pay->year}} <br>
 		Numero de fiche d'engagement : {{$pay->numero_fiche}} <br>
 		Numero de Mandat : {{$pay->num_mondat }} <br>
