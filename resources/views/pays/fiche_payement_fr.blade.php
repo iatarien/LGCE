@@ -142,6 +142,9 @@ if($pay->deal_date != null){
 
 $txt =$txt." Relative à : ".$pay->lot;
 ?>
+<?php if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+$ordre = $op->order_ville;
+} ?>
 <section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div>

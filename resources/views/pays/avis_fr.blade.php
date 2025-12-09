@@ -153,6 +153,9 @@ $text = str_replace("euro","Dinar",$text);
 $text = str_replace(","," et",$text);
 $text = ucfirst($text);
 ?>
+<?php if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+$ordre = $op->order_ville;
+} ?>
 <section style="background-color: white; text-align: center; font-size: 14.5px; margin: 20px;" id="fiche" contenteditable="true">
 	<div id="fiche_top">
 		<div>
