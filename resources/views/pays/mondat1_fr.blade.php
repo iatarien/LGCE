@@ -111,6 +111,9 @@ $text = ucfirst($text);
 		}
 	</style>
 </head>
+<?php if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+$ordre = $op->order_ville;
+} ?>
 <body contenteditable ="true">
 <section id="fiche">
     <h3 align="center">

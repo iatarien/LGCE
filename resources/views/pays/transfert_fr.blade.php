@@ -81,7 +81,9 @@ $txt =$txt." Relative à : ".$pay->lot;
 </style>
 </head>
 <body contenteditable="true">
-
+<?php if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+$ordre = $op->order_ville;
+} ?>
 <section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top" style="margin-right : 2.5%; margin-left : 2.5%;" >
 		<div style="  display: inline-block; ">
