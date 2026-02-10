@@ -8,13 +8,12 @@ https://drive.google.com/drive/u/1/folders/1VoyGcehHhWZhM291Wn3snhH6Puxmc4iC
 - launch it and change ip adress 
 - update DB (errors)
 - update DB company
-- remove password protected sharing
 - add task that copies file from location to location
 - install Google Drive
 - hide D drive
 - download videos and put em on desktop
 
-FR :
+FR 
 - set company lang  = fr
 - update Banks
 
@@ -32,8 +31,8 @@ Mono
 - edit env file (DB password)
 - add start.bat (and fix cd codes) and vbscript
 - add task that make auto updates
-- install Google Drive
-- hide D drive
+ /// - install Google Drive
+ /// - hide D drive
 - download videos and put em on desktop
 - create shortcut on desktop
 
