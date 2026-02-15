@@ -1,3 +1,7 @@
+ALTER TABLE `company` CHANGE `ministere_fr` `ministere_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `company` CHANGE `direction_fr` `direction_fr` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL; 
+ALTER TABLE `payments` CHANGE `num` `num` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+
 UPDATE `programme` SET `designation` = 'التعليم المتوسط العادي و المتخصص و عن بعد' WHERE `programme`.`id` = 8;
 UPDATE `programme` SET `designation` = 'التعليم الثانوي العادي و المتخصص و عن بعد' WHERE `programme`.`id` = 9;
 UPDATE `programme` SET `designation` = 'التكوين قيد الخدمة و المتخصص' WHERE `programme`.`id` = 206;
@@ -6,13 +10,13 @@ UPDATE `programme` SET `designation` = 'التعليم' WHERE `programme`.`id` =
 ALTER TABLE `payments` ADD `num_mondat` VARCHAR(100) NULL AFTER `num_visa`, ADD `date_mondat` DATE NULL AFTER `num_mondat`;
 ALTER TABLE `payments` CHANGE `date_pay` `date_pay` DATE NULL;
 
-
-INSERT INTO `programme` VALUES (NULL, '035',
-'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء',
-NULL,"008");
-
 UPDATE `portefeuille` SET `ministere` = 'البيئة و الطاقات المتجددة' WHERE `portefeuille`.`code` = '030';
 
+INSERT INTO `programme` VALUES (NULL, '035',
+'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء',"",
+NULL,"008");
+
+ALTER TABLE `operations` ADD `sous_action` VARCHAR(100) NULL AFTER `activite`;
 
 ** FR ****
 UPDATE `titres` SET `definition_fr` = 'Montant de l\'opération non ventilé' WHERE `titres`.`id_titre` = 128;
