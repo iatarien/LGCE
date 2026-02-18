@@ -234,14 +234,19 @@
 		<br><br>
         <div style="display: inline-block; width: 30%; padding-right: 2%; float : right; ">
 			@if($cdars)
-			<span>   {{$ministere}}<br> {{$direction}}  <br> لولايــــة {{$ville}}    </span>
+			<span>   وزارة {{$ministere}}<br> {{$direction}}  <br> لولايــــة {{$ville}}    </span>
 			@else
-			<span>   {{$ministere}}<br> مديرية {{$direction}}  <br> لولايــــة {{$ville}}    </span>
+			<span>  وزارة {{$ministere}}<br> مديرية {{$direction}}  <br> لولايــــة {{$ville}}    </span>
 			@endif
      
         </div>
 		<div style="display: inline-block; width: 50%; padding-right: 2%; text-align: center;  float: right;">
+
+			@if($ville_fr =="Touggourt")
+            <span>   الاستثمار العمومي  </span>
+			@else
             <span>   مـــيــزانيـــة التجهيـــز   </span>
+			@endif
 			<br>
 			<span>	<b> {{ $op->numero }}</b>	 : عملية رقم  	</span>
 			@if($ville_fr =="Ouargla" && $direction_fr =="Direction de l'Administration Locale")

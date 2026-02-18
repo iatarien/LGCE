@@ -307,7 +307,7 @@ $ordre = $op->order_ville;
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
                 <td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
-				<td>{{$e->name}}</td>
+				<td>{{$bank->bank_user}}</td>
                 <td>
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
@@ -372,8 +372,11 @@ $ordre = $op->order_ville;
 				<td colspan="2" style="background-color : lightgray;"> الإطار المخصص للمحاسب العمومي</td>
 			</tr>
 			<tr>
-				
+				@if($ville_fr =="Touggourt")
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				@else
 				<td dir="ltr"></td>
+				@endif
 				<td>المبلغ الإجمالي للدفع</td>
 			</tr>
 			<tr>
@@ -389,7 +392,11 @@ $ordre = $op->order_ville;
 				<td>إقتطاعات المحاسب العمومي </td>
 			</tr>
 			<tr>
+				@if($ville_fr =="Touggourt")
+				<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
+				@else
 				<td dir="ltr"></td>
+				@endif
 				<td>المبلغ الإجمالي الصافي للدفع</td>
 			</tr>
 		</table>
