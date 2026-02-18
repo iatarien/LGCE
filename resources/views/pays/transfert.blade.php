@@ -173,7 +173,7 @@ $ordre = $op->order_ville;
                     <td>{{$e->name}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
-						@if($ville_fr =="Ouargla" )
+						@if($ville_fr =="Ouargla" || $ville_fr =="Touggourt")
 						{{$bank->bank}} وكالة  {{$bank->bank_agc}}<br>
 						{{$bank->num}} <br>
 						@endif

@@ -66,7 +66,12 @@ $cdars = true;
 		
 		?>
 		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style=""> ميزانية التجهيـــز
+			<h4 style=""> 
+				@if($ville_fr=="Touggourt") 
+				الاستثمار العمومي
+				@else
+				ميزانية التجهيز
+				@endif
                 <br>
                 عملية رقم :    <strong>{{$op}}</strong> 
                 <br>
@@ -81,7 +86,7 @@ $cdars = true;
             </h4>
 		</div>
 		<div style="  display: inline-block; float: right; ">
-            <h3 style="text-align : right;"> {{$ministere}}<br>
+            <h3 style="text-align : right;"> وزارة {{$ministere}}<br>
 			ولاية {{$ville}}  
 			<br>  
 			@if($cdars)
@@ -146,7 +151,12 @@ $cdars = true;
 	<div id="fiche_top">
 
 		<div style="  display: inline-block; float: left; max-width : 50%; " dir="rtl">
-			<h4 style=""> ميزانية التجهيـــز
+			<h4 style=""> 
+				@if($ville_fr=="Touggourt") 
+				الاستثمار العمومي
+				@else
+				ميزانية التجهيز
+				@endif
                 <br>
                 عملية رقم :    <strong>{{$op}}</strong> 
                 <br>
@@ -161,7 +171,7 @@ $cdars = true;
             </h4>
 		</div>
 		<div style="  display: inline-block; float: right; ">
-		<h3 style="text-align : right;"> {{$ministere}}<br>
+		<h3 style="text-align : right;"> وزارة {{$ministere}}<br>
 			ولاية {{$ville}}  
 			<br>  
 			@if($cdars)

@@ -152,7 +152,13 @@
 	<br>
 	<div style="text-align: center; width: 100%; display: inline-block;">
 		<div style="display: inline-block; float: left; text-align: right;">
-			<span style="text-decoration: underline; font-weight: bold; " >   ميــزانية التجهــز  </span>
+			@if($ville_fr =="Touggourt")
+			<span style="text-decoration: underline; font-weight: bold; " >  الاستثمار العمومي  </span>
+			
+			@else
+			<span style="text-decoration: underline; font-weight: bold; " >   ميــزانية التجهيـز  </span>
+			
+			@endif
 			<br><br>
 			<span> <b>{{ $pay->year }}</b>&emsp;  : السنة     </span>
 			<br>
@@ -370,7 +376,13 @@
 				<?php ?>
 				<div dir='rtl'>
 
-					<p>يشهد  أنه   يمكن الدفع الى السيد  <span> {{ $e->name }} </span> من   ميزانية التجهيز  لسنة  <span>{{ $pay->year }}</span> المبلغ :  
+					<p>يشهد  أنه   يمكن الدفع الى السيد  <span> {{ $e->name }} </span> من  
+					@if($ville_fr=="Touggourt") 
+					الاستثمار العمومي
+					@else
+					ميزانية التجهيز
+					@endif
+					لسنة  <span>{{ $pay->year }}</span> المبلغ :  
 					<span id="montant" style="font-weight: bold;">  </span>
 					</p>
 					@if($op->source == "PSC") 
