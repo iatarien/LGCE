@@ -157,6 +157,11 @@ $text = $obj->convert("fr-FR");
 $text = str_replace("euro","Dinar",$text);
 $text = str_replace(","," et",$text);
 $text = ucfirst($text);
+
+if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
+	$ordre = $op->order_ville;
+} 
+// $op->programme = $prog->code;
 ?>
 <section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche" contenteditable="true">
 	<div id="fiche_top">
@@ -172,7 +177,7 @@ $text = ucfirst($text);
 		</div>
         <div style="display : inline-block; width : 40%; marign-left : 30%" dir="ltr">
             <div class="boold">
-                <h2>إشعار تحويل  </h2>
+                <h2>إشعار بالتحويل  </h2>
             </div>
         </div>
 		<div align="right">
@@ -208,7 +213,7 @@ $text = ucfirst($text);
 			</h3>
 			<br>
 			<h3> تعيين الأمر بالتحويل،  <span>مديرية {{$direction}} لـــولاية <span> {{$ville}}   </h3>
-			<h3> عــــنوان العملية  : <span>{{$op->intitule_ar}}<span>   </h3>
+			<h3> عــــنوان العملية  : <span>{{$op->intitule}}<span>   </h3>
             <h3> وضعية التسبيق الجزافي: <span> </span>   </h3>
             <h3>   رقم العملية : <span> {{$op->numero}}</span>   </h3>
             <h3>   رقم الحوالة : <span>{{$pay->num_mondat}} </span> &emsp;&emsp; بتاريخ <span>{{$pay->date_mondat}} </span> </h3>
@@ -238,7 +243,7 @@ $text = ucfirst($text);
 				 @endforeach
 			</span>
 			</h3>
-            <h3>الوكالة البنكية: <strong>{{$bank->bank}}</strong>   </h3>
+            <h3>الوكالة البنكية: <strong>{{$bank->bank}} - وكالة : {{$bank->bank_agc}}</strong>   </h3>
 			<h3> بمبلغ   </h3>
 			<h3> بالأرقام  : <span dir="ltr"> {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </span><span style="color : transparent">i</span>  <span> دج </span>  </h3>
 			<h3> بالحروف   : <span id="montant"></span>   </h3>
