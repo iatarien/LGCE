@@ -493,6 +493,9 @@ class EngagementController extends Controller
         if($this->ville_fr =="In Salah"  ){
             $the_view = 'engs.InSalah';
         }
+        if($this->ville_fr =="Tamenrasset"  ){
+            $the_view = 'engs.fiche_eng_11';
+        }
         // var_dump($tots);
         // return "";
         if($this->lang =="fr"){
