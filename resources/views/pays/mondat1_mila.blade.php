@@ -307,7 +307,12 @@ $ordre = $op->order_ville;
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
                 <td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>
-				<td>{{$bank->bank_user}}</td>
+				<td>{{$bank->bank_user}} <br>
+				   @if($ville_fr =="Mila" )
+				   {{$e->adresse}}
+				   @endif
+					
+				</td>
                 <td>
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}

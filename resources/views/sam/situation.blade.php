@@ -140,13 +140,14 @@
 		// echo ("indice = ".$indice."<br>");
 		// echo"<tr>";
 		?>
+
         <?php $r = 0; ?> 
 		<?php while($j < $n && $debut < $tot){
 
                     $opss = array_slice($ops, $debut, $indice);  
                     $j++;
                     $debut += $indice;
-                    $n = count($opss);
+                    //$n = count($opss);
                     
                 //}
                 ?>
@@ -177,7 +178,7 @@
                         <?php $solde = $op->AP_act - $op->depenses; ?>
                         <td>{{ number_format((float)$solde, 2, ',', ' ')}}</td>
                         <?php 
-                        if($op->depenses !=0){
+                        if($op->depenses !=0 && $op->AP_act){
                             $taux = ($op->depenses / $op->AP_act) * 100; 
                         }else{
                             $taux = 0;

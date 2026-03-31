@@ -172,10 +172,13 @@ $ordre = $op->order_ville;
                 <tr>
                     <td>{{$bank->bank_user}}</td>
                     <td>
-						{{$bank->bank_acc}} <br>
-						@if($ville_fr =="Ouargla" || $ville_fr =="Touggourt")
-						{{$bank->bank}} وكالة  {{$bank->bank_agc}}<br>
-						{{$bank->num}} <br>
+						{{$bank->bank_acc}} <br> 
+						@if($ville_fr =="Ouargla" || $ville_fr =="Touggourt" || $ville_fr =="Mila")
+						{{$bank->bank}} <br>
+						 وكالة  {{$bank->bank_agc}}<br>
+							@if($ville_fr =="Ouargla" || $ville_fr =="Touggourt" )
+							{{$bank->num}} <br>
+							@endif
 						@endif
 					</td>
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>

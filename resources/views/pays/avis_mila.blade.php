@@ -213,7 +213,7 @@ if(isset($op->order_ville) && $op->order_ville !="" && $op->order_ville !=NULL){
 			</h3>
 			<br>
 			<h3> تعيين الأمر بالتحويل،  <span>مديرية {{$direction}} لـــولاية <span> {{$ville}}   </h3>
-			<h3> عــــنوان العملية  : <span>{{$op->intitule}}<span>   </h3>
+			<h3> عــــنوان العملية  : <span>{{$op->intitule_ar}}<span> <br> <span>{{$op->intitule}}<span> </h3>
             <h3> وضعية التسبيق الجزافي: <span> </span>   </h3>
             <h3>   رقم العملية : <span> {{$op->numero}}</span>   </h3>
             <h3>   رقم الحوالة : <span>{{$pay->num_mondat}} </span> &emsp;&emsp; بتاريخ <span>{{$pay->date_mondat}} </span> </h3>
