@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : mer. 08 avr. 2026 à 13:47
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Host: localhost
+-- Generation Time: Feb 10, 2024 at 05:00 PM
+-- Server version: 5.7.31-log
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,75 +18,67 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `lgce`
+-- Database: `lgce`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `attestations`
+-- Table structure for table `attestations`
 --
 
-DROP TABLE IF EXISTS `attestations`;
-CREATE TABLE IF NOT EXISTS `attestations` (
-  `id_att` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `attestations` (
+  `id_att` int(11) NOT NULL,
   `id_eng` int(11) NOT NULL,
-  `causes` text NOT NULL,
-  PRIMARY KEY (`id_att`)
+  `causes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `att_total`
+-- Table structure for table `att_total`
 --
 
-DROP TABLE IF EXISTS `att_total`;
-CREATE TABLE IF NOT EXISTS `att_total` (
-  `att_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `att_total` (
+  `att_id` int(11) NOT NULL,
   `ze_pay` int(11) NOT NULL,
   `type` varchar(50) DEFAULT NULL,
   `mondat` varchar(50) DEFAULT NULL,
   `compte` varchar(50) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`att_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `date` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `banks`
+-- Table structure for table `banks`
 --
 
-DROP TABLE IF EXISTS `banks`;
-CREATE TABLE IF NOT EXISTS `banks` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banks` (
+  `id` int(255) NOT NULL,
   `entreprise` int(11) NOT NULL,
   `bank_acc` text NOT NULL,
   `bank` text NOT NULL,
   `bank_user` text NOT NULL,
-  `bank_agc` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+  `bank_agc` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `banques`
+-- Table structure for table `banques`
 --
 
-DROP TABLE IF EXISTS `banques`;
-CREATE TABLE IF NOT EXISTS `banques` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banques` (
+  `id` int(11) NOT NULL,
   `nom` text NOT NULL,
   `abr` varchar(10) NOT NULL,
   `num` varchar(10) NOT NULL,
-  `cle` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `cle` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `banques`
+-- Dumping data for table `banques`
 --
 
 INSERT INTO `banques` (`id`, `nom`, `abr`, `num`, `cle`) VALUES
@@ -105,39 +97,34 @@ INSERT INTO `banques` (`id`, `nom`, `abr`, `num`, `cle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `borderau`
+-- Table structure for table `borderau`
 --
 
-DROP TABLE IF EXISTS `borderau`;
-CREATE TABLE IF NOT EXISTS `borderau` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `borderau` (
+  `id` int(11) NOT NULL,
+  `type` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bord_eng`
+-- Table structure for table `bord_eng`
 --
 
-DROP TABLE IF EXISTS `bord_eng`;
-CREATE TABLE IF NOT EXISTS `bord_eng` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bord_eng` (
+  `id` int(11) NOT NULL,
   `id_bord` int(11) NOT NULL,
-  `id_eng` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `id_eng` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `company`
+-- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `company`;
-CREATE TABLE IF NOT EXISTS `company` (
-  `id_comp` int(1) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `company` (
+  `id_comp` int(1) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `ville_fr` varchar(50) NOT NULL,
   `ministere` varchar(50) NOT NULL,
@@ -150,12 +137,11 @@ CREATE TABLE IF NOT EXISTS `company` (
   `year` varchar(50) NOT NULL,
   `pref_eng` varchar(10) NOT NULL,
   `license` date DEFAULT NULL,
-  `lang` varchar(3) NOT NULL,
-  PRIMARY KEY (`id_comp`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `lang` varchar(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `company`
+-- Dumping data for table `company`
 --
 
 INSERT INTO `company` (`id_comp`, `ville`, `ville_fr`, `ministere`, `ministere_fr`, `direction`, `direction_fr`, `order_ville`, `code_ville`, `compte_tresor`, `year`, `pref_eng`, `license`, `lang`) VALUES
@@ -164,11 +150,10 @@ INSERT INTO `company` (`id_comp`, `ville`, `ville_fr`, `ministere`, `ministere_f
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cp`
+-- Table structure for table `cp`
 --
 
-DROP TABLE IF EXISTS `cp`;
-CREATE TABLE IF NOT EXISTS `cp` (
+CREATE TABLE `cp` (
   `ze_op` int(11) NOT NULL,
   `montant_cp` double NOT NULL,
   `year` varchar(4) NOT NULL
@@ -177,12 +162,11 @@ CREATE TABLE IF NOT EXISTS `cp` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `deals`
+-- Table structure for table `deals`
 --
 
-DROP TABLE IF EXISTS `deals`;
-CREATE TABLE IF NOT EXISTS `deals` (
-  `id_deal` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deals` (
+  `id_deal` int(11) NOT NULL,
   `id_op` int(11) NOT NULL,
   `deal_type` varchar(25) NOT NULL,
   `deal_num` text,
@@ -197,19 +181,17 @@ CREATE TABLE IF NOT EXISTS `deals` (
   `observations` text,
   `inserted_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id_deal`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `engagements`
+-- Table structure for table `engagements`
 --
 
-DROP TABLE IF EXISTS `engagements`;
-CREATE TABLE IF NOT EXISTS `engagements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `engagements` (
+  `id` int(11) NOT NULL,
   `id_op` int(11) NOT NULL,
   `numero_fiche` varchar(255) NOT NULL,
   `real_sujet` text,
@@ -220,49 +202,43 @@ CREATE TABLE IF NOT EXISTS `engagements` (
   `user_id` int(11) NOT NULL,
   `type` varchar(255) DEFAULT NULL,
   `inserted_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `entreprises`
---
-
-DROP TABLE IF EXISTS `entreprises`;
-CREATE TABLE IF NOT EXISTS `entreprises` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `nature` varchar(25) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `leve_main`
---
-
-DROP TABLE IF EXISTS `leve_main`;
-CREATE TABLE IF NOT EXISTS `leve_main` (
-  `id_main` int(11) NOT NULL AUTO_INCREMENT,
-  `id_eng` int(11) NOT NULL,
-  `montant` double NOT NULL,
-  `pvs` text NOT NULL,
-  `extra` text NOT NULL,
-  PRIMARY KEY (`id_main`)
+  `updated_at` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ods`
+-- Table structure for table `entreprises`
 --
 
-DROP TABLE IF EXISTS `ods`;
-CREATE TABLE IF NOT EXISTS `ods` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `entreprises` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `nature` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leve_main`
+--
+
+CREATE TABLE `leve_main` (
+  `id_main` int(11) NOT NULL,
+  `id_eng` int(11) NOT NULL,
+  `montant` double NOT NULL,
+  `pvs` text NOT NULL,
+  `extra` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ods`
+--
+
+CREATE TABLE `ods` (
+  `id` int(11) NOT NULL,
   `id_eng` int(11) NOT NULL,
   `real_type` varchar(50) DEFAULT NULL,
   `ods_num` int(11) NOT NULL,
@@ -271,19 +247,17 @@ CREATE TABLE IF NOT EXISTS `ods` (
   `duree` int(11) DEFAULT NULL,
   `type_ods` text NOT NULL,
   `extra_type` text NOT NULL,
-  `user` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `operations`
+-- Table structure for table `operations`
 --
 
-DROP TABLE IF EXISTS `operations`;
-CREATE TABLE IF NOT EXISTS `operations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `operations` (
+  `id` int(11) NOT NULL,
   `numero` varchar(255) NOT NULL,
   `intitule` text,
   `intitule_ar` text,
@@ -300,19 +274,17 @@ CREATE TABLE IF NOT EXISTS `operations` (
   `AP_act` double DEFAULT NULL,
   `num_cloture` varchar(20) DEFAULT NULL,
   `date_cloture` date DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `payments`
+-- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `payments`;
-CREATE TABLE IF NOT EXISTS `payments` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payments` (
+  `id` int(255) NOT NULL,
   `etude_done` double DEFAULT NULL,
   `non_termine_done` double DEFAULT NULL,
   `extra_done` double DEFAULT NULL,
@@ -336,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `this_year_cut` double DEFAULT NULL,
   `to_pay` double DEFAULT NULL,
   `num` varchar(100) DEFAULT NULL,
-  `date_pay` date DEFAULT NULL,
+  `date_pay` date NOT NULL,
   `travaux_type` varchar(25) DEFAULT NULL,
   `travaux_num` text,
   `id_eng` int(11) NOT NULL,
@@ -346,43 +318,36 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `rebrique` int(30) DEFAULT NULL,
   `visa` date DEFAULT NULL,
   `num_visa` varchar(20) DEFAULT NULL,
-  `num_mondat` varchar(100) DEFAULT NULL,
-  `date_mondat` date DEFAULT NULL,
   `inserted_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `updated_at` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `penalite`
+-- Table structure for table `penalite`
 --
 
-DROP TABLE IF EXISTS `penalite`;
-CREATE TABLE IF NOT EXISTS `penalite` (
-  `id_pen` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `penalite` (
+  `id_pen` int(11) NOT NULL,
   `the_pay` int(11) NOT NULL,
-  `html` text NOT NULL,
-  PRIMARY KEY (`id_pen`)
-) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+  `html` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `portefeuille`
+-- Table structure for table `portefeuille`
 --
 
-DROP TABLE IF EXISTS `portefeuille`;
-CREATE TABLE IF NOT EXISTS `portefeuille` (
+CREATE TABLE `portefeuille` (
   `code` varchar(10) NOT NULL,
   `ministere` text NOT NULL,
-  `ministere_fr` text,
-  PRIMARY KEY (`code`)
+  `ministere_fr` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `portefeuille`
+-- Dumping data for table `portefeuille`
 --
 
 INSERT INTO `portefeuille` (`code`, `ministere`, `ministere_fr`) VALUES
@@ -413,41 +378,39 @@ INSERT INTO `portefeuille` (`code`, `ministere`, `ministere_fr`) VALUES
 ('027', 'الصحة', 'Santé '),
 ('028', 'العمل والتشغيل والضمان الاجتماعي', 'Travail de l\'Emploi et de la Sécurité Sociale '),
 ('029', 'العلاقات مع البرلمان', 'Relations avec le parlement '),
-('030', 'البيئة و الطاقات المتجددة', 'Environnement et Energies Renouvelables'),
+('030', 'الصيد البحري والمنتجات الصيدية', 'Environnement et Energies Renouvelables'),
 ('032', 'الصناعة الصيدلانية ', 'lndustrie pharmaceutique '),
 ('033', 'وزارة الاقتصاد المعرفة والمؤسسات الناشئة والمؤسسات الصغرة', 'Economie de la Connaissance , Startups et Micro Entreprises ');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `programme`
+-- Table structure for table `programme`
 --
 
-DROP TABLE IF EXISTS `programme`;
-CREATE TABLE IF NOT EXISTS `programme` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `programme` (
+  `id` int(11) NOT NULL,
   `code` varchar(100) NOT NULL,
   `designation` text NOT NULL,
   `designation_fr` text,
   `parent` varchar(100) DEFAULT NULL,
-  `portefeuille` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=372 DEFAULT CHARSET=utf8;
+  `portefeuille` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `programme`
+-- Dumping data for table `programme`
 --
 
 INSERT INTO `programme` (`id`, `code`, `designation`, `designation_fr`, `parent`, `portefeuille`) VALUES
-(1, '044', 'التعليم', 'Enseignement de base', '', '011'),
+(1, '044', 'التعليم القاعدي', 'Enseignement de base', '', '011'),
 (2, '045', 'التعليم الثانوي', 'Enseignement secondaire', '', '011'),
 (3, '046', 'التكوين', 'Formation', '', '011'),
 (4, '047', 'الحيات المدرسية و التحويلات الاجتماعية', 'Vie scolaire et transferts sociaux', '', '011'),
 (5, '048', 'الإدارة العامة', 'Administration générale ', '', '011'),
 (6, '049', 'التعليم و التكوين العاليين', 'Enseignement et formation supérieurs', '', '012'),
-(7, '01', 'التعليم القاعدي و التحضيري', 'Enseignement préparatoire et primaire', '044', '011'),
-(8, '02', 'التعليم المتوسط العادي و المتخصص و عن بعد', 'Enseignement moyen normal et spécifique', '044', '011'),
-(9, '03', 'التعليم الثانوي العادي و المتخصص و عن بعد', 'Enseignement moyen à distance', '044', '011'),
+(7, '01', 'التربية التحضيرية و الإبتدائية', 'Enseignement préparatoire et primaire', '044', '011'),
+(8, '02', 'التعليم المتوسط العادي و المتخصص', 'Enseignement moyen normal et spécifique', '044', '011'),
+(9, '03', 'التعليم المتوسط عن بعد', 'Enseignement moyen à distance', '044', '011'),
 (10, '04', 'محو الأمية', 'Alphadétisation', '044', '011'),
 (11, '01', 'التعليم الثانوي العادي  و المتخصص', 'Enseignement secondaire normal , spécifique et spécialisé', '045', '011'),
 (12, '02', 'التعليم الثانوي عن بعد', 'Enseignement secondaire à distance', '045', '011'),
@@ -499,13 +462,13 @@ INSERT INTO `programme` (`id`, `code`, `designation`, `designation_fr`, `parent`
 (58, '087', 'الادارة العامة', 'Administration Générale ', '', '022'),
 (59, '088', 'الاعلام والاتصال المؤسساتي', 'Médias et Communication institutionnelle ', '', '023'),
 (60, '089', 'الادارة العامة', 'Administration Générale ', '', '023'),
-(61, '090', 'المنشآت الآساسية للطرق والطرق السيارة', 'lnfrastructures routiéres et autoroutiéres ', '', '024'),
-(62, '091', 'المنشآت الآساسية المطارية', 'lnfrastructures aéroportuaires ', '', '024'),
-(63, '092', 'المنشآت الآساسية البحرية', 'lnfrasttucturures maritimes ', '', '024'),
-(64, '093', 'حشد المواردالمائية والآمن المائي', 'Mobilisation des ressources en eau et de la sécurité hydrique ', '', '051'),
-(65, '094', 'التزويد بالمياه الصالحة للشرب والمياه الصناعية', 'Approvisionnemnt en eau potable et industrelle ', '', '051'),
-(66, '095', 'الري الفلاحي', 'Hydraulique agricole ', '', '051'),
-(67, '096', 'التطهير وحماية البيئة الطبيعية', 'Assainissement et protection du milieu naturel ', '', '051'),
+(61, '090', 'المنشئات الآساسية للطرق والظرق السيارة', 'lnfrastructures routiéres et autoroutiéres ', '', '024'),
+(62, '091', 'المنشئات الآساسية المطارية', 'lnfrastructures aéroportuaires ', '', '024'),
+(63, '092', 'المنشئات الآساسية البحرية', 'lnfrasttucturures maritimes ', '', '024'),
+(64, '093', 'حشد المواردالمائية والآمن المائي', 'Mobilisation des ressources en eau et de la sécurité hydrique ', '', '024'),
+(65, '094', 'التزويد بالمياه الصالحة للشرب والمياه الصناعية', 'Approvisionnemnt en eau potable et industrelle ', '', '024'),
+(66, '095', 'الري الفلاحي', 'Hydraulique agricole ', '', '024'),
+(67, '096', 'التطهير وحماية البيئة الطبيعية', 'Assainissement et protection du milieu naturel ', '', '024'),
 (68, '097', 'الادارة العامة', 'Administration générale ', '', '024'),
 (69, '098', 'الحركية واللوجيستية', 'Mobilité et logistique ', '', '025'),
 (70, '099', 'البحرية التجارية والموانئ', 'Marine marchande et ports ', '', '025'),
@@ -644,7 +607,7 @@ INSERT INTO `programme` (`id`, `code`, `designation`, `designation_fr`, `parent`
 (203, '02', 'التعليم القرآني', 'Enseignement coranique', '042', '010'),
 (204, '01', 'تسيير الوزارة', 'Gestion du ministère ', '043', '010'),
 (205, '02', 'الدعم الاداري', 'Soutien administratif ', '043', '010'),
-(206, '01', 'التكوين قيد الخدمة و المتخصص', 'Formation en cours d\'emploi', '046', '011'),
+(206, '01', 'التكوين قيد الخدمة', 'Formation en cours d\'emploi', '046', '011'),
 (207, '02', 'التكوين المتخصص', 'Formation Spécialisée', '046', '011'),
 (208, '01', 'الحياة المدرسية', 'Vie scolaire', '047', '011'),
 (209, '02', 'التحويلات الاجتماعية', 'Transferts sociaux', '047', '011'),
@@ -738,12 +701,12 @@ INSERT INTO `programme` (`id`, `code`, `designation`, `designation_fr`, `parent`
 (297, '02', 'الاتصال المؤسساتي', 'Communication lnstititutionnelle ', '088', '023'),
 (298, '01', 'تسيير الوزارة', 'Gestion Du ministère ', '089', '023'),
 (299, '02', 'الدعم الاداري', 'Soutien Administratif ', '089', '023'),
-(300, '01', 'تطوير المنشآت الأساسية للطرق', 'Développement des infrastructures routiéres ', '090', '024'),
+(300, '01', 'تطوير المنشات الأساسية للطرق', 'Développement des infrastructures routiéres ', '090', '024'),
 (301, '02', 'صيانة الطرق', 'Entretien routier ', '090', '024'),
 (302, '03', 'تطوير و صيانة الطرق السيارة', 'Développement et entretien des autoroutes ', '090', '024'),
 (303, '01', 'تطوير المنشأت الأساسية المطارية', 'Développements des infrastrucres aéroportuaires ', '091', '024'),
-(304, '02', 'صيانة المنشآت الأساسية المطارية', 'Maintenances des infrastructures aéroporuaires', '091', '024'),
-(305, '01', 'تطوير المنشآت الأساسية البحرية', 'Développement des infrastructures maritimes ', '092', '024'),
+(304, '02', 'صيانة المنشات الأساسية المطارية', 'Maintenances des infrastructures aéroporuaires', '091', '024'),
+(305, '01', 'تطوير المشأت الأساسية البحرية', 'Développement des infrastructures maritimes ', '092', '024'),
 (306, '02', 'صيانة المنشأت الأساسية البحرية و الاشارة', 'Maintenance des infrastructures maritimes et signalisation ', '092', '024'),
 (307, '01', 'السدود', 'Barrages ', '093', '024'),
 (308, '02', 'تحويلات المياه', 'Transterts des eaux ', '093', '024'),
@@ -807,19 +770,16 @@ INSERT INTO `programme` (`id`, `code`, `designation`, `designation_fr`, `parent`
 (366, '01', 'ترقية لإقتصاد المعرفة و المؤسسات الناشئة', 'promotion de l\'Economie de la connaissance et des Startup ', '123', '033'),
 (367, '02', 'ترقية المقاولاتية و الابداع', 'promotion de l\'Entreprenariat et de la créativité ', '123', '033'),
 (368, '01', 'تسيير الوزارة', 'Gestion du ministère ', '124', '033'),
-(369, '02', 'الدعم الاداري', 'Soutien Administratif ', '124', '033'),
-(370, '035', 'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء', '', NULL, '008'),
-(371, '035', 'التحكم في الطاقة و الطاقات المتجددة الموصولة بالشبكة الوطنية للكهرباء', '', NULL, '008');
+(369, '02', 'الدعم الاداري', 'Soutien Administratif ', '124', '033');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rebriques`
+-- Table structure for table `rebriques`
 --
 
-DROP TABLE IF EXISTS `rebriques`;
-CREATE TABLE IF NOT EXISTS `rebriques` (
-  `id_reb` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rebriques` (
+  `id_reb` int(11) NOT NULL,
   `id_op` int(11) NOT NULL,
   `id_eng` int(11) NOT NULL,
   `type` varchar(30) NOT NULL,
@@ -828,19 +788,17 @@ CREATE TABLE IF NOT EXISTS `rebriques` (
   `sous_cumul` double NOT NULL,
   `sous_montant_1` double NOT NULL,
   `sous_montant` double NOT NULL,
-  `sous_montant_2` double NOT NULL,
-  PRIMARY KEY (`id_reb`)
-) ENGINE=MyISAM AUTO_INCREMENT=318 DEFAULT CHARSET=utf8;
+  `sous_montant_2` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reb_pay`
+-- Table structure for table `reb_pay`
 --
 
-DROP TABLE IF EXISTS `reb_pay`;
-CREATE TABLE IF NOT EXISTS `reb_pay` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `reb_pay` (
+  `id` int(11) NOT NULL,
   `etude` double DEFAULT NULL,
   `genie_civil` double DEFAULT NULL,
   `travaux_publics` double DEFAULT NULL,
@@ -863,24 +821,22 @@ CREATE TABLE IF NOT EXISTS `reb_pay` (
   `cumul_old` double DEFAULT NULL,
   `cumul_new` double DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
-  `op` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `op` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `safe`
+-- Table structure for table `safe`
 --
 
-DROP TABLE IF EXISTS `safe`;
-CREATE TABLE IF NOT EXISTS `safe` (
+CREATE TABLE `safe` (
   `id` int(11) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `safe`
+-- Dumping data for table `safe`
 --
 
 INSERT INTO `safe` (`id`, `password`) VALUES
@@ -890,22 +846,20 @@ INSERT INTO `safe` (`id`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `titres`
+-- Table structure for table `titres`
 --
 
-DROP TABLE IF EXISTS `titres`;
-CREATE TABLE IF NOT EXISTS `titres` (
-  `id_titre` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `titres` (
+  `id_titre` int(11) NOT NULL,
   `code` varchar(11) NOT NULL,
   `definition` text NOT NULL,
   `definition_fr` text,
   `type` varchar(25) NOT NULL,
-  `father` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+  `father` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `titres`
+-- Dumping data for table `titres`
 --
 
 INSERT INTO `titres` (`id_titre`, `code`, `definition`, `definition_fr`, `type`, `father`) VALUES
@@ -918,23 +872,23 @@ INSERT INTO `titres` (`id_titre`, `code`, `definition`, `definition_fr`, `type`,
 (89, '31200', 'تهيئة وإعادة تأهيل االاراضي', 'Aménagements et viabilisation de terrains ', '', 2),
 (90, '31300', 'الاشغال الغابية', 'Travaux forestiers ', '', 2),
 (91, '31400', 'البناء والصيانة', 'Construction et entretien ', '', 2),
-(92, '31410', 'المنشآت', 'lnfrastructures', '', 2),
-(93, '31411', 'المنشآت البحرية', 'lnfrastructures maritimes', '', 2),
-(94, '31412', 'المنشآت للطرقات', 'lnfrastructures routiéres', '', 2),
-(95, '31413', 'المنشآت للمطارات', 'lnfrastructures aéroportuaires', '', 2),
-(96, '31414', 'المنشآت للسكك الحديدية', 'lnfrastructures ferroviaires', '', 2),
-(97, '31415', 'المنشآت للري', 'lnfrastructures hydrauliques', '', 2),
-(98, '31416', 'المنشآت الرياضية', 'lnfrastructures sportives', '', 2),
-(99, '31417', 'المنشآت الطاقوية والمواصلات السلكية واللاسلكية و تكنولوجيات الإعلام و الإتصال', 'lnfastructures énergétiques , de télécommunications et des technologies de l\'information et des cmmunications ', '', 2),
-(100, '31418', 'المنشآت  لمعالجة النفايات والمياه المستعملة', 'lnfrastructures de traitement des déchets et eaux usées ', '', 2),
+(92, '31410', 'المنشات القاعدية', 'lnfrastructures', '', 2),
+(93, '31411', 'المنشأت القاعدية البحرية', 'lnfrastructures maritimes', '', 2),
+(94, '31412', 'المنشأت القاعدية اللطرقات', 'lnfrastructures routiéres', '', 2),
+(95, '31413', 'المنشأت القاعدية اللمطارات', 'lnfrastructures aéroportuaires', '', 2),
+(96, '31414', 'المنشأت القاعدية للسكك الحديدية', 'lnfrastructures ferroviaires', '', 2),
+(97, '31415', 'المنشأت القاعدية للري', 'lnfrastructures hydrauliques', '', 2),
+(98, '31416', 'المنشأت القاعدية الرياضية', 'lnfrastructures sportives', '', 2),
+(99, '31417', 'المنشأت القاعدية الطاقوية', 'lnfastructures énergétiques , de télécommunications et des technologies de l\'information et des cmmunications ', '', 2),
+(100, '31418', 'المنشأت القاعدية لمعالجة النفايات والمياه المستعملة', 'lnfrastructures de traitement des déchets et eaux usées ', '', 2),
 (101, '31419', 'المنشأت الفنية', 'Ouvrages d\'art ', '', 2),
 (102, '31420', 'البنايات', 'Batiments', '', 2),
 (103, '31430', 'السكنات', 'Logements ', '', 2),
 (104, '31440', 'صيانة واعادة تأهيل التراث العقاري التاريخي والديني والثقافي', 'Entretien et réhabilitation du patrimoine immobilier historique, cultuel et culturel ', '', 2),
 (105, '31500', 'التركيبات والترتيب وتهيئة البنايات', 'lnstallations , agencements et aménagements des constructions ', '', 2),
 (106, '31600', 'التركيبات التقنية والمعدات والادوات الصناعية', 'lnstallations techniques, matériel et outillage industriel ', '', 2),
-(107, '31610', 'التركيبات التقنية والخاصة', 'lnstallations techniques et spécifques ', '', 2),
-(108, '31620', 'المعدات والادوات الصناعية', 'Matériel et outillage industriel ', '', 2),
+(107, '31610', 'التركيبات التقنية الخاصة', 'lnstallations techniques et spécifques ', '', 2),
+(108, '31620', 'المعدات الادوات الصناعية', 'Matériel et outillage industriel ', '', 2),
 (109, '31630', 'معدات والتجهيزات اخرى', 'Autres matériel et équipement ', '', 2),
 (110, '31700', 'العتاد العسكري', 'Matériel militaire ', '', 2),
 (111, '31800', 'معدات النقل', 'Matériel de transport ', '', 2),
@@ -950,40 +904,291 @@ INSERT INTO `titres` (`id_titre`, `code`, `definition`, `definition_fr`, `type`,
 (121, '31930', 'الاعمال الفنية واللوحات والمجموعات', 'Euvres d\'art, tableaux , et collections ', '', 2),
 (3, '32000', 'تثبيتات معنوية', 'lmmobilisations incorporelles ', 'parent', 0),
 (123, '32100', 'مصاريف التطوير و الأبحاث و الدراسات', 'Frais de développement de recherches et d\'études', '', 3),
-(124, '32200', 'الامتيازات و الحقوق و براءات الإختراع و التراخيص و ما يمثلها', 'Concessions, droits, brevets, licences et assimilés ', '', 3),
+(124, '32200', 'التنازلات و الحقوق و براءات الإختراع و التراخيص و ما يمثلها', 'Concessions, droits, brevets, licences et assimilés ', '', 3),
 (125, '32300', 'برمجيات الإعلام الألي و ما يمثلها ', 'Logiciels informatiques et assimilés', '', 3),
 (126, '32400', 'تثبيتات معنوية أخرى', 'Autres lmmobilisations incorporelles ', '', 3),
 (127, ' ', 'مبلغ غير موزع', 'Montant non distribué', '', 128),
-(128, ' ', 'مبلغ العملية غير الموزع', 'Montant de l\'opération non distribué', 'parent', 0),
-(129, '33000', 'تخصيصات الاستثمار للمؤسسات العمومية ذات الطابع الإداري و المؤسسات العمومية المماثلة الأخرى', NULL, 'parent', 0);
+(128, ' ', 'مبلغ العملية غير الموزع', 'Montant de l\'opération non distribué', 'parent', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `position` varchar(255) NOT NULL,
   `service` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `photo` text NOT NULL,
-  `chapitre` text,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+  `chapitre` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `position`, `service`, `password`, `photo`, `chapitre`) VALUES
 (1, 'admin', 'Administrateur', 'Admin', 'Admin', '$2y$10$N34kPOmf7fWr7xNbgCSG2ORVmq7jAtrtsZaj1FNuSzqWiOqBWc7GW', 'uploads/users/1_user_avatar.jpg', NULL),
 (2, 'comptable', 'comptable 1', 'Employé', 'Comptabilité', '$2y$10$BX7A9PW5C2ji4Li9Q2GaDemgxPIfr8P3RJTrPAm5HdzeLyT8jkyDK', 'img/user_avatar.jpg', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `attestations`
+--
+ALTER TABLE `attestations`
+  ADD PRIMARY KEY (`id_att`);
+
+--
+-- Indexes for table `att_total`
+--
+ALTER TABLE `att_total`
+  ADD PRIMARY KEY (`att_id`);
+
+--
+-- Indexes for table `banks`
+--
+ALTER TABLE `banks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `banques`
+--
+ALTER TABLE `banques`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `borderau`
+--
+ALTER TABLE `borderau`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bord_eng`
+--
+ALTER TABLE `bord_eng`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`id_comp`);
+
+--
+-- Indexes for table `deals`
+--
+ALTER TABLE `deals`
+  ADD PRIMARY KEY (`id_deal`);
+
+--
+-- Indexes for table `engagements`
+--
+ALTER TABLE `engagements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `entreprises`
+--
+ALTER TABLE `entreprises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leve_main`
+--
+ALTER TABLE `leve_main`
+  ADD PRIMARY KEY (`id_main`);
+
+--
+-- Indexes for table `ods`
+--
+ALTER TABLE `ods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `operations`
+--
+ALTER TABLE `operations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penalite`
+--
+ALTER TABLE `penalite`
+  ADD PRIMARY KEY (`id_pen`);
+
+--
+-- Indexes for table `portefeuille`
+--
+ALTER TABLE `portefeuille`
+  ADD PRIMARY KEY (`code`);
+
+--
+-- Indexes for table `programme`
+--
+ALTER TABLE `programme`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rebriques`
+--
+ALTER TABLE `rebriques`
+  ADD PRIMARY KEY (`id_reb`);
+
+--
+-- Indexes for table `reb_pay`
+--
+ALTER TABLE `reb_pay`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `titres`
+--
+ALTER TABLE `titres`
+  ADD PRIMARY KEY (`id_titre`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `attestations`
+--
+ALTER TABLE `attestations`
+  MODIFY `id_att` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `att_total`
+--
+ALTER TABLE `att_total`
+  MODIFY `att_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `banks`
+--
+ALTER TABLE `banks`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `banques`
+--
+ALTER TABLE `banques`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `borderau`
+--
+ALTER TABLE `borderau`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `bord_eng`
+--
+ALTER TABLE `bord_eng`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `id_comp` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `deals`
+--
+ALTER TABLE `deals`
+  MODIFY `id_deal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `engagements`
+--
+ALTER TABLE `engagements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `entreprises`
+--
+ALTER TABLE `entreprises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `leve_main`
+--
+ALTER TABLE `leve_main`
+  MODIFY `id_main` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ods`
+--
+ALTER TABLE `ods`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `operations`
+--
+ALTER TABLE `operations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `penalite`
+--
+ALTER TABLE `penalite`
+  MODIFY `id_pen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT for table `programme`
+--
+ALTER TABLE `programme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+
+--
+-- AUTO_INCREMENT for table `rebriques`
+--
+ALTER TABLE `rebriques`
+  MODIFY `id_reb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
+
+--
+-- AUTO_INCREMENT for table `reb_pay`
+--
+ALTER TABLE `reb_pay`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `titres`
+--
+ALTER TABLE `titres`
+  MODIFY `id_titre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
