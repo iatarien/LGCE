@@ -11,8 +11,8 @@ UPDATE programme SET designation ="التعليم القاعدي و التحضي
 UPDATE programme SET designation ="التعليم المتوسط العادي و المتخصص" WHERE id=8;
 UPDATE programme SET designation ="التعليم الثانوي العادي و المتخصص و عن بعد" WHERE id=9;
 
-INSERT INTO `portefeuille` VALUES ('051', 'الري');
-INSERT INTO `programme` VALUES (NULL, '143','الإدارة العامة',NULL,"");
+INSERT INTO `portefeuille` VALUES ('051', 'الري',"");
+INSERT INTO `programme` VALUES (NULL, '143','الإدارة العامة',"",NULL,"");
 UPDATE `programme` SET portefeuille = "051" WHERE code > 92 and code < 97;
 UPDATE `programme` SET portefeuille = "051" WHERE code = 143;
 
