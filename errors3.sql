@@ -12,3 +12,12 @@ UPDATE titres SET definition = 'المنشآت العسكرية' WHERE code = 31
 UPDATE titres SET definition = 'التركيبات التقنية والخاصة' WHERE code = 31610;
 UPDATE titres SET definition = 'المعدات والادوات الصناعية' WHERE code = 31620;
 UPDATE titres SET definition = 'الامتيازات و الحقوق و براءات الإختراع و التراخيص و ما يمثلها' WHERE code = 32200;
+
+
+UPDATE `programme` SET `designation` = 'حشد الموارد المائية والآمن المائي' WHERE `programme`.`id` = 64;
+UPDATE `programme` SET `designation` = 'حشد الموارد المائية التقليدية' WHERE `programme`.`id` = 307;
+UPDATE `programme` SET `designation` = 'المياه غير التقليدية' WHERE `programme`.`id` = 308;
+UPDATE `programme` SET `designation` = 'التوصيل وشبكات التوزيع بالمياه الصالحة للشرب والمياه الصناعية' WHERE `programme`.`id` = 311;
+UPDATE `programme` SET `designation` = 'شبكة الصرف الصحي و أنظمة التطهير' WHERE `programme`.`id` = 315;
+UPDATE `programme` SET `designation` = 'حماية المدن من الفيضانات' WHERE `programme`.`id` = 316;
+
