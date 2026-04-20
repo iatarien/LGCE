@@ -221,11 +221,16 @@
 			@foreach($titres as $titre)
 				@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
 				<tr style='font-weight : 900;'>	
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
+					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+					@if($insc =="true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					@else
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+					@endif
+					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
 					<td dir="rtl">
 						الصنف / 
 						{{$titre->code}}
@@ -236,8 +241,16 @@
 				@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
+						
+					@if($insc == "true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
+					
+					@else
 					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
+					
+					@endif
 					<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
 					<td dir="rtl">
@@ -252,11 +265,18 @@
 			<tbody id="with_sous" style="display : none;">
 			@foreach($titres1 as $titre)
 				<tr style='font-weight : 900;'>	
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
+					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+					
+					@if($insc =="true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					@else
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+					@endif
+					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					
 					<td dir="rtl">
 						الصنف / 
 						{{$titre->code}}
@@ -266,10 +286,19 @@
 				@if($reb->sous_montant != 0)
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
+						
+					@if($insc == "true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
+					
+					@else
 					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant_1, 2, '.', ' ')}}</td>
+					
+					@endif
 					<td>{{ number_format((float)$reb->sous_cumul, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_AP, 2, '.', ' ')}}</td>
+					
 					<td dir="rtl">
 						 الصنف الفرعي / 
 						{{$reb->code}}
@@ -281,12 +310,20 @@
 			</tbody>
 			<tbody id="with_none" style="display : none">
 			@foreach($titres as $titre)
+			
 				<tr style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+					
+					@if($insc =="true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					@else
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+					@endif
 					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					
 					<td dir="rtl">
 						الصنف / 
 						{{$titre->code}}
