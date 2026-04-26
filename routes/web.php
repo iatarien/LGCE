@@ -46,7 +46,7 @@ Route::post('/add_op','OperationsController@add_op');
 Route::post('/add_op_ar','OperationsController@add_op_ar');
 Route::post('/update_op','OperationsController@update_op');
 Route::post('/update_op_ar','OperationsController@update_op_ar');
-
+Route::post('/update_op_admin','OperationsController@update_op_admin');
 
 /** DEAL ROUTES */
 Route::get('/get_deals/{value?}','DealController@get_deals');

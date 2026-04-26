@@ -323,6 +323,10 @@
         <i class="bi bi-tools"></i>
         <span>الإعدادات </span>
       </a>
+      <a class="nav-link " href="/operations_ar/all/">
+        <i class="bi bi-tools"></i>
+        <span>العمليات </span>
+      </a>
       @else
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#ops-nav" data-bs-toggle="collapse" href="#">

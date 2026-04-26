@@ -253,10 +253,20 @@ class OperationsController extends Controller
         if($this->lang=="fr"){
             $view = 'operations.modifier_operation_fr';
         }
+        if($user->service =="Admin"){
+            $view = 'operations.modifier_operation_admin';
+            $users = DB::table('users')->get();
+            $u = DB::table('users')->where('id',$op->user_id)->first();
+        }else{
+            $users = null;
+            $u = null;
+        }
+
+
         return view($view,
         ['user'=>$user,'op'=>$op,"cp"=>$cp,"cp1"=>$cp1,"cp2"=>$cp2,"cp3"=>$cp3,
-        "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,
-        "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps]);
+        "portefeuilles"=>$portefeuilles,"p"=>$p,"sous"=>$sous,"titres"=>$titres,"u"=>$u,
+        "programmes"=>$programmes,"prog"=>$prog,"sous_ps"=>$sous_ps,"users"=>$users]);
     }
     public function check_num($numero){
         return DB::table('operations')->where("numero",$numero)->count();
@@ -406,6 +416,27 @@ class OperationsController extends Controller
         return Redirect::to('/operations_ar/all');
     }
 
+    public function update_op_admin(Request $request){
+        $user = Auth::user();
+        $id = $request['id_op'];
+        if($user->service =="Admin"){
+            $user_id = $request['user_id'];
+            
+            DB::table('operations')->where('id',$id)->update(["user_id"=>$user_id]);
+            DB::table('deals')->where('id_op',$id)->update(["user_id"=>$user_id]);
+            DB::table('engagements')->where('id_op',$id)->update(["user_id"=>$user_id]);
+            DB::update(
+                "UPDATE payments 
+                 SET user_id = ? 
+                 WHERE id_eng IN (
+                     SELECT id FROM engagements WHERE id_op = ?
+                 )",
+                [$user_id, $id]
+            );
+        }
+
+        return Redirect::to('/operations_ar/all');
+    }
     public function delete_op($id){
         $S = 0;
         $c1 = DB::table("engagements")->where("id_op",$id)->count();
