@@ -211,7 +211,7 @@ $ordre = $op->order_ville;
                   Imputation Budgetaire
                 </td>
                 <td rowspan="2" style="text-align : center; width : 9%;">
-                 Montant But
+                 Montant Brut
                 </td>
 				<td colspan="2" style="text-align : center; width : 15%;">
                  Retenus

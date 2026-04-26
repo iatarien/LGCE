@@ -529,7 +529,9 @@
 
 			</div>
 		</div>
-		
+		<div style="margin-right : 5%;" align= "right">
+		<h3><b>&emsp;&emsp;&emsp; الأمـــر بالصــرف </b>&emsp;&emsp;&emsp;&emsp;</h3>
+		</div>
 	</div>
 	
 

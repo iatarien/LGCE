@@ -227,7 +227,9 @@
 		<span> ................. {{$ville}} في </span><br>
 		</div>
 		
-		
+		<div style="margin-right : 35%;" align= "right">
+			<h3><b>&emsp;&emsp;&emsp; الأمـــر بالصــرف </b>&emsp;&emsp;&emsp;&emsp;</h3>
+			</div>
 
     </div>
 	<div style=" text-align: right; border-right : 1px solid; margin-right: 1%;" id="words" class="half">
@@ -376,6 +378,7 @@
 				</tr>
 			</table>
 			<br><br>
+
 		</div>
 	</div>
 </div>	
