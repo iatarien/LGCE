@@ -234,7 +234,7 @@ $ordre = $op->order_ville;
 
             </tr>
 			<tr>
-                <td>{{$op->numero}}</td>
+                <td>{{$sous_titre->code}}</td>
                 <td dir="ltr">{{ number_format((float)$brut, 2, '.', ' ')}}</td>
                 <td></td>
 				<td dir="ltr">@if($pay->total_cut != 0) {{ number_format((float)$pay->total_cut, 2, '.', ' ')}} @endif</td>

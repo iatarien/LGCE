@@ -158,7 +158,8 @@
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<br>
 			<h3>  <b style="text-decoration : underline">رمز البرنامج :</b> {{$eng->portefeuille}}.{{$eng->programme}} 
-                 &emsp;&emsp;&emsp;الميزانية  &emsp;&emsp;&emsp;&emsp;
+                 &emsp;&emsp;&emsp;{{$prog->designation}}  &emsp;&emsp;&emsp;&emsp;</h3>
+		    <h3>
                 @if($eng->sous_programme != "")
                 <b style="text-decoration : underline">رمز البرنامج الفرعي :</b>
 					@if(strlen($eng->sous_programme) == 1)
@@ -168,7 +169,7 @@
 					@endif
 				@endif
 				@if($eng->sous_programme != "")
-                &emsp;&emsp;&emsp;دعم الاستثمار 
+                &emsp;&emsp;&emsp; {{$sous->designation}} 
 				@endif
             </h3>
             <?php 
