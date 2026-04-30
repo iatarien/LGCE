@@ -359,6 +359,11 @@ class PaymentController extends Controller
         join('engagements','payments.id_eng',"=","engagements.id")->
         join('deals','engagements.deal',"=","deals.id_deal")->
         where('payments.id',$id)->first();
+
+        $old_pays  = DB::table('payments')->
+        where('payments.id_eng',$pay->id_eng)->where('payments.id',"!=",$id)->get();
+
+        
         $bank = DB::table('banks')->leftjoin('banques','banques.nom','=',"banks.bank")->where('banks.id',$pay->bank)->first();
         $op = DB::table('operations')->
         join("portefeuille","portefeuille.code","=","operations.portefeuille")->
@@ -414,7 +419,8 @@ class PaymentController extends Controller
             $view = $view."_Djanet";
         }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
-        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog,"titre"=>$titre,"sous_titre"=>$sous_titre]);
+        'total'=>$total,"id"=>$id,"matiere"=>$matiere,"sous_prog"=>$sous_prog,"titre"=>$titre,
+        "sous_titre"=>$sous_titre,"old_pays"=>$old_pays]);
 
     }
     public function attestation_2($id)
