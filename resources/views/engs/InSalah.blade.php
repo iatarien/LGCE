@@ -493,7 +493,7 @@ $ordre = $eng->order_ville;
 		</div>
 
 		<div dir="rtl" style="float: right; margin-right: 30px; text-align : justify;">
-			<h3> موضوع الإلتزام : <span>{{$eng->real_sujet}}<span></h3>
+			<h3> موضوع الإلتزام : <span>{!! nl2br($eng->real_sujet) !!}<span></h3>
 		</div>
 		<br><br><br>
 		@if($ville_fr =="In Salah")

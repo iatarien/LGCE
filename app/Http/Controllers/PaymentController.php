@@ -552,7 +552,11 @@ class PaymentController extends Controller
         $total = $pay->total_done - $pay->total_cut;
         $pay0 = DB::table('reb_pay')->where('id',$pay->rebrique)->first();
 
-        
+        if($this->ville_fr =="Ouled Djellal"){
+            $pay1 = DB::table('payments')->where('id_eng',$pay->id_eng)->where("id","<=",$id)->Sum("to_pay");
+            $pay0->cumul_new = $pay1;
+            $pay0->cumul_old = $pay1 - $pay->to_pay;
+        }
 
         // if($this->lang =="fr" || $this->ville_fr =="Biskra"){
         //     $txt = " ";
