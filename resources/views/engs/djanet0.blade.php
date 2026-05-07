@@ -16,10 +16,8 @@
 		html,body{
 			height:297mm;
 	    	width:210mm;
-			overflow-y : hidden !important;
-			
+			overflow-y : hidden !important;	
 		}
-		
 	}
 	html,body{
 	    height:287mm;
@@ -204,12 +202,7 @@
 				 @endforeach
 			</span>
 			</h3>
-			<h3> <b style="text-decoration : underline"> عنوان العملية :</b> 
-			<span>{{$eng->intitule_ar}}<span>  
-			</h3>
-			<h3 dir="ltr" style="text-align : justify; margin-left : 26px;">
-			<span>{{$eng->intitule}}<span>  
-			</h3>
+			<h3> <b style="text-decoration : underline"> عنوان العملية :</b> <span>{{$eng->intitule_ar}}<span>   </h3>
 		</div>
 		<br>
 
@@ -271,11 +264,18 @@
 			<tbody id="with_sous" style="display : none;">
 			@foreach($titres1 as $titre)
 				<tr style='font-weight : 900;'>	
-				<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
-					<td>/</td>
+					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+					
+					@if($insc =="true")
+					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					@else
+					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+					@endif
+					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+					
 					<td dir="rtl">
 						الصنف / 
 						{{$titre->code}}
