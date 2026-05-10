@@ -53,7 +53,7 @@
             || $ville_fr == "Touggourt" || $ville_fr == "Mila" || $ville_fr == "Tamenrasset" 
             || $ville_fr == "Biskra" || $ville_fr == "Djanet") <th> بطاقة الدفع </th>
             @endif
-            @if($ville_fr == "Djanet")
+            @if($ville_fr == "Djanet" && strpos($direction_fr, "Equipement") == false)
             <th>  Avis et Ordre </th>
             @endif
             <th> بيان بالتحويل </th>
@@ -119,7 +119,7 @@
                 @endif
             </td>
             @endif
-            @if($ville_fr == "Djanet")
+            @if($ville_fr == "Djanet" && strpos($direction_fr, "Equipement") == false)
             <td>
                 <a class="btn btn-default" target="_blank" href="/avis51/{{$id}}"> معاينة</a>
             </td>

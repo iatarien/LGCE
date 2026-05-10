@@ -25,7 +25,7 @@
 	    height:287mm;
 	    width:210mm;
 	    margin: auto;
-	    line-height: 1.2;
+	    line-height: 1.1;
 	    -webkit-print-color-adjust: exact !important;
 	}
 	
@@ -499,7 +499,7 @@ $ordre = $eng->order_ville;
 		</div>
 
 		<div dir="rtl" style="float: right; margin-right: 30px; text-align : justify;">
-			<h3> موضوع الإلتزام : <span>{{$eng->real_sujet}}<span></h3>
+			<h4> موضوع الإلتزام : <span>{!! nl2br($eng->real_sujet) !!}<span></h4>
 		</div>
 		<br><br><br>
 		@if($ville_fr =="Ouled Djellal" && $eng->montant != 0 && $eng->type == "eng")

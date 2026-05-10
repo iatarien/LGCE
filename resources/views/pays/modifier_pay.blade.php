@@ -162,6 +162,8 @@
                     <td><input name="extra_done" @if($pay->extra_done != 0) value="{{ $pay->extra_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     @if($ville_fr =="Mila")
                     <td>  التسبيق على التموين </td>
+                    @elseif($ville_fr =="Djanet")
+                    <td>  التموين </td>
                     @else
                     <td>    أعمال إضافية   </td>
                     @endif
@@ -223,7 +225,7 @@
                   <td><input name="sanction" readonly class="input_num form-control" class="form-control" style="background-color: transparent; padding : 0; text-align : center; color : black;"></td>
                     <td><input name="sanction_cut" @if($pay->sanction_cut !=0) value="{{ $pay->sanction_cut}}" @endif style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
                     <td><input name="sanction_done" readonly @if($pay->sanction_done != 0) value="{{ $pay->sanction_done}}" @endif  style="padding : 0; text-align: center;" class="input_num form-control" type="text" pattern ="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d{1,2})?)*$" ></td>
-                    @if($ville_fr =="Mila")
+                    @if($ville_fr =="Mila" || $ville_fr="Djanet")
                     <td>    تعويض  على التموين   </td>
                     @else
                     <td>    العقوبــــــات    </td>

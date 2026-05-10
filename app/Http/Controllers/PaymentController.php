@@ -409,13 +409,13 @@ class PaymentController extends Controller
         if($this->ville_fr =="Medea"){
             $view = $view."_medea";
         }
-        if($this->ville_fr =="Mila"){
-            $view = $view."_mila";
-        }
         if($this->lang =="fr" || $this->ville_fr =="Biskra"){
             $view = $view."_fr";
         }
-        if($this->ville_fr =="Djanet"){
+        if($this->ville_fr =="Mila"){
+            $view = $view."_mila";
+        }
+        else if($this->ville_fr =="Djanet" && strpos($this->direction_fr, "Equipement") == false){
             $view = $view."_Djanet";
         }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"prog"=>$prog,
