@@ -23,7 +23,7 @@
 	    height:210mm;
 	    width:287mm;
 	    margin: auto;
-	    line-height: 1.5;
+	    line-height: 1.2;
         font-size : 8px;
 	    -webkit-print-color-adjust: exact !important;
 	}
@@ -129,6 +129,12 @@ $ordre = $op->order_ville;
 			@else 
 			طريقة الدفع : {{$bank->bank}} وكالة  {{$bank->bank_agc}}  <br>
 			@endif</h3>
+			@if($ville_fr =="Mila")
+			<h3 dir="rtl" style="width : 450%; float : right; text-align : justify">
+            رقم العملية : {{$op->numero}}  <br>
+			عنوان العملية : {{$op->intitule_ar}}   <br>
+			</h3>
+			@endif
             
 		</div>
 		<div style="  display: inline-block; float: right; margin-top : 2%;
@@ -194,8 +200,16 @@ $ordre = $op->order_ville;
             </table>
 
 	    </div>
-        <br><br>
-        
+		@if($ville_fr =="Mila")
+		<h3 dir="rtl" style="width : 100%; float : right; text-align : center">
+             توقف مجموع المبلغ على : <span id="montant"></span>  <br>
+		</h3>
+		<h3 dir="rtl" style="width : 100%; float : left; text-align : left">
+             الأمر بالصرف  <br>
+		</h3>
+		@endif
+        <br><br><br>
+
 </section>
 <br>
 
