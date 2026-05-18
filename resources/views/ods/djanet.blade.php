@@ -109,7 +109,7 @@ $cdars = true;
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
-			<h2 style="text-decoration : underline;  padding: 0px 5px 0px 5px;"> أمر مصلحي ب{{$ods_type}}   </h2>
+			<h2 style="text-decoration : underline;  padding: 0px 5px 0px 5px;"> أمر  ب{{$ods_type}}   </h2>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
 			 أعطي الأمر لـ : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
@@ -123,8 +123,8 @@ $cdars = true;
 
 		</div>
 
-		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
-			<span>         <span style="color : black;">{{$ods_date}}</span> حررت بـ{{$ville}} في :   </span>
+		<div dir="rtl" style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
+			<span>          حررت بـ{{$ville}} في :  <span style="color : black;">{{$ods_date}}</span></span>
 			<br><br>
 			الـــمــديـــر
 		</div>
@@ -132,26 +132,30 @@ $cdars = true;
 	</div>
 
 </section>
-<br>
+<br><br><br><br><br><br>
 <hr>
 <section style="background-color: white; text-align: center; font-size: 13.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 
 
 		<div style="  display: inline-block; width : 100%; ">
-			<h2 style="text-decoration : underline; padding: 0px 5px 0px 5px;">    التــبليــــغ  </h2>
+			<h2 style="text-decoration : underline; padding: 0px 5px 0px 5px;">    تــبليــــغ  </h2>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-			<p>
-				الموقع أعلاه : مدير  {{$direction}} المصرح بأن الأمر المصلحي المؤرخ في <strong dir="ltr">{{$ods_date}}</strong> مسجل تحت رقم : <span style="margin-left : 1mm;">&emsp;&emsp;/{{$year}}</span>  بأنه مبلغ للسيد : <strong> {{$e}} </strong> يوم <strong dir="ltr">{{$ods_date}}</strong>
-		
-			</p>
+			<h3 style=""> أمر  ب{{$ods_type}}  : </h3>
+			<p style="font-size : 16px">في اليوم ..................... من شهر ................... عام {{$year}}</p>
+			<div style="font-size : 16px; text-align : justify">
+				أنا الممضي أسفله السيد : <strong> {{$e}} </strong> أشهد باستلام نسخة من هذا الأمر للقيام ب{{$ods_type}} ابتداءا من :<br><strong>{{$ods_date}}</strong>
+				
+			</div>
 		</div>
-
-		<div style="font-size: 16px; font-weight: bold; float: left;margin-left: 50px;" >
-			<span>         <span style="color : transparent;">...................</span> الإمضــــــاء         </span>
+		<br><br><br>
+		<div style="font-size: 16px; font-weight: bold; float: right;margin-right: 50px;" >
+			<span>         <span style="color : transparent;">...................</span> المتعامل المتعاقد         </span>
 		</div>
-
+		<div dir="rtl" style="font-size: 16px; font-weight: bold; float: left;margin-left: 20px;" >
+			<span>          حررت بـ{{$ville}} في :  <span style="color : black;">{{$ods_date}}</span></span>
+		</div>
 	</div>
 
 </section>

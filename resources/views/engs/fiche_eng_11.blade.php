@@ -401,36 +401,42 @@ $cdars = true;
 			@foreach($titres as $titre)
 			@if(($ville_fr =="Ouled Djellal" || $ville_fr =="ouled djellal" || $ville_fr =="Biskra" || $ville_fr =="Touggourt"
 			|| $ville_fr =="Ouled djellal" || $ville_fr="Tamenrasset") && $insc == "true" )
-				<tr style='font-weight : 900;'>	
-					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
-					@if($ville_fr !="Ouled Djellal")
-					<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
-					@else
-						@if($titre->id_titre == 128)
+					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
+					
+					<tr style='font-weight : 900;'>	
+						<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)0, 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+						@if($ville_fr !="Ouled Djellal")
 						<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
 						@else
-						<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
+							@if($titre->id_titre == 128)
+							<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
+							@else
+							<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
+							@endif
 						@endif
+					</tr>
 					@endif
-				</tr>
 				@else
 				<tr style='font-weight : 900;'>	
-					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
-					<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
-					@if($ville_fr !="Ouled Djellal")
-					<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
-					@else
-						@if($titre->id_titre == 128)
+					@if($titre->sums["montant_2"] != 0 || $titre->sums["montant"] != 0 || $titre->sums["montant_1"] != 0)
+					
+						<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["montant_1"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["cumul"], 2, '.', ' ')}}</td>
+						<td>{{ number_format((float)$titre->sums["AP"], 2, '.', ' ')}}</td>
+						@if($ville_fr !="Ouled Djellal")
 						<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
 						@else
-						<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
+							@if($titre->id_titre == 128)
+							<td dir="rtl">{{$titre->code." ".$titre->definition}}</td>
+							@else
+							<td dir="rtl">الصنف  : {{$titre->code." "}}</td>
+							@endif
 						@endif
 					@endif
 				</tr>
