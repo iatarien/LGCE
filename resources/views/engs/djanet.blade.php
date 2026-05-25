@@ -157,6 +157,9 @@
 		<br><br><br><br><br><br><br><br><br><br>
         <div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
 			<br>
+			<h3>  <b style="text-decoration : underline">محفظة البرنامج :</b> {{$eng->portefeuille}} 
+                 &emsp;&emsp;&emsp;{{$porte->ministere}}  &emsp;&emsp;&emsp;&emsp;</h3>
+		    <h3>
 			<h3>  <b style="text-decoration : underline">رمز البرنامج :</b> {{$eng->portefeuille}}.{{$eng->programme}} 
                  &emsp;&emsp;&emsp;{{$prog->designation}}  &emsp;&emsp;&emsp;&emsp;</h3>
 		    <h3>
