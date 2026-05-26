@@ -179,25 +179,7 @@ $ordre = $eng->order_ville;
             
 		</div>
 		<div dir="rtl" style="float: right; margin-right: 30px; text-align : right; width : 100%;">
-			<h3>  رقم العملية :&emsp;
-				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
-				<?php 
-				$numero = str_replace(".","",$eng->numero);
-				$numeros = str_split($numero); 
-				
-				?>
-				<?php $max = count($numeros); $i = 0;?>
-				@foreach ($numeros as $n)
-				<?php $i++; ?>
-					@if($n !== '-' && $n !== '/' && $n !== '.' && $n !== ',')
-						@if($i == $max)
-						<span style='font-weight : bold; padding : 2px 2px 2px 2px;'>{{$n}}</span>
-						@else
-						<span style='font-weight : bold; border-right : 3px solid; padding : 2px 5px 2px 2px;'>{{$n}}</span>
-						@endif 
-					@endif
-				 @endforeach
-			</span>
+			<h3>  رقم العملية : {{$eng->numero}}
 			</h3>
 			</div>
 		<div dir="rtl" style="float: right; text-align : right; width : 100%;">

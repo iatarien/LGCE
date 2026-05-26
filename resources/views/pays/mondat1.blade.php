@@ -104,7 +104,14 @@
                     </th>
                     <th style="background-color : lightgray">الأمر بالصرف </th>
 				</tr>
-				
+				@if($ville_fr=="Tamenrasset")
+				<tr>
+					<th> 
+						{{$ministere}}
+                    </th>
+                    <th style="background-color : lightgray">وزارة  </th>
+				</tr>
+				@endif
 			</table>
 		</div>
 		<div style="width: 30%; margin-top: 5%; margin-right: 10%; text-align: center; float: right;">
@@ -125,7 +132,11 @@
                     <td style="width: 50%;">التاريخ</td>
                 </tr>
                 <tr>
-                    <td style="width: 50%;">حوالة</td>
+					@if($ville_fr=="Tamenrasset")
+                    <td style="width: 50%;">{{$bank->bank}}ََ</td>
+					@else
+					<td style="width: 50%;">حوالة</td>
+					@endif
                     <td style="width: 50%;">طريقة الدفع</td>
                 </tr>
 
@@ -306,8 +317,16 @@
 					{{$bank->bank_acc}}َ<br>
 					{{$bank->bank}}ََ <br>وكالة {{$bank->bank_agc}}
 				</td>
+				@if($ville_fr =="Tamenrasset")
+				<td colspan="2">{{ $pay->deal_type }} رقم {{ $pay->deal_num }} <br>
+				@if($pay->deal_date != NULL)
+				بتاريخ {{ $pay->deal_date }}
+				@endif
+				</td>
+				@else
                 <td></td>
 				<td ></td>
+				@endif
                 <td>/</td>
 				
             </tr>

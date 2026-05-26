@@ -205,7 +205,11 @@ $cdars = true;
         </div>
 
 		<div style="  display: inline-block; float: right; ">
-            <h3 dir="rtl" style="text-align : right;"> رمز الأمر بالصرف : {{$ordre}}<br>
+            <h3 dir="rtl" style="text-align : right;">
+            @if($ville_fr=="Tamenrasset")
+            وزارة :  {{$ministere}} <br>
+            @endif
+            رمز الأمر بالصرف : {{$ordre}}<br>
 			سنة التسيير : {{$year}} <br>
              رقم جدول الحوالة :  <br>
              تاريخ جدول الحوالة :  <br>
