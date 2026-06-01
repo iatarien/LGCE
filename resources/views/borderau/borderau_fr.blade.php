@@ -15,15 +15,21 @@
 		html,body{
 			height:297mm;
 	    	width:210mm;
-			overflow-y : hidden !important;
+			//overflow-y : hidden !important;
 		}
+        .pagebreak { 
+            clear: both;
+            break-after:page;
+            page-break-before: always; 
+            page-break-after: always; 
+        } /* page-break-after works, as well */
 		
 	}
 	html,body{
 	    height:287mm;
 	    width:210mm;
 	    margin: auto;
-	    line-height: 1.6;
+	    line-height: 1.2;
 	    -webkit-print-color-adjust: exact !important;
 	}
     table{
@@ -49,11 +55,24 @@
 
 
 </style>
+<?php 
+$j = 0;
+$debut = 0;
+$indice = 5;
+$tot = count($engs);
+$n = ceil($tot/$indice);
+$i = 1;
 
+$cdars = false;
+if (str_contains($direction, 'محافظة تنمية الفلاحة')) {
+$cdars = true;
+}
+//echo $direction."\n".$cdars;
+?>
 </head>
 <body contenteditable="true">
 
-<section  style="background-color: white; text-align: center; font-size: 12.5px; margin: 20px;" id="fiche">
+<section  style="background-color: white; text-align: center; font-size: 11.5px; margin: 20px;" id="fiche">
 	<div id="fiche_top">
 		<div style="  display: inline-block; text-decoration : underline; ">
 			<h3 style="text-decoration: underline; padding: 0px 5px 0px 5px;">  République Algérienne démocratique et populaire   </h3>
@@ -76,50 +95,74 @@
 			<h3 style="background-color: rgb(210,210,210)  !important;  padding: 0px 5px 0px 5px;">  Borderau d'envoi </h3>
 		</div>
 		<div dir="ltr" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
-            <table>
-                <tr>
+
+        <?php while($j < $n && $debut < $tot){
+                    // echo ("j = ".$j."<br>");
+                    // echo ("debut = ".$debut."<br>");
+                    // echo ("fin = ".$fin."<br>");
+                    // echo"<tr>";
+                    if( $j < 2 && $j > 0 ){
+                        $indice = 6;
+                        
+                    }
+                    
+
+                    $engss = array_slice($engs, $debut, $indice);  
+                    $j++;
+                    $debut += $indice;
+                     
+                //}
+                ?>
+            <table dir="ltr" style="border-left : none; border-right : none;">
+                <tr style="border : white !important;">
                     <th style="width : 5%;">Numéro </th>
-                    <th style="width : 30%;">N° et intitulé de l'opération </th>
+                    <th style="width : 32%;">N° et intitulé de l'opération </th>
                     <th style="width : 25%;"> Objet d'engagement</th>
                     <th style="width : 15%;"> Entreprise</th>
                     <th style="width : 15%;">Mondant</th>
-                    <th style="width : 10%;">Observation</th>
+                    <th style="width : 8%;">Observation</th>
                 </tr>
-                <?php $i = 1;
-                $eng = $engs[0]; ?>
+                <?php 
+                $m = count($engss);
+                $eng = $engss[0]; ?>
                 <tr>
-                    <td style="widtd : 5%;">{{$i}}</td>
-                    <td style="widtd : 30%;"><span style="text-decoration : underline" >
+                    <td style="">{{$i}}</td>
+                    <td style=""><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule}}</td>
-                    <td style="widtd : 25%;">{{$eng->real_sujet}}</td>
+                    <td style=";">{{$eng->real_sujet}}</td>
                     @if($eng->name =="")
-                    <td style="widtd : 15%;">/</td>
+                    <td >/</td>
                     @else
-                    <td style="widtd : 15%;">{{$eng->name}}</td>
+                    <td style="">{{$eng->name}}</td>
                     @endif
-                    <td  style="widtd : 15%;"><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> DA</td>
-                    <td style="widtd : 10%;" rowspan="{{$n}}">Pour viser</td>
+                    <td  style=""><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> DA</td>
+                    <td style="" rowspan="{{$m}}">Pour Visa</td>
                 </tr>
-                <?php array_shift($engs);?>
-                @foreach($engs as $eng)
+                <?php array_shift($engss);?>
+                @foreach($engss as $eng)
                 <?php $i++; ?>
                 <tr>
-                    <td style="widtd : 5%;">{{$i}}</td>
-                    <td style="widtd : 30%;"><span style="text-decoration : underline" >
+                    <td style="">{{$i}}</td>
+                    <td style=""><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule}}</td>
-                    <td style="widtd : 25%;">{{$eng->real_sujet}}</td>
+                    <td style="">{{$eng->real_sujet}}</td>
                     @if($eng->name =="")
-                    <td style="widtd : 20%;">/</td>
+                    <td style="">/</td>
                     @else
-                    <td style="widtd : 20%;">{{$eng->name}}</td>
+                    <td style="">{{$eng->name}}</td>
                     @endif
-                    <td style="widtd : 15%;"><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> DA</td>
+                    <td style=""><span dir="ltr">{{ number_format((float)$eng->montant_eng, 2, '.', ' ')}}</span> DA</td>
                 </tr>
                 @endforeach
                 
             </table>
 	    </div>
-        <br><br><br><br>
+        @if($j <$n && $debut < $tot)
+        <div class="pagebreak"></div>
+        @endif
+
+            <?php $i++; } ?>
+            <br><br><br><br>
         <div style="text-align : right; margin-right : 10%; font-weight : bold; font-size : 11px;">
         <h2>signature</h2>
         </div>

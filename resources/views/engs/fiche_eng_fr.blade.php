@@ -201,7 +201,7 @@
 				<th style="text-align : left; width : 30%"> Imputation budgétaire Cat/S.cat</th>
 			</tr>
 			<tbody id="with_all" style="display : none">
-            @foreach($titres1 as $titre)
+            @foreach($titres as $titre)
 				<tr dir="ltr" style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
@@ -211,7 +211,7 @@
 					<td dir="ltr">{{$titre->code." ".$titre->definition_fr}}</td>
 				</tr>
 				@foreach($titre->rebriques as $reb)
-				@if($reb->sous_montant != 0)
+				@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 				<tr dir="ltr">	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
@@ -227,7 +227,7 @@
 
 			</tbody>
 			<tbody id="with_sous" style="display : none;">
-			@foreach($titres1 as $titre)
+			@foreach($titres as $titre)
 				<tr dir="ltr" style='font-weight : 900;'>	
 					<td>/</td>
 					<td>/</td>
@@ -237,7 +237,7 @@
 					<td dir="ltr">{{$titre->code." ".$titre->definition_fr}}</td>
 				</tr>
 				@foreach($titre->rebriques as $reb)
-				@if($reb->sous_montant != 0)
+				@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 				<tr dir="ltr" style='font-weight : 900;'>	
 					<td>{{ number_format((float)$reb->sous_montant_2, 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$reb->sous_montant, 2, '.', ' ')}}</td>
@@ -251,7 +251,7 @@
 			@endforeach
 			</tbody>
 			<tbody id="with_none" style="display : none">
-			@foreach($titres1 as $titre)
+			@foreach($titres as $titre)
 				<tr dir="ltr" style='font-weight : 900;'>	
 					<td>{{ number_format((float)$titre->sums["montant_2"], 2, '.', ' ')}}</td>
 					<td>{{ number_format((float)$titre->sums["montant"], 2, '.', ' ')}}</td>
@@ -261,7 +261,7 @@
 					<td dir="ltr">{{$titre->code." ".$titre->definition_fr}}</td>
 				</tr>
 				@foreach($titre->rebriques as $reb)
-				@if($reb->sous_montant != 0)
+				@if($reb->sous_montant != 0 || $reb->sous_montant_2 != 0 || $reb->sous_montant_1 != 0)
 				<tr dir="ltr">	
 					<td>/</td>
 					<td>/</td>

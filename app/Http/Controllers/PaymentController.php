@@ -343,9 +343,13 @@ class PaymentController extends Controller
             $txt1 = $txt1."   لمشروع ".$pay->lot;
         }
 
-        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
+        if($this->ville_fr =="Biskra"){
             $view ='pays.mondat1';
             $view = $view."_fr";
+        }
+        if($this->lang =="fr"){
+            $view ='pays.mondat1';
+            $view = $view."_fr_new";
         }
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,'txt'=>$txt,'txt1'=>$txt1,
