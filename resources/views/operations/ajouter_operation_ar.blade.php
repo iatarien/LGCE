@@ -255,7 +255,11 @@ function get_sous(code){
 	});
 }
 function sous(code){	
+	codes = code.split("*1989raouf1989*");
+	sous_id = codes[0];
+	code = codes[1];
 	var numero = document.getElementById('numero');
+	document.getElementById('sous_id').value = sous_id;
 	const div_porte = document.getElementById('div-porte').innerHTML; 
 	const div_prog = document.getElementById('div-prog').innerHTML; 
 	const div_sous = document.getElementById('div-sous').innerHTML = code; 
@@ -300,7 +304,7 @@ function display1(progs){
 	var tds = "";
 	for (var i = 0; i < progs.length; i++) {
 		tds +=
-		'<option value="'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation+'</option>';
+		'<option value="'+progs[i].id+'*1989raouf1989*'+progs[i].code+'">'+progs[i].code+' - '+progs[i].designation+'</option>';
 	}
 	document.getElementById('sous_programme').innerHTML = tds;
 }

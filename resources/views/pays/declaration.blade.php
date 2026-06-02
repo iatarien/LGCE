@@ -112,7 +112,7 @@ $ordre = $op->order_ville;
                 </tr>
                 <tr>
 				<?php $sousy =  $op->sous_action; ?>
-					@if($ville_fr =="Mila" )
+					@if($ville_fr =="Mila" || $ville_fr=="Touggourt")
 					<?php $sousy = explode(".",$op->sous_action)[0]; ?>
 					@endif
                     <td>النشاط الفرعي </td>
@@ -160,7 +160,7 @@ $ordre = $op->order_ville;
 			@endif
 		</div>
         
-		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
+		<div dir="rtl" style="  display: inline-block; width : 90%; font-weight :  normal; text-align : justify; ">
             <table style="border : none;  min-height : 200px;">
                 <tr>
                     <th style="width : 25%;">تحديد المستفيد  </th>
@@ -174,7 +174,11 @@ $ordre = $op->order_ville;
 				</tr>
                 <tr>
                     <td>{{$bank->bank_user}}</td>
+					@if($ville_fr == "Touggourt")
+					<td>{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
+					@else
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
+					@endif
                     <td>
 						{{$bank->bank_acc}} <br>
 						@if($ville_fr =="Ouargla" || $ville_fr=="Touggourt")

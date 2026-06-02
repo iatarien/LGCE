@@ -273,6 +273,7 @@ class OperationsController extends Controller
 
     }
     public function add_op_ar(Request $request){
+
         $user = Auth::user()->id;
         $portefeuille = $request['portefeuille'];
         $programme = $request['programme'];

@@ -182,7 +182,9 @@ $ordre = $op->order_ville;
 			<h3>   N° RIB :&emsp;
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
-
+				if($ville_fr =="Tiaret"){
+					$compte_tresor ="00814001914100010067";
+				}
 				$numero = str_replace(" ","",$compte_tresor);
 				$numeros = str_split($numero); 
 				

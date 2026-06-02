@@ -235,7 +235,7 @@
 			</div>
 			<br>
 			<div style="float: right; text-align: right;">
-				@if($direction_fr="Direction des Services Agricoles")
+				@if($direction_fr=="Direction des Services Agricoles")
 					@if($pay->deal_date != NULL )
 						@if($pay->travaux_num !=NULL)
 							<p dir="rtl">   ان السيد مدير  {{$direction}} لولاية {{$ville}}  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}/{{ date('Y', strtotime($pay->deal_date)) }} المصادق عليها في {{ $pay->deal_date}} 
@@ -253,6 +253,24 @@
 							لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم   <br>  و نظرا  ل{{ $pay->travaux_type }} رقم    {{ $pay->travaux_num }} بتاريخ   <span dir="ltr">{{ $pay->date_pay }}</span>  <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>
 						@endif
 					@endif
+				@elseif($ville_fr=="Touggourt")
+					@if($pay->deal_date != NULL )
+						@if($pay->travaux_num !=NULL)
+							<p dir="rtl">   نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}/{{ date('Y', strtotime($pay->deal_date)) }} المصادق عليها في {{ $pay->deal_date}} 
+							لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  رقم     <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>
+						@else
+							<p dir="rtl">  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}/{{ date('Y', strtotime($pay->deal_date)) }} المصادق عليها في {{ $pay->deal_date}} 
+							لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم   <br>  و نظرا  ل{{ $pay->travaux_type }} رقم    {{ $pay->travaux_num }} بتاريخ   <span dir="ltr">{{ $pay->date_pay }}</span>  <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>		
+						@endif
+					@else 
+						@if($pay->travaux_num !=NULL)
+							<p dir="rtl">  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }}
+							لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم     <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>		
+						@else
+							<p dir="rtl">  <br> نظرا {{ "ل".$pay->deal_type }} رقم  {{ $pay->deal_num }} 
+							لفائدة المقاول  المذكور أعلاه لغرض تنفيذ الأشغال المذكورة سابقا و المحددة حسب جدول الأسعار  <br> نظرا لوثائق  ؤقم   <br>  و نظرا  ل{{ $pay->travaux_type }} رقم    {{ $pay->travaux_num }} بتاريخ   <span dir="ltr">{{ $pay->date_pay }}</span>  <br> و المنتج عنه الأعمال المتمة و النفقات التي تمت بموجب رقم المشار إليها </p>
+						@endif
+					@endif	
 				@else
 					@if($pay->deal_date != NULL )
 						@if($pay->travaux_num !=NULL)

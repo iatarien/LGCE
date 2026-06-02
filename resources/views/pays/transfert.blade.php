@@ -107,7 +107,7 @@ $ordre = $op->order_ville;
                 </tr>
                 <tr>
 				<?php $sousy =  $op->sous_action; ?>
-					@if($ville_fr =="Mila" )
+					@if($ville_fr =="Mila" || $ville_fr == "Touggourt")
 					<?php $sousy = explode(".",$op->sous_action)[0]; ?>
 					@endif
                     <td>النشاط الفرعي </td>
@@ -187,7 +187,11 @@ $ordre = $op->order_ville;
 							@endif
 						@endif
 					</td>
+					@if($ville_fr == "Touggourt")
+					<td>{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
+					@else
 					<td>{{$prog->code}}.{{$sous_prog->code}}<br>{{$sous_prog->designation}}</td>
+					@endif
                     <td dir="ltr">{{ number_format((float)$pay->total_done, 2, '.', ' ')}} </td>
                     <td dir="ltr">{{ number_format((float)$pay->total_cut, 2, '.', ' ')}}</td>
                     <td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}} </td>

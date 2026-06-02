@@ -44,7 +44,7 @@ $text = ucfirst($text);
 				height:280mm;
 				width:420mm;
 				overflow-y : hidden !important;
-				zoom : 110%;
+				zoom : 80%;
 			}
 			
 		}
@@ -53,8 +53,8 @@ $text = ucfirst($text);
 			height: 280mm;
 			margin: auto;
 			margin-top: 2%;
-			font-size: 14px;
-			line-height: 1.5em;
+			font-size: 12px;
+			line-height: 1.2em;
 			-webkit-print-color-adjust: exact !important;
 		}
 		#fiche {
@@ -204,7 +204,7 @@ $ordre = $op->order_ville;
 		<h3>Libellé de l'operation : {{$op->intitule}} </h3>
 		<h3>Numero de l'operation : {{$op->numero}} </h3>
 	</div>
-    <div style="width: 90%; margin-left: 5%; float: left; font-size : 18px;">
+    <div style="width: 90%; margin-left: 5%; float: left; font-size : 12px;">
     	<table id="things" dir="ltr" style="text-align: center">
             <tr>
                 <td rowspan="2" style="text-align : center; width : 15%;">
@@ -283,7 +283,7 @@ $ordre = $op->order_ville;
 			</tr>
 		</table>
 		<br>
-		<span style="font-size : 14px;"> Date de Réglement </span><br>
+		<span style="font-size : 12px;"> Date de Réglement </span><br>
 	</div>
 </section>
 
