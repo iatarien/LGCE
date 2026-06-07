@@ -182,7 +182,9 @@ $text = ucfirst($text);
 			<h3>   حساب التعريف البنكي :&emsp;
 				<span dir="ltr" style=" border : 3px solid; padding : 5px 5px 5px 5px;"> 
 				<?php 
-
+				if($ville_fr =="Touggourt"){
+					$compte_tresor ="00855001075555500151";
+				}
 				$numero = str_replace(" ","",$compte_tresor);
 				$numeros = str_split($numero); 
 				
