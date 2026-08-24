@@ -640,7 +640,11 @@ function subject(){
       }
     @endif
     txt += "المبرمة مع "+e+" ";
-    txt += "ل"+projet+" حصة : "+lot;
+    txt += "ل"+projet;
+    if(lot != "" && lot != " "){
+      txt +=" حصة : "+lot;
+    }
+
   @endif
   
 
