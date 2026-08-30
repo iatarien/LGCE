@@ -21,3 +21,5 @@ UPDATE `programme` SET `designation` = 'التوصيل وشبكات التوزي
 UPDATE `programme` SET `designation` = 'شبكة الصرف الصحي و أنظمة التطهير' WHERE `programme`.`id` = 315;
 UPDATE `programme` SET `designation` = 'حماية المدن من الفيضانات' WHERE `programme`.`id` = 316;
 
+UPDATE `programme` SET `portefeuille` = '021' WHERE `programme`.`id` = 101;
+ALTER TABLE `deals` CHANGE `lot` `lot` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;

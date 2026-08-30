@@ -203,7 +203,7 @@
                     <label class="control-label col-sm-2" style="text-align : right; font-weight: bold;" for="title">  الحصة </label>
 	            
                     <div class="col-sm-7">
-                        <textarea  style="resize: none; color: black;" rows="5" required="" class="form-control" name="lot" id="sujet" ></textarea>
+                        <textarea  style="resize: none; color: black;" rows="5"  class="form-control" name="lot" id="sujet" ></textarea>
                     </div>
                 </div><br>
 
