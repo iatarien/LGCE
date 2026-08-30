@@ -195,7 +195,7 @@ $ordre = $op->order_ville;
                 </tr>
             </table>
 						<br>
-					@if($ville_fr =="Ouargla")
+			@if($ville_fr =="Ouargla" || $ville_fr =="Touggourt")
 			<div align= "center">
 			توقف مجموع هذا الجدول على مبلغ : <b id="montant">   </b>
 			<div>
