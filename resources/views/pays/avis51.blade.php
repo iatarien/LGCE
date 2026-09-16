@@ -129,7 +129,7 @@ $txt =$txt." Relative à : ".$pay->lot;
                     <td>{{$bank->bank_user}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
-                        <?php //{{$bank->bank}} Agence : {{$bank->bank_agc}} ?>
+                        {{$bank->bank}} Agence : {{$bank->bank_agc}} 
 					</td>
 					<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
                     <td dir="ltr"></td>
@@ -173,7 +173,7 @@ $txt =$txt." Relative à : ".$pay->lot;
                     <td>{{$bank->bank_user}}</td>
                     <td>
 						{{$bank->bank_acc}} <br>
-                        <?php //{{$bank->bank}} Agence : {{$bank->bank_agc}} ?>
+                        {{$bank->bank}} Agence : {{$bank->bank_agc}} 
 					</td>
 					<td dir="ltr">{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</td>
 
