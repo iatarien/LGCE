@@ -188,7 +188,7 @@
 
 		<div dir="rtl" style="float: right; text-align : right; width : 100%;">
 			<h3> عنوان العملية  : <span>{{$op->intitule_ar}}<span>   </h3>
-            <h3> موضوع الدفع : <span>{{$sujet}}</span>   </h3>
+            <h3 contenteditable="true"> موضوع الدفع : <span  >{{$sujet}}</span>   </h3>
             <br>
             <h3 style="text-decoration : underline;"> <span style="visibility : hidden;">&emsp;&emsp;</span> هيكل المدفوعات المقترح  </h3>
 		</div>

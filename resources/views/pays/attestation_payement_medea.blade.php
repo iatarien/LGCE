@@ -136,6 +136,10 @@
 </style>
 
 </head>
+<?php $num = 1; ?>
+@foreach($old_pays as $oldpay)
+<?php $num++;?>
+@endforeach
 <body contenteditable ="true">
 
 <section id="fiche">
@@ -150,7 +154,7 @@
 		</div>
 	<div style="width : 60%; border: 1px solid;  background-color: rgb(245,245,245) !important;">
 		<br>
-		<span style="font-size: 1.3em; font-weight: bold;">     شهـــــــــــــــــــــــــادة  للـــــــــــــــدفع رقم {{ $pay->num }}  </span>
+		<span style="font-size: 1.3em; font-weight: bold;">     شهـــــــــــــــــــــــــادة  للـــــــــــــــدفع رقم {{ $num }}  </span>
 		<br><br>
 	</div>
 	<br>
@@ -186,7 +190,7 @@
 				 الباقي للدفع :
 				</span>
 				<br>
-				يشهد أنه يمكن الدفع لمفاولة : ؤ
+				يشهد أنه يمكن الدفع لمفاولة : {{$e->name}}
 				<br>
 				<span style="font-weight : bold;">
 				  من البرنامج : </span>{{$op->programme}} &emsp; <span style="font-weight : bold;"> المادة : </span>001 <br>
@@ -214,18 +218,28 @@
 		<div style="width: 35%; display: inline-block; margin-left: 4%; margin-top : 20px; float : right;">
 			<table id="summary">
 				<tr>
-					<th>المبلغ   </th>
-					<th> الرقم </th>
+					<th style="width : 40%">المبلغ   </th>
+					<th style="width : 20%"> الرقم </th>
 					<th> التاريخ     </th>
-					<th> السنة المالية </th>
+					<th style="width : 20%"> السنة المالية </th>
 
 				</tr>
-				<tr>
-					<td>&emsp;</td>
-					<td></td>
-					<td></td>
-					<td></td>
+				<?php $total =$pay->to_pay; 
+				$total1 = 0;
+				?>
+				@foreach($old_pays as $oldpay)
+				<?php $total = $total + $oldpay->to_pay; 
+				$total1 = $total1 + $oldpay->to_pay; ?>
+				<tr style="font-size : 12px">
+					<?php $first4 = substr($oldpay->date_mondat, 0, 4); ?>
+					<td><span>{{ number_format((float)$oldpay->to_pay, 2, '.', ' ')}}</span></td>
+					<td>{{$oldpay->num_mondat}}</td>
+                    <td>{{$oldpay->date_mondat}}</td>
+
+
+					<td>{{$first4}}</td>
 				</tr>
+				@endforeach
 				<tr>
 					<td>&emsp;</td>
 					<td></td>
@@ -290,9 +304,9 @@
 				
 
 			</table>
-			<table id="summary-bottom">
+			<table id="summary-bottom" style="font-size : 14px">
 				<tr>
-					<td>@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
+					<td style="width : 34%">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
 					<td > ..........  المجمـــــــوع    </td>
 				</tr>
 				<tr>

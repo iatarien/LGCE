@@ -268,12 +268,7 @@ $text = ucfirst($text);
 					<td><span>{{ number_format((float)$oldpay->to_pay, 2, '.', ' ')}}</span></td>
 				</tr>
 				@endforeach
-				<tr>
-                    <td>{{$pay->year}}</td>
-                    <td></td>
-					<td><span>@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</span></td>
 
-				</tr>
 				<tr>
 					<td>&emsp;</td>
 					<td></td>
