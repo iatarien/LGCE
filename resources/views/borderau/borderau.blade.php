@@ -107,12 +107,12 @@ $cdars = true;
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
         <table>
                 <tr>
-                    <th style="width : 5%;">الرقم </th>
+                    <th style="width : 7%;">الرقم </th>
                     <th style="width : 30%;"> رقم و تعيين العملية</th>
                     <th style="width : 25%;">موضوع الإلتزام</th>
                     <th style="width : 15%;">المتعامل المتعاقد</th>
                     <th style="width : 15%;">المبلغ</th>
-                    <th style="width : 10%;">الملاحظة</th>
+                    <th style="width : 8%;">الملاحظة</th>
                 </tr>
         </table>
         <?php while($j < $n && $debut < $tot){
@@ -145,7 +145,11 @@ $cdars = true;
                 $m = count($engss);
                 $eng = $engss[0]; ?>
                 <tr>
-                    <td style="">{{$i}}</td>
+                    @if($ville_fr =="Ouled Djellal")
+                    <td style="width : 7%;">{{$eng->numero_fiche}}</td>
+                    @else
+                    <td style="width : 7%;">{{$i}}</td>
+                    @endif
                     <td style=""><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule_ar}}</td>
                     <td style=";">{{$eng->real_sujet}}</td>
@@ -161,7 +165,11 @@ $cdars = true;
                 @foreach($engss as $eng)
                 <?php $i++; ?>
                 <tr>
+                    @if($ville_fr =="Ouled Djellal")
+                    <td style="">{{$eng->numero_fiche}}</td>
+                    @else
                     <td style="">{{$i}}</td>
+                    @endif
                     <td style=""><span style="text-decoration : underline" >
                     {{$eng->numero}}</span><br>{{$eng->intitule_ar}}</td>
                     <td style="">{{$eng->real_sujet}}</td>
