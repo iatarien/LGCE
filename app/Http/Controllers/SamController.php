@@ -53,6 +53,7 @@ class SamController extends Controller
 
     public function get_cumul($portefeuille,$filters="",$op="")
     {   
+        $year_before = $this->year -1;
         $query="SELECT *,id as oper_id FROM operations WHERE date_cloture IS NULL AND ";
         if ($portefeuille != "" && $portefeuille != "all" ){
             $query = $query." operations.portefeuille = '".$portefeuille."' AND "; 
@@ -101,11 +102,11 @@ class SamController extends Controller
             WHERE payments.visa IS NOT NULL AND reb_pay.op = ".$c_tot->oper_id;
             $q2 ="SELECT sum(montant) as eng_2023 FROM engagements 
             WHERE engagements.type='eng'  
-            AND engagements.date_visa <= '2023-12-31' AND engagements.date_visa >= '2023-01-01' AND id_op = ".$c_tot->oper_id;
+            AND engagements.date_visa <= '".$year_before."-12-31' AND engagements.date_visa >= '".$year_before."-01-01' AND id_op = ".$c_tot->oper_id;
 
             $q3 = "SELECT SUM(to_pay) as pay_2023 FROM payments INNER JOIN 
             reb_pay ON reb_pay.id = payments.rebrique WHERE 
-            payments.visa <= '2023-12-31' and payments.visa >= '2023-01-01' 
+            payments.visa <= '".$year_before."-12-31' and payments.visa >= '".$year_before."-01-01' 
             AND reb_pay.op = ".$c_tot->oper_id;
             
             $qe2023 ="SELECT real_sujet, sum(montant) as eng_2024 FROM engagements 

@@ -5,7 +5,12 @@ table {
 	table-layout: auto;
 	overflow-y : scroll;
 }
-
+table tr {
+	font-size : 10.5px !important;
+}
+table td h5 {
+    font-size: 10.5px !important;
+}
 .dropdown-content {
   display: block;
   position: absolute;
@@ -260,20 +265,23 @@ function supprimer(id){
 }
 function display(operations,value,order){
 	const user_id = "{{$user->id}}";
-	
+	var year_before = "{{$the_year}}"; 
+	year_before--;
 	var user_service = "{{ $user->service }}";
 	var tds = '<tr style=" cursor : pointer; font-weight : bolder;">'+
 		        '<td style="cursor : pointer; width : 2%; id="0" onclick="load_ops(\'0\')" ><div>#</div></td>'+
-		        '<td style="cursor : pointer; width : 14%;" id="source" onclick="load_ops(\'source\')" ><div>  رقم العملية و تعيين العملية </div></td>'+
-				'<td style="cursor : pointer; width : 4%;" id="source" onclick="load_ops(\'source\')" ><div> النشاط </div></td>'+
+		        '<td style="cursor : pointer; width : %;" id="source" onclick="load_ops(\'source\')" ><div>  رقم العملية و تعيين العملية </div></td>'+
+				'<td style="cursor : pointer; width : 2%;" id="source" onclick="load_ops(\'source\')" ><div> النشاط </div></td>'+
 		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>رخصة الإلتزام الحالي</div></td>'+
 				'<td style="cursor : pointer; width : 10%;" id="eng_cumul" onclick="load_ops(\'eng_cumul\')" ><div> مجموع الإلتزامات</div></td>'+
 		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>  مجموع الدفعات</div></td>'+
+				'<td style="cursor : pointer; width : 10%;" id="eng_cumul" onclick="load_ops(\'eng_cumul\')" ><div> مجموع الإلتزامات إلى غاية <br> 31-12-'+year_before+'</div></td>'+
+		        '<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>   مجموع الدفعات إلى غاية <br> 31-12-'+year_before+'</div></td>'+
 				'<td style="cursor : pointer; width : 10%;" id="pay_cumul" onclick="load_ops(\'pay_cumul\')" ><div>  CP {{$the_year}} </div></td>'+
-		        '<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div>  PEC</div></td>'+
-				'<td style="cursor : pointer; width : 9.5%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div> Solde sur AE</div></td>'+
-				'<td style="cursor : pointer; text-align : center; width : 5%;"><div><i class="bi bi-pencil"></i></div></td>'+
-				'<td style="cursor : pointer; text-align : center; width : 5%;"><div><i class="bi bi-trash"></i></div></td>'+
+		        '<td style="cursor : pointer; width : 10%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div>  PEC</div></td>'+
+				'<td style="cursor : pointer; width : 10%; text-align : right;" id="taux" onclick="load_ops(\'taux\')" ><div> Solde sur AE</div></td>'+
+				'<td style="cursor : pointer; text-align : center; width : 4%;"><div><i class="bi bi-pencil"></i></div></td>'+
+				'<td style="cursor : pointer; text-align : center; width : 4%;"><div><i class="bi bi-trash"></i></div></td>'+
 		      '</tr>';
 	const op = operations;
 	console.log()
@@ -295,6 +303,12 @@ function display(operations,value,order){
 		    '</td>'+
 			'<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].somme_total_pay)+'</strong></h5></span>'+
+		    '</td>'+
+			'<td>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].eng_2023)+'</strong></h5></span>'+
+		    '</td>'+
+			'<td>'+
+		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].pay_2023)+'</strong></h5></span>'+
 		    '</td>'+
 			'<td>'+
 		        '<span><h5 style="text-align : right" dir="ltr"><strong>'+numberWithCommas(op[i].montant_cp)+'</strong></h5></span>'+
