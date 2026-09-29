@@ -44,7 +44,7 @@ $txt =$txt." Relative à : ".$pay->lot;
 	    height:210mm;
 	    width:287mm;
 	    margin: auto;
-	    line-height: 1.5;
+	    line-height: 1.2;
         font-size : 8px;
 	    -webkit-print-color-adjust: exact !important;
 	}

@@ -147,16 +147,16 @@ class SamController extends Controller
             }else{
                 $c_tot->montant_cp = $cp[0]->montant_cp;
             }
-            // /* cumul_eng 2023 */
-            // $eng_2023 = DB::select( DB::raw($q2));
-            // if($eng_2023 != null){
-            //     $eng_2023 = $eng_2023[0]->eng_2023;
-            // }else{
-            //     $eng_2023 = 0;
-            // }
+            /* cumul_eng 2023 */
+            $eng_2023 = DB::select( DB::raw($q2));
+            if($eng_2023 != null){
+                $eng_2023 = $eng_2023[0]->eng_2023;
+            }else{
+                $eng_2023 = 0;
+            }
 
             // //echo $eng_2023;
-            // $c_tot->eng_2023 = $eng_2023;
+            $c_tot->eng_2023 = $eng_2023;
 
             //  /* cumul_eng 2024 */
             // $eng_2024 = DB::select( DB::raw($qe2023));
@@ -169,14 +169,14 @@ class SamController extends Controller
             // //echo $eng_2023;
             // $c_tot->eng_2024 = $eng_2024;
 
-            // /* cumul_pay 2022 */
-            // $pay_2023 = DB::select( DB::raw($q3));
-            // if($pay_2023 != null){
-            //     $pay_2023 = $pay_2023[0]->pay_2023;
-            // }else{
-            //     $pay_2023 = 0;
-            // }
-            // $c_tot->pay_2023 = $pay_2023;
+            /* cumul_pay 2022 */
+            $pay_2023 = DB::select( DB::raw($q3));
+            if($pay_2023 != null){
+                $pay_2023 = $pay_2023[0]->pay_2023;
+            }else{
+                $pay_2023 = 0;
+            }
+            $c_tot->pay_2023 = $pay_2023;
 
             // /* cumul_pay 2024 */
             // $pay_2024 = DB::select( DB::raw($qp2023));
@@ -204,6 +204,8 @@ class SamController extends Controller
         array_push($cumul_total,$eng);
         array_push($cumul_total,$pay);
         array_push($cumul_total,$cp);
+        array_push($cumul_total,$eng2023);
+        array_push($cumul_total,$pay2023);
         // array_push($cumul_total,$eng2023);
         // array_push($cumul_total,$pay2023);
         // array_push($cumul_total,$eng2024);
@@ -360,11 +362,11 @@ class SamController extends Controller
     public function situation($date="",$portefeuille,$filters="",$op=""){
         $user = Auth::user();
         $year = explode("-",$date)[0];
-
+        $year_before = $year - 1;
 
         $ops = $this->get_cumul($portefeuille,$filters,$op);
      
-        $ops = array_splice($ops, 0, -4);
+        $ops = array_splice($ops, 0, -6);
         $n = count($ops);
 
         for ($i = 0; $i < $n; $i++) {
@@ -376,6 +378,19 @@ class SamController extends Controller
             WHERE payments.visa <= '".$date."' and payments.visa >= '".$year."-01-01'
             AND reb_pay.op = ".$ops[$i]->id;
             $ops[$i]->pays = DB::select(DB::raw($q1))[0]->pays;
+
+            $q2 = "SELECT *,SUM(montant) as depenses FROM engagements WHERE id_op =".$ops[$i]->id." AND
+            type IN ('eng') AND  date_visa <= '".$year_before."-12-31' ";
+            $ops[$i]->depenses_before = DB::select(DB::raw($q2))[0]->depenses;
+
+            $q3 = "SELECT *,SUM(montant) as depenses FROM engagements WHERE id_op =".$ops[$i]->id." AND
+            type IN ('eng') AND  date_visa >= '".$year."-01-01' ";
+            $ops[$i]->depenses_year = DB::select(DB::raw($q3))[0]->depenses;
+
+            $q4 = "SELECT *,SUM(montant) as depenses FROM engagements WHERE id_op =".$ops[$i]->id." AND
+            type IN ('eng') AND  date_visa IS NULL ";
+            $ops[$i]->instance = DB::select(DB::raw($q4))[0]->depenses;
+
 
             $q = "SELECT montant_cp FROM cp WHERE ze_op =".$ops[$i]->id." AND year = ".$year;
             $cp = DB::select(DB::raw($q));
@@ -390,9 +405,17 @@ class SamController extends Controller
         $tots->montant_cp = array_sum(array_column($ops,'montant_cp'));
         $tots->AP_act = array_sum(array_column($ops,'AP_act'));
         $tots->depenses = array_sum(array_column($ops,'depenses'));
+        $tots->depenses_before = array_sum(array_column($ops,'depenses_before'));
+        $tots->depenses_year = array_sum(array_column($ops,'depenses_year'));
+        $tots->instance = array_sum(array_column($ops,'instance'));
+        
         $tots->pays = array_sum(array_column($ops,'pays'));
         //var_dump($chaps);
-       return view('sam.situation',
+        $view = 'sam.situation';
+        if($this->ville_fr =="Medea"){
+            $view = 'sam.situation_medea';
+        }
+       return view($view,
        ["year"=>$year,'ops'=>$ops,"date"=>$date,'tots'=>$tots]);
 
     }
