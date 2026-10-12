@@ -143,7 +143,7 @@ class PaymentController extends Controller
             }
             
         }
-        $query = $query." ORDER BY p_id DESC LIMIT 50";
+        $query = $query." ORDER BY p_id DESC LIMIT 200";
         //$pays = DB::table('payments')->leftjoin("engagements","engagements.id","=","payments.id_eng")->join('entreprises',"engagements.entreprise_id","=","entreprises.id")->join('operations','engagements.id_op','=','operations.id')->toSql();
         //return $query;
         return DB::select( DB::raw($query));
@@ -315,7 +315,7 @@ class PaymentController extends Controller
             $view = $view."_51";
         }
         if($this->ville_fr =="Medea"){
-            $view = $view."_fr";
+            $view = $view."_medea";
         }
         $txt = " ";
         if($pay->travaux_num != null){

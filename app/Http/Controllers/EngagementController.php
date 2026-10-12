@@ -714,7 +714,7 @@ class EngagementController extends Controller
                 $query = $query." e.user_id ='".$user_id."' AND";
             }
             if($first_type == "borderau"){
-                $query= $query." e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 100";
+                $query= $query." e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 200";
             }else{
                 if($user->service !="Comptabilité" && $user->service !="Engagement" && $user->service !="Paiement"){
                     $query= $query." e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 200";
