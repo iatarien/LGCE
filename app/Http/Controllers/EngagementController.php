@@ -717,9 +717,9 @@ class EngagementController extends Controller
                 $query= $query." e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 200";
             }else{
                 if($user->service !="Comptabilité" && $user->service !="Engagement" && $user->service !="Paiement"){
-                    $query= $query." e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 200";
+                    $query= $query." e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 300";
                 }else{
-                    $query= $query." 1 ORDER BY eng_id DESC LIMIT 100";
+                    $query= $query." 1 ORDER BY eng_id DESC LIMIT 300";
                 }
             }
             //echo $real_type;
@@ -731,20 +731,20 @@ class EngagementController extends Controller
                 INNER JOIN operations ON e.id_op = operations.id 
                 LEFT JOIN deals ON e.deal = deals.id_deal
                 LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
-                WHERE type IN (".$type.") AND e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 50";
+                WHERE type IN (".$type.") AND e.date_visa IS NOT NULL ORDER BY eng_id DESC LIMIT 100";
             }else{
                 if($first_type =="borderau"){
                     $query = "SELECT *, e.id, as eng_id,e.user_id as user_id, e.montant as montant FROM engagements e 
                     INNER JOIN operations ON e.id_op = operations.id 
                     LEFT JOIN deals ON e.deal = deals.id_deal
                     LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
-                    WHERE type IN (".$type.") AND e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 50";
+                    WHERE type IN (".$type.") AND e.date_visa IS NULL ORDER BY eng_id DESC LIMIT 100";
                 }else{
                     $query = "SELECT *, e.id as eng_id,e.user_id as user_id, e.montant as montant  FROM engagements e 
                     INNER JOIN operations ON e.id_op = operations.id 
                     LEFT JOIN deals ON e.deal = deals.id_deal
                     LEFT JOIN entreprises ON deals.entreprise = entreprises.id 
-                    WHERE type IN (".$type.") ORDER BY eng_id DESC LIMIT 50";
+                    WHERE type IN (".$type.") ORDER BY eng_id DESC LIMIT 100";
                 }
                 
             }
