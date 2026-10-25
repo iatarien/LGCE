@@ -24,7 +24,7 @@
 	    width:210mm;
 	    margin: auto;
 	    margin-top: 5mm !important;
-	    line-height: 1.3;
+	    line-height: 1.2;
 	    font-size: 15px;
 	    -webkit-print-color-adjust: exact !important;
 		page-break-after: auto;
@@ -575,7 +575,7 @@
 	
 
 </section>
-<br><br><br><br>
+<br><br>
 <div align="center" id="bouton">
 	<button  style="
 	  background-color: lightgray; /* Green */
