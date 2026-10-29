@@ -809,10 +809,12 @@ class PaymentController extends Controller
             $sous_prog->designation = "";   
         }
         $view ='pays.transfert';
-        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
+        if($this->lang =="fr"){
             $view = $view."_fr";
         }
-
+        if($this->ville_fr =="Biskra"){
+            $view = $view."_biskra";
+        }
         
         $txt = " ";
         if($pay->travaux_num != null){
@@ -916,8 +918,11 @@ class PaymentController extends Controller
         }
         $view ='pays.avis';
         
-        if($this->lang =="fr" || $this->ville_fr =="Biskra"){
+        if($this->lang =="fr"){
             $view = $view."_fr";
+        }
+        if($this->ville_fr =="Biskra"){
+            $view = $view."_biskra";
         }
 
         if($this->ville_fr =="Mila"){
