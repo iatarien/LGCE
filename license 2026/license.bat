@@ -1,6 +1,6 @@
 @echo off
-php 2025.php
+php 2027.php
 
-echo Mise a jour au 31-10-2025 effectue avec success
+echo Mise a jour au 31-10-2027 effectue avec success
 
 pause
