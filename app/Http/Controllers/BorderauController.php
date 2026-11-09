@@ -41,7 +41,8 @@ class BorderauController extends Controller
         if($type == "eng"){
             $user = Auth::user();
             $year = $this->year;
-            $query = "SELECT *, engagements.montant as montant_eng from engagements 
+            $query = "SELECT *, engagements.montant as montant_eng,engagements.id as id_eng 
+            from engagements 
             LEFT JOIN operations ON operations.id = engagements.id_op
             LEFT JOIN deals ON engagements.deal = deals.id_deal
             LEFT JOIN entreprises 
@@ -55,7 +56,38 @@ class BorderauController extends Controller
             if($this->lang =="fr"){
                 $view = $view."_fr";
             }
-            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n]);
+            if($this->ville_fr =="Touggourt"){
+                
+                $view = "borderau.borderau_tggrt";
+            }
+            $qq = "SELECT * FROM titres WHERE id_titre = (SELECT father FROM titres WHERE id_titre = 
+            (SELECT sous_titre FROM rebriques WHERE id_eng = 436 AND (sous_titre != ".$engs[0]->id_eng." ) LIMIT 1))";
+            //return $qq;
+            $sous_titre = NULL;
+            if(isset(DB::select(DB::raw($qq))[0])){
+                $sous_titre = DB::select(DB::raw($qq))[0];
+            }
+            $qq = "SELECT * FROM portefeuille WHERE code =".$engs[0]->portefeuille;
+     
+            $portefeuille = NULL;
+            if(isset(DB::select(DB::raw($qq))[0])){
+                $portefeuille = DB::select(DB::raw($qq))[0];
+            }
+            $qq = "SELECT * FROM programme WHERE code =".$engs[0]->programme;
+     
+            $programme = NULL;
+            if(isset(DB::select(DB::raw($qq))[0])){
+                $programme = DB::select(DB::raw($qq))[0];
+            }
+            $qq = "SELECT * FROM programme WHERE id =".$engs[0]->sous_programme;
+     
+            $sous_programme = NULL;
+            if(isset(DB::select(DB::raw($qq))[0])){
+                $sous_programme = DB::select(DB::raw($qq))[0];
+            }
+            return view($view,["user"=>$user,"year"=>$year,"engs"=>$engs,"n"=>$n,
+                        "sous_titre"=>$sous_titre,"portefeuille"=>$portefeuille,
+                        "programme"=>$programme,"sous_programme"=>$sous_programme]);
         }else{
             $user = Auth::user();
             $year = $this->year;

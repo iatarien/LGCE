@@ -228,8 +228,9 @@ $ordre = $op->order_ville;
 				@endif
 
 			@endif
-			@if($ville_fr =="Djanet11" )
-			طريقة الدفع : حوالة  <br>
+			@if($ville_fr =="Touggourt" )
+			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}} - 
+			<span dir="ltr"> {{$bank->cle}} / {{$bank->num}} {{$bank->abr}} </span>   <br>
 			@else
 			طريقة الدفع : {{$bank->bank}} وكالة : {{$bank->bank_agc}}  <br>
 			@endif

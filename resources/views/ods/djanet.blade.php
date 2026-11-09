@@ -71,6 +71,8 @@ $cdars = true;
                 <br>
                 <span style="text-decoration : underline;"> عنوان العملية :</span> <strong> {{$intitule}} </strong>
                 <br>
+				<span style="text-decoration : underline;"> الحصة :</span> <strong> {{$ods->lot}} </strong>
+                <br>
                 <span style="text-decoration : underline;">  رقم {{$deal}} :</span> <strong>{{$deal_num}}</strong> 
 				@if($ods->deal_date != NULL)
 				بتاريخ {{$ods->deal_date}}
