@@ -61,7 +61,7 @@ class BorderauController extends Controller
                 $view = "borderau.borderau_tggrt";
             }
             $qq = "SELECT * FROM titres WHERE id_titre = (SELECT father FROM titres WHERE id_titre = 
-            (SELECT sous_titre FROM rebriques WHERE id_eng = 436 AND (sous_titre != ".$engs[0]->id_eng." ) LIMIT 1))";
+            (SELECT sous_titre FROM rebriques WHERE id_eng = ".$engs[0]->id_eng." AND (sous_titre != 127 ) LIMIT 1))";
             //return $qq;
             $sous_titre = NULL;
             if(isset(DB::select(DB::raw($qq))[0])){
@@ -254,7 +254,7 @@ class BorderauController extends Controller
             DB::table('bord_eng')->insertGetId(['id_bord'=>$id,"id_eng"=>$eng]);
             
         }
-        return Redirect::to('/borderau1/'.$id);
+        return Redirect::to('/borderau/'.$id);
     }
     public function update(Request $request)
     {   

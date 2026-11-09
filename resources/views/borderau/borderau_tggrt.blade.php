@@ -124,7 +124,7 @@
                 <tr>
                     <td>نفقات الاستثمار T3 : {{$eng->real_sujet}}</td>
                     <td>{{$eng->numero_fiche}}</td>
-                    @if(sous_titre == NULL)
+                    @if($sous_titre == NULL)
                     <td></td>
                     @else
                     <td>{{$sous_titre->code}}</td>
@@ -145,7 +145,7 @@
                 <tr>
                     <td>نفقات الاستثمار T3 : {{$eng->real_sujet}}</td>
                     <td>{{$eng->numero_fiche}}</td>
-                    @if(sous_titre == NULL)
+                    @if($sous_titre == NULL)
                     <td></td>
                     @else
                     <td>{{$sous_titre->code}}</td>
