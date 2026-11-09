@@ -300,30 +300,28 @@ $text = ucfirst($text);
 					<td>N°</td>
 					<td>DU</td>
 				</tr>
-				@if($pay->old_payments != 0) 
+				<?php $total =$pay->to_pay; 
+				$total1 = 0;
+				?>
+				@foreach($old_pays as $oldpay)
+				<?php $total = $total + $oldpay->to_pay; 
+				$total1 = $total1 + $oldpay->to_pay; ?>
 				<tr>
+					<?php $first4 = substr($oldpay->date_mondat, 0, 4); ?>
+                    <td>{{$oldpay->year}}</td>
                     <td></td>
-                    <td></td>
-					<td><span>@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</span></td>
+					<td><span>{{ number_format((float)$oldpay->to_pay, 2, '.', ' ')}}</span></td>
 					<td></td>
 					<td></td>
-
 				</tr>
-				@endif
+				@endforeach
 				<tr>
+
                     <td>{{$pay->year}}</td>
-                    <td></td>
-					<td><span>@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</span></td>
+					<td></td>
+					<td><span>{{ number_format((float)$pay->to_pay, 2, '.', ' ')}}</span></td>
 					<td></td>
 					<td></td>
-
-				</tr>
-				<tr>
-					<td>&emsp;</td>
-					<td></td>
-					<td></td>
-                    <td></td>
-                    <td></td>
 
 				</tr>
                 <tr>
@@ -437,19 +435,20 @@ $text = ucfirst($text);
 				
                 <tr>
                     <td colspan="2">Total</td>
-					<td colspan="3">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
+					<td colspan="3">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
                     <td colspan="2">Montant du present</td>
-					<td colspan="3">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
+					<td colspan="3"></td>
 				</tr>
                 <tr>
                     <td colspan="2">L'entrepreneur aura reçu</td>
-					<td colspan="3">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
+					<td colspan="3"></td>
+			
 				</tr>
                 <tr>
                     <td colspan="2">les depenses s'elevent</td>
-					<td colspan="3">@if($pay->old_payments != 0)  {{ number_format((float)$pay->old_payments, 2, '.', ' ')}} @endif</td>
+					<td colspan="3">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
 				</tr>
                 <tr>
                     <td colspan="2">Retenues de garantie</td>

@@ -346,11 +346,15 @@ class PaymentController extends Controller
         if($this->ville_fr =="Biskra"){
             $view ='pays.mondat1';
             $view = $view."_fr";
+            if($this->direction_fr =="Direction de l'Urbanisme de l'Architecture et de la Construction"){
+                $view ='pays.mondat1_frA4';
+            }
         }
         if($this->lang =="fr"){
             $view ='pays.mondat1';
             $view = $view."_fr_new";
         }
+        
         return view($view,["user"=>$user,'pay'=>$pay,'op'=>$op,'e'=>$e,'bank'=>$bank,"sous_titre"=>$sous_titre,
         "titre"=>$titre,'txt'=>$txt,'txt1'=>$txt1,
         "id"=>$id,"nums"=>$nums,"prog"=>$prog,"sous_prog"=>$sous_prog]);
