@@ -243,11 +243,11 @@ class ODSController extends Controller
                 $query = $query." entreprises.id ='".$e."' AND";
             }
             
-            $query= $query." 1 ORDER BY ods.id DESC LIMIT 100";
+            $query= $query." 1 ORDER BY ods.id DESC LIMIT 500";
             //return $query;
             return DB::select( DB::raw($query));
         }else{
-            $query = $query." ORDER BY ods.id DESC LIMIT 100";
+            $query = $query." ORDER BY ods.id DESC LIMIT 500";
             return DB::select( DB::raw($query));
         }
     }
