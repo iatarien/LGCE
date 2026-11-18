@@ -140,22 +140,22 @@ $ordre = $op->order_ville;
                 <tr>
                     <th rowspan="2" style="width : 13%;"> 1 <br> Désignation du Bénificiaire  </th>
 					<th rowspan="2" style="width : 12%;"> 2 <br> N° du C/C à Crediter</th>
-                    <th rowspan="2" style="width : 10%;"> 3 <br> Montant</th>
-                    <th rowspan="2" style="width : 5%;"> 4 <br> Ret du Compt</th>
-                    <th rowspan="2" style="width : 5%;"> 5 <br> Net à payer</th>
-					<th rowspan="2" style="width : 5%;"> 6 <br> N° d'eng</th>
-					<th rowspan="1" colspan="5" style="width : 20%;"> 7 <br> IDENTIFICATION</th>
+                    <th rowspan="2" style="width : 20%;"> 3 <br> Montant</th>
+                    <th rowspan="2" style="width : 3%;"> 4 <br> Ret du Compt</th>
+                    <th rowspan="2" style="width : 3%;"> 5 <br> Net à payer</th>
+					<th rowspan="2" style="width : 3%;"> 6 <br> N° d'eng</th>
+					<th rowspan="1" colspan="5" style="width : 18%;"> 7 <br> IDENTIFICATION</th>
 					<th rowspan="1" colspan="2" style="width : 10%;"> 8 <br> N°</th>
                     <th rowspan="2" style="width : 20%;"> 9 <br> Références et Observations</th>
                 </tr>
 				<tr>
-                    <th style="width : 3%;"> A <br> Désignation du Bénificiaire  </th>
-					<th style="width : 3%;"> B <br> N° du C/C à Crediter</th>
-                    <th style="width : 3%;"> C <br> Montant</th>
-                    <th style="width : 3%;"> D <br> Ret du Compt</th>
-                    <th style="width : 3%;"> E <br> Net à payer</th>
-                    <th style="width : 2.5%;">Mandat</th>
-					<th style="width : 2.5%;">Ligne</th>
+                    <th style="width : 2.5%;"> A <br> Désignation du Bénificiaire  </th>
+					<th style="width : 2.5%;"> B <br> N° du C/C à Crediter</th>
+                    <th style="width : 2.5%;"> C <br> Montant</th>
+                    <th style="width : 2.5%;"> D <br> Ret du Compt</th>
+                    <th style="width : 2%;"> E <br> Net à payer</th>
+                    <th style="width : 2%;">Mandat</th>
+					<th style="width : 2%;">Ligne</th>
                 </tr>
                 <tr>
                     <td>{{$e->name}}</td>

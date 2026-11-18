@@ -372,7 +372,7 @@ $text = ucfirst($text);
                 <tr>
                     <td colspan="2">les depenses s'elevent</td>
 					<td colspan="1">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
-			</tr>
+				</tr>
                 <tr>
                     <td colspan="2">Retenues de garantie</td>
 					<td colspan="1">@if($pay->assurance_cut != 0)  {{ number_format((float)$pay->assurance_cut, 2, '.', ' ')}} @endif</td>
