@@ -332,7 +332,9 @@ function convert(num){
 		num2 = num2 *10;
 	}
 	var txt = nArabicWords(num1);
-	txt = txt.replace('ومليون', "و واحد مليون")
+	txt = txt.replace('ومليون', "و واحد مليون");
+	txt = txt.replace('وألف', "و واحد ألف");
+	txt = txt.replace('و ألف', "و واحد ألف");
 	txt+= " "+"دينار جزائري";
 	if(num2 != null){
 		txt +=" "+"و"+" "+nArabicWords(num2)+" "+"سنتيم";

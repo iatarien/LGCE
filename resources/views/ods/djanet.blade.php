@@ -111,7 +111,7 @@ $cdars = true;
             
 		</div>
 		<div style="  display: inline-block; width : 100%; ">
-			<h2 style="text-decoration : underline;  padding: 0px 5px 0px 5px;"> أمر  ب{{$ods_type}}   </h2>
+			<h2 style="text-decoration : underline;  padding: 0px 5px 0px 5px;"> أمر  ب{{$ods_type}} رقم {{$num}}   </h2>
 		</div>
 		<div dir="rtl" style="  display: inline-block; width : 100%; font-weight :  normal; text-align : justify; ">
 			 أعطي الأمر لـ : <strong>{{$e}}</strong> ب{{$ods_type}} المنصوص عليها في  ال{{$deal}} رقم <strong>{{$deal_num}}</strong> المؤشر من قبل المراقب المالي بتاريخ  <strong dir="ltr">{{$visa_date}}</strong>  تحت رقم <strong>{{$visa}}</strong> و هذا ابتداءا من تاريخ التبليغ.<br>
