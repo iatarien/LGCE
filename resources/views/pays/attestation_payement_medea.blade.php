@@ -306,7 +306,7 @@
 			</table>
 			<table id="summary-bottom" style="font-size : 14px">
 				<tr>
-					<td style="width : 34%">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
+					<td style="width : 34%">@if($total1 != 0)  {{ number_format((float)$total1, 2, '.', ' ')}} @endif</td>
 					<td > ..........  المجمـــــــوع    </td>
 				</tr>
 				<tr>
@@ -314,7 +314,7 @@
 					<td> مبلغ شهادة الدفع    </td>
 				</tr>
 				<tr>
-					<td style="border: 0.1px dotted">@if($pay->to_pay != 0)  {{ number_format((float)$pay->to_pay, 2, '.', ' ')}} @endif</td>
+					<td style="width : 34%">@if($total != 0)  {{ number_format((float)$total, 2, '.', ' ')}} @endif</td>
 					<td>  دفع للمفاولة   </td>
 				</tr>
 				
